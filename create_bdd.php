@@ -11,11 +11,11 @@ sqlScriptInject($bdd,'create.sql');
 sqlScriptInject($bdd,'insert.sql');
 $csv = openCSV();
 $columns = getLine($csv);
-for ($i=0; $i<1000; $i++) {
-    var_dump(getProduct($csv, $columns));
-}
+//for ($i=0; $i<3; $i++) {
+//    var_dump(getProduct($csv, $columns));
+//}
+//injectProduct($bdd, getProduct($csv, $columns));
 
+applyToAllProduct($csv, $bdd, $columns, 'injectProduct');
 echo "done";
-applyToAllProduct($csv, $columns, 'insertProduct');
-
 ?>
