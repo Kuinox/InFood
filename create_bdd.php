@@ -11,9 +11,11 @@ sqlScriptInject($bdd,'create.sql');
 sqlScriptInject($bdd,'insert.sql');
 $csv = openCSV();
 $columns = getLine($csv);
-var_dump(getProduct($csv, $columns));
-sortNutriment(getProduct($csv), $columns);
-echo "done";
+for ($i=0; $i<1000; $i++) {
+    var_dump(getProduct($csv, $columns));
+}
 
+echo "done";
 applyToAllProduct($csv, $columns, 'insertProduct');
+
 ?>

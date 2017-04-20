@@ -1,15 +1,18 @@
 <?php
 function exist($bdd, $table, $value) {
     $id = mysqli_fetch_assoc(mysqli_query($bdd, "SELECT id_$table FROM $table"));
-    var_dump($id);
     return $id;
 }
-function insertIfNotExist($bdd, $table, $value) {
+function insertIfNotExist($bdd, $table, $value, $additional_value = NULL) {
+    $additional ="";
+    if (count($additional_value)>0) {
+        $additional = ",".implode(",")
+    }
     if (!exist($bdd, $table, $value)) {
         echo "inserted data";
-        @mysqli_query($bdd, "INSERT INTO $table VALUES (NULL, '$value')") or die("Error insert");
+        @mysqli_query($bdd, "INSERT INTO $table VALUES (NULL, '$value'".$additional.")") or die("Error insert");
     }
-    $id = exist($bdd, $table, $value); //if return false, error probably in this function.
+    $id = mysqli_insert_id($bdd); //if return false, error probably in this function.
     if (!$id) {
         echo "Function insertIfNotExist have probably an error";
     }
@@ -31,9 +34,18 @@ function sqlScriptInject($bdd, $script_path) {
     }
 }
 
-function injectProduct($bdd, $product) {//refaire
+function injectProduct($bdd, $product) {
     $nutriments = sortNutriment($product);
-    insertArray($bdd, array_flip($nutriments)); //possibly put that in inject init.
-    insert
+    insertArray($bdd, 'nutriment', array_flip($nutriments)); //put that in a future inject init.
+    insertIfNotExist($bdd, 'grade_nutriment', $product['nutrition_grade_fr']);
+    insertArrayInTable($bdd, 'additive', explode(',', $product['additives_tags']));
+    insertIfNotExist($bdd, 'brand', $product['brands']);
+    insertIfNotExist($bdd, 'packaging', $product['packaging']);
+    foreach (explode(',', $product['manufacturing_places'])) {
+        insertIf
+    }
+
+
+    //nutriment_level not in CSV, see if a workaround is possible (determining level based on %?)
 }
  ?>
