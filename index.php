@@ -2,20 +2,36 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>video</title>
+		<title>INDEX</title>
 	</head>
-	<body>
-		<form action="inscription.php" method="get">
-		<td>
-			<tr>
-				<input type="hidden"/>
-				<input type="submit" name="Inscription"/>
-			</tr>
-			<tr>
-				<input type="hidden"/>
-				<input type="submit" name="Se connecter"/>
-			</tr>
-		</td>
+	<body>	
+		<h1>In'Food	</h1>
+		<form action="inscription1.php" method="get">
+			<input type="hidden"/>
+			<input type="submit" name="inscription" value="Inscription"/>
 		</form>
+		<form action="connexion.php" method="get">
+			<input type="hidden"/>
+			<input type="submit" name="connexion" value="Se connecter"/>
+		</form>		
+		<form action="resultat_de_recherche.php" method="get">
+			<input type="text" name="recherche"/>
+			<input type="submit" name="recherche" value="recherche"/><br>
+			Filtre option : 
+		<select name="filtre" form="recherche">
+		  <option value="produit">Produit</option>
+		  <option value="qualite">qualite</option>
+		  <option value=""></option>
+		  <option value=""></option>
+		</select>
+			Filtre option : 
+		<select name="filtre" form="recherche">
+		  <option value="produit">Produit</option>
+		  <option value="qualite">qualite</option>
+		  <option value=""></option>
+		  <option value=""></option>
+		</select>
+			<div></div>
+		</form>		
 	</body>
 </html>
