@@ -1,6 +1,5 @@
 <?php
 function deconnexion () {
-  <?php
   session_start();
   vider_cookie();
   session_destroy();
@@ -10,3 +9,4 @@ function deconnexion () {
   exit();
   return $informations;
 }
+?>
