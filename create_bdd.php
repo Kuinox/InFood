@@ -5,17 +5,12 @@
 include("csv_functions.php");
 include("sql_functions.php");
 include("connect.php");
-
+set_time_limit(300);
 
 sqlScriptInject($bdd,'create.sql');
 sqlScriptInject($bdd,'insert.sql');
 $csv = openCSV();
 $columns = getLine($csv);
-//for ($i=0; $i<3; $i++) {
-//    var_dump(getProduct($csv, $columns));
-//}
-//injectProduct($bdd, getProduct($csv, $columns));
-
 applyToAllProduct($csv, $bdd, $columns, 'injectProduct');
 echo "done";
 ?>

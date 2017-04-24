@@ -48,7 +48,7 @@ function getProduct($ressource, $columns) { // convert any line to a product wit
 
 function applyToAllProduct($ressource, $bdd, $columns, $code) {// run a function "code" on all the product of the CSV.
     $id = 0;
-    while($id<10) { //!feof($ressource)
+    while($id<2000) { //!feof($ressource)
         $code($bdd, getProduct($ressource, $columns));
         $id++;
     }

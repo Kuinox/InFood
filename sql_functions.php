@@ -1,33 +1,47 @@
 <?php
-function exist($bdd, $table, $value) {
-    $query = "SELECT * FROM $table";
-    $result= mysqli_query($bdd, $query);
-    var_dump($result);
-    $select = mysqli_fetch_assoc($result);
-    var_dump($select);
-    echo $query."</br>";
-    $id=false;
-    mysqli_free_result($result);
-    return $id;
+
+function select($bdd, $table) { //select a sql table and return a array of sql result
+    $result = mysqli_query($bdd, "SELECT * FROM $table");
+    $output = [];
+    while ($select = mysqli_fetch_assoc($result)) {
+        $output [] = $select;
+    }
+    return $output;
 }
+
+function find_value($result, $value) { // find a value in a array of sql results.
+    foreach ($result as $key => $line) {
+        foreach ($line as $data) {
+            if ($value == $data) {
+                return $key;
+            }
+        }
+    }
+    return false;
+}
+
 function insertIfNotExist($bdd, $table, $value, $additional_value = NULL) {
+    if (empty($value)) {
+        return false;
+    }
     $additional ="";
     if (count($additional_value)>0) {
+
         $additional = ",".implode(",", $additional_value);
     }
-    $id = exist($bdd, $table, $value);
-    if (!$id) {
-        echo "injecting the value</br>";
+
+    $id = find_value(select($bdd, $table),$value);
+    if (!$id) { // if value not found
         $query = "INSERT INTO $table VALUES (NULL, \"".addslashes($value)."\"".$additional.")";
-        @mysqli_query($bdd, $query) or die("</br> QUERRY:".$query);
+        @mysqli_query($bdd, $query) or die(var_dump($bdd).$query);
         $id = mysqli_insert_id($bdd);
     }
-    if (!$id) {
-        echo("INSERT INTO $table VALUES (NULL, '$value'".$additional.")</br>");
+    if (!$id) { //if no ID is not returned = insert failed
+        throw new Exception('Insert failed and die() didnt trigger.');
     }
-    echo "END</br>";
     return $id;
 }
+
 function insertArrayInTable($bdd, $table, $array) {
     foreach($array as $value) {
         if(!empty($value)){
@@ -42,34 +56,43 @@ function sqlScriptInject($bdd, $script_path) {
         $script .= $line;
     }
     foreach(explode(";", $script) as $query) {
-        mysqli_query($bdd, $query);
+        if (!empty($query)) {
+            mysqli_query($bdd, $query);
+        }
     }
 }
 
 function injectProduct($bdd, $product) {
-    echo "injecting a product</br>";
+    echo "injecting product: ".$product['code']."</br>";
     $nutriments = sortNutriment($product);
-    insertArrayInTable($bdd, 'nutriment', array_flip($nutriments)); //put that in a future inject init.
-    if (!empty($product['nutrition_grade_fr'])) {
-        insertIfNotExist($bdd, 'grade_nutriment', $product['nutrition_grade_fr']);
+    insertArrayInTable($bdd, 'nutriment', array_flip($nutriments));//put that in a future inject init.
+    insertIfNotExist($bdd, 'grade_nutriment', $product['nutrition_grade_fr']);
+    insertArrayInTable($bdd, 'additive', explode(',', $product['additives_tags']));
+    insertIfNotExist($bdd, 'brand', $product['brands']);
+    foreach (explode(',', $product['packaging']) as $packaging) { //deux fois le meme packaging, le insertIfNotExist fonctionne ?
+        insertIfNotExist($bdd, 'packaging', $packaging);
     }
-    if (!empty($product['additives_tags'])) {
-        insertArrayInTable($bdd, 'additive', explode(',', $product['additives_tags']));
-    }
-    if(!empty($product['brands'])) {
-        insertIfNotExist($bdd, 'brand', $product['brands']);
-    }
-
-    insertIfNotExist($bdd, 'packaging', $product['packaging']);
-    foreach (explode(',', $product['manufacturing_places']) as $place) {
+    foreach (explode(',', $product['manufacturing_places']) as $place) { //Ptites erreurs ...  A revoir les données/modéles
         if (!isset($return_id)) {
-            $return_id = insertIfNotExist($bdd, 'manufacturing_place', $place);
+            $return_id = insertIfNotExist($bdd, 'manufacturing_place', $place, Array('NULL'));
         } else {
-            $return_id = insertIfNotExist($bdd, 'manufacturing_place', $place, $return_id);
+            $return_id = insertIfNotExist($bdd, 'manufacturing_place', $place, Array($return_id));
         }
     }
-    echo mysqli_error($bdd);
+    foreach (explode(', ', $product['allergens']) as $allergen) {
+        insertIfNotExist($bdd, 'allergen', $allergen);
+    }
 
+    if (!empty($product['image_url'])) {
+        echo '<pre>';
+        print_r($product);
+        echo '</pre>';
+    }
+    
+    // attribut TODO: ingredient, nutriment_level, images
+    //voir images aussi.
+    //insertArrayInTable($bdd, 'keywords', explode(',', $product['keywords']));
+    //NO KEYWORDS ???
     //nutriment_level not in CSV, see if a workaround is possible (determining level based on %?)
 }
  ?>
