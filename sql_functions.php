@@ -1,6 +1,6 @@
 <?php
 
-function select($bdd, $table) { //select a sql table and return a array of sql result
+function selectAll($bdd, $table) { //select a sql table and return a array of sql result
     $result = mysqli_query($bdd, "SELECT * FROM $table");
     $output = [];
     while ($select = mysqli_fetch_assoc($result)) {
@@ -30,7 +30,7 @@ function insertIfNotExist($bdd, $table, $value, $additional_value = NULL) {
         $additional = ",".implode(",", $additional_value);
     }
 
-    $id = find_value(select($bdd, $table),$value);
+    $id = find_value(selectAll($bdd, $table),$value);
     if (!$id) { // if value not found
         $query = "INSERT INTO $table VALUES (NULL, \"".addslashes($value)."\"".$additional.")";
         @mysqli_query($bdd, $query) or die(var_dump($bdd).$query);
@@ -83,12 +83,12 @@ function injectProduct($bdd, $product) {
         insertIfNotExist($bdd, 'allergen', $allergen);
     }
 
-    if (!empty($product['image_url'])) {
+    /*if (!empty($product['image_url'])) {
         echo '<pre>';
         print_r($product);
         echo '</pre>';
-    }
-    
+    }*/
+
     // attribut TODO: ingredient, nutriment_level, images
     //voir images aussi.
     //insertArrayInTable($bdd, 'keywords', explode(',', $product['keywords']));
