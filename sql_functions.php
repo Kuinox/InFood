@@ -69,7 +69,7 @@ function injectProduct($bdd, $product) {
     echo "injecting product: ".$product['code']."</br>";
     $nutriments = sortNutriment($product);
     insertArrayInTable($bdd, 'nutriment', array_flip($nutriments));//put that in a future inject init.
-    insertIfNotExist($bdd, 'grade_nutriment', $product['nutrition_grade_fr']);
+    $grade = insertIfNotExist($bdd, 'grade_nutriment', $product['nutrition_grade_fr']);
     insertArrayInTable($bdd, 'additive', explode(',', $product['additives_tags']));
     insertIfNotExist($bdd, 'brand', $product['brands']);
     foreach (explode(',', $product['packaging']) as $packaging) { //deux fois le meme packaging, le insertIfNotExist fonctionne ?
@@ -85,12 +85,23 @@ function injectProduct($bdd, $product) {
     foreach (explode(', ', $product['allergens']) as $allergen) {
         insertIfNotExist($bdd, 'allergen', $allergen);
     }
+    $generic = insertIfNotExist($bdd, 'generic_name', $product['generic_name']);
 
-    /*if (!empty($product['image_url'])) {
+    $query = "INSERT INTO aliment VALUES (";
+    $query .= $product['code'];
+    $query .= ",".$product['product_name'];
+    $query .= ",FROM_UNIXTIME(".$product['last_modified_t'].")";
+    $query .= ",".$product['ingredients_text'].",";
+    $query .= ",".$generic;
+    $query .= ",".$grade;
+    $query .= ",".$product['quantity'];
+    $query .= ",".$product['serving_size'];
+    $query .= ",".$product['ingredients_text'].")";
+    if (!empty($product['image_url'])) {
         echo '<pre>';
         print_r($product);
         echo '</pre>';
-    }*/
+    }
 
     // attribut TODO: ingredient, nutriment_level, images
     //voir images aussi.
