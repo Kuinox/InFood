@@ -1,7 +1,8 @@
 <?php
 function openCSV() { //open CSV
     //http://world.openfoodfacts.org/data/en.openfoodfacts.org.products.csv
-    $fic=fopen('D:\Downloads\en.openfoodfacts.org.products.csv', "r");
+    $path =  file_get_contents('../chemin_bdd.txt');
+    $fic=fopen($path, "r");
     return $fic;
 }
 
