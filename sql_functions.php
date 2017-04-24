@@ -23,7 +23,7 @@ function find_value($result, $value) { // find a value in a array of sql results
     return false;
 }
 
-function insertIfNotExist($bdd, $table, $value, $additional_value = NULL) {
+function insertIfNotExist($bdd, $table, $value, $additional_value = NULL, $primary_key = 'NULL') {
     if (empty($value)) {
         return false;
     }
@@ -35,7 +35,7 @@ function insertIfNotExist($bdd, $table, $value, $additional_value = NULL) {
 
     $id = find_value(selectAll($bdd, $table),$value);
     if (!$id) { // if value not found
-        $query = "INSERT INTO $table VALUES (NULL, \"".addslashes($value)."\"".$additional.")";
+        $query = "INSERT INTO $table VALUES ($primary_key, \"".addslashes($value)."\"".$additional.")";
         @mysqli_query($bdd, $query) or die(var_dump($bdd).$query);
         $id = mysqli_insert_id($bdd);
     }
