@@ -8,7 +8,10 @@ function selectAll($bdd, $table) { //select a sql table and return a array of sq
     }
     return $output;
 }
-
+function select($bdd, $table, $where , $like){
+  $result = mysqli_query($bdd, "SELECT * FROM $table where $where like $like");
+    return $result;
+}
 function find_value($result, $value) { // find a value in a array of sql results.
     foreach ($result as $key => $line) {
         foreach ($line as $data) {
