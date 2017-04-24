@@ -1,33 +1,17 @@
 <?php
-$conn=mysqli_connect('localhost','root','','inscription')or die(mysqli_error());
+include("connect.php");
 if(isset($_POST['forminscription'])){
-	if(empty($_POST['pre']))
-	{
-		echo"prenom est vide";
-	}
-	elseif(!empty($_POST['pre']))
-	{	
-		echo"not empty";
-		$t=[];
-		$t=$_POST['pre'];
-		echo"<br>"." en  $t";
-		$s=count($_POST['pre']);
-		$i=0;
-		echo"<br>"."le numero est $s";
-		for($i=0;$i<$s;$i++)
-		{
-			echo" boucle for";
-			echo"<br>"."le td[i] est $t[$i]";
-			if($t[$i]== "é")
-			{
-				echo "$t[$i]";
-				echo"tu peut pas mettre les é,è";
-			}
-		}
-	}
-	elseif(empty($_POST["nom"]))
+	if(empty($_POST["nom"]))
 	{
 		echo"nom est vide";
+	}
+	elseif(empty($_POST["weight"]))
+	{
+		echo"poid est vide";
+	}
+	elseif(empty($_POST["height"]))
+	{
+		echo"taille est vide";
 	}
 	elseif(empty($_POST["eml"]))
 	{
@@ -40,9 +24,10 @@ if(isset($_POST['forminscription'])){
 	else
 	{
 		setcookie("nom", $_POST["nom"], time()+3600*12);
-		setcookie("pre", $_POST["pre"], time()+3600*12);
 		setcookie("eml", $_POST["eml"], time()+3600*12);
 		setcookie("pwd", $_POST["pwd"], time()+3600*12);
+		setcookie("height", $_POST["height"], time()+3600*12);
+		setcookie("weight", $_POST["weight"], time()+3600*12);
 		header('Location:/INFOOD/inscription.php');
 	}
 }
@@ -60,8 +45,12 @@ if(isset($_POST['forminscription'])){
 				<td><input type="text" name="nom"/></td>
 			</tr>
 			<tr>
-				<td>Prenom :</td>
-				<td><input type="text" name="pre"/></td>
+				<td>poid :</td>
+				<td><input type="text" name="weight"/></td>
+			</tr>
+			<tr>
+				<td>taille en centimetre :</td>
+				<td><input type="text" name="height"/></td>
 			</tr>
 			<tr>
 				<td>Mail :</td>

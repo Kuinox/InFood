@@ -1,59 +1,38 @@
 <?php
-$conn=mysqli_connect('localhost','root','','inscription')or die(mysqli_error());
+include("connect.php");
+
 $nom=$_COOKIE["nom"];
-$pre=$_COOKIE["pre"];
 $eml=$_COOKIE["eml"];
 $pwd=$_COOKIE["pwd"];
-/*$nom=$_POST['nom'];
-$pre=$_POST['pre'];
-$eml=$_POST['eml'];
-$pwd=$_POST['pwd'];
-$userchek=$eml;
-$userchek="SELECT * FROM users WHERE 'email'=$userchek";
-$res=mysqli_query($conn,$userchek);
-$yes=count($res);
-echo $yes;
-if($yes>0)
-{ 
-	// header('Location:/INFOOD/inscription1.php');
-	echo"erreur mail existe";
-}else{
- // $username = mysqli_real_escape_string($conn,$_POST['nom']);
+$weight=$_COOKIE["weight"];
+$height=$_COOKIE["height"];
 
-  // $result = mysqli_query($conn, "SELECT * FROM users WHERE nom='".$username."' AND activate='0'");
+$mailchek=$eml;
+$result = mysqli_query($bdd, "SELECT * FROM user WHERE email like '$mailchek'");
+$row_cnt = mysqli_num_rows($result);
+mysqli_free_result($result);
 
-  // if ($result->num_rows){
-// echo "you are activated !!";
- // }
-
-   // else
-  // {
-	  // echo "you are not activated !!";
-
-  // do what u like here if not activated
-    // }
-		
-	*/
-	$req="INSERT INTO users (nom, prenom, email, password) values ('$nom','$pre','$eml','$pwd')";
-	$res=mysqli_query($conn,$req);
-	
-
-?>
-<body>
-	<p>Bienvenue <?php echo($nom)?> votre compte à étés bien enregitrer</p>
+if($row_cnt!== 0) {
+	echo"erreur mail deja utiliser <br>";
+}
+elseif($row_cnt== 0)
+{
+	$req="INSERT INTO user (pseudo, password, email, height, weight) values ('$nom','$pwd','$eml','$height','$weight')";
+	$res=mysqli_query($bdd,$req);
+	echo"<body>
+	<p>Bienvenue $nom votre compte à étés bien enregitrer</p>
 	<table>
 		<tr>
 			<td>Nom :</td>
-			<td><?php echo($nom)?></td>
-		</tr>
-		<tr>
-			<td>prenom :</td>
-			<td><?php echo($pre)?></td>
+			<td>$nom</td>
 		</tr>
 		<tr>
 			<td>Email :</td>
-			<td><?php echo($eml)?></td>
+			<td>$eml</td>
 		</tr>
 	</table>
-	<p><a href="index.php">Retour à la page d'accueil </a></p>
+	<p><a href='index.php'>Retour à la page d accueil </a></p>
 </body>
+";
+}
+?>
