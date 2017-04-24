@@ -17,16 +17,16 @@ values
 (1,'admin');
 INSERT INTO grade_user (user_id_user,grade_id_grade)
 values
-(1,0),
-(2,0),
-(3,0),
-(4,0),
-(5,0),
+(1,2),
+(2,2),
+(3,2),
+(4,2),
+(5,2),
 (6,1),
-(7,0),
-(8,0),
-(9,0),
-(10,0);
+(7,2),
+(8,2),
+(9,2),
+(10,2);
 
 INSERT INTO grade_nutriment (tag_grade_nutriment)
 VALUES ('A'),('B'),('C'),('D'),('E'),('F');
