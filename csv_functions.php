@@ -16,6 +16,7 @@ function getWord($ressource) { //get a word from csv
         $word .= $char;
     }
 }
+
 function getLine($ressource) { // get a line from csv
     $line = [];
     while(true) {
@@ -50,6 +51,9 @@ function getProduct($ressource, $columns) { // convert any line to a product wit
 function applyToAllProduct($ressource, $bdd, $columns, $code) {// run a function "code" on all the product of the CSV.
     $id = 0;
     while($id<2000) { //!feof($ressource)
+        if ($id%100 == 0) {
+            echo "Progression: $id/2000</br>";
+        }
         $code($bdd, getProduct($ressource, $columns));
         $id++;
     }
