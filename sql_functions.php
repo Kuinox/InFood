@@ -98,7 +98,7 @@ function injectProduct($bdd, $product) {
         echo '<pre>';
         print_r($product);
         echo '</pre>';
-    } 
+    }
 */
     // refaire "quantity" avec kg/l
     // attribut TODO: ingredient, nutriment_level, images
