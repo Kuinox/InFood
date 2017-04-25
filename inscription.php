@@ -19,20 +19,7 @@ elseif($row_cnt== 0)
 {
 	$req="INSERT INTO user (pseudo, password, email, height, weight) values ('$nom','$pwd','$eml','$height','$weight')";
 	$res=mysqli_query($bdd,$req);
-	echo"<body>
-	<p>Bienvenue $nom votre compte à étés bien enregitrer</p>
-	<table>
-		<tr>
-			<td>Nom :</td>
-			<td>$nom</td>
-		</tr>
-		<tr>
-			<td>Email :</td>
-			<td>$eml</td>
-		</tr>
-	</table>
-	<p><a href='index.php'>Retour à la page d accueil </a></p>
-</body>
-";
+	$html = include("inscriptionreussie.php");
+	echo "$html";
 }
 ?>
