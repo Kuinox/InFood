@@ -1,4 +1,7 @@
-<body>
+<?php
+$nom=$_COOKIE["nom"];
+$eml=$_COOKIE["eml"];
+echo"<body>
 	<p>Bienvenue $nom votre compte à étés bien enregitrer</p>
 	<table>
 		<tr>
@@ -11,4 +14,5 @@
 		</tr>
 	</table>
 	<p><a href='index.php'>Retour à la page d accueil </a></p>
-</body>
+</body>"
+;?>
