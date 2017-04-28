@@ -28,8 +28,6 @@ values
 (9,2),
 (10,2);
 
-INSERT INTO grade_nutriment (tag_grade_nutriment)
-VALUES ('A'),('B'),('C'),('D'),('E'),('F');
 
 -- attendre la majj de la datab
 --insert into unwanted_aliment (aliment_id_aliment,user_id_user)
