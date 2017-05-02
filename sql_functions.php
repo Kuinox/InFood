@@ -59,7 +59,6 @@ function injectProduct($bdd, $product) {
     echo "injecting product: ".$product['code']."</br>";
     $nutriments = sortNutriment($product);
     insertArrayInTable($bdd, 'nutriment', array_flip($nutriments));//put that in a future inject init.
-    $grade = insertIfNotExist($bdd, 'grade_nutriment', $product['nutrition_grade_fr']);
     insertArrayInTable($bdd, 'additive', explode(',', $product['additives_tags']));
     insertIfNotExist($bdd, 'brand', $product['brands']);
     foreach (explode(',', $product['packaging']) as $packaging) { //deux fois le meme packaging, le insertIfNotExist fonctionne ?
