@@ -17,7 +17,7 @@
 			<input type="hidden"/>
 			<input type="submit" name="connexion" value="Se connecter"/>
 		</form>
-		<form action="resultat_de_recherche.php" method="POST" >
+		<form action="resultat_de_recherche.php" method="GET" >
 			<input type="text" name="recherche"/>
 		<select name="filtre">
 		  <option value="aliment">Produit</option>
@@ -25,7 +25,7 @@
 			<option value="ingredients">ingredients</option>
 			<option value="categorie">categorie</option>
 		</select>
-		<input type="submit" name="valide" value="recherche"/>
+		<input type="submit" name="sub" value="valide"/>
 			<div></div>
 		</form>
 	</body>
