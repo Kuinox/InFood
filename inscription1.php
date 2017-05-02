@@ -25,9 +25,11 @@ if(isset($_POST['forminscription'])){
 	else
 	{	
 		$options = [
-			'cost' => 12,
+			'salt' => 'ceciestunmotdepassetreslong',
+			'cost' => 12
 		];
 		$mm=password_hash($_POST["pwd"], PASSWORD_BCRYPT, $options);
+		echo $mm;
 		setcookie("nom", $_POST["nom"], time()+3600*12);
 		setcookie("eml", $_POST["eml"], time()+3600*12);
 		setcookie("pwd", $mm, time()+3600*12);
@@ -53,10 +55,11 @@ if(isset($_POST['forminscription'])){
 		{
 			$req="INSERT INTO user (pseudo, password, email, height, weight) values ('$nom','$pwd','$eml','$height','$weight')";
 			$res=mysqli_query($bdd,$req);
-			header('Location:/INFOOD/inscriptionreussie.php');
+			echo "<br>remettre redirection <br>";
+			// header('Location:/INFOOD/inscriptionreussie.php');
 		}
 	}
-	echo "$html";
+	// echo "$html";
 }
 
 ?>

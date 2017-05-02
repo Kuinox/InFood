@@ -1,59 +1,61 @@
 <?php
 include("connect.php");
-   session_start();
-   
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
-      // username and password sent from form 
-      
-      $myusername = mysqli_real_escape_string($bdd,$_POST['username']);
-      $mypassword = mysqli_real_escape_string($bdd,$_POST['password']); 
-      
-      $sql = "SELECT id FROM admin WHERE pseudo = '$myusername' and password = '$mypassword'";
-      $result = mysqli_query($bdd,$sql);
-      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      $active = $row['active'];
-      
-      $count = mysqli_num_rows($result);
-      
-      // If result matched $myusername and $mypassword, table row must be 1 row
-		
-      if($count == 1) {
-         session_register("myusername");
-         $_SESSION['login_user'] = $myusername;
-         
-         header("location: user.php");
-      }else {
-         $error = "Your Login Name or Password is invalid";
-      }
-   }
-?>
-<html>
-   
-   <head>
-      <title>Login Page</title>      
-   </head>
-   
-   <body bgcolor = "#FFFFFF">
-	
-      <div align = "center">
-         <div style = "width:300px; border: solid 1px #333333; " align = "left">
-            <div style = "background-color:#333333; color:#FFFFFF; padding:3px;"><b>Login</b></div>
-				
-            <div style = "margin:30px">
-               
-               <form action = "" method = "post">
-                  <label>UserName  :</label><input type = "text" name = "username" class = "box"/><br /><br />
-                  <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
-                  <input type = "submit" value = " Submit "/><br />
-               </form>
-               
-               <div style = "font-size:11px; color:#cc0000; margin-top:10px"></div>
-					
-            </div>
-				
-         </div>
-			
-      </div>
+if(isset($_POST['login'])){
+$email = mysqli_real_escape_string($bdd,$_POST['email']);
+$options = [
+			'salt' => 'ceciestunmotdepassetreslong',
+			'cost' => 12
+		];
+		$mm=password_hash($_POST["pass"], PASSWORD_BCRYPT, $options);
+$pass = mysqli_real_escape_string($bdd,$mm);
 
-   </body>
+		echo$pass;
+$sel_user = "select * from user where email='$email' AND password='$pass'";
+$run_user = mysqli_query($bdd, $sel_user);
+$check_user = mysqli_num_rows($run_user);
+// echo"$check_user";
+if($check_user>0){
+$_SESSION['email']=$email;
+header('Location:/INFOOD/user.php');
+}
+else {
+echo "<script>alert('Email or password is not correct, try again!')</script>";
+}
+}
+?>
+<?php session_start();?>
+<html>
+	<head>
+		<title>User Login</title>
+	</head>
+	<body>
+		<form action="connectionessai.php" method="post">
+			<table width="500" align="center" bgcolor="skyblue">
+				<tr align="center">
+					<td colspan="3"><h2>User Login</h2></td>
+				</tr>
+				<tr>
+					<td align="right">
+						<b>Email</b>
+					</td>
+					<td>
+						<input type="text" name="email" required="required"/>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						<b>Password:</b>
+					</td>
+					<td>
+						<input type="password" name="pass" required="required">
+					</td>
+				</tr>
+				<tr align="center">
+					<td colspan="3">
+						<input type="submit" name="login" value="Login"/>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
 </html>

@@ -7,12 +7,10 @@ if(isset($_POST['formconnection'])){
 	// $options = [
 	// 'cost' => 12,
 	// ];
-	// $mm=password_hash($_POST["pwd"], PASSWORD_BCRYPT, $options);
-	
-	
+	// $mm=password_hash($_POST["pwd"], PASSWORD_BCRYPT, $options);	
 	// $password=strip_tags($mm);
 	$password=strip_tags($_POST["pwd"]);
-	$sql="SELECT id_user, pseudo, password FROM user WHERE $username='pseudo' LIMIT 1";
+	$sql="SELECT id_user, pseudo, password FROM user WHERE $username='pseudo'";
 	$query =mysqli_query($bdd,$sql);
 	if($query)
 	{
@@ -26,7 +24,7 @@ if(isset($_POST['formconnection'])){
 	}
 	if ($username==$dbUsername && $password==$dbPassword)
 	{
-		$_SESSION['nom'] =$username;
+		$_SESSION['pseudo'] =$username;
 		$_SESSION['id_user'] =$userId;
 		header('Location:/INFOOD/user.php');
 	}
