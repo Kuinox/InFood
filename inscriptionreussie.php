@@ -1,6 +1,7 @@
 <?php
-$nom=$_COOKIE["nom"];
-$eml=$_COOKIE["eml"];
+  session_start();
+echo $nom=$_SESSION['nom'];
+echo $eml=$_SESSION['eml'];
 echo"<body>
 	<p>Bienvenue $nom votre compte à étés bien enregitrer</p>
 	<table>

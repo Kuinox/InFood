@@ -1,5 +1,7 @@
 <?php
+ session_start();
 include("connect.php");
+include("connection.html");
 if(isset($_POST['login'])){
 $email = mysqli_real_escape_string($bdd,$_POST['email']);
 $options = [
@@ -23,39 +25,3 @@ echo "<script>alert('Email or password is not correct, try again!')</script>";
 }
 }
 ?>
-<?php session_start();?>
-<html>
-	<head>
-		<title>User Login</title>
-	</head>
-	<body>
-		<form action="connectionessai.php" method="post">
-			<table width="500" align="center" bgcolor="skyblue">
-				<tr align="center">
-					<td colspan="3"><h2>User Login</h2></td>
-				</tr>
-				<tr>
-					<td align="right">
-						<b>Email</b>
-					</td>
-					<td>
-						<input type="text" name="email" required="required"/>
-					</td>
-				</tr>
-				<tr>
-					<td align="right">
-						<b>Password:</b>
-					</td>
-					<td>
-						<input type="password" name="pass" required="required">
-					</td>
-				</tr>
-				<tr align="center">
-					<td colspan="3">
-						<input type="submit" name="login" value="Login"/>
-					</td>
-				</tr>
-			</table>
-		</form>
-	</body>
-</html>
