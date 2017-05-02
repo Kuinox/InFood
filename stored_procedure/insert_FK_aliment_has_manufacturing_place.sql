@@ -1,0 +1,10 @@
+DROP PROCEDURE IF EXISTS insert_FK_aliment_has_manufacturing_place;
+DELIMITER //
+CREATE PROCEDURE insert_FK_aliment_has_manufacturing_place (IN id1 INT, IN id2 INT)
+BEGIN
+    SELECT aliment_id_aliment, manufacturing_place_id_manufacturing_place INTO result1,result2 FROM aliment_has_manufacturing_place WHERE id1 = result1 AND id2 = result2;
+	IF result1 IS NULL THEN
+    	INSERT INTO aliment_has_manufacturing_place VALUES(id1, id2);
+    END IF;
+END//
+DELIMITER ;
