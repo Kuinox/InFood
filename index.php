@@ -6,7 +6,9 @@
 	</head>
 	<body>
 		<h1>In'Food	</h1>
-//todo passer en post 
+		<?
+		//  todo passer en post
+		?>
 		<form action="inscription1.php" method="get">
 			<input type="hidden"/>
 			<input type="submit" name="inscription" value="Inscription"/>
@@ -15,23 +17,15 @@
 			<input type="hidden"/>
 			<input type="submit" name="connexion" value="Se connecter"/>
 		</form>
-		<form action="resultat_de_recherche.php" method="POST">
+		<form action="resultat_de_recherche.php" method="POST" >
 			<input type="text" name="recherche"/>
-			<input type="submit" name="recherche" value="recherche"/><br>
-			Filtre option :
-		<select name="filtre" form="recherche">
-		  <option value="produit">Produit</option>
-		  <option value="qualite">qualite</option>
-		  <option value=""></option>
-		  <option value=""></option>
+		<select name="filtre">
+		  <option value="aliment">Produit</option>
+			<option value="additive">additif</option>
+			<option value="ingredients">ingredients</option>
+			<option value="categorie">categorie</option>
 		</select>
-			Filtre option :
-		<select name="filtre" form="recherche">
-		  <option value="produit">Produit</option>
-		  <option value="qualite">qualite</option>
-		  <option value=""></option>
-		  <option value=""></option>
-		</select>
+		<input type="submit" name="valide" value="recherche"/>
 			<div></div>
 		</form>
 	</body>
