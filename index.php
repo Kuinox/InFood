@@ -22,7 +22,7 @@
 		<select name="filtre">
 		  <option value="aliment">Produit</option>
 			<option value="additive">additif</option>
-			<option value="ingredients">ingredients</option>
+			<option value="ingredient">ingredient</option>
 			<option value="categorie">categorie</option>
 		</select>
 		<input type="submit" name="sub" value="valide"/>

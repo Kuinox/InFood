@@ -11,6 +11,7 @@ function selectAll($bdd, $table) { //select a sql table and return a array of sq
 function select($bdd, $table, $where , $like){
   $query = "SELECT * FROM $table WHERE $where LIKE $like";
   $result = mysqli_query($bdd, $query) or die ("Tes mort ");
+  $output = [];
   while ($select = mysqli_fetch_assoc($result)) {
       $output [] = $select;
   }
