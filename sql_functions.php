@@ -12,7 +12,7 @@ function select($bdd, $table, $where , $like){
   $query = "SELECT * FROM $table WHERE $where LIKE $like";
   $result = mysqli_query($bdd, $query) or die ("Tes mort ");
   $fetch = mysqli_fetch_assoc($result);
-    return $fetch;
+  return $fetch;
 }
 function find_value($result, $value) { // find a value in a array of sql results.
     foreach ($result as $key => $line) {
@@ -57,9 +57,12 @@ function insertArrayInTable($bdd, $table, $array) {
 }
 function injectProduct($bdd, $product) {//SELECT id INTO id_val FROM nutriment WHERE val = label;
     echo "injecting product: ".$product['code']."</br>";
-    $nutriments = sortNutriment($product);
-    insertArrayInTable($bdd, 'nutriment', array_flip($nutriments));//put that in a future inject init.
-    insertArrayInTable($bdd, 'additive', explode(',', $product['additives_tags']));
+    foreach (explode(',', $product['additives_tags']) as $key => $value) {
+        mysqli_query($bdd, "CALL insert_additive($value, @data)") or die("Erreur insert_additive 1");
+        $result = mysqli_query($bdd, "SELECT @data") or die("Erreur insert_additive 2");
+        var_dump(mysqli_fetch_assoc($result));
+    }
+
     insertIfNotExist($bdd, 'brand', $product['brands']);
     foreach (explode(',', $product['packaging']) as $packaging) { //deux fois le meme packaging, le insertIfNotExist fonctionne ?
         insertIfNotExist($bdd, 'packaging', $packaging);
@@ -110,14 +113,35 @@ function injectProduct($bdd, $product) {//SELECT id INTO id_val FROM nutriment W
 
 
 function sqlScriptInject($bdd, $script_path) {
-    $script_file = file($script_path);
+    $script_file = fopen($script_path, 'r');
     $script = "";
-    foreach ($script_file as $line) {
+    while ($line = fgets($script_file)) {
         $script .= $line;
     }
-    foreach(explode(";", $script) as $query) {
-        if (!empty($query)) {
-            mysqli_query($bdd, $query) or die('Error injecting'.var_dump($bdd)."</br>".$script_path."</br>".$query);
+//var_dump(strstr($script_path, "insert_"));
+
+    if(!strstr($script_path, "insert_")) {
+
+        foreach(explode(";", $script) as $query) {
+            $query = trim(preg_replace('/\s+/', ' ', $query));
+            if (!empty($query) && $query != 'SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS') {
+                mysqli_multi_query($bdd, $query) or die('Error injecting'.var_dump($bdd)."</br>".$script_path."</br>'".$query."'");
+                do{} while(mysqli_more_results($bdd) && mysqli_next_result($bdd)); // flush multi_queries
+            }
+        }
+    } else {
+        $precedent = '';
+        $liste = [];
+        foreach (explode("\n", $script) as $value) {
+            if($value=="\r") {
+                $liste[] = $precedent;
+                $precedent = "";
+            }
+            $precedent.= $value;
+        }
+        $liste[] = $precedent;
+        foreach ($liste as $query) {
+            mysqli_query($bdd, $query) or die('Error injecting'.var_dump($bdd)."</br>".$script_path."</br>'".$query."'");
         }
     }
 }
