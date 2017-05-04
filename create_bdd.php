@@ -27,8 +27,6 @@ foreach (scandir('BDD_SQL_INIT') as $script) {
 }
 //sqlScriptInject($bdd,'create.sql');
 //sqlScriptInject($bdd,'insert.sql');
-//sqlScriptInject($bdd,'');
-
 $csv = openCSV();
 $columns = getLine($csv);
 foreach ($columns as $nutriment) {
