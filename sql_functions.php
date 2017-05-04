@@ -55,7 +55,7 @@ function insertArrayInTable($bdd, $table, $array) {
         }
     }
 }
-function injectProduct($bdd, $product) {
+function injectProduct($bdd, $product) {//SELECT id INTO id_val FROM nutriment WHERE val = label;
     echo "injecting product: ".$product['code']."</br>";
     $nutriments = sortNutriment($product);
     insertArrayInTable($bdd, 'nutriment', array_flip($nutriments));//put that in a future inject init.
@@ -117,7 +117,7 @@ function sqlScriptInject($bdd, $script_path) {
     }
     foreach(explode(";", $script) as $query) {
         if (!empty($query)) {
-            mysqli_query($bdd, $query);
+            mysqli_query($bdd, $query) or die('Error injecting'.var_dump($bdd)."</br>".$script_path."</br>".$query);
         }
     }
 }

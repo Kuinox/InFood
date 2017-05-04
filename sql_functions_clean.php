@@ -56,42 +56,7 @@ function insertArrayInTable($bdd, $table, $array) {
 }
 function injectProduct($bdd, $product) {
     echo "injecting product: ".$product['code']."</br>";
-    $nutriments = sortNutriment($product);
-    insertArrayInTable($bdd, 'nutriment', array_flip($nutriments));//put that in a future inject init.
-    $grade = insertIfNotExist($bdd, 'grade_nutriment', $product['nutrition_grade_fr']);
-    insertArrayInTable($bdd, 'additive', explode(',', $product['additives_tags']));
-    insertIfNotExist($bdd, 'brand', $product['brands']);
-    foreach (explode(',', $product['packaging']) as $packaging) { //deux fois le meme packaging, le insertIfNotExist fonctionne ?
-        insertIfNotExist($bdd, 'packaging', $packaging);
-    }
-    foreach (explode(',', $product['manufacturing_places']) as $place) { //Ptites erreurs ...  A revoir les données/modéles
-        if (!isset($return_id)) {
-            $return_id = insertIfNotExist($bdd, 'manufacturing_place', $place, Array('NULL'));
-        } else {
-            $return_id = insertIfNotExist($bdd, 'manufacturing_place', $place, Array($return_id));
-        }
-    }
-    foreach (explode(', ', $product['allergens']) as $allergen) {
-        insertIfNotExist($bdd, 'allergen', $allergen);
-    }
-    $generic = insertIfNotExist($bdd, 'generic_name', $product['generic_name']);
 
-    $query = "INSERT INTO aliment VALUES (";
-    $query .= "'".$product['code']."'";
-    $query .= ",'".addslashes($product['product_name'])."'";
-    $query .= ",FROM_UNIXTIME(".$product['last_modified_t'].")";
-    $query .= ",'".addslashes($product['ingredients_text'])."'";
-    if (empty($generic)) {
-        $generic = 'NULL';
-    }
-    $query .= ",".$generic;
-
-    if (empty($grade)) {
-        $grade = 'NULL';
-    }
-    $query .= ",".$grade;
-    $query .= ",'".addslashes($product['quantity'])."'";
-    $query .= ",'".addslashes($product['serving_size'])."')";
     mysqli_query($bdd, $query) or die("Erreur injection produit".var_dump($bdd).$query);
 /*
     if (!empty($product['image_url'])) {
