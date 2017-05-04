@@ -41,6 +41,12 @@ while ($select = mysqli_fetch_assoc($result)) {
 //foreach ($variable as $key => $value) {
 //  echo "<a href= 'produit.php?id=' a>"$output2[]
 //}
-var_dump($output2);
-var_dump($result2);
+//foreach ($output2 as $key => $value) {
+  //echo "<a href= $output2[$key] >pp</a>";
+//}
+foreach ($output2 as $key => $value) {
+  $test = implode(";", $value);
+  $test = explode (";",$test);
+  echo "<a href= produit.php?id=$test[2]&filtre=$filtre>$test[1]</a><br>";
+}
 ?>
