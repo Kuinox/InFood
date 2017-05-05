@@ -1,7 +1,6 @@
 <?php
 function deconnexion () {
   session_start();
-  vider_cookie();
   session_destroy();
     $informations = Array(/*Déconnexion*/
   				'Déconnexion',
@@ -9,4 +8,7 @@ function deconnexion () {
   exit();
   return $informations;
 }
+deconnexion();
+header('Location:/INFOOD/index.php');
+
 ?>
