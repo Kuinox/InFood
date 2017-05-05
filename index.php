@@ -13,7 +13,7 @@
 			<input type="hidden"/>
 			<input type="submit" name="inscription" value="Inscription"/>
 		</form>
-		<form action="connexionessai.php" method="get">
+		<form action="connectionessai.php" method="get">
 			<input type="hidden"/>
 			<input type="submit" name="connexion" value="Se connecter"/>
 		</form>
