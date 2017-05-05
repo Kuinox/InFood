@@ -25,11 +25,12 @@ if(isset($_POST['forminscription'])){
 	}
 	else
 	{	
-		$options = [
-			'salt' => 'ceciestunmotdepassetreslong',
-			'cost' => 12
-		];
-		$mm=password_hash($_POST["pwd"], PASSWORD_BCRYPT, $options);
+		// $options = [
+			// 'salt' => 'ceciestunmotdepassetreslong',
+			// 'cost' => 12
+		// ];
+		// $mm=password_hash($_POST["pwd"], PASSWORD_BCRYPT, $options);
+			$mm=crypt($_POST["pass"],'rl');
 		echo $mm;
 		// setcookie("nom", $_POST["nom"], time()+3600*12);
 		// setcookie("eml", $_POST["eml"], time()+3600*12);

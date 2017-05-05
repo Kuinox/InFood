@@ -9,7 +9,7 @@
 	 // die();
 // }
 
-$nom=$_SESSION['nom'];
+$nom=$_SESSION['name'];
 echo"<h1>bonjour $nom</h1>"
 ?>
 <a href="./deconnexion.php">déconnection</a>
