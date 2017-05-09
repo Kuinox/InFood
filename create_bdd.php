@@ -13,15 +13,14 @@
 header( 'content-type: text/html; charset=utf-8' );
 include("csv_functions.php");
 include("sql_functions.php");
-include("connect.php");
+$bdd = @mysqli_connect('localhost','root','') or die("Erreur d'accès à la BDD.");
+mysqli_set_charset($bdd, "utf8") or die("Erreur chargement charset utf8");
+
 set_time_limit(3000);
-var_dump(scandir('BDD_SQL_INIT'));
-mysqli_query($bdd, 'DROP DATABASE infood');
-mysqli_query($bdd, 'CREATE DATABASE infood');
+
 
 foreach (scandir('BDD_SQL_INIT') as $script) {
     if($script != '.' && $script != '..') {
-		echo "BDD_SQL_INIT/".$script."</br>";
         sqlScriptInject($bdd, "BDD_SQL_INIT/".$script);
     }
 }
@@ -29,14 +28,14 @@ foreach (scandir('BDD_SQL_INIT') as $script) {
 //sqlScriptInject($bdd,'insert.sql');
 $csv = openCSV();
 $columns = getLine($csv);
+$nutriments = [];
 foreach ($columns as $nutriment) {
-	if(str_replace("_100g", "", $nutriment)) {
-		$query = "CALL insert_nutriment($nutriment, @output)";
-		mysqli_query($bdd, $query) or die("Erreur injection nutriment".var_dump($bdd).$query);
+	if(str_replace("_100g", "", $nutriment) != $nutriment) {
+		$result = callThenReturn($bdd, "CALL insert_nutriment('$nutriment', @output)");
+		$nutriments[$nutriment] = $result;
 	}
 }
-
-//applyToAllProduct($csv, $bdd, $columns, 'injectProduct');
+applyToAllProduct($csv, $bdd, $columns, 'injectProduct');
 echo "done";
 ?>
     </body>
