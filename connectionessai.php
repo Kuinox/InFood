@@ -8,7 +8,7 @@ if(isset($_POST['login'])){
 				// 'salt' => 'ceciestunmotdepassetreslong',
 				// 'cost' => 12
 			// ];
-	$mm=crypt($_POST["pass"],'rl');
+	$mm=$_POST["pass"];/*crypt($_POST["pass"],'rl');*/
 	//*******
 	// Récupération du hash, on laisse le salt se générer automatiquement
 // $hash = crypt($password);
@@ -18,7 +18,7 @@ if(isset($_POST['login'])){
 	$sel_user = "select * from user where email='$email' AND password='$pass'";
 	// $nom="select pseudo from user where email='$email'";
 	$ess = mysqli_query($bdd, "select pseudo from user where email='$email'");
-	$_SESSION['name']=$ess;
+	$_SESSION['pseudo']=$ess;
 	$run_user = mysqli_query($bdd, $sel_user);
 	$check_user = mysqli_num_rows($run_user);
 	// echo"$check_user";
