@@ -30,8 +30,8 @@ if(isset($_POST['forminscription'])){
 			// 'cost' => 12
 		// ];
 		// $mm=password_hash($_POST["pwd"], PASSWORD_BCRYPT, $options);
-			$mm=crypt($_POST["pass"],'rl');
-		echo $mm;
+			/*$mm=crypt($_POST["pass"],'rl');
+		echo $mm;*/
 		// setcookie("nom", $_POST["nom"], time()+3600*12);
 		// setcookie("eml", $_POST["eml"], time()+3600*12);
 		// setcookie("pwd", $mm, time()+3600*12);
@@ -45,12 +45,12 @@ if(isset($_POST['forminscription'])){
 		// $height=$_COOKIE["height"];
 		$_SESSION['nom'] = $_POST["nom"];
 		$_SESSION['eml'] = $_POST["eml"];
-		$_SESSION['pwd'] = $mm;
+		$_SESSION['pwd'] = $_POST["pwd"];/* $mm;*/
 		$_SESSION['height'] = $_POST["height"];
 		$_SESSION['weight'] = $_POST["weight"];
 		$nom=$_POST["nom"];
 		$eml=$_POST["eml"];
-		$pwd=$mm;
+		$pwd=$_POST["pwd"];
 		$weight=$_POST["height"];
 		$height=$_POST["weight"];
 		echo"<br>$nom<br>$eml<br>$pwd<br>$height<br>$weight<br>";

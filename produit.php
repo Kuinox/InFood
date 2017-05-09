@@ -1,5 +1,5 @@
 <?php
-  session_start();
+session_start();
 include ('connect.php');
 include ('sql_functions.php');
 $table = $_GET['filtre'];
@@ -18,7 +18,7 @@ foreach ($result as $key => $value) {
   echo "<br>";
   echo $array[0];
 	 
-    $_SESSION["nameprod"] = $array[1];
+    $_SESSION["prod"] = $array[1];	
     $_SESSION["id"] = $array[0];
 }
 
