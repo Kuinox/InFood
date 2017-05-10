@@ -1,11 +1,9 @@
 <?php
+/* cree panier*/
 session_start();
-// include ('deconnexion.php');
-// deconnexion();
-
-array_push($_SESSION['panier'],$_SESSION['id']=>$_SESSION['nameprod']);
-var_dump ($_SESSION['panier']);
-
-// $_SESSION['comp'] =$i;
-?><br>
- <a href="./">acc<a>
+$prod=$_SESSION['prod'];
+$panier=$_SESSION['panier'];
+array_push($panier,$prod);
+print_r($panier);
+?>
+<a href='./'>accueil</a>

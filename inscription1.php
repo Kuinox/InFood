@@ -1,6 +1,6 @@
 <?php
-  session_start();
-include("connect.php");
+ include("connect.php");
+ session_start();
 $html = include("inscriptionvu.html");
 if(isset($_POST['forminscription'])){
 	if(empty($_POST["nom"]))
@@ -32,6 +32,7 @@ if(isset($_POST['forminscription'])){
 		// $mm=password_hash($_POST["pwd"], PASSWORD_BCRYPT, $options);
 			/*$mm=crypt($_POST["pass"],'rl');
 		echo $mm;*/
+		$mm=hash('sha256',$_POST["pwd"]);
 		// setcookie("nom", $_POST["nom"], time()+3600*12);
 		// setcookie("eml", $_POST["eml"], time()+3600*12);
 		// setcookie("pwd", $mm, time()+3600*12);
@@ -45,7 +46,7 @@ if(isset($_POST['forminscription'])){
 		// $height=$_COOKIE["height"];
 		$_SESSION['nom'] = $_POST["nom"];
 		$_SESSION['eml'] = $_POST["eml"];
-		$_SESSION['pwd'] = $_POST["pwd"];/* $mm;*/
+		$_SESSION['pwd'] =  $mm;
 		$_SESSION['height'] = $_POST["height"];
 		$_SESSION['weight'] = $_POST["weight"];
 		$nom=$_POST["nom"];
@@ -53,7 +54,7 @@ if(isset($_POST['forminscription'])){
 		$pwd=$_POST["pwd"];
 		$weight=$_POST["height"];
 		$height=$_POST["weight"];
-		echo"<br>$nom<br>$eml<br>$pwd<br>$height<br>$weight<br>";
+		echo"<br>$nom<br>$eml<br>$mm<br>$height<br>$weight<br>";
 		$mailchek=$eml;
 		// echo $eml;
 		$result = mysqli_query($bdd, "SELECT * FROM user WHERE email like '$mailchek'");
@@ -65,10 +66,10 @@ if(isset($_POST['forminscription'])){
 		}
 		elseif($row_cnt == 0)
 		{
-			$req="INSERT INTO user (pseudo, password, email, height, weight) values ('$nom','$pwd','$eml','$height','$weight')";
+			$req="INSERT INTO user (pseudo, password, email, height, weight) values ('$nom','$mm','$eml','$height','$weight')";
 			$res=mysqli_query($bdd,$req);
 			echo "<br>remettre redirection <br>";
-			header('Location:/INFOOD/inscriptionreussie.php');
+			//header('Location:/INFOOD/inscriptionreussie.php');
 		}
 	}
 	// echo "$html";

@@ -1,5 +1,7 @@
 <?php 
 session_start();
+$_SESSION['panier']=[];
+
 if (empty($_SESSION['panier'])){
 	$_SESSION['panier'] = [];
 }
@@ -12,7 +14,7 @@ if(isset($_POST['formconnection'])){
 	// ];
 	// $mm=password_hash($_POST["pwd"], PASSWORD_BCRYPT, $options);	
 	// $password=strip_tags($mm);
-	$password=strip_tags($_POST["pwd"]);
+	$password=($_POST["pwd"]);
 	$sql="SELECT id_user, pseudo, password FROM user WHERE $username='pseudo'";
 	$query =mysqli_query($bdd,$sql);
 	if($query)
