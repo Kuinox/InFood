@@ -2,8 +2,12 @@
 /***********************************************
  *Drop then create the DB.                     *
  ***********************************************/
-include("csv_functions.php");
-include("sql_functions.php");
+include_once("CSV_FUNCTIONS/applyToAllProduct.php");
+include_once("CSV_FUNCTIONS/getLine.php");
+include_once("SQL/FUNCTIONS/sqlScriptInject.php");
+include_once("SQL/FUNCTIONS/callThenReturn.php");
+include_once("CSV_FUNCTIONS/openCSV.php");
+
 $bdd = @mysqli_connect('localhost','root','') or die("Erreur d'accès à la BDD.");//custom connect
 mysqli_set_charset($bdd, "utf8") or die("Erreur chargement charset utf8");//because infood may not exist
 
