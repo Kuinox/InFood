@@ -7,8 +7,7 @@ function deconnexion () {
   				'Vous êtes à présent déconnecté.');
   exit();
   return $informations;
+  header('Location:/INFOOD/index.php');
 }
 deconnexion();
-header('Location:/INFOOD/index.php');
-
 ?>

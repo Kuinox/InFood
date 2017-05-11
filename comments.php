@@ -10,7 +10,8 @@ function comments($bdd,$like){
     return $output;
 }
 function add_comments($bdd,$text,$id){
-  $query = "INSERT INTO comments VALUES (\"$id\",\"$text\",22/08/2017,1,NULL)";
+  $query = "INSERT INTO comments (id,aliment_id_aliment,text_comment,user_id_user)
+VALUES (NULL,\"$id\",\"$text\",1);";
   $result = mysqli_query($bdd,$query) or die ("Failure");
 
 }
