@@ -1,5 +1,5 @@
 <?php
-  include ('connect.php');
+  include ("controller/SQL/FUNCTIONS/connect.php");
   include ('sql_functions.php');
   $table = 'aliment';
   $where = 'id_aliment';
@@ -8,6 +8,5 @@
 echo "<pre>";
 print_r (select ($bdd, $table, $where, $like));
 echo "</pre>";
-echo "ok";
 
 ?>

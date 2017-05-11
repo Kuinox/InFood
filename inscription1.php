@@ -1,5 +1,5 @@
 <?php
- include("connect.php");
+ include("controller/SQL/FUNCTIONS/connect.php");
  session_start();
 $html = include("inscriptionvu.html");
 if(isset($_POST['forminscription'])){

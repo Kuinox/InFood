@@ -1,5 +1,5 @@
 <?php
-  include ('connect.php');
+  include ("controller/SQL/FUNCTIONS/connect.php");
   include ('sql_functions.php');
   $table = 'additive';
   $where = 'id_additive';

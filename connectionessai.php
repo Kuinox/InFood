@@ -1,6 +1,6 @@
 <?php
  session_start();
-include("connect.php");
+include("controller/SQL/FUNCTIONS/connect.php");
 include("connection.html");
 if(isset($_POST['login'])){
 	$email = mysqli_real_escape_string($bdd,$_POST['email']);

@@ -6,7 +6,7 @@ if (empty($_SESSION['panier'])){
 	$_SESSION['panier'] = [];
 }
 if(isset($_POST['formconnection'])){
-	include_once("connect.php");
+	include_once("controller/SQL/FUNCTIONS/connect.php");
 
 	$username=strip_tags($_POST['nom']);
 	// $options = [

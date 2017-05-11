@@ -1,5 +1,5 @@
 <?php
-include("connect.php");
+include("controller/SQL/FUNCTIONS/connect.php");
 include("csv_functions.php");
 function getSQLProduct($id) {
     $sql_data = mysql_query("SELECT * FROM aliment WHERE ID=$id");

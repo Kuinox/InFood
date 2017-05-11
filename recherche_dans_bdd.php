@@ -1,5 +1,5 @@
 <?php 
-// include("connect.php");
+// include("controller/SQL/FUNCTIONS/connect.php");
 $bdd = new PDO('localhost','root','','infood');
 $requete = $bdd->query("SELECT * FROM user");
 while($data = $requete->fetch()){
