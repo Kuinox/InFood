@@ -2,17 +2,13 @@
 /***********************************************
  *Drop then create the DB.                     *
  ***********************************************/
-header( 'content-type: text/html; charset=utf-8' );
 include("csv_functions.php");
 include("sql_functions.php");
-include("connect.php");
-set_time_limit(3000);
+include("SQL/FUNCTIONS/connect.php");
+include("CSV_FUNCTIONS/openCSV.php");
 
-sqlScriptInject($bdd,'create.sql');
-sqlScriptInject($bdd,'insert.sql');
-
+set_time_limit(3000);//exec time can be too long
 $csv = openCSV();
 $columns = getLine($csv);
-applyToAllProduct($csv, $bdd, $columns, 'injectProduct');
-echo "done";
+applyToAllProduct($csv, $bdd, $columns, 'updateProduct'); //TODO: delete aliment and foreign keys to recreate it.
 ?>
