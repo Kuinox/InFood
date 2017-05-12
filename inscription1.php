@@ -1,10 +1,6 @@
 <?php
-<<<<<<< HEAD
- include("controller/SQL/FUNCTIONS/connect.php");
-=======
-include("./controller/SQL/FUNCTIONS/connect.php");
->>>>>>> bee4044... j'ai changer
- session_start();
+include("controller/SQL/FUNCTIONS/connect.php");
+session_start();
 $html = include("inscriptionvu.html");
 if(isset($_POST['forminscription'])){
 	if(empty($_POST["nom"]))
@@ -28,7 +24,7 @@ if(isset($_POST['forminscription'])){
 		echo "Mot de passe est vide";
 	}
 	else
-	{	
+	{
 		$mm=hash('sha256',$_POST["pwd"]);
 		echo $mm;
 		$_SESSION['nom'] = $_POST["nom"];

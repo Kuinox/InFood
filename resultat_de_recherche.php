@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
 include ("controller/SQL/FUNCTIONS/connect.php");
-=======
-include("./controller/SQL/FUNCTIONS/connect.php");
->>>>>>> bee4044... j'ai changer
 include ('sql_functions.php');
 $recherche = $_GET['recherche'];
 var_dump ($recherche);

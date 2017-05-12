@@ -1,10 +1,6 @@
 <?php
- session_start();
-<<<<<<< HEAD
+session_start();
 include("controller/SQL/FUNCTIONS/connect.php");
-=======
-include("./controller/SQL/FUNCTIONS/connect.php");
->>>>>>> bee4044... j'ai changer
 include("connection.html");
 if(isset($_POST['login']))
 {
@@ -24,15 +20,15 @@ if(isset($_POST['login']))
 			// echo'<h2>'.$data['pseudo'].'</h2><br>';
 			$_SESSION['name']=$data['pseudo'];
 			$name=$_SESSION['name'];
-			echo"rendre header";		
-			echo "<script>alert('Bonjour $name')</script>";	
+			echo"rendre header";
+			echo "<script>alert('Bonjour $name')</script>";
 			header('Location:/INFOOD/user.php');
 
 		}
 	}
-	else 
+	else
 	{
-		echo "<script>alert('Email ou motde passe est faux, réessayer!')</script>";
+		echo "<script>alert('Email ou mot de passe est faux, réessayer!')</script>";
 	}
 }
 ?>
