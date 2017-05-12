@@ -2,7 +2,7 @@
   session_start();
 include('comments.php');
 
-include ('connect.php');
+include("controller/SQL/FUNCTIONS/connect.php");
 include ('sql_functions.php');
 $table = $_GET['filtre'];
 $where = "id_aliment";
