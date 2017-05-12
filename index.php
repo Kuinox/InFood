@@ -8,7 +8,8 @@
 		<h1>In'Food	</h1>
 		<form action="inscription1.php" method="get">
 			<input type="hidden"/>
-			<input type="submit" name="inscription" value="Inscription"/>
+			
+<a href="pourpouup.php"  onclick="open('connectionessai.php', 'Popup', 'scrollbars=1,resizable=1,height=560,width=770'); return false;" ><input type="submit" name="inscription" value="Inscription"/></a><br />
 		</form>
 		<form action="connectionessai.php" method="get">
 			<input type="hidden"/>
