@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
  include("controller/SQL/FUNCTIONS/connect.php");
+=======
+include("./controller/SQL/FUNCTIONS/connect.php");
+>>>>>>> bee4044... j'ai changer
  session_start();
 $html = include("inscriptionvu.html");
 if(isset($_POST['forminscription'])){

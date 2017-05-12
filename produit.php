@@ -2,7 +2,11 @@
   session_start();
 include('comments.php');
 
+<<<<<<< HEAD
 include ("controller/SQL/FUNCTIONS/connect.php");
+=======
+include("controller/SQL/FUNCTIONS/connect.php");
+>>>>>>> bee4044... j'ai changer
 include ('sql_functions.php');
 $table = $_GET['filtre'];
 $where = "id_aliment";

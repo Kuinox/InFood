@@ -1,6 +1,10 @@
 <?php
  session_start();
+<<<<<<< HEAD
 include("controller/SQL/FUNCTIONS/connect.php");
+=======
+include("./controller/SQL/FUNCTIONS/connect.php");
+>>>>>>> bee4044... j'ai changer
 include("connection.html");
 if(isset($_POST['login']))
 {
