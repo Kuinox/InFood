@@ -6,9 +6,6 @@
 	</head>
 	<body>
 		<h1>In'Food	</h1>
-		<?
-		//  todo passer en post
-		?>
 		<form action="inscription1.php" method="get">
 			<input type="hidden"/>
 			

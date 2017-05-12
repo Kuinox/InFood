@@ -1,6 +1,6 @@
 <?php
- include("controller/SQL/FUNCTIONS/connect.php");
- session_start();
+include("controller/SQL/FUNCTIONS/connect.php");
+session_start();
 $html = include("inscriptionvu.html");
 if(isset($_POST['forminscription'])){
 	if(empty($_POST["nom"]))
@@ -24,38 +24,13 @@ if(isset($_POST['forminscription'])){
 		echo "Mot de passe est vide";
 	}
 	else
-	{	
-		// $options = [
-			// 'salt' => 'ceciestunmotdepassetreslong',
-			// 'cost' => 12
-		// ];
-		// $mm=password_hash($_POST["pwd"], PASSWORD_BCRYPT, $options);
-<<<<<<< HEAD
-			/*$mm=crypt($_POST["pass"],'rl');
-		echo $mm;*/
+	{
 		$mm=hash('sha256',$_POST["pwd"]);
-=======
-			$mm=crypt($_POST["pass"],'rl');
 		echo $mm;
->>>>>>> 4204bca629a989f61c630444a62fc780ef5ca141
-		// setcookie("nom", $_POST["nom"], time()+3600*12);
-		// setcookie("eml", $_POST["eml"], time()+3600*12);
-		// setcookie("pwd", $mm, time()+3600*12);
-		// setcookie("height", $_POST["height"], time()+3600*12);
-		// setcookie("weight", $_POST["weight"], time()+3600*12);
-		// header('Location:/INFOOD/inscription.php');
-		// $nom=$_COOKIE["nom"];
-		// $eml=$_COOKIE["eml"];
-		// $pwd=$_COOKIE["pwd"];
-		// $weight=$_COOKIE["weight"];
-		// $height=$_COOKIE["height"];
 		$_SESSION['nom'] = $_POST["nom"];
 		$_SESSION['eml'] = $_POST["eml"];
-<<<<<<< HEAD
-		$_SESSION['pwd'] =  $mm;
-=======
+
 		$_SESSION['pwd'] = $mm;
->>>>>>> 4204bca629a989f61c630444a62fc780ef5ca141
 		$_SESSION['height'] = $_POST["height"];
 		$_SESSION['weight'] = $_POST["weight"];
 		$nom=$_POST["nom"];
@@ -77,11 +52,10 @@ if(isset($_POST['forminscription'])){
 		{
 			$req="INSERT INTO user (pseudo, password, email, height, weight) values ('$nom','$mm','$eml','$height','$weight')";
 			$res=mysqli_query($bdd,$req);
-			echo "<br>remettre redirection <br>";
-			//header('Location:/INFOOD/inscriptionreussie.php');
+			// echo "<br>remettre redirection <br>";
+			header('Location:/INFOOD/inscriptionreussie.php');
 		}
 	}
-	// echo "$html";
 }
 
 ?>

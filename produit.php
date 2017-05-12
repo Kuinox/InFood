@@ -1,7 +1,6 @@
 <?php
-  session_start();
+session_start();
 include('comments.php');
-
 include ("controller/SQL/FUNCTIONS/connect.php");
 include ('sql_functions.php');
 $table = $_GET['filtre'];
