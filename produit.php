@@ -1,8 +1,15 @@
+<form action="./gerer_panier.php" method="get">
+	<input type="hidden"/>
+	<input type="submit" name="panier" value="Ajouter au panier"/>
+</form>
 <?php
 session_start();
 include('comments.php');
 include ("controller/SQL/FUNCTIONS/connect.php");
 include ('sql_functions.php');
+// include ("aj_panier.html");
+// if(isset($_POST['forminscription'])){
+
 $table = $_GET['filtre'];
 $where = "id_aliment";
 $like = "'".$_GET['id']."'";
@@ -19,12 +26,18 @@ foreach ($result as $key => $value) {
   echo $array[1];
   echo "<br>";
   echo $array[0];
-
+//Panier
     $_SESSION["prod"] = $array[1];
     $_SESSION["id"] = $array[0];
-}
+
+//panier.
+//sirine
+
+
+//sirine
 
 $like = $_SESSION['id'];
+<<<<<<< HEAD
 $com = comments($bdd,$like);
 // A mettre en forme
 var_dump($com);
@@ -34,5 +47,14 @@ var_dump($note_moy);
 echo "<br><a href = notes.html>Notes</a>";
 echo "<br><a href = produit.html>Commenter</a>";
 //==================
+=======
+$test = comments($bdd,$like);
+var_dump($test);
+}if(isset($_SESSION["nom"])){
+	echo"set ************************************s";
+}else{
+	echo"not set n,;:!ùosqjfghjhfh";
+}
+>>>>>>> gerer_panier
 
  ?>
