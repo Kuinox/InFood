@@ -3,9 +3,9 @@ include ("controller/SQL/FUNCTIONS/connect.php");
 include ('sql_functions.php');
 $recherche = $_GET['recherche'];
 var_dump ($recherche);
-$filtre = $_GET['filtre'];
-var_dump($filtre);
-$table = $filtre;
+$type = $_GET['type'];
+var_dump($type);
+$table = $type;
 
 $array =[];
 $array = explode (" ",$recherche);
@@ -13,7 +13,7 @@ $output = [];
 foreach ($array as $key => $value) {
   $output[] = "%".$value."%";
 }
-if($filtre == 'aliment')  {
+if($type == 'aliment')  {
   $recherche = implode("",$output);
   var_dump($output);
   var_dump($recherche);
@@ -31,9 +31,9 @@ if($filtre == 'aliment')  {
   foreach ($output2 as $key => $value) {
     $chaine = implode(";", $value);
     $array = explode (";",$chaine);
-    echo "<a href= produit.php?id=$array[2]&filtre=$filtre>$array[1]</a><br>";
+    echo "<a href= produit.php?id=$array[2]&type=$type>$array[1]</a><br>";
   }
-}else if($filtre == 'additive') {
+}else if($type == 'additive') {
     $recherche = implode("",$output);
     var_dump($output);
     var_dump($recherche);
@@ -43,9 +43,9 @@ if($filtre == 'aliment')  {
     foreach ($result as $key => $value) {
       $chaine = implode(";", $value);
       $array = explode (";",$chaine);
-      echo "<a href= additive.php?id=$array[0]&filtre=$filtre>$array[1]</a><br>";
+      echo "<a href= additive.php?id=$array[0]&type=$type>$array[1]</a><br>";
     }
-}else if ($filtre == 'ingredient') {
+}else if ($type == 'ingredient') {
   $recherche = implode("",$output);
   var_dump($output);
   var_dump($recherche);
@@ -55,7 +55,7 @@ if($filtre == 'aliment')  {
   foreach ($result as $key => $value) {
     $chaine = implode(";", $value);
     $array = explode (";",$chaine);
-    echo "<a href= ingedient.php?id=$array[0]&filtre=$filtre>$array[1]</a><br>";
+    echo "<a href= ingedient.php?id=$array[0]&type=$type>$array[1]</a><br>";
 
 }
 }
