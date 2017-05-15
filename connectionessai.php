@@ -41,8 +41,8 @@ if(isset($_POST['login']))
 			// echo'<h2>'.$data['pseudo'].'</h2><br>';
 			
 			//mettre le nom dans une session
-			$_SESSION['name']=$data['pseudo'];
-			$name=$_SESSION['name'];
+			$_SESSION['nom']=$data['pseudo'];
+			$name=$_SESSION['nom'];
 			
 			// affichage
 			// echo "<script>alert('Bonjour $name')</script>";
@@ -50,6 +50,9 @@ if(isset($_POST['login']))
 			//rediriger vers user
 			header('Location:/INFOOD/user.php');
 		}
+		//Panier
+			$_SESSION['panier']=[];
+		//Panier
 	}
 	//si le mot de passe et email n'existe pas.
 	//connection échouer
