@@ -1,0 +1,36 @@
+body{
+    margin:0;
+    padding:0;
+}
+header{
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#top_header, #bot_header{
+    padding-left: 25px;
+}
+
+#top_header{
+    background-color: #2b3b47;
+    font-size: 30px;
+    color: #9ee04d;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#bot_header{
+    background-color: #9ee04d;
+    font-size: 14px;
+    color: #FFFFFF;
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+#search{
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    height: 25px;
+    padding-top: 8px;
+
+}
+#logo_svg{
+    height: 25px;
+}

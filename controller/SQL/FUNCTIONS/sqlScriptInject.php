@@ -3,7 +3,7 @@ function sqlScriptInject($bdd, $script_path) {
     $script_file = fopen($script_path, 'r');
     $script = "";
 //var_dump(strstr($script_path, "insert_"));
-    if(!strstr($script_path, "insert_")) {
+    if(!(strstr($script_path, "insert_") || strstr($script_path, "update_"))) {
         while ($line = fgets($script_file)) {
             $script[] = $line;
         }
@@ -21,6 +21,7 @@ function sqlScriptInject($bdd, $script_path) {
             }
         }
     } else {//procedure
+
         while ($line = fgets($script_file)) {
             $script .= $line;
         }
