@@ -25,8 +25,14 @@ foreach ($result as $key => $value) {
 }
 
 $like = $_SESSION['id'];
-$test = comments($bdd,$like);
-var_dump($test);
+$com = comments($bdd,$like);
+// A mettre en forme
+var_dump($com);
+$note_moy = notes($bdd,$like);
+var_dump($note_moy);
 
-echo('<br><a href = produit.html>suivant</a>');
+echo "<br><a href = notes.html>Notes</a>";
+echo "<br><a href = produit.html>Commenter</a>";
+//==================
+
  ?>
