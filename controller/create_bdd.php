@@ -3,7 +3,6 @@
  *Drop then create the DB.                     *
  ***********************************************/
 include_once("CSV_FUNCTIONS/applyToAllProduct.php");
-include_once("CSV_FUNCTIONS/getLine.php");
 include_once("SQL/FUNCTIONS/sqlScriptInject.php");
 include_once("SQL/FUNCTIONS/callThenReturn.php");
 include_once("CSV_FUNCTIONS/openCSV.php");
@@ -20,7 +19,7 @@ foreach (scandir('SQL/INIT') as $script) {
     }
 }
 $csv = openCSV();
-$columns = getLine($csv);
+$columns = explode("\t",fgets($csv, 116528));
 $nutriments = [];
 foreach ($columns as $nutriment) {
 	$result = callThenReturn($bdd, "CALL insert_nutriment('$nutriment', @output)");

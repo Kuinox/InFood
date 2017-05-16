@@ -1,0 +1,42 @@
+<script>
+'use strict';
+window.Nixo = {};
+function work()
+{
+    // make ajax call
+    var xhr = new XMLHttpRequest(); //instancie l'objet xhr
+    xhr.open('GET', 'work.php'); //ouvre la connection
+    xhr.send();//envoie
+    Nixo.timerId = setInterval(function(){
+        console.log(xhr.response);
+        // get last response line
+        var progress = xhr.response.split('\n').pop();
+        // if last line does not start with //, set progress
+        if(progress.length < 2 || progress.substr(0, 2) != '//')
+            setProgress(progress);
+        // stop handling response when request is finished
+        if(xhr.readyState == XMLHttpRequest.DONE)
+        {
+            clearInterval(Nixo.timerId);
+            Nixo.timerId = null;
+        }
+    }, 100, 100);
+}
+// set the current progress
+function setProgress(progress)
+{
+    var progressDiv = document.getElementById('progress-output');
+    var progressBar = document.getElementById('progress');
+    // clear output div
+    while(progressDiv.firstChild)
+        progressDiv.firstChild.remove();
+    // add new text
+
+    progressDiv.appendChild(document.createTextNode(progress));
+    progressBar.value = progress;
+}
+</script>
+<input type="button" onclick="work()" value="Work"/>
+<a href="work.php">work.php (link)</a>
+<div id="progress-output">Not working</div>
+<progress id="progress" value="" max="100"></progress>

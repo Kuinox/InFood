@@ -9,6 +9,7 @@ BEGIN
 	IF id_val IS NULL THEN
     	INSERT INTO manufacturing_place (id, label, mother_place)
         VALUES(NULL, val, foreign_key);
-        SELECT LAST_INSERT_ID() INTO id_val;
+        SELECT LAST_INSERT_ID()
+        INTO id_val;
     END IF;
 END;
