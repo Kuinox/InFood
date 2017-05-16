@@ -13,10 +13,10 @@ $pos = strpos($text,$check);
 // }
 // else {
   $id = $_SESSION["id"];
-  $filtre = $_SESSION["filtre"];
+  $type = $_SESSION["type"];
   $id_user = 1;
 
 // }
 add_comments($bdd,$text,$id,$id_user);
-header("location:produit.php?id=".$id."&filtre=".$filtre."")
+header("location:produit.php?id=".$id."&type=".$type."")
 ?>
