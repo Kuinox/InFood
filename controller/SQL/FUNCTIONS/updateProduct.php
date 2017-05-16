@@ -8,7 +8,7 @@ function updateProduct($bdd, $product) {//check if product is update, else call 
         throw new Error("SELECT_last_modification_aliment returned multiple result, expected one.");
     }
     if ($fetch[0][0] != $product['last_modified_t']) {
-        injectProduct($bdd, $product);
+        injectProduct($bdd, $product, true);
     }
 }
  ?>

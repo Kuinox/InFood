@@ -1,8 +1,6 @@
-
 <?php 
-
  session_start();
-$nom=$_SESSION['name'];
+$nom=$_SESSION['nom'];
 echo"<h1>bonjour $nom</h1>";
 include("index.php");
 ?>

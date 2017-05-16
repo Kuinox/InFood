@@ -3,6 +3,7 @@ include("controller/SQL/FUNCTIONS/connect.php");
 session_start();
 $html = include("inscriptionvu.html");
 if(isset($_POST['forminscription'])){
+	//verifier si nom weight height email mot de passe vident ou non
 	if(empty($_POST["nom"]))
 	{
 		echo"nom est vide";
@@ -25,20 +26,22 @@ if(isset($_POST['forminscription'])){
 	}
 	else
 	{
+		//chiffrer le mot de passe 
 		$mm=hash('sha256',$_POST["pwd"]);
-		echo $mm;
+		
+		//metrre les identifiants dans des sessions
 		$_SESSION['nom'] = $_POST["nom"];
 		$_SESSION['eml'] = $_POST["eml"];
-
 		$_SESSION['pwd'] = $mm;
 		$_SESSION['height'] = $_POST["height"];
 		$_SESSION['weight'] = $_POST["weight"];
+		
 		$nom=$_POST["nom"];
 		$eml=$_POST["eml"];
 		$pwd=$mm;
 		$weight=$_POST["height"];
 		$height=$_POST["weight"];
-		echo"<br>$nom<br>$eml<br>$mm<br>$height<br>$weight<br>";
+		// echo"<br>$nom<br>$eml<br>$mm<br>$height<br>$weight<br>";
 		$mailchek=$eml;
 		// echo $eml;
 		$result = mysqli_query($bdd, "SELECT * FROM user WHERE email like '$mailchek'");

@@ -6,7 +6,10 @@ include ('sql_functions.php');
 $recherche = $_GET['recherche'];
 var_dump ($recherche);
 $type = $_GET['type'];
+<<<<<<< HEAD
 $_SESSION['type'] = $type;
+=======
+>>>>>>> 52bc534b3c34a3c1e9a27c58318b052cf229e3f4
 var_dump($type);
 $table = $type;
 
