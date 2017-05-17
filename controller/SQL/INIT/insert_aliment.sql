@@ -2,9 +2,13 @@ DROP PROCEDURE IF EXISTS insert_aliment;
 
 CREATE PROCEDURE insert_aliment (IN id CHAR(30), IN name VARCHAR(250),
     IN last_modification INT, IN ingredients VARCHAR(5000),
-    IN generic_name INT, IN grade_nutri CHAR(1), IN qty VARCHAR(30),
-    IN serving VARCHAR(200), OUT return_id INT)
+    IN generic_name_char VARCHAR(250), IN grade_nutri CHAR(1), IN qty VARCHAR(30),
+    IN serving VARCHAR(200))
 BEGIN
+    IF generic_name_char IS NOT NULL THEN
+        CALL insert_generic_name(generic_name_char, @output);
+        SELECT @output INTO @generic_name;
+    END IF;
     INSERT INTO aliment (
             id_aliment,
             name_aliment,
@@ -19,7 +23,7 @@ BEGIN
             name,
             FROM_UNIXTIME(last_modification),
             ingredients,
-            generic_name,
+            @generic_name,
             grade_nutri,
             qty,
             serving);
