@@ -25,7 +25,7 @@ foreach ($result as $key => $value) {
 
     $_SESSION["prod"] = $array[1];
     $_SESSION["id"] = $array[0];
-
+}
 //panier.
 //sirine
 
@@ -36,6 +36,12 @@ $like = $_SESSION['id'];
 
 $com = comments($bdd,$like);
 // A mettre en forme
+echo "Commentaire :";
+foreach ($com as $key => $value) {
+	$chaine = implode(";", $value);
+	$array = explode (";",$chaine);
+	echo "<br>".$array[0];
+}
 var_dump($com);
 $note_moy = notes($bdd,$like);
 var_dump($note_moy);
@@ -43,7 +49,7 @@ var_dump($note_moy);
 echo "<br><a href = notes.html>Notes</a>";
 echo "<br><a href = produit.html>Commenter</a><br>";
 
-}if(isset($_SESSION["nom"])){
+if(isset($_SESSION["nom"])){
 	echo"set ************************************s";
 }else{
 	echo"not set n,;:!ùosqjfghjhfh";
