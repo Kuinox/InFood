@@ -1,7 +1,7 @@
 <?php
 include("controller/SQL/FUNCTIONS/connect.php");
 function comments($bdd,$like){
-  $query = "SELECT text_comment FROM comments WHERE aliment_id_aliment LIKE \"$like\"";
+  $query = "SELECT * FROM comments WHERE aliment_id_aliment LIKE \"$like\"";
   $result = mysqli_query($bdd,$query) or die ("Failure");
   $output = [];
   while ($select = mysqli_fetch_assoc($result)) {
@@ -27,5 +27,4 @@ function notes($bdd,$like){
   $select = mysqli_fetch_assoc($result);
    return $select;
 }
-
 ?>

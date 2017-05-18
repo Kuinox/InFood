@@ -12,9 +12,10 @@ $pos = strpos($text,$check);
       // header("location: index.php");
 // }
 // else {
+  
   $id = $_SESSION["id"];
   $type = $_SESSION["type"];
-  $id_user = 1;
+  $id_user = $_SESSION["id_user"];
 
 // }
 add_comments($bdd,$text,$id,$id_user);
