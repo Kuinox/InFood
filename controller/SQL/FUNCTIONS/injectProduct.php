@@ -1,6 +1,6 @@
 <?php
-include_once("SQL/FUNCTIONS/callThenReturn.php");
-include_once("CSV_FUNCTIONS/sortNutriment.php");
+include_once("../SQL/FUNCTIONS/callThenReturn.php");
+include_once("../CSV_FUNCTIONS/sortNutriment.php");
 function injectProduct($bdd, $product, $update=false) {//SELECT id INTO id_val FROM nutriment WHERE val = label;
     foreach ($product as $key => $value) {
         $product[$key] = addslashes($value);
@@ -12,9 +12,9 @@ function injectProduct($bdd, $product, $update=false) {//SELECT id INTO id_val F
         $grade_id = 'NULL';
     }
     if ($update) {
-        include("SQL/QUERY/UPDATE_aliment.php");
+        include("../SQL/QUERY/UPDATE_aliment.php");
     } else {
-        include("SQL/QUERY/INSERT_aliment.php");
+        include("../SQL/QUERY/INSERT_aliment.php");
     }
     mysqli_query($bdd, $query) or die('Error in mysql procedure call '.$query.var_dump($bdd));
     foreach (explode(',', $product['additives_tags']) as $key => $value) {
@@ -58,7 +58,7 @@ function injectProduct($bdd, $product, $update=false) {//SELECT id INTO id_val F
     $num = 1;
     foreach(sortNutriment($product) as $key => $value) {
         if (!empty($value)) {
-            include("SQL/QUERY/CALL_insert_FK_aliment_has_nutriment.php");
+            include("../SQL/QUERY/CALL_insert_FK_aliment_has_nutriment.php");
             mysqli_query($bdd, $query) or die('Error in mysql procedure call '.$query.var_dump($bdd));
         }
         $num++;

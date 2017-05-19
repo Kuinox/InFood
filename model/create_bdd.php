@@ -11,15 +11,26 @@
             {
                 // make ajax call
                 var xhr = new XMLHttpRequest(); //instancie l'objet xhr
-                xhr.open('GET', 'controller/functions/work.php'); //ouvre la connection
+                xhr.open('GET', '../controller/functions/create_bdd.php'); //ouvre la connection
                 xhr.send();//envoie
                 Nixo.timerId = setInterval(function(){
+					console.log("reponse:");
                     console.log(xhr.response);
                      // get last response line
                      var progress = xhr.response.split('\n').pop();
                      // if last line does not start with //, set progress
                      if(progress.length < 2 || progress.substr(0, 2) != '//')
                          document.getElementById('progress').value = progress;
+						 console.log(progress);
+						 var progressDiv = document.getElementById('progress-output');
+						 while(progressDiv.firstChild)
+					         progressDiv.firstChild.remove();
+						if (progress.length > 0) {
+							var progress_text = progress;
+						} else {
+							var progress_text = "Initialising...";
+						}
+						progressDiv.appendChild(document.createTextNode(progress_text));
                      // stop handling response when request is finished
                      if(xhr.readyState == XMLHttpRequest.DONE)
                      {
@@ -33,7 +44,7 @@
 	</head>
 	<body>
         <?php
-            include_once("controller/SQL/FUNCTIONS/connectNoUse.php");
+            include_once("../controller/SQL/FUNCTIONS/connectNoUse.php");
             if(!$db_exist) {
                 echo "<h1> Base de donnée non existante. </h1>";
             } ?>
@@ -43,16 +54,10 @@
             </p>
 
             <input type="button" onclick="work()" value="Work"/>
-            <a href="work.php">work.php (link)</a>
             <div id="progress-output">Not working</div>
             <progress id="progress" value="" max="100"></progress>
-         ?>
 
 
 
 	</body>
 </html>
-<?php
-} else {
-	include("model/create_bdd.php");
-} ?>

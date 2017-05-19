@@ -1,18 +1,21 @@
 <?php
-include_once("SQL/FUNCTIONS/injectProduct.php");
-include_once("SQL/FUNCTIONS/updateProduct.php");
-include_once("CSV_FUNCTIONS/getProduct.php");
-include_once("CSV_FUNCTIONS/countLine.php");
+include_once("../SQL/FUNCTIONS/injectProduct.php");
+include_once("../SQL/FUNCTIONS/updateProduct.php");
+include_once("../CSV_FUNCTIONS/getProduct.php");
+include_once("../CSV_FUNCTIONS/countLine.php");
 function applyToAllProduct($ressource, $bdd, $columns, $code) {// run a function "code" on all the product of the CSV.
+    ob_end_flush();
     $nb_product = countLine();
-    $percent = floor(/100);
+    $percent = floor($nb_product/1000);
     mysqli_query($bdd, "SET GLOBAL innodb_flush_log_at_trx_commit = 0;");//optimisation
     mysqli_query($bdd, "SET FOREIGN_KEY_CHECKS = 0;");
     mysqli_query($bdd, "SET UNIQUE_CHECKS = 0;");
     $id=0;
+    flush();
     while($id<$nb_product) { //!feof($ressource)
-        if($id%$percent == 0) {
-            echo floor($nb_product/$percent);
+        if(($id+1)%$percent == 0) {
+            echo 100*(round(($id+1)/$nb_product, 3))."\n";
+            flush();
         }
         $id++;
         mysqli_begin_transaction($bdd, MYSQLI_TRANS_START_READ_WRITE);

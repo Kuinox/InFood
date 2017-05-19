@@ -21,7 +21,6 @@ function sqlScriptInject($bdd, $script_path) {
             }
         }
     } else {//procedure
-
         while ($line = fgets($script_file)) {
             $script .= $line;
         }
