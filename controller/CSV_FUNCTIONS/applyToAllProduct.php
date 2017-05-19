@@ -11,8 +11,10 @@ function applyToAllProduct($ressource, $bdd, $columns, $code) {// run a function
     mysqli_query($bdd, "SET FOREIGN_KEY_CHECKS = 0;");
     mysqli_query($bdd, "SET UNIQUE_CHECKS = 0;");
     $id=0;
+    echo "0\n";
+    //echo "WHAT\n";
     flush();
-    while($id<$nb_product) { //!feof($ressource)
+    while($id<$nb_product && $id < 1000) { //!feof($ressource)
         if(($id+1)%$percent == 0) {
             echo 100*(round(($id+1)/$nb_product, 3))."\n";
             flush();

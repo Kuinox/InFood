@@ -12,5 +12,6 @@ BEGIN
         VALUES(NULL, val);
         SELECT LAST_INSERT_ID() INTO id_val;
     END IF;
-    CALL insert_FK_aliment_has_brand(code, id_val);
+    INSERT INTO aliment_has_brand (id, aliment_id_aliment, brand_id_brand)
+    VALUES(NULL, code, id_val);
 END;

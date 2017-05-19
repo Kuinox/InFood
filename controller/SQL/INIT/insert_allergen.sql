@@ -12,5 +12,6 @@ BEGIN
         VALUES(NULL, val);
         SELECT LAST_INSERT_ID() INTO id_val;
     END IF;
-    CALL insert_FK_aliment_has_allergen(code, id_val);
+    INSERT INTO aliment_has_allergen (id, aliment_id_aliment, allergen_id_allergen)
+    VALUES(NULL, code, id_val);
 END;

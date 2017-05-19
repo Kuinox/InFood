@@ -10,7 +10,8 @@ BEGIN
 	IF id_val IS NULL THEN
     	INSERT INTO manufacturing_place (id, label, mother_place)
         VALUES(NULL, val, foreign_key);
-        SELECT LAST_INSERT_ID() INTO @id_val;
+        SELECT LAST_INSERT_ID() INTO id_val;
     END IF;
-    CALL insert_FK_aliment_has_manufacturing_place(code, id_val);
+    INSERT INTO aliment_has_manufacturing_place (id, aliment_id_aliment, manufacturing_place_id_manufacturing_place)
+    VALUES(NULL, code, id_val);
 END;

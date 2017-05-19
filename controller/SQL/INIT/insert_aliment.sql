@@ -5,9 +5,9 @@ CREATE PROCEDURE insert_aliment (IN id CHAR(30), IN name VARCHAR(250),
     IN generic_name_char VARCHAR(250), IN grade_nutri CHAR(1), IN qty VARCHAR(30),
     IN serving VARCHAR(200))
 BEGIN
+    DECLARE generic_name INT;
     IF generic_name_char IS NOT NULL THEN
-        CALL insert_generic_name(generic_name_char, @output);
-        SELECT @output INTO @generic_name;
+        CALL insert_generic_name(generic_name_char, generic_name);
     END IF;
     INSERT INTO aliment (
             id_aliment,
