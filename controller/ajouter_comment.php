@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("../controller/SQL/FUNCTIONS/connect.php");
-include('../comments.php');
+include('../controller/SQL/FUNCTIONS/comments.php');
 
 $text = $_POST['comment'];
 $check = "\">";
