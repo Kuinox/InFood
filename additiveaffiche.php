@@ -1,6 +1,6 @@
 <?php
-  include ("controller/SQL/FUNCTIONS/connect.php");
-  include ('sql_functions.php');
+  include ("../controller/SQL/FUNCTIONS/connect.php");
+  include ('../sql_functions.php');
   $table = 'additive';
   $where = 'id_additive';
   $like = '4';

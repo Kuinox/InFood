@@ -15,7 +15,7 @@
 			<input type="hidden"/>
 			<input type="submit" name="connexion" value="Se connecter"/>
 		</form>
-		<form action="resultat_de_recherche.php" method="GET" >
+		<form action="model/resultat_de_recherche.php" method="GET" >
 			<input type="text" name="recherche"/>
 
 		<select name="type">

@@ -4,9 +4,9 @@
 </form>
 <?php
 session_start();
-include('comments.php');
-include("controller/SQL/FUNCTIONS/connect.php");
-include ('sql_functions.php');
+include('../controller/SQL/FUNCTIONS/comments.php');
+include("../controller/SQL/FUNCTIONS/connect.php");
+include ('../sql_functions.php');
 
 
 $where = "id_aliment";
@@ -57,9 +57,8 @@ echo "<br>note moyenne: ".$note_moy;
 //========================================================
 
 if(isset($_SESSION["nom"])){
-	echo "<br><a href = notes.html>Notes</a>";
-	echo "<br><a href = produit.html>Commenter</a><br>";
-	echo"set ************************************s";
+	echo "<br><a href = ../controller/notes.html>Notes</a>";
+	echo "<br><a href = ../produit.html>Commenter</a><br>";
 }else{
 	echo"<br>not set ";
 }
