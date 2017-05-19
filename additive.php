@@ -1,9 +1,11 @@
 <?php
-include ("../controller/SQL/FUNCTIONS/connect.php");
-include ('../sql_functions.php');
-$table = $_GET['filtre'];
+//Display additive page
+include ('model/header.php');
+include ('controller/SQL/FUNCTIONS/connect.php');
+include ('controller/SQL/FUNCTIONS/select.php');
+$table = addslashes($_GET['filtre']);
 $where = "label";
-$like = "'".$_GET['id']."'";
+$like = "'".addslashes($_GET['id'])."'";
 echo $where;
 echo "<br>";
 echo $like;
