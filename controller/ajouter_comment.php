@@ -1,7 +1,7 @@
 <?php
 session_start();
-include("controller/SQL/FUNCTIONS/connect.php");
-include('comments.php');
+include("../controller/SQL/FUNCTIONS/connect.php");
+include('../comments.php');
 
 $text = $_POST['comment'];
 $check = "\">";
@@ -12,12 +12,12 @@ $pos = strpos($text,$check);
       // header("location: index.php");
 // }
 // else {
-  
+
   $id = $_SESSION["id"];
   $type = $_SESSION["type"];
   $id_user = $_SESSION["id_user"];
 
 // }
 add_comments($bdd,$text,$id,$id_user);
-header("location:produit.php?id=".$id."&type=".$type."")
+header("location:../model/produit.php?id=".$id."&type=".$type."")
 ?>

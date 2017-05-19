@@ -1,7 +1,7 @@
 <?php
 
-include ("controller/SQL/FUNCTIONS/connect.php");
-include ('sql_functions.php');
+include ("../controller/SQL/FUNCTIONS/connect.php");
+include ('../sql_functions.php');
 
 $recherche = $_GET['recherche'];
 var_dump ($recherche);
