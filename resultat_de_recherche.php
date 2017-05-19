@@ -1,7 +1,7 @@
 <?php
 
-include ("../controller/SQL/FUNCTIONS/connect.php");
-include ('../sql_functions.php');
+include ("controller/SQL/FUNCTIONS/connect.php");
+include ('controller/SQL/FUNCTIONS/select.php');
 
 $recherche = $_GET['recherche'];
 var_dump ($recherche);
@@ -45,8 +45,8 @@ if($type == 'aliment')  {
     $like = "'".$recherche."'";
     $result = select ($bdd, $table, $where, $like);
     foreach ($result as $key => $value) {
-      $chaine = implode(";", $value);
-      $array = explode (";",$chaine);
+      //$chaine = implode(";", $value);
+      $array = explode (";",$value);
       echo "<a href= additive.php?id=$array[0]&type=$type>$array[1]</a><br>";
     }
 }else if ($type == 'ingredient') {
