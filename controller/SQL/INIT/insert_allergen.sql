@@ -1,7 +1,8 @@
 DROP PROCEDURE IF EXISTS insert_allergen;
 
-CREATE PROCEDURE insert_allergen (IN val VARCHAR(250), OUT id_val INT)
+CREATE PROCEDURE insert_allergen (IN code CHAR(30), IN val VARCHAR(250))
 BEGIN
+    DECLARE id_val INT;
     SELECT id
     INTO id_val
     FROM allergen
@@ -11,4 +12,6 @@ BEGIN
         VALUES(NULL, val);
         SELECT LAST_INSERT_ID() INTO id_val;
     END IF;
+    INSERT INTO aliment_has_allergen (id, aliment_id_aliment, allergen_id_allergen)
+    VALUES(NULL, code, id_val);
 END;

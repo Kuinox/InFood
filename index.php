@@ -1,3 +1,8 @@
+<?php
+include_once("controller/SQL/FUNCTIONS/connectNoUse.php");
+if($db_exist) {
+ ?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -6,7 +11,8 @@
 		 <link rel="stylesheet" href="styles.css">
 	</head>
 	<body>
-		<?php include("view/header.html"); ?>
+		<?php
+		include("model/header.html"); ?>
 		<h1>In'Food	</h1>
 		<form action="inscription1.php" method="get">
       <input type="submit" name="inscription" value="Inscription"/>
@@ -28,5 +34,10 @@
 		<input type="submit" name="sub" value="valide"/>
 			<div></div>
 		</form>
+
 	</body>
 </html>
+<?php
+} else {
+	include("model/create_bdd.php");
+} ?>
