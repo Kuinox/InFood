@@ -1,5 +1,4 @@
 <?php
-include("controller/SQL/FUNCTIONS/select.php");
 function recherche(mysqli $bdd, string $input) {
     $type = addslashes($_GET['type']);
     switch ($type) {

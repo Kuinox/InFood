@@ -12,7 +12,7 @@ if($db_exist) {
 	</head>
 	<body>
 		<?php
-		include("model/header.html"); ?>
+		include("model/header.php"); ?>
 		<h1>In'Food	</h1>
 		<form action="inscription1.php" method="get">
       <input type="submit" name="inscription" value="Inscription"/>
