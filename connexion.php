@@ -1,18 +1,18 @@
-<?php 
+<?php
 session_start();
 $_SESSION['panier']=[];
 
 if (empty($_SESSION['panier'])){
 	$_SESSION['panier'] = [];
 }
-if(isset($_POST['formconnection'])){
+if(isset($_POST['formconnexion'])){
 	include_once("controller/SQL/FUNCTIONS/connect.php");
 
 	$username=strip_tags($_POST['nom']);
 	// $options = [
 	// 'cost' => 12,
 	// ];
-	// $mm=password_hash($_POST["pwd"], PASSWORD_BCRYPT, $options);	
+	// $mm=password_hash($_POST["pwd"], PASSWORD_BCRYPT, $options);
 	// $password=strip_tags($mm);
 	$password=($_POST["pwd"]);
 	$sql="SELECT id_user, pseudo, password FROM user WHERE $username='pseudo'";
@@ -39,8 +39,8 @@ if(isset($_POST['formconnection'])){
 	}
 }
 ?>
-<form method="POST" action="connection.php">
-		<table>		
+<form method="POST" action="connexion.php">
+		<table>
 			<tr>
 				<td>Nom :</td>
 				<td><input type="text" plceholder="nom" name="nom"/></td>
@@ -51,7 +51,7 @@ if(isset($_POST['formconnection'])){
 			</tr>
 			<tr>
 				<td></td>
-				<td><input type="submit" name="formconnection" value="Connection"/></td>
+				<td><input type="submit" name="formconnexion" value="Connexion"/></td>
 			</tr>
 		</table>
 	</form>

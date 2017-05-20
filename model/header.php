@@ -1,6 +1,6 @@
 		<header>
 			<div id="top_header">
-				<form class="inline" action="resultat_de_recherche.php" method="GET">
+				<form id="search" action="resultat_de_recherche.php" method="GET">
 					In'Food
 					<select name = "type" id="type">
 						<option value="aliment" selected>Produits</option>
@@ -13,8 +13,8 @@
 					<a href="todo"><img src="todo"/></a>
 				</form>
 				<?php
-				include("connectionInscription.php");
-				include("deconnection.php"); ?>
+				include("connexionInscription.php");
+				include("deconnexion.php"); ?>
 
 			</div>
 		</header>

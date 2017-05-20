@@ -2,7 +2,7 @@
 session_start();
 
 include("controller/SQL/FUNCTIONS/connect.php");
-include("model/connection.html");
+include("model/connexion.html");
 
 if(isset($_POST['login']))
 {

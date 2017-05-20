@@ -1,12 +1,9 @@
 <?php
-//ouverture session
-session_start();
-
-//connection au bdd
+//connexion au bdd
 include("controller/SQL/FUNCTIONS/connect.php");
 
 //affichage html
-include("model/connection.html");
+include("model/connexion.html");
 if(isset($_POST['login']))
 {
 	//protège les chars pour l'utiliser  dans une requête SQL
@@ -26,10 +23,10 @@ if(isset($_POST['login']))
 	$check_user = mysqli_num_rows($run_user);
 
 	//s'il existe mot de passe et email
-	//connection réussi
+	//connexion réussi
 	if($check_user>0)
 	{
-		//nouvelle connection à la base (necessiare)
+		//nouvelle connexion à la base (necessiare)
 		$bdd = new PDO('mysql:dbname=infood;host=localhost','root','');
 
 		//recherche dans la bdd sur le nom
@@ -56,7 +53,7 @@ if(isset($_POST['login']))
 		//Panier
 	}
 	//si le mot de passe et email n'existe pas.
-	//connection échouer
+	//connexion échouer
 	else
 	{
 		//affiche alert

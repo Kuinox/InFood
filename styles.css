@@ -5,15 +5,17 @@ body{
 header{
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-.inline{
-    display: inline-block;
-}
-header form{
-    display: inline;
-}
 
-#top_header, #bot_header{
-    padding-left: 25px;
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.9);
+    overflow-x: hidden;
 }
 
 #top_header{
@@ -35,7 +37,6 @@ header form{
     border-bottom-left-radius: 25px;
     height: 25px;
     padding-top: 8px;
-
 }
 #logo_svg{
     height: 25px;

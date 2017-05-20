@@ -1,17 +1,16 @@
 "use strict";
-window.InFood = {};
+window.ajax = {};
 function work()
 {
     // make ajax call
     var xhr = new XMLHttpRequest(); //instancie l'objet xhr
-    xhr.open('GET', 'controller/functions/create_bdd.php'); //ouvre la connection
+    xhr.open('GET', 'controller/functions/create_bdd.php'); //ouvre la connexion
     xhr.send();//envoie
-    InFood.timerId = setInterval(function(){
+    ajax.timerId = setInterval(function(){
         console.log("reponse:");
         console.log(xhr.response);
          // get last response line
          var data = xhr.response.split('\n');
-         // if last line does not start with //, set progress
          data.pop();
          var progress = data.pop();
          if (progress == undefined) {
@@ -34,8 +33,8 @@ function work()
          // stop handling response when request is finished
          if(xhr.readyState == XMLHttpRequest.DONE)
          {
-             clearInterval(InFood.timerId);
-             InFood.timerId = null;
+             clearInterval(ajax.timerId);
+             ajax.timerId = null;
          }
      }, 100, 100);
  }
