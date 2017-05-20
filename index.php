@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once("controller/SQL/FUNCTIONS/connectNoUse.php");
 if($db_exist) {
  ?>
@@ -21,20 +22,6 @@ if($db_exist) {
 			<input type="hidden"/>
 			<input type="submit" name="connexion" value="Se connecter"/>
 		</form>
-		<form action="model/resultat_de_recherche.php" method="GET" >
-			<input type="text" name="recherche"/>
-
-		<select name="type">
-
-		  <option value="aliment">Produit</option>
-			<option value="additive">additif</option>
-			<option value="ingredient">ingredient</option>
-			<option value="categorie">categorie</option>
-		</select>
-		<input type="submit" name="sub" value="valide"/>
-			<div></div>
-		</form>
-
 	</body>
 </html>
 <?php
