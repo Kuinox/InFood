@@ -6,11 +6,7 @@ if($db_exist) {
 
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>INDEX</title>
-		 <link rel="stylesheet" href="styles.css">
-	</head>
+    <?php include("model/head.php") ?>
 	<body>
 		<?php
 		include("model/header.php"); ?>

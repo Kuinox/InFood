@@ -1,12 +1,12 @@
-'use strict';
-window.Nixo = {};
+"use strict";
+window.InFood = {};
 function work()
 {
     // make ajax call
     var xhr = new XMLHttpRequest(); //instancie l'objet xhr
     xhr.open('GET', 'controller/functions/create_bdd.php'); //ouvre la connection
     xhr.send();//envoie
-    Nixo.timerId = setInterval(function(){
+    InFood.timerId = setInterval(function(){
         console.log("reponse:");
         console.log(xhr.response);
          // get last response line
@@ -34,8 +34,8 @@ function work()
          // stop handling response when request is finished
          if(xhr.readyState == XMLHttpRequest.DONE)
          {
-             clearInterval(Nixo.timerId);
-             Nixo.timerId = null;
+             clearInterval(InFood.timerId);
+             InFood.timerId = null;
          }
      }, 100, 100);
  }

@@ -6,7 +6,7 @@ session_start();
 include("controller/SQL/FUNCTIONS/connect.php");
 
 //affichage html
-include("connection.html");
+include("model/connection.html");
 if(isset($_POST['login']))
 {
 	//protège les chars pour l'utiliser  dans une requête SQL

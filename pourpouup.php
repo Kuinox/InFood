@@ -2,12 +2,12 @@
 session_start();
 
 include("controller/SQL/FUNCTIONS/connect.php");
-include("connection.html");
+include("model/connection.html");
 
 if(isset($_POST['login']))
 {
-	
-	$email = mysqli_real_escape_string($bdd,$_POST['email']);			
+
+	$email = mysqli_real_escape_string($bdd,$_POST['email']);
 	$mm=hash('sha256',$_POST["pass"]);
 	$pass = mysqli_real_escape_string($bdd,$mm);
 	$sel_user = "select * from user where email='$email' AND password='$mm'";
@@ -19,7 +19,7 @@ if(isset($_POST['login']))
 		$_SESSION['email']=$email;
 		header('Location:/INFOOD/');
 	}
-	else 
+	else
 	{
 		echo "<script>alert('Email or password is not correct, try again!')</script>";
 	}
