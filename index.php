@@ -1,40 +1,21 @@
 <?php
+session_start();
+ob_end_flush();
 include_once("controller/SQL/FUNCTIONS/connectNoUse.php");
+
 if($db_exist) {
  ?>
 
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>INDEX</title>
-		 <link rel="stylesheet" href="styles.css">
-	</head>
+    <?php include("model/head.php") ?>
 	<body>
 		<?php
-		include("model/header.html"); ?>
+		include("model/header.php"); ?>
 		<h1>In'Food	</h1>
 		<form action="inscription1.php" method="get">
       <input type="submit" name="inscription" value="Inscription"/>
 		</form>
-		<form action="connectionessai.php" method="get">
-			<input type="hidden"/>
-			<input type="submit" name="connexion" value="Se connecter"/>
-		</form>
-		<form action="model/resultat_de_recherche.php" method="GET" >
-			<input type="text" name="recherche"/>
-
-		<select name="type">
-
-		  <option value="aliment">Produit</option>
-			<option value="additive">additif</option>
-			<option value="ingredient">ingredient</option>
-			<option value="categorie">categorie</option>
-		</select>
-		<input type="submit" name="sub" value="valide"/>
-			<div></div>
-		</form>
-
 	</body>
 </html>
 <?php

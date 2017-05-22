@@ -4,9 +4,7 @@
 		<meta charset="UTF-8">
 		<title>INDEX</title>
 		<link rel="stylesheet" href="styles.css">
-        <script>
-        <?php include("view/js/ajax.js"); ?>
-         </script>
+        <script src="js/ajax.js"></script>
 	</head>
 	<body>
         <?php

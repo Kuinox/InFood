@@ -1,41 +1,42 @@
-'use strict';
-window.Nixo = {};
+/*exported work */
+"use strict";
+window.window.ajax = {};
 function work()
 {
     // make ajax call
     var xhr = new XMLHttpRequest(); //instancie l'objet xhr
-    xhr.open('GET', 'controller/functions/create_bdd.php'); //ouvre la connection
+    xhr.open("GET", "controller/functions/create_bdd.php"); //ouvre la connexion
     xhr.send();//envoie
-    Nixo.timerId = setInterval(function(){
+    window.ajax.timerId = setInterval(function(){
         console.log("reponse:");
         console.log(xhr.response);
          // get last response line
-         var data = xhr.response.split('\n');
-         // if last line does not start with //, set progress
+         var data = xhr.response.split("\n");
          data.pop();
          var progress = data.pop();
-         if (progress == undefined) {
+         if (progress === undefined) {
              progress = 0;
          }
-             document.getElementById('progress').value = progress;
+             document.getElementById("progress").value = progress;
              console.log("data:");
              console.log(progress);
-             var progressDiv = document.getElementById('progress-output');
+             var progressDiv = document.getElementById("progress-output");
              while(progressDiv.firstChild)
                  progressDiv.firstChild.remove();
+            var progress_text;
             if (progress.length > 0) {
-                var progress_text = progress;
+                progress_text = progress;
                 console.log("num");
             } else {
                 console.log("init");
-                var progress_text = "Initialising...";
+                progress_text = "Initialising...";
             }
             progressDiv.appendChild(document.createTextNode(progress_text));
          // stop handling response when request is finished
-         if(xhr.readyState == XMLHttpRequest.DONE)
+         if(xhr.readyState === XMLHttpRequest.DONE)
          {
-             clearInterval(Nixo.timerId);
-             Nixo.timerId = null;
+             clearInterval(window.ajax.timerId);
+             window.ajax.timerId = null;
          }
      }, 100, 100);
  }

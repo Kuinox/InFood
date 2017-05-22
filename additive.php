@@ -1,12 +1,12 @@
 <?php
-include ("../controller/SQL/FUNCTIONS/connect.php");
-include ('../sql_functions.php');
-$table = $_GET['filtre'];
-$where = "label";
-$like = "'".$_GET['id']."'";
-echo $where;
+//Display additive page
+include ('model/header.php');
+include ('controller/SQL/FUNCTIONS/connect.php');
+include ('controller/SQL/FUNCTIONS/select.php');
+$like = "'".addslashes($_GET['id'])."'";
 echo "<br>";
-echo $like;
-$result = select ($bdd, $table, $where, $like);
+$result = select ($bdd, 'additive', "id", $like);
 var_dump($result);
 ?>
+<h1>Il faut rajouter le HTML sur cette page, c'est aussi pour cela que le logo est surdimensioné.
+</h1>

@@ -6,7 +6,7 @@ include_once("../CSV_FUNCTIONS/countLine.php");
 function applyToAllProduct($ressource, $bdd, $columns, $code) {// run a function "code" on all the product of the CSV.
     ob_end_flush();
     $nb_product = countLine();
-    $percent = floor($nb_product/1000);
+    $percent = floor($nb_product/10000);
     mysqli_query($bdd, "SET GLOBAL innodb_flush_log_at_trx_commit = 0;");//optimisation
     mysqli_query($bdd, "SET FOREIGN_KEY_CHECKS = 0;");
     mysqli_query($bdd, "SET UNIQUE_CHECKS = 0;");
