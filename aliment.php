@@ -2,12 +2,10 @@
   include("controller/SQL/FUNCTIONS/connect.php");
   include("controller/SQL/FUNCTIONS/select.php");
   //include ('sql_functions.php');
-  $table = 'aliment';
-  $where = 'id_aliment';
-  $like = "'0000000016087'";
 
+$id = mysqli_escape_string($bdd, $_GET['id']);
 echo "<pre>";
-print_r (select ($bdd, $table, $where, $like));
+print_r (select ($bdd, "aliment", "id_aliment", "'$id'"));
 echo "</pre>";
 
 ?>
