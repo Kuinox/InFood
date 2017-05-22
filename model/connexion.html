@@ -1,4 +1,5 @@
-		<form action="" method="post">
+		<span id="erreur_message"></span>
+		<form>
 			<table width="500" align="center">
 				<tr align="center">
 					<td colspan="3"><h2>Se connecter</h2></td>
@@ -8,7 +9,7 @@
 						<b>Nom d'utilisateur ou E-mail</b>
 					</td>
 					<td>
-						<input id="login" type="text" name="login" required="required"/>
+						<input id="login" type="text" required="required"/>
 					</td>
 				</tr>
 				<tr>
@@ -16,13 +17,12 @@
 						<b>Mot de passe:</b>
 					</td>
 					<td>
-						<input id="password" type="password" name="password" required="required">
+						<input id="password" type="password" required="required">
 					</td>
 				</tr>
 				<tr align="center">
 					<td colspan="3">
-						<a href="#" onclick="sendFormConnexion();">test</a>
-						<input type="submit" value="Login"/>
+						<a href="#" onclick="sendFormConnexion();">Se connecter</a>
 					</td>
 				</tr>
 			</table>

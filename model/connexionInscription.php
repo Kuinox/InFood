@@ -9,6 +9,6 @@ if(!isset($_SESSION['user']['pseudo']) || (isset($_POST['action']) && $_POST['ac
 </div>
 <div id="inscription" class="overlay">
     <a onclick="closeInscription()" href="javascript:void(0);">x</a>
-    <?php include("inscription1.php"); ?>
+    <?php include("model/inscription.html"); ?>
 </div>
 <?php } ?>

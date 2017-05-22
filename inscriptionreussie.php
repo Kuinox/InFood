@@ -11,6 +11,10 @@ if($db_exist) {
 	<body>
 		<?php
 		include("model/header.php"); ?>
+		<p>
+            Inscription réussie !
+        </p>
+        <a href="index.php">Revenir à la page d'accueil</a>
 	</body>
 </html>
 <?php

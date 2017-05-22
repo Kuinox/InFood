@@ -1,8 +1,7 @@
 <?php
 session_start();
 include("../SQL/FUNCTIONS/connect.php");//connexion au bdd
-$login = $_POST['password'];
-$email = mysqli_real_escape_string($bdd,$_POST['login']);//protège les chars pour l'utiliser  dans une requête SQL
+$login = mysqli_real_escape_string($bdd,$_POST['login']);//protège les chars pour l'utiliser  dans une requête SQL
 $password=hash('sha256',$_POST["password"]);//hash mot de passe
 $query = "select * from user where password='$password' AND (email='$login' OR pseudo='$login')";
 $result = mysqli_query($bdd, $query) or die("Erreur BDD");//recherche dans bdd email et mot de passe

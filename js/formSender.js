@@ -1,4 +1,4 @@
-/*exported sendFormConnexion */
+/*exported sendFormConnexion, sendFormInscription */
 "use strict";
 window.formSender = {};
 
@@ -6,30 +6,113 @@ window.formSender = {};
 
 function sendFormConnexion() {
     var xhr = new XMLHttpRequest(); //instancie l'objet xhr
-    xhr.open("POST", "controller/functions/userConnect.php"); //ouvre la connexion
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    var login = encodeURIComponent(document.getElementById("login").value);
-    var password = encodeURIComponent(document.getElementById("password").value);
     xhr.onreadystatechange = function() {//Call a function when the state changes.
+        var span_error = document.getElementById("erreur_message");
         if(xhr.readyState === 4 && xhr.status === 200) {
             console.log(xhr.responseText);
-            if(xhr.responseText === "sucess") {
-                console.log("connection réussie");
-            } else if (xhr.responseText === "wrong"){
-                console.log("Le pseudo/e-mail ne correspond pas au mot de passe");
-            } else if (xhr.responseText === "Erreur BDD"){
-                console.log("Erreur base de donnée");
-            } else if(xhr.responseText !== "") {
-                console.log("Erreur serveur");
+            switch (xhr.responseText) {
+                case "sucess":
+                    console.log("Inscription réussie");
+                    location.reload();
+                    break;
+                case "wrong":
+                    span_error.innerHTML = "Le pseudo/e-mail ne correspond pas au mot de passe";
+                    console.log("Le pseudo/e-mail ne correspond pas au mot de passe");
+                    break;
+                case "Erreur BDD":
+                    console.log("Erreur base de donnée");
+                    span_error.innerHTML = "Erreur de base de donnée, veuillez contacter l'Administrateur du site.";
+                    break;
+                default:
+                    if(xhr.responseText !== "") {
+                        span_error.innerHTML = "Erreur Serveur, veuillez contacter l'Administrateur du site.";
+                        console.log("Erreur serveur");
+                    }
+                    break;
             }
         } else if (xhr.status !== 200){
             console.log("Communication Error"+xhr.status);
         }
     };
+    xhr.open("POST", "controller/functions/userConnect.php"); //ouvre la connexion
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    var login = encodeURIComponent(document.getElementById("login").value);
+    var password = encodeURIComponent(document.getElementById("password").value);
     var post = "login="+login+"&password="+password;
     console.log(post);
     xhr.send(post);//envoie
     return false;
- }
+}
 
- // get the current progress
+function checkPassword() {
+    var password = encodeURIComponent(document.getElementById("password_inscription").value);
+    var password_confirm = encodeURIComponent(document.getElementById("password_confirm").value);
+    if (password !== password_confirm) {
+        var span_error = document.getElementById("erreur_message_inscription");
+        span_error.innerHTML = "Les mots de passe ne correspondent pas";
+        console.log(password);
+        console.log(password_confirm);
+
+        return false;
+    }
+    return true;
+}
+function checkEntry() {
+    var a = encodeURIComponent(document.getElementById("password_inscription").value) !== "";
+    var b = encodeURIComponent(document.getElementById("password_confirm").value) !== "";
+    var c = encodeURIComponent(document.getElementById("email").value) !== "";
+    var d = encodeURIComponent(document.getElementById("pseudo").value) !== "";
+    if (a&&b&&c&&d) {
+
+        return true;
+    }
+    var span_error = document.getElementById("erreur_message_inscription");
+    span_error.innerHTML = "Veuillez remplir tous les champs.";
+    return false;
+}
+function sendFormInscription() {
+    if(!checkPassword() || !checkEntry()) {
+        return;
+    }
+    var xhr = new XMLHttpRequest(); //instancie l'objet xhr
+    xhr.onreadystatechange = function() {//Call a function when the state changes.
+        var span_error = document.getElementById("erreur_message_inscription");
+        if(xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.responseText);
+            switch (xhr.responseText) {
+                case "sucess":
+                    console.log("SUCESS");
+                    window.location.href = "inscriptionreussie.php";
+                    break;
+                case "email_exist":
+                    console.log("Un compte à déjà été créer pour cette e-mail");
+                    span_error.innerHTML = "Un compte à déjà été créer pour cette e-mail";
+                    break;
+                case "pseudo_exist":
+                    span_error.innerHTML = "Le pseudo/e-mail ne correspond pas au mot de passe";
+                    console.log("Le pseudo/e-mail ne correspond pas au mot de passe");
+                    break;
+                case "Erreur BDD":
+                    console.log("Erreur base de donnée");
+                    span_error.innerHTML = "Erreur de base de donnée, veuillez contacter l'Administrateur du site.";
+                    break;
+                default:
+                    if(xhr.responseText !== "") {
+                        span_error.innerHTML = "Erreur Serveur, veuillez contacter l'Administrateur du site.";
+                        console.log("Erreur serveur");
+                    }
+                    break;
+            }
+        } else if (xhr.status !== 200){
+            console.log("Communication Error"+xhr.status);
+        }
+    };
+    var pseudo      = encodeURIComponent(document.getElementById("pseudo"               ).value);
+    var password    = encodeURIComponent(document.getElementById("password_inscription" ).value);
+    var email       = encodeURIComponent(document.getElementById("email"                ).value);
+    xhr.open("POST", "controller/functions/userInscription.php"); //ouvre la connexion
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    var post = "pseudo="+pseudo+"&password="+password+"&email="+email;
+    console.log(post);
+    xhr.send(post);//envoie
+}
