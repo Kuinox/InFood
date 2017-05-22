@@ -1,5 +1,5 @@
 <?php
-if(!isset($_SESSION['nom']) || (isset($_POST['action']) && $_POST['action'] == 'deconnexion')) {
+if(!isset($_SESSION['user']['pseudo']) || (isset($_POST['action']) && $_POST['action'] == 'deconnexion')) {
  ?>
 <button onclick="openInscription()">Inscription</button>
 <button onclick="openConnexion()">Connexion</button>

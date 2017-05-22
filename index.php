@@ -1,6 +1,5 @@
 <?php
 session_start();
-ob_end_flush();
 include_once("controller/SQL/FUNCTIONS/connectNoUse.php");
 
 if($db_exist) {
