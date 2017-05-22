@@ -1,14 +1,14 @@
-		<form action="connexionessai.php" method="post">
+		<form action="" method="post">
 			<table width="500" align="center">
 				<tr align="center">
 					<td colspan="3"><h2>Se connecter</h2></td>
 				</tr>
 				<tr>
 					<td align="right">
-						<b>E-mail</b>
+						<b>Nom d'utilisateur ou E-mail</b>
 					</td>
 					<td>
-						<input type="email" name="email" required="required"/>
+						<input id="login" type="text" name="login" required="required"/>
 					</td>
 				</tr>
 				<tr>
@@ -16,12 +16,13 @@
 						<b>Mot de passe:</b>
 					</td>
 					<td>
-						<input type="password" name="pass" required="required">
+						<input id="password" type="password" name="password" required="required">
 					</td>
 				</tr>
 				<tr align="center">
 					<td colspan="3">
-						<input type="submit" name="login" value="Login"/>
+						<a href="#" onclick="sendFormConnexion();">test</a>
+						<input type="submit" value="Login"/>
 					</td>
 				</tr>
 			</table>

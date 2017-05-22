@@ -1,6 +1,8 @@
 <?php
 session_start();
+ob_end_flush();
 include_once("controller/SQL/FUNCTIONS/connectNoUse.php");
+
 if($db_exist) {
  ?>
 
@@ -13,10 +15,6 @@ if($db_exist) {
 		<h1>In'Food	</h1>
 		<form action="inscription1.php" method="get">
       <input type="submit" name="inscription" value="Inscription"/>
-		</form>
-		<form action="connexionessai.php" method="get">
-			<input type="hidden"/>
-			<input type="submit" name="connexion" value="Se connecter"/>
 		</form>
 	</body>
 </html>

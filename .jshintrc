@@ -1,0 +1,12 @@
+{
+    "unused": "strict",
+    "eqeqeq": true,
+    "latedef": false,
+    "quotmark": "double",
+    "browser": true,
+    "undef": true,
+    "strict": "global",
+    "boss": true,
+    "devel": true,
+    "eqnull": true
+}

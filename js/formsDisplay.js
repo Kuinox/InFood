@@ -1,5 +1,5 @@
+/*exported openConnexion, closeConnexion, openInscription, closeInscription */
 "use strict";
-window.formsDisplay = {};
 function openConnexion() {
     document.getElementById("connexion").style.width = "100%";
 }
