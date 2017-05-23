@@ -4,7 +4,7 @@ function displayRecherche(array $output) {
     foreach ($output as $key => $value) {
         $id = array_shift($value);
         $name = array_shift($value);
-        echo "<a href= $type.php?id=$id&type=$type>$name</a><br>";
+        echo "<a href= $type.php?id=$id>$name</a><br>";
     }
 }
  ?>

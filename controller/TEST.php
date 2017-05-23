@@ -1,5 +1,4 @@
 <?php
-session_start();
 function displayComents()
 {
   include("SQL/FUNCTIONS/comments.php");
@@ -38,7 +37,7 @@ if(isset ($_SESSION['user']['pseudo'])){
   echo "<table>";
   var_dump($com);
 }else{
-	echo"<br>not set ";
+	echo"<br>not set ";//TODO DAFUK?
 }
 }
 

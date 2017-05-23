@@ -1,5 +1,5 @@
 <?php
-function recherche(mysqli $bdd, string $input) {
+function recherche(mysqli $bdd, $input) {
     $type = addslashes($_GET['type']);
     switch ($type) {
         case 'aliment':
@@ -12,6 +12,12 @@ function recherche(mysqli $bdd, string $input) {
             break;
         case 'additive':
         case 'ingredient':
+        case 'brand':
+        case 'manufacturing_place':
+        case 'allergen':
+        case 'categorie':
+        case 'packaging':
+        case 'generic_name':
             $query = "SELECT id, label
                       FROM $type
                       WHERE label LIKE '$input';";
