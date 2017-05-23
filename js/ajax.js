@@ -5,7 +5,7 @@ function work()
 {
     // make ajax call
     var xhr = new XMLHttpRequest(); //instancie l'objet xhr
-    xhr.open("GET", "controller/functions/create_bdd.php"); //ouvre la connexion
+    xhr.open("GET", "controller/ajax/create_bdd.php"); //ouvre la connexion
     xhr.send();//envoie
     window.ajax.timerId = setInterval(function(){
         console.log("reponse:");
