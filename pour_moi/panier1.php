@@ -2,37 +2,29 @@
 session_start();
 if(isset($_POST['go']))
 {
-	if(empty($_POST['t']))
+	if(!isset($_SESSION['panier']))
 	{
-		echo"text est vide";
+		$_SESSION['panier']=[];
 	}
 	else
-	{	
-		if(isset($_SESSION['panier']))
-		{
-			echo"session connue";
-			$panier=$_SESSION['panier'];
-			$ses = $_POST['t'];
-			array_push($panier,$ses);
-			$_SESSION['panier'] = $panier;
-			foreach($panier as $i =>$key) {
-			$i >0;
-				echo $key."<br>";
-			}
-		}
-		else
-		{
-			echo"session  pas connue";
-			$ses = $_POST['t'];
-			array_push($panier,$ses);
-			$_SESSION['panier'] = $panier;
-			foreach($panier as $i =>$key) {
-			$i >0;
-				echo $key."<br>";
-			}
-		}
-			
+	{
+		// echo"session connue";
 	}
+	$panier=$_SESSION['panier'];
+	$produit = "122555";
+	$ses = $_POST['t'];
+	
+	// array_push($panier,$ses);
+	$_SESSION['panier'][$produit] =  $ses;
+	if($_POST['t']==0)
+	{
+		unset($_SESSION['panier'][$produit]);
+	}
+	foreach($_SESSION['panier'] as $i =>$key) {
+	$i >0;
+	echo $i."=>".$key."<br>";	
+	}
+
 }
 // session_destroy();
 ?>
