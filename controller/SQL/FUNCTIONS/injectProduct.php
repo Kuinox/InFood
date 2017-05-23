@@ -5,9 +5,8 @@ function injectProduct($bdd, $product, $update=false) {//SELECT id INTO id_val F
     foreach ($product as $key => $value) {
         $product[$key] = addslashes($value);
     }
-    $indexes = [];
-
-        $grade_id = "'".$product['nutrition_grade_fr']."'";
+    //$indexes = [];
+    $grade_id = "'".$product['nutrition_grade_fr']."'";
     if ($grade_id == "''") {
         $grade_id = 'NULL';
     }
@@ -57,6 +56,7 @@ function injectProduct($bdd, $product, $update=false) {//SELECT id INTO id_val F
     }
     $num = 1;
     foreach(sortNutriment($product) as $key => $value) {
+        
         if (!empty($value)) {
             include("../SQL/QUERY/CALL_insert_FK_aliment_has_nutriment.php");
             mysqli_query($bdd, $query) or die('Error in mysql procedure call '.$query.var_dump($bdd));

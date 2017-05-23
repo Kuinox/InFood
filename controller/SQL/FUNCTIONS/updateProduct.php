@@ -1,7 +1,7 @@
 <?php
 include_once("../SQL/FUNCTIONS/injectProduct.php");
 function updateProduct($bdd, $product) {//check if product is update, else call injectProduct
-    include("SQL/QUERY/SELECT_last_modification_aliment.php");
+    include("../SQL/QUERY/SELECT_last_modification_aliment.php");
     $result = mysqli_query($bdd, $query);
     $fetch = mysqli_fetch_all($result);
     if (count($fetch) != 1) {
@@ -11,4 +11,4 @@ function updateProduct($bdd, $product) {//check if product is update, else call 
         injectProduct($bdd, $product, true);
     }
 }
- ?>
+?>
