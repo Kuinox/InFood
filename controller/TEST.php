@@ -6,7 +6,7 @@ function displayComents()
   include("SQL/FUNCTIONS/connect.php");
 
 if(isset ($_SESSION['user']['pseudo'])){
-	echo '<form action="../controller/voter.php" method="POST">
+	echo '<p>Noter<form action="../controller/voter.php" method="POST">
         <input type="text" name="vote" size="2"/>
         <input type="submit" name="button" value="Envoyer"/>
         </form>';
