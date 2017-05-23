@@ -36,7 +36,7 @@ function injectProduct($bdd, $product, $update=false) {//SELECT id INTO id_val F
     foreach (explode(',', $product['manufacturing_places']) as $place) {
         if(!empty($place)) {
             //$fk = isset($indexes['manufacturing_places'][$place]) ? end($indexes['manufacturing_places']) : 'NULL';
-            $querry = "CALL insert_manufacturing_place('".$product['code']."', '$place', 'NULL')";
+            $query = "CALL insert_manufacturing_place('".$product['code']."', '$place', NULL)";
             mysqli_query($bdd, $query) or die('Error in mysql procedure call '.$query.var_dump($bdd));
         }
     }
@@ -56,7 +56,7 @@ function injectProduct($bdd, $product, $update=false) {//SELECT id INTO id_val F
     }
     $num = 1;
     foreach(sortNutriment($product) as $key => $value) {
-        
+
         if (!empty($value)) {
             include("../SQL/QUERY/CALL_insert_FK_aliment_has_nutriment.php");
             mysqli_query($bdd, $query) or die('Error in mysql procedure call '.$query.var_dump($bdd));
