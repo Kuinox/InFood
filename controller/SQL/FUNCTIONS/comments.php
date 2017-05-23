@@ -1,5 +1,5 @@
 <?php
-include("../controller/SQL/FUNCTIONS/connect.php");
+include("connect.php");
 function comments($bdd,$like){
   $query = "SELECT * FROM comments WHERE aliment_id_aliment LIKE \"$like\"";
   $result = mysqli_query($bdd,$query) or die ("Failure");

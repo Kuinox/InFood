@@ -1,0 +1,17 @@
+SELECT
+  c.user_id_user,
+  c.text_comment,
+  c.aliment_id_aliment,
+  n.user_id_user,
+  n.note,
+  n.aliment_id_aliment,
+  u.pseudo
+FROM
+  comments c
+JOIN user u ON c.user_id_user = u.id_user
+LEFT OUTER JOIN
+  notes n
+ON
+  c.user_id_user = n.user_id_user AND c.aliment_id_aliment = n.aliment_id_aliment
+WHERE
+c.aliment_id_aliment ='0000000018449' OR n.aliment_id_aliment = '0000000018449';
