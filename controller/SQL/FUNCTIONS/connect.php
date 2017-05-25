@@ -1,4 +1,10 @@
 <?php
-$bdd = @mysqli_connect('localhost','root','','infood') or die("Erreur d'accès à la BDD.");
-mysqli_set_charset($bdd, "utf8") or die("Erreur chargement charset utf8");
+$dsn = "mysql:dbname=infood; host=127.0.0.1; charset=utf8";
+$user = "root";
+$password = "";
+try {
+    $bdd = new PDO($dsn, $user, $password);
+} catch (PDOException $e) {
+    echo 'Connexion échouée : ' . $e->getMessage();
+}
 ?>

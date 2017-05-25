@@ -1,10 +1,11 @@
 <?php
 session_start();
 include("../SQL/FUNCTIONS/connect.php");//connexion au bdd
-$login = mysqli_real_escape_string($bdd,$_POST['login']);//protège les chars pour l'utiliser  dans une requête SQL
+$login = $_POST['login'];//protège les chars pour l'utiliser  dans une requête SQL
 $password=hash('sha256',$_POST["password"]);//hash mot de passe
-$query = "select * from user where password='$password' AND (email='$login' OR pseudo='$login')";
-$result = mysqli_query($bdd, $query) or die("Erreur BDD");//recherche dans bdd email et mot de passe
+$query = "select * from user where password= ? AND (email= ? OR pseudo= ?)";
+$rep = $bdd->prepare($query);
+$prep->exec(array($password, $login, $login)) or die ("Erreur BDD");
 if(mysqli_num_rows($result)>0) {//s'il existe mot de passe et email -> connexion réussi
 	$bdd = new PDO('mysql:dbname=infood;host=localhost','root','');//nouvelle connexion à la base (necessaire)
 	$requete = $bdd->query("SELECT * FROM user WHERE email like '$login' OR pseudo='$login'");//recherche dans la bdd sur le login

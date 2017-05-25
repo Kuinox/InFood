@@ -1,8 +1,9 @@
 <?php
-function select($bdd, $table, $where , $like){
-  $query = "SELECT * FROM $table WHERE $where LIKE $like";
-  $result = mysqli_query($bdd, $query) or die ("Erreur bdd");//TODO imagine l'erreur arrive au forum PI ?
-  $fetch = mysqli_fetch_assoc($result);
-  return $fetch;
+function select($bdd, $table, $where , $data){
+    $query = "SELECT * FROM $table WHERE $where LIKE ?";
+    $prep = $bdd->prepare($query);
+    $prep->exec(array($data)) or die ("Erreur BDD");
+    $result = $prep->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
 }
  ?>
