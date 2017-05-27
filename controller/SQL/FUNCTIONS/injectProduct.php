@@ -1,7 +1,7 @@
 <?php
 include_once("../SQL/FUNCTIONS/callThenReturn.php");
 include_once("../CSV_FUNCTIONS/sortNutriment.php");
-function injectProduct($bdd, $product, $update=false) {//SELECT id INTO id_val FROM nutriment WHERE val = label;
+function injectProduct(PDO $bdd, $product, $update=false) {//SELECT id INTO id_val FROM nutriment WHERE val = label;
     foreach ($product as $key => $value) {
         $product[$key] = addslashes($value);
     }

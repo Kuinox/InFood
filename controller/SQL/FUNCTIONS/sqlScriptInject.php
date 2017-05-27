@@ -1,5 +1,5 @@
 <?php
-function sqlScriptInject($bdd, $script_path) {
+function sqlScriptInject(PDO $bdd, $script_path) {
     $script_file = fopen($script_path, 'r');
     $script = "";
 //var_dump(strstr($script_path, "insert_"));

@@ -3,13 +3,13 @@ include_once("../SQL/FUNCTIONS/injectProduct.php");
 include_once("../SQL/FUNCTIONS/updateProduct.php");
 include_once("../CSV_FUNCTIONS/getProduct.php");
 include_once("../CSV_FUNCTIONS/countLine.php");
-function applyToAllProduct($ressource, $bdd, $columns, $code) {// run a function "code" on all the product of the CSV.
+function applyToAllProduct($ressource, PDO $bdd, $columns, $code) {// run a function "code" on all the product of the CSV.
     ob_end_flush();
     $nb_product = countLine();
     $percent = floor($nb_product/10000);
-    $bdd->execute"SET GLOBAL innodb_flush_log_at_trx_commit = 0;") or die ("Erreur BDD");//optimisation
-    $bdd->execute"SET FOREIGN_KEY_CHECKS = 0;") or die ("Erreur BDD");
-    $bdd->execute"SET UNIQUE_CHECKS = 0;") or die ("Erreur BDD");
+    $bdd->query("SET GLOBAL innodb_flush_log_at_trx_commit = 0;") or die ("Erreur BDD");//optimisation
+    $bdd->query("SET FOREIGN_KEY_CHECKS = 0;") or die ("Erreur BDD");
+    $bdd->query("SET UNIQUE_CHECKS = 0;") or die ("Erreur BDD");
     flush();
     $id=0;
     echo "0\n";
@@ -24,8 +24,8 @@ function applyToAllProduct($ressource, $bdd, $columns, $code) {// run a function
         $code($bdd, $product);//injection magique
         $bdd->commit();
     }
-    $bdd->execute"SET GLOBAL innodb_flush_log_at_trx_commit = 1;") or die ("Erreur BDD");
-    $bdd->execute"SET FOREIGN_KEY_CHECKS = 1;") or die ("Erreur BDD");
-    $bdd->execute"SET UNIQUE_CHECKS = 1;") or die ("Erreur BDD");
+    $bdd->query("SET GLOBAL innodb_flush_log_at_trx_commit = 1;") or die ("Erreur BDD");
+    $bdd->query("SET FOREIGN_KEY_CHECKS = 1;") or die ("Erreur BDD");
+    $bdd->query("SET UNIQUE_CHECKS = 1;") or die ("Erreur BDD");
 }
  ?>

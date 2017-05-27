@@ -1,5 +1,5 @@
 <?php
-function select($bdd, $table, $where , $data){
+function select(PDO $bdd, $table, $where , $data){
     $query = "SELECT * FROM $table WHERE $where LIKE ?";
     $prep = $bdd->prepare($query);
     $prep->execute(array($data)) or die ("Erreur BDD");

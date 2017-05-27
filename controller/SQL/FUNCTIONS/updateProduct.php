@@ -1,6 +1,6 @@
 <?php
 include_once("../SQL/FUNCTIONS/injectProduct.php");
-function updateProduct($bdd, $product) {//check if product is update, else call injectProduct
+function updateProduct(PDO $bdd, $product) {//check if product is update, else call injectProduct
     include("../SQL/QUERY/SELECT_last_modification_aliment.php");
     $result = $bdd->query($query);
     if ($result->rowCount != 1) {

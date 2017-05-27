@@ -1,5 +1,5 @@
 <?php
-function callThenReturn($bdd, $query) {
+function callThenReturn(PDO $bdd, $query) {
     if (empty($query)) {
         throw new Error('Query is empty in callThenReturn');
     }

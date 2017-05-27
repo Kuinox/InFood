@@ -11,7 +11,7 @@ include_once("../SQL/FUNCTIONS/sqlScriptInject.php");
 include_once("../SQL/FUNCTIONS/callThenReturn.php");
 include_once("../CSV_FUNCTIONS/openCSV.php");
 
-$dsn = "host=127.0.0.1; charset=utf8";
+$dsn = "mysql:host=127.0.0.1; charset=utf8;";
 $user = "root";
 $password = "";
 try {
