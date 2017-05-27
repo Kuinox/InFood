@@ -34,7 +34,7 @@ function sendFormConnexion() {
             console.log("Communication Error"+xhr.status);
         }
     };
-    xhr.open("POST", "controller/functions/userConnect.php"); //ouvre la connexion
+    xhr.open("POST", "controller/ajax/userConnect.php"); //ouvre la connexion
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     var login = encodeURIComponent(document.getElementById("login").value);
     var password = encodeURIComponent(document.getElementById("password").value);
@@ -110,7 +110,7 @@ function sendFormInscription() {
     var pseudo      = encodeURIComponent(document.getElementById("pseudo"               ).value);
     var password    = encodeURIComponent(document.getElementById("password_inscription" ).value);
     var email       = encodeURIComponent(document.getElementById("email"                ).value);
-    xhr.open("POST", "controller/functions/userInscription.php"); //ouvre la connexion
+    xhr.open("POST", "controller/ajax/userInscription.php"); //ouvre la connexion
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     var post = "pseudo="+pseudo+"&password="+password+"&email="+email;
     console.log(post);

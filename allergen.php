@@ -15,9 +15,8 @@ if($db_exist) {
         include("controller/TEST.php");
         //include ('sql_functions.php');
 
-      $id = mysqli_escape_string($bdd, $_GET['id']);
       echo "<pre>";
-      print_r (select ($bdd, "allergen", "id_aliment", "'$id'"));
+      print_r (select ($bdd, "allergen", "id_aliment", $_GET['id']));
       echo "</pre>";
       displayComents(); ?>
 	</body>

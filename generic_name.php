@@ -1,9 +1,4 @@
 <?php
-
-?>
-
-
-<?php
 session_start();
 include_once("controller/SQL/FUNCTIONS/connectNoUse.php");
 
@@ -18,11 +13,11 @@ if($db_exist) {
         include("controller/SQL/FUNCTIONS/connect.php");
         include("controller/SQL/FUNCTIONS/select.php");
         include("controller/TEST.php");
-
-        $id = mysqli_escape_string($bdd, $_GET['id']);
+        $id = $_GET['id'];
         echo "<pre>";
-        $result = mysqli_query($bdd, "SELECT label FROM generic_name WHERE id=$id");
-        print_r (mysqli_fetch_assoc($result));
+        $prep = $bdd->prepare("SELECT label FROM generic_name WHERE id=?");
+        $prep->execute(array($id));
+        print_r ($prep->fetchAll(PDO::FETCH_ASSOC));
         echo "</pre>";
         displayComents(); ?>
 	</body>

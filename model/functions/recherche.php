@@ -1,5 +1,5 @@
 <?php
-function recherche(mysqli $bdd, $input) {
+function recherche(PDO $bdd, $input) {
     $type = addslashes($_GET['type']);
     switch ($type) {
         case 'aliment':
@@ -23,8 +23,8 @@ function recherche(mysqli $bdd, $input) {
                       WHERE label LIKE '$input';";
             break;
     }
-    $result = mysqli_query($bdd, $query) or die("erreur BDD");
-    $output = mysqli_fetch_all($result, MYSQLI_ASSOC); ;
+    $result = $bdd->query($query) or die("erreur BDD");
+    $output = $result->fetchAll(PDO::FETCH_ASSOC);
     return $output;
 }
  ?>
