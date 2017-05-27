@@ -29,5 +29,4 @@ function ajout_panier($_GET['id'])
 
 	}
 }
-
 ?>

@@ -15,21 +15,21 @@ function injectProduct($bdd, $product, $update=false) {//SELECT id INTO id_val F
     } else {
         include("../SQL/QUERY/INSERT_aliment.php");
     }
-    mysqli_query($bdd, $query) or die('Error in mysql procedure call '.$query.var_dump($bdd));
+    $bdd->query($query) or die('Error in mysql procedure call '.$query.var_dump($bdd));
     foreach (explode(',', $product['additives_tags']) as $key => $value) {
         if(!empty($value)) {
             $query = "CALL insert_additive('".$product['code']."', '$value')";
-            mysqli_query($bdd, $query) or die('Error in mysql procedure call '.$query.var_dump($bdd));
+            $bdd->query($query) or die('Error in mysql procedure call '.$query.var_dump($bdd));
         }
     }
     if(!empty($product['brands'])) {
         $query = "CALL insert_brand('".$product['code']."', '".$product['brands']."')";
-        mysqli_query($bdd, $query) or die('Error in mysql procedure call '.$query.var_dump($bdd));
+        $bdd->query($query) or die('Error in mysql procedure call '.$query.var_dump($bdd));
     }
     foreach (explode(',', $product['packaging']) as $packaging) {
         if(!empty($packaging)) {
             $query = "CALL insert_packaging('".$product['code']."', '$packaging')";
-            mysqli_query($bdd, $query) or die('Error in mysql procedure call '.$query.var_dump($bdd));
+            $bdd->query($query) or die('Error in mysql procedure call '.$query.var_dump($bdd));
         }
     }
 
@@ -37,21 +37,21 @@ function injectProduct($bdd, $product, $update=false) {//SELECT id INTO id_val F
         if(!empty($place)) {
             //$fk = isset($indexes['manufacturing_places'][$place]) ? end($indexes['manufacturing_places']) : 'NULL';
             $query = "CALL insert_manufacturing_place('".$product['code']."', '$place', NULL)";
-            mysqli_query($bdd, $query) or die('Error in mysql procedure call '.$query.var_dump($bdd));
+            $bdd->query($query) or die('Error in mysql procedure call '.$query.var_dump($bdd));
         }
     }
 
     foreach (explode(', ', $product['allergens']) as $allergen) {
         if(!empty($allergen)) {
             $query = "CALL insert_allergen('".$product['code']."', '$allergen')";
-            mysqli_query($bdd, $query) or die('Error in mysql procedure call '.$query.var_dump($bdd));
+            $bdd->query($query) or die('Error in mysql procedure call '.$query.var_dump($bdd));
         }
     }
 
     foreach(explode(",", $product['categories']) as $value) {
         if (!empty($value)) {
             $query = "CALL insert_categorie('".$product['code']."', '$value')";
-            mysqli_query($bdd, $query) or die('Error in mysql procedure call '.$query.var_dump($bdd));
+            $bdd->query($query) or die('Error in mysql procedure call '.$query.var_dump($bdd));
         }
     }
     $num = 1;
@@ -59,7 +59,7 @@ function injectProduct($bdd, $product, $update=false) {//SELECT id INTO id_val F
 
         if (!empty($value)) {
             include("../SQL/QUERY/CALL_insert_FK_aliment_has_nutriment.php");
-            mysqli_query($bdd, $query) or die('Error in mysql procedure call '.$query.var_dump($bdd));
+            $bdd->query($query) or die('Error in mysql procedure call '.$query.var_dump($bdd));
         }
         $num++;
     }

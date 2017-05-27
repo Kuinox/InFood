@@ -1,7 +1,14 @@
 <?php
-$bdd = @mysqli_connect('localhost','root','') or die("Erreur d'accès à la BDD.");
-mysqli_set_charset($bdd, "utf8") or die("Erreur chargement charset utf8");
-$result = mysqli_query($bdd, "SHOW DATABASES LIKE 'infood'");
-$db_exist = !empty(mysqli_fetch_all($result));
-mysqli_close($bdd);
+$dsn = "mysql:host=127.0.0.1; charset=utf8";
+$user = "root";
+$password = "";
+try {
+	$bdd = new PDO($dsn, $user, $password);
+} catch (PDOException $e) {
+	echo 'Connexion Echoué : ' . $e->getMessage();
+}
+
+$result = $bdd->query("SHOW DATABASES LIKE 'infood'");
+$db_exist = !empty($result->fetchAll());
+$bdd = null;
  ?>

@@ -17,7 +17,7 @@ if($db_exist) {
         include("controller/TEST.php");
         //include ('sql_functions.php');
 
-        $id = mysqli_escape_string($bdd, $_GET['id']);
+        $id = $_GET['id'];
         echo "<pre>";
         print_r (select ($bdd, "brand", "id_aliment", "'$id'"));
         echo "</pre>";
