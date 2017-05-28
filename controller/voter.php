@@ -1,5 +1,4 @@
 <?php
-session_start();
 include("SQL/FUNCTIONS/connect.php");
 include('SQL/FUNCTIONS/comments.php');
 

@@ -15,10 +15,11 @@
 					</select>
 					<input type="text" name="recherche" placeholder="Rechercher sur In'Food"/>
 					<input id="logo_svg" type="image" src="ressources/logo.svg"/>
-					<a href="todo"><img src="//:0" /></a> <!--TODO: IMAGE-->
+					<a href="todo"><img src="TODO" /></a> <!--TODO: IMAGE-->
 				</form>
 				<?php
+				include("profilBar.php");
 				include("connexionInscription.php");
-				include("deconnexion.php"); ?>
+				?>
 			</div>
 		</header>

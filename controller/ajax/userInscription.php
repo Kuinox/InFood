@@ -23,6 +23,10 @@ $password = hash('sha256',$_POST["password"]);//hash mot de passe
 $query = "INSERT INTO user (pseudo, email, password) values (?,?,?)";
 $prep = $bdd->prepare($query);
 $prep->execute(array($pseudo, $email, $password)) or die ("Erreur BDD");
+$id = $bdd->lastInsertId();
+$query = "INSERT INTO grade_user (user_id_user, grade_id_grade) values (?,?)";
+$prep = $bdd->prepare($query);
+$prep->execute(array($id, 2));
 echo "sucess";
 
 ?>

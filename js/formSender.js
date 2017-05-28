@@ -85,12 +85,12 @@ function sendFormInscription() {
                     window.location.href = "inscriptionreussie.php";
                     break;
                 case "email_exist":
-                    console.log("Un compte à déjà été créer pour cette e-mail");
-                    span_error.innerHTML = "Un compte à déjà été créer pour cette e-mail";
+                    console.log("Un compte existe déjà avec cette e-mail");
+                    span_error.innerHTML = "Un compte existe déjà avec cette e-mail";
                     break;
                 case "pseudo_exist":
-                    span_error.innerHTML = "Le pseudo/e-mail ne correspond pas au mot de passe";
-                    console.log("Le pseudo/e-mail ne correspond pas au mot de passe");
+                    span_error.innerHTML = "Un compte existe déjà avec ce pseudo";
+                    console.log("Un compte existe déjà avec ce pseudo");
                     break;
                 case "Erreur BDD":
                     console.log("Erreur base de donnée");

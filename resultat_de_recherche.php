@@ -1,9 +1,4 @@
 <?php
-
-?>
-
-<?php
-session_start();
 include_once("controller/SQL/FUNCTIONS/connectNoUse.php");
 
 if($db_exist) {

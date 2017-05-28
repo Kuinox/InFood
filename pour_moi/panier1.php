@@ -1,5 +1,4 @@
 <?php
-session_start();
 if(isset($_POST['go']))
 {
 	if(!isset($_SESSION['panier']))
@@ -13,7 +12,7 @@ if(isset($_POST['go']))
 	$panier=$_SESSION['panier'];
 	$produit = "122555";
 	$ses = $_POST['t'];
-	
+
 	// array_push($panier,$ses);
 	$_SESSION['panier'][$produit] =  $ses;
 	if($_POST['t']==0)
@@ -22,7 +21,7 @@ if(isset($_POST['go']))
 	}
 	foreach($_SESSION['panier'] as $i =>$key) {
 	$i >0;
-	echo $i."=>".$key."<br>";	
+	echo $i."=>".$key."<br>";
 	}
 
 }
