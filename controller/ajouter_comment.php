@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("SQL/FUNCTIONS/connect.php");
 include('SQL/FUNCTIONS/comments.php');
 
@@ -10,7 +11,6 @@ $text = $_POST['comment'];
 // else {
 
   $id = $_SESSION["id"];
-  $type = $_SESSION["type"];
   $id_user = $_SESSION['user']['id_user'];
 
 // }
