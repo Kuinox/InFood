@@ -10,8 +10,9 @@ if(isset($_SESSION['user'])) { //TODO completer liens
         <li> <?php include("deconnexion.php"); ?> </li>
         <?php
         if ($_SESSION['user']['name_grade'] == 'admin') {
+            $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/";
             ?>
-            <li> <a href='backend.php'>Accès administrateur</a></li>
+            <li> <a href='<?php echo $path; ?>admin/'>Accès administrateur</a></li>
             <?php
         }
         ?>

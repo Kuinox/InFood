@@ -29,8 +29,8 @@ $csv = openCSV();
 $columns = explode("\t",fgets($csv, 116528));
 $nutriments = [];
 foreach ($columns as $nutriment) {
-	$result = callThenReturn($bdd, "CALL insert_nutriment('$nutriment', @output)");
-	$nutriments[$nutriment] = $result;
+    $result = callThenReturn($bdd, "CALL insert_nutriment('$nutriment', @output)");
+    $nutriments[$nutriment] = $result;
 }
 
 /***********************************************

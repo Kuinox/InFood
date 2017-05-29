@@ -7,8 +7,8 @@ BEGIN
     FROM aliment_has_allergen
     WHERE aliment_id_aliment = id1
     AND id2 = allergen_id_allergen;
-	IF @result1 IS NULL THEN
-    	INSERT INTO aliment_has_allergen (id, aliment_id_aliment, allergen_id_allergen)
+    IF @result1 IS NULL THEN
+        INSERT INTO aliment_has_allergen (id, aliment_id_aliment, allergen_id_allergen)
         VALUES(NULL, id1, id2);
     END IF;
 END;

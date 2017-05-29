@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>INDEX</title>
-		<link rel="stylesheet" href="styles.css">
-        <script src="js/ajax.js"></script>
-	</head>
-	<body>
-        <?php
+<?php
+include("model/top.php");
             include_once("../controller/SQL/FUNCTIONS/connectNoUse.php");
             if(!$db_exist) {
                 echo "<h1> Base de donnée non existante. </h1>";
@@ -19,8 +11,4 @@
             <input type="button" onclick="work()" value="Work"/>
             <div id="progress-output">Not working</div>
             <progress id="progress" value="" max="100"></progress>
-
-
-
-	</body>
-</html>
+<?php include("model/bot.php"); ?>

@@ -1,23 +1,16 @@
 <?php
-if ($_SESSION['user']['name_grade'] == 'admin') {
-include_once("controller/SQL/FUNCTIONS/connectNoUse.php");
-if($db_exist) {
-?>
-<!DOCTYPE html>
-<html>
-    <?php include("model/head.php") ?>
-	<body> <?php include("model/header.php"); ?>
-        Page d'administration.
-        <!--TODO-->
-	</body>
-</html>
-<?php
-} else {
-	include("model/create_bdd.php");
-} ?>
-<?php
-} else {
+ob_start();
+include("../model/top.php");
+if (!isset($_SESSION['user']) || $_SESSION['user']['name_grade'] != 'admin') {
+    var_dump($_SESSION);
     header("HTTP/1.1 401 Unauthorized");
+    echo "<h1>HTTP/1.1 401 Unauthorized</h1>";
     exit;
 }
+?>
+Page d'administration.
+<!--TODO-->
+<?php
+include("../model/bot.php");
+ob_end_flush();
 ?>

@@ -7,8 +7,8 @@ BEGIN
     INTO id_val
     FROM generic_name
     WHERE val = label;
-	IF id_val IS NULL THEN
-    	INSERT INTO generic_name (id, label)
+    IF id_val IS NULL THEN
+        INSERT INTO generic_name (id, label)
         VALUES(NULL, val);
         SELECT LAST_INSERT_ID() INTO id_val;
     END IF;

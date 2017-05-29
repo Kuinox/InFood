@@ -7,8 +7,8 @@ BEGIN
     FROM aliment_has_nutriment
     WHERE aliment_id_aliment = id1
     AND id2 = nutriment_id_nutriment;
-	IF @result1 IS NULL THEN
-    	INSERT INTO aliment_has_nutriment (id, aliment_id_aliment, nutriment_id_nutriment, nutriment_quantity)
+    IF @result1 IS NULL THEN
+        INSERT INTO aliment_has_nutriment (id, aliment_id_aliment, nutriment_id_nutriment, nutriment_quantity)
         VALUES(NULL, id1, id2, quantity);
     ELSEIF quantity != @qty THEN
         UPDATE aliment_has_nutriment SET nutriment_quantity=quantity;

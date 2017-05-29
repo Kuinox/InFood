@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>INDEX</title>
-		<link rel="stylesheet" href="styles.css">
+    <head>
+        <meta charset="UTF-8">
+        <title>INDEX</title>
+        <link rel="stylesheet" href="styles.css">
         <script src="js/ajax.js"></script>
-	</head>
-	<body>
+    </head>
+    <body>
         <?php
             include_once("../controller/SQL/FUNCTIONS/connectNoUse.php");
             if(!$db_exist) {
@@ -23,5 +23,5 @@
 
 
 
-	</body>
+    </body>
 </html>

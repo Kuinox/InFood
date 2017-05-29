@@ -7,16 +7,16 @@ $query = "SELECT * FROM user WHERE pseudo like ?";
 $prep = $bdd->prepare($query);
 $prep->execute(array($pseudo)) or die ("Erreur BDD");
 if ($prep->rowCount() > 0) {
-	echo "pseudo_exist";
-	exit();
+    echo "pseudo_exist";
+    exit();
 }
 
 $query = "SELECT * FROM user WHERE email like ?";
 $prep = $bdd->prepare($query);
 $prep->execute(array($email)) or die ("Erreur BDD");
 if ($prep->rowCount() > 0) {
-	echo "email_exist";
-	exit();
+    echo "email_exist";
+    exit();
 }
 $password = hash('sha256',$_POST["password"]);//hash mot de passe
 
