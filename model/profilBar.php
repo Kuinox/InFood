@@ -8,7 +8,13 @@ if(isset($_SESSION['user'])) { //TODO completer liens
         <li> <a> lien vers la page de profil</a> </li>
         <li> <a> lien vers la page préferences produit/alergie</a></li>
         <li> <?php include("deconnexion.php"); ?> </li>
-        <?php include("backend_link.php") ?>
+        <?php
+        if ($_SESSION['user']['name_grade'] == 'admin') {
+            ?>
+            <li> <a href='backend.php'>Accès administrateur</a></li>
+            <?php
+        }
+        ?>
     </ul>
 </div>
 

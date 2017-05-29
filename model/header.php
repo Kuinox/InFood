@@ -18,6 +18,7 @@
 					<a href="todo"><img src="TODO" /></a> <!--TODO: IMAGE-->
 				</form>
 				<?php
+				include("controller/functions/deconnexion.php");
 				include("profilBar.php");
 				include("connexionInscription.php");
 				?>
