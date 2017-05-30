@@ -16,7 +16,7 @@ include_once("../SQL/FUNCTIONS/sqlScriptInject.php");
 include_once("../SQL/FUNCTIONS/callThenReturn.php");
 include_once("../CSV_FUNCTIONS/openCSV.php");
 include_once("../CSV_FUNCTIONS/getProduct.php");
-
+include_once("../CSV_FUNCTIONS/sortNutriment.php");
 $dsn = "mysql:host=127.0.0.1; charset=utf8;";
 $user = "root";
 $password = "";
@@ -35,7 +35,7 @@ $csv = openCSV();
 $columns = explode("\t",fgets($csv, 116528));
 $nutriments = [];
 $product = getProduct($csv, $columns);
-foreach ($product as $nutriment) {
+foreach (sortNutriment($product) as $nutriment) {
     $result = callThenReturn($bdd, "CALL insert_nutriment('$nutriment', @output)");
     $nutriments[$nutriment] = $result;
 }
