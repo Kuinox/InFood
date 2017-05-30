@@ -3,6 +3,11 @@ function recherche(PDO $bdd, $input) {
     $type = addslashes($_GET['type']);
     switch ($type) {
         case 'aliment':
+            $barcode = $bdd->query("SELECT id_aliment FROM aliment WHERE id_aliment = '".$_GET['recherche']."'");
+            if ($barcode->rowCount() == 1) {
+                header("Location: ./aliment.php?id=".$_GET['recherche']);
+                exit;
+            }
             $query = "SELECT a.id_aliment , a.name_aliment
                       FROM aliment a
                       LEFT OUTER JOIN generic_name g

@@ -1,9 +1,10 @@
 <?php
-include("model/top.php");
-include("model/functions/displayRecherche.php");
+include("controller/SQL/FUNCTIONS/connect.php");
 include("model/functions/recherche.php");
 include("controller/functions/rechercheToPattern.php");
-include("controller/SQL/FUNCTIONS/connect.php");
-displayRecherche(recherche($bdd, rechercheToPattern()));
+$recherche = recherche($bdd, rechercheToPattern());
+include("model/top.php");
+include("model/functions/displayRecherche.php");
+displayRecherche($recherche);
 include("model/bot.php");
 ?>
