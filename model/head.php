@@ -2,7 +2,8 @@
 <head>
     <meta charset="UTF-8">
     <title>In'Food</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="js/formsDisplay.js"></script>
-    <script src="js/formSender.js"></script>
+    <?php $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/"; ?>
+    <link rel="stylesheet" href="<?php echo $path ?>styles.css">
+    <script src="<?php echo $path ?>js/formsDisplay.js"></script>
+    <script src="<?php echo $path ?>js/formSender.js"></script>
 </head>

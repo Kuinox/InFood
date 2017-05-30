@@ -8,7 +8,14 @@ if(isset($_SESSION['user'])) { //TODO completer liens
         <li> <a> lien vers la page de profil</a> </li>
         <li> <a> lien vers la page préferences produit/alergie</a></li>
         <li> <?php include("deconnexion.php"); ?> </li>
-        <?php include("backend_link.php") ?>
+        <?php
+        if ($_SESSION['user']['name_grade'] == 'admin') {
+            $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/";
+            ?>
+            <li> <a href='<?php echo $path; ?>admin/'>Accès administrateur</a></li>
+            <?php
+        }
+        ?>
     </ul>
 </div>
 

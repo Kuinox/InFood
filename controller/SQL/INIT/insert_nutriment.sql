@@ -6,8 +6,8 @@ BEGIN
     INTO id_val
     FROM nutriment
     WHERE val = label;
-	IF id_val IS NULL THEN
-    	INSERT INTO nutriment (id, label)
+    IF id_val IS NULL THEN
+        INSERT INTO nutriment (id, label)
         VALUES(NULL, val);
         SELECT LAST_INSERT_ID() INTO id_val;
     END IF;

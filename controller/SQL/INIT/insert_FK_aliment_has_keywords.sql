@@ -7,8 +7,8 @@ BEGIN
     FROM aliment_has_keywords
     WHERE aliment_id_aliment = id1
     AND id2 = keywords_id_keywords;
-	IF @result1 IS NULL THEN
-    	INSERT INTO aliment_has_keywords (id, aliment_id_aliment, keywords_id_keywords)
+    IF @result1 IS NULL THEN
+        INSERT INTO aliment_has_keywords (id, aliment_id_aliment, keywords_id_keywords)
         VALUES(NULL, id1, id2);
     END IF;
 END;

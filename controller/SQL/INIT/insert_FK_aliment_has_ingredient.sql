@@ -7,8 +7,8 @@ BEGIN
     FROM aliment_has_ingredient
     WHERE aliment_id_aliment = id1
     AND id2 = ingredient_id_ingredient;
-	IF @result1 IS NULL THEN
-    	INSERT INTO aliment_has_ingredient (id, aliment_id_aliment, ingredient_id_ingredient)
+    IF @result1 IS NULL THEN
+        INSERT INTO aliment_has_ingredient (id, aliment_id_aliment, ingredient_id_ingredient)
         VALUES(NULL, id1, id2);
     END IF;
 END;

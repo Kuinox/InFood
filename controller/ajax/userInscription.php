@@ -7,16 +7,16 @@ $query = "SELECT * FROM user WHERE pseudo like ?";
 $prep = $bdd->prepare($query);
 $prep->execute(array($pseudo)) or die ("Erreur BDD");
 if ($prep->rowCount() > 0) {
-	echo "pseudo_exist";
-	exit();
+    echo "pseudo_exist";
+    exit();
 }
 
 $query = "SELECT * FROM user WHERE email like ?";
 $prep = $bdd->prepare($query);
 $prep->execute(array($email)) or die ("Erreur BDD");
 if ($prep->rowCount() > 0) {
-	echo "email_exist";
-	exit();
+    echo "email_exist";
+    exit();
 }
 $password = hash('sha256',$_POST["password"]);//hash mot de passe
 
@@ -26,7 +26,7 @@ $prep->execute(array($pseudo, $email, $password)) or die ("Erreur BDD");
 $id = $bdd->lastInsertId();
 $query = "INSERT INTO grade_user (user_id_user, grade_id_grade) values (?,?)";
 $prep = $bdd->prepare($query);
-$prep->execute(array($id, 2));
+$prep->execute(array($id, 1));
 echo "sucess";
 
 ?>

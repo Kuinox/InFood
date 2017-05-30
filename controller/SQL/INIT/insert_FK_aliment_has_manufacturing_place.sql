@@ -7,8 +7,8 @@ BEGIN
     FROM aliment_has_manufacturing_place
     WHERE aliment_id_aliment = id1
     AND id2 = manufacturing_place_id_manufacturing_place;
-	IF @result1 IS NULL THEN
-    	INSERT INTO aliment_has_manufacturing_place (id, aliment_id_aliment, manufacturing_place_id_manufacturing_place)
+    IF @result1 IS NULL THEN
+        INSERT INTO aliment_has_manufacturing_place (id, aliment_id_aliment, manufacturing_place_id_manufacturing_place)
         VALUES(NULL, id1, id2);
     END IF;
 END;

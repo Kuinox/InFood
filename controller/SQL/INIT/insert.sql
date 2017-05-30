@@ -13,8 +13,8 @@ values
 (NULL,'jaques','jaques','jaques@gmail.com','155','65');
 INSERT INTO grade (id_grade,name_grade)
 values
-(1,'admin'),
-(2,'utilisateur');
+(2,'admin'),
+(1,'utilisateur');
 INSERT INTO grade_user (user_id_user,grade_id_grade)
 values
 (1,2),
