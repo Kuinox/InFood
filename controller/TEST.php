@@ -19,7 +19,6 @@ function displayComents()
         echo "<br>Commentaire :";
       echo "<table>";
         foreach ($com as $key => $value) {
-
             $chaine = implode(";", $value);
             $array = explode (";",$chaine);
             //$result = mysqli_query($bdd,"SELECT pseudo FROM user JOIN comments WHERE aliment_id_aliment LIKE \"$like\" AND user_id_user LIKE id_user ;");

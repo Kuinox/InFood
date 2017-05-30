@@ -29,7 +29,7 @@ ob_start();
             Re-créer la base entièrement prend environ 1 heures, mais les informations seront disponible au fur et a mesure.
             </p>
 
-            <input type="button" onclick="work()" value="Work"/>
+            <input id="work_button" type="button" onclick="work('create'); " value="Lancer"/>
             <div id="progress-output">Not working</div>
             <progress id="progress" value="" max="100"></progress>
     </body>
