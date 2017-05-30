@@ -3,7 +3,7 @@ DROP PROCEDURE IF EXISTS update_aliment;
 CREATE PROCEDURE update_aliment (IN id CHAR(30), IN name VARCHAR(250),
     IN last_modification INT, IN ingredients VARCHAR(5000),
     IN generic_name INT, IN grade_nutri CHAR(1), IN qty VARCHAR(30),
-    IN serving VARCHAR(200), OUT return_id INT)
+    IN serving VARCHAR(200))
 BEGIN
     DELETE FROM aliment_has_ingredient
     WHERE aliment_id_aliment = id;

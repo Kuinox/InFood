@@ -14,6 +14,7 @@ function applyToAllProduct($ressource, PDO $bdd, $columns, $code) {// run a func
     flush();
     $id=0;
     echo "0\n";
+    include("../SQL/FUNCTIONS/prep_inject.php");
     $bdd->beginTransaction();
     while($id<$nb_product && $id < 10000) { //!feof($ressource)
         if(($id+1)%$percent == 0) {
@@ -25,7 +26,7 @@ function applyToAllProduct($ressource, PDO $bdd, $columns, $code) {// run a func
         $id++;
 
         $product = getProduct($ressource, $columns);
-        $code($bdd, $product);//injection magique
+        $code($bdd, $product, $prep);//injection magique
     }
     $bdd->commit();
     $bdd->query("SET GLOBAL innodb_flush_log_at_trx_commit = 1;") or die ("Erreur BDD");

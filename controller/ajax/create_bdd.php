@@ -25,6 +25,7 @@ try {
 } catch (PDOException $e) {
     echo 'Connexion échouée : ' . $e->getMessage();
 }
+$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 set_time_limit(0); //exec time can be long
 foreach (scandir('../SQL/INIT') as $script) {
     if($script != '.' && $script != '..') {
@@ -39,9 +40,8 @@ foreach (sortNutriment($product) as $nutriment) {
     $result = callThenReturn($bdd, "CALL insert_nutriment('$nutriment', @output)");
     $nutriments[$nutriment] = $result;
 }
-
 /***********************************************
  * Injection                                   *
  ***********************************************/
-applyToAllProduct($csv, $bdd, $columns, 'injectProduct');
+applyToAllProduct($csv, $bdd, $columns, 'injectProduct', $prep);
 ?>

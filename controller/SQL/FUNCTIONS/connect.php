@@ -7,4 +7,5 @@ try {
 } catch (PDOException $e) {
     echo 'Connexion échouée : ' . $e->getMessage();
 }
+$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 ?>
