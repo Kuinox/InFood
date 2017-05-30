@@ -1,8 +1,11 @@
-<iframe
-  width="300";
-  height="300";
-  frameborder="0" style="border:0";
-  src="https://www.google.com/maps/embed/v1/place?key= AIzaSyByt66nAk8JGLHvJ6ZJbNYp9SVhAsE0-Mc 
-    &q=Eiffel+Tower,Paris+France" allowfullscreen>
+<?PHP
+include("infood2/view/recherche_magasin_proche.html");
 
-</iframe>
+if(isset($_GET['recherche']))
+{
+	$q=$_GET['t'];
+	echo $q;
+	header("Location: https://www.google.fr/maps/search/market+$q");
+	// echo"<a href='https://www.google.fr/maps/search/$q'>recherche</a>";
+}
+?>
