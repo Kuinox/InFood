@@ -1,6 +1,18 @@
 <?php
+session_start();
 ob_start();
-include("../model/top.php");
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>InFood</title>
+        <link rel="stylesheet" href="../styles.css">
+        <script src="../js/ajax.js"></script>
+    </head>
+    <body>
+        <?php
+            include("../model/header.php");
 if (!isset($_SESSION['user']) || $_SESSION['user']['name_grade'] != 'admin') {
     header("HTTP/1.1 403 Forbidden");
     echo "<h1>HTTP/1.1 403 Forbidden</h1>";
@@ -11,7 +23,7 @@ include_once("../controller/SQL/FUNCTIONS/connectNoUse.php"); ?>
 Met a jour la base de donnée. Le site restera disponible pendant la mis à jour.
 </p>
 
-<input type="button" onclick="work()" value="Work"/>
+<input id="work_button" type="button" onclick="work('update')" value="Lancer"/>
 <div id="progress-output">Not working</div>
 <progress id="progress" value="" max="100"></progress>
 <?php include("../model/bot.php");

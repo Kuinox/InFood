@@ -1,13 +1,18 @@
 /*exported work */
 "use strict";
 window.window.ajax = {};
-function work()
+
+
+function work(type)
 {
+    var button = document.getElementById("work_button");
+    button.disabled = true;
+    button.value = "En travail...";
     // make ajax call
     var xhr = new XMLHttpRequest(); //instancie l'objet xhr
     var url = window.location.href;
     var dir_name =  url.split("/")[0]+"//"+url.split("/")[2]+"/"+url.split("/")[3];
-    xhr.open("GET", dir_name+"/controller/ajax/create_bdd.php"); //ouvre la connexion
+    xhr.open("GET", dir_name+"/controller/ajax/"+type+"_bdd.php"); //ouvre la connexion
     xhr.send();//envoie
     window.ajax.timerId = setInterval(function(){
         console.log("reponse:");
