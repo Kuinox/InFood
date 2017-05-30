@@ -1,5 +1,10 @@
 <?php
-
+session_start();
+if (!isset($_SESSION['user']) || $_SESSION['user']['name_grade'] != 'admin') {
+    header("HTTP/1.1 403 Forbidden");
+    echo "<h1>HTTP/1.1 403 Forbidden</h1>";
+    exit;
+}
 /***********************************************
  * INIT                                        *
  ***********************************************/
@@ -10,6 +15,7 @@ include_once("../CSV_FUNCTIONS/applyToAllProduct.php");
 include_once("../SQL/FUNCTIONS/sqlScriptInject.php");
 include_once("../SQL/FUNCTIONS/callThenReturn.php");
 include_once("../CSV_FUNCTIONS/openCSV.php");
+include_once("../CSV_FUNCTIONS/getProduct.php");
 
 $dsn = "mysql:host=127.0.0.1; charset=utf8;";
 $user = "root";
@@ -28,7 +34,8 @@ foreach (scandir('../SQL/INIT') as $script) {
 $csv = openCSV();
 $columns = explode("\t",fgets($csv, 116528));
 $nutriments = [];
-foreach ($columns as $nutriment) {
+$product = getProduct($csv, $columns);
+foreach ($product as $nutriment) {
     $result = callThenReturn($bdd, "CALL insert_nutriment('$nutriment', @output)");
     $nutriments[$nutriment] = $result;
 }

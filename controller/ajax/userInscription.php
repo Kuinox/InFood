@@ -26,7 +26,7 @@ $prep->execute(array($pseudo, $email, $password)) or die ("Erreur BDD");
 $id = $bdd->lastInsertId();
 $query = "INSERT INTO grade_user (user_id_user, grade_id_grade) values (?,?)";
 $prep = $bdd->prepare($query);
-$prep->execute(array($id, 2));
+$prep->execute(array($id, 1));
 echo "sucess";
 
 ?>
