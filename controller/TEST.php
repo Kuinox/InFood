@@ -36,12 +36,8 @@ function displayComents()
         }
       echo "<table>";
       var_dump($com);
-    }else{
-<<<<<<< HEAD
-    	echo"<br>pas connectée ";//TODO DAFUK?
-=======
-        echo"<br>not set ";//TODO DAFUK?
->>>>>>> feature/backend
+    } else {
+    	echo"<br>pas connectée ";//TODO Afficher message "connectez vous pour commenter" si user pas connectée
     }
 }
 
