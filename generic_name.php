@@ -1,14 +1,22 @@
 <?php
 include("model/top.php");
 include("controller/SQL/FUNCTIONS/connect.php");
-include("controller/SQL/FUNCTIONS/select.php");
 include("controller/TEST.php");
+include("model/functions/displayRecherche.php");
+include("model/functions/recherche.php");
 $id = $_GET['id'];
 echo "<pre>";
 $prep = $bdd->prepare("SELECT label FROM generic_name WHERE id=?");
 $prep->execute(array($id));
-print_r ($prep->fetchAll(PDO::FETCH_ASSOC));
+$result = $prep->fetchAll(PDO::FETCH_ASSOC);
+if (empty($result)) {
+    echo "Nom génerique introuvable !";
+} else {
+    print_r ($result);
+}
 echo "</pre>";
+$recherche = recherche($bdd, $_GET['id'], "aliment_generic_name");
+displayRecherche($recherche);
 displayComents();
 include("model/bot.php");
 ?>
