@@ -27,7 +27,7 @@ if (empty($result)) {
   displayBrand($brand);
   displayAdditives($additives);
   displayNutri($nutri);
-  displayComents();
+  displayComments();
 }
 if (empty($_POST['action'])){
 

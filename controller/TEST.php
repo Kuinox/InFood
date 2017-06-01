@@ -1,5 +1,5 @@
 <?php
-function displayComents()
+function displayComments()
 {
   include("SQL/FUNCTIONS/comments.php");
   include("SQL/FUNCTIONS/connect.php");
