@@ -1,10 +1,7 @@
 <?php
 include("SQL/FUNCTIONS/connect.php");
-include('SQL/FUNCTIONS/comments.php');
-
 $note = $_POST['vote'];
 $id = $_SESSION["id"];
-$type = $_SESSION["type"];
 $id_user = $_SESSION['user']['id_user'];
 
 if ($note <= 5) {
