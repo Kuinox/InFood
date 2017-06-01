@@ -17,6 +17,5 @@ if (empty($result)) {
 echo "</pre>";
 $recherche = recherche($bdd, $_GET['id'], "aliment_brand");
 displayRecherche($recherche);
-displayComents();
 include("model/bot.php");
 ?>

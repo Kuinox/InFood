@@ -15,6 +15,5 @@ if (empty($result)) {
 echo "</pre>";
 $recherche = recherche($bdd, $_GET['id'], "aliment_allergen");
 displayRecherche($recherche);
-displayComents();
 include("model/bot.php");
 ?>
