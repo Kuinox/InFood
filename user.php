@@ -1,5 +1,4 @@
 <?php
-ob_start();
 include("model/top.php");
 include("controller/SQL/FUNCTIONS/select.php");
 include("controller/SQL/FUNCTIONS/connect.php");
@@ -32,5 +31,4 @@ var_dump($result);
 
 <?php
 include("model/bot.php");
-ob_end_flush();
 ?>

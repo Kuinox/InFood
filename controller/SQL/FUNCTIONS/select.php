@@ -6,4 +6,4 @@ function select(PDO $bdd, $table, $where , $data){
     $result = $prep->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
- ?>
+?>
