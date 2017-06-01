@@ -10,7 +10,7 @@ include("view/supprimer_utilisateur.html");
 		$nom=$_POST['nom'];
 		// echo $nom."<br>";
 		include("controller/functions/verifier_si_existe.php");
-		verifier_nom($bdd, $nom);
+		verifierNomEtSupprimer($bdd, $nom);
 	}
 }
 
