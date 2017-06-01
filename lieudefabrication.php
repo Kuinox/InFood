@@ -2,14 +2,13 @@
 include("model/top.php");
 include("controller/SQL/FUNCTIONS/connect.php");
 include("controller/SQL/FUNCTIONS/select.php");
-include("model/functions/displayRecherche.php");
 include("model/functions/recherche.php");
-include("controller/TEST.php");
+include("controller/displayComments.php");
 //include ('sql_functions.php');
 
 $id = $_GET['id'];
 echo "<pre>";
-$result = select ($bdd, "manufacturing_place", "id_aliment", "'$id'");
+$result = select ($bdd, "manufacturing_place", "id", "$id");
 if (empty($result)) {
     echo "Lieu de fabrication introuvable !";
 } else {

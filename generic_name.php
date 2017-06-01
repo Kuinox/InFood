@@ -1,7 +1,6 @@
 <?php
 include("model/top.php");
 include("controller/SQL/FUNCTIONS/connect.php");
-include("controller/TEST.php");
 include("model/functions/displayRecherche.php");
 include("model/functions/recherche.php");
 $id = $_GET['id'];

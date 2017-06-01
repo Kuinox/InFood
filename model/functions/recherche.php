@@ -98,7 +98,7 @@ function recherche(PDO $bdd, $input, $entry="") {
         case 'aliment_packaging':
             $query ="   SELECT a.*
                         FROM aliment a
-                        JOIN aliment_has_packing ap
+                        JOIN aliment_has_packaging ap
                         ON a.id_aliment = ap.aliment_id_aliment
                         JOIN packaging p
                         ON p.id = ap.packaging_id_packaging

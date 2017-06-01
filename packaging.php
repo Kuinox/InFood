@@ -4,12 +4,10 @@ include("controller/SQL/FUNCTIONS/connect.php");
 include("controller/SQL/FUNCTIONS/select.php");
 include("model/functions/displayRecherche.php");
 include("model/functions/recherche.php");
-include("controller/TEST.php");
-//include ('sql_functions.php');
 
 $id = $_GET['id'];
 echo "<pre>";
-$result = select ($bdd, "packaging", "id_aliment", "'$id'");
+$result = select ($bdd, "packaging", "id", "$id");
 if (empty($result)) {
     echo "Packaging introuvable !";
 } else {

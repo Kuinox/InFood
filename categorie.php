@@ -2,12 +2,11 @@
 include("model/top.php");
 include("controller/SQL/FUNCTIONS/connect.php");
 include("controller/SQL/FUNCTIONS/select.php");
-include("controller/TEST.php");
 include("model/functions/displayRecherche.php");
 include("model/functions/recherche.php");
 
 echo "<pre>";
-$result = select ($bdd, "categorie", "id_aliment", $_GET['id']);
+$result = select ($bdd, "categorie", "id", $_GET['id']);
 if (empty($result)) {
     echo "Catégorie introuvable !";
 } else {
