@@ -53,6 +53,15 @@ function displayPlace($place)
     }
   echo "</div>";
 }
+function displayAllergen($allergen)
+{
+  echo '<div class="allergen">';
+  echo "allergene : ";
+  foreach ($allergen as $key => $value) {
+      echo $value['label']. " ";
+    }
+  echo "</div>";
+}
 
 
  ?>
