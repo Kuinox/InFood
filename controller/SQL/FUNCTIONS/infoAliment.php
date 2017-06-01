@@ -34,9 +34,9 @@ function manufact_place(PDO $bdd, $id_aliment)
   $prep->execute(array($id_aliment)) or die("Failure");
   return $prep->fetchAll(PDO::FETCH_ASSOC);
 }
-function FunctionName(PDO $bdd, $id_aliment)
+function allergen(PDO $bdd, $id_aliment)
 {
-  $query = "SELECT m.label FROM aliment a JOIN aliment_has_manufacturing_place am ON a.id_aliment = am.aliment_id_aliment JOIN  manufacturing_place m ON m.id = am.manufacturing_place_id_manufacturing_place WHERE a.id_aliment = ? ";
+  $query = "SELECT m.label FROM aliment a JOIN aliment_has_allergen am ON a.id_aliment = am.aliment_id_aliment JOIN  allergen m ON m.id = am.allergen_id_allergen WHERE a.id_aliment = ? ";
   $prep = $bdd->prepare($query);
   $prep->execute(array($id_aliment)) or die("Failure");
   return $prep->fetchAll(PDO::FETCH_ASSOC);
