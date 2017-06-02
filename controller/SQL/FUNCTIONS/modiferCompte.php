@@ -6,7 +6,7 @@
   $requete = $bdd->query("UPDATE user SET $valChanger = $nauVal WHERE id_user = $id");
 }
 /************/
-
+include('include.php')
 function verifierEtModifier(PDO $bdd)
 {
   $id = $_SESSION['user']['id_user'];
