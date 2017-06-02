@@ -9,7 +9,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['name_grade'] != 'admin') {
 ?>
 <h1>Page d'administration.</h1>
 <p><a href="BDDManager.php"> Gestion de la Base De Données. </a></p>
-<p><a href="../supprimer_utilisateur.php"> Supprimer Compte. </a></p>
+<p><a href="../supprimerUtilisateur.html"> Supprimer Compte. </a></p>
 <p><a> Gestion des comptes utilisateurs</a></p>
 
 <!--TODO-->

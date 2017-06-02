@@ -4,9 +4,6 @@ include("supprimerCompte.php");
 function verifierNomEtSupprimer(PDO $bdd, $nom)
 {
 
-	//$sql = "SELECT * FROM user WHERE pseudo like '$nom'";
-
-
 $res = $bdd->prepare("SELECT * FROM user WHERE pseudo = ?");
 $res->execute(array($nom));
    /* Récupère le nombre de lignes qui correspond à la requête SELECT */
