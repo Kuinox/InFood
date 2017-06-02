@@ -22,8 +22,8 @@ if (empty($result)) {
     $allergen = allergen($bdd,$id_aliment);
     $product = new OnlineProduct($bdd, $_GET['id']);
     var_dump($product->_images);
-    displayAllergen($allergen);
     displayName($result);
+    displayAllergen($allergen);
     displayPlace($place);
     displayPackaging($packaging);
     displayBrand($brand);
