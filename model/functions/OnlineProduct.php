@@ -1,7 +1,7 @@
 <?php
 
 class OnlineProduct {
-    var $_bdd;
+    private $_bdd;
     var $_barcode;
     var $_product;
     var $_images;
@@ -9,9 +9,13 @@ class OnlineProduct {
         $this->_bdd = $bdd;
         $this->_barcode = $barcode;
         $this->_product = $this->getProductObject($barcode);
-        $this->_images = $this->_product['selected_images'];
+        if (isset($this->_product['selected_images'])) {
+            $this->_images = $this->_product['selected_images'];
+        } else {
+            $this->_images = false;
+        }
     }
-    function getProductObject($barcode) {
+    private function getProductObject($barcode) {
         $url  ="http://world.openfoodfacts.org/api/v0/product/$barcode.json";
         $ch = curl_init();
         if ($ch === false)
@@ -31,6 +35,11 @@ class OnlineProduct {
         return $data['product'];
     }
 
+    function display($image) {
+        if(isset($this->_images[$image])) {
+            echo "<img id='$image' src='".current($this->_images[$image]['display'])."'/>";
+        }
+    }
 }
 
 ?>

@@ -21,8 +21,12 @@ if (empty($result)) {
     $place = manufact_place($bdd,$id_aliment);
     $allergen = allergen($bdd,$id_aliment);
     $product = new OnlineProduct($bdd, $_GET['id']);
-    var_dump($product->_images);
+    $product->display("front");
+    $product->display("nutrition");
+    $product->display("ingredients");
+
     displayName($result);
+    echo "Code Barre: ".$_GET['id'];
     displayAllergen($allergen);
     displayPlace($place);
     displayPackaging($packaging);
