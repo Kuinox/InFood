@@ -1,10 +1,11 @@
 <?php
 session_start();
+/*
 if (!isset($_SESSION['user']) || $_SESSION['user']['name_grade'] != 'admin') {
     header("HTTP/1.1 403 Forbidden");
     echo "<h1>HTTP/1.1 403 Forbidden</h1>";
     exit;
-}
+}*/
 session_write_close();
 set_time_limit(0); //exec time can be long
 ob_end_flush();
@@ -65,7 +66,8 @@ if($result['updating']) {
     $columns = explode("\t",fgets($csv, 116528));
     $nutriments = [];
     $product = getProduct($csv, $columns);
-    foreach (sortNutriment($product) as $nutriment) {
+    $sorted = sortNutriment($product);
+    foreach ($sorted as $nutriment) {
         $result = callThenReturn($bdd, "CALL insert_nutriment('$nutriment', @output)");
         $nutriments[$nutriment] = $result;
     }
