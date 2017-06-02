@@ -7,7 +7,8 @@ include("controller/SQL/FUNCTIONS/infoAliment.php");
 include("view/functions/displayTable.php");
 include("controller/SQL/FUNCTIONS/comments.php");
 include("controller/functions/commenterEtVoter.php");
-echo "<pre>";
+include("model/functions/OnlineProduct.php");
+
 $result = select ($bdd, "aliment", "id_aliment",$_GET['id']);
 if (empty($result)) {
     echo "Aliment introuvable !";
@@ -19,6 +20,8 @@ if (empty($result)) {
     $packaging = packaging($bdd,$id_aliment);
     $place = manufact_place($bdd,$id_aliment);
     $allergen = allergen($bdd,$id_aliment);
+    $product = new OnlineProduct($bdd, $_GET['id']);
+    var_dump($product->_images);
     displayAllergen($allergen);
     displayName($result);
     displayPlace($place);
