@@ -19,8 +19,9 @@ if (empty($result)) {
     $packaging = packaging($bdd,$id_aliment);
     $place = manufact_place($bdd,$id_aliment);
     $allergen = allergen($bdd,$id_aliment);
-    displayAllergen($allergen);
+
     displayName($result);
+    displayAllergen($allergen);
     displayPlace($place);
     displayPackaging($packaging);
     displayBrand($brand);
