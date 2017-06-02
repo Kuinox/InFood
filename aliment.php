@@ -26,6 +26,7 @@ if (empty($result)) {
     $product->display("ingredients");
 
     displayName($result);
+    echo "Code Barre: ".$_GET['id'];
     displayAllergen($allergen);
     displayPlace($place);
     displayPackaging($packaging);

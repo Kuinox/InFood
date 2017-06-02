@@ -9,7 +9,7 @@ class OnlineProduct {
         $this->_bdd = $bdd;
         $this->_barcode = $barcode;
         $this->_product = $this->getProductObject($barcode);
-        if (isset(_product['selected_images'])) {
+        if (isset($this->_product['selected_images'])) {
             $this->_images = $this->_product['selected_images'];
         } else {
             $this->_images = false;

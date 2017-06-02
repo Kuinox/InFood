@@ -1,11 +1,11 @@
 <?php
 function displayName($result)
 {
-  echo '<div class="name">';
+  echo '<h1 class="name">';
   foreach ($result as $key => $value) {
     echo $value['name_aliment'];
     }
-  echo "</div>";
+  echo "</h1>";
 }
 function displayNutri($nutri)
 {

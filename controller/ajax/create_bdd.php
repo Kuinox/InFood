@@ -67,7 +67,7 @@ if($result['updating']) {
     $nutriments = [];
     $product = getProduct($csv, $columns);
     $sorted = sortNutriment($product);
-    foreach ($sorted as $nutriment) {
+    foreach ($sorted as $nutriment=>$useless) {
         $result = callThenReturn($bdd, "CALL insert_nutriment('$nutriment', @output)");
         $nutriments[$nutriment] = $result;
     }
