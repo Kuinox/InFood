@@ -1,6 +1,6 @@
 DROP PROCEDURE IF EXISTS insert_allergen;
 
-CREATE PROCEDURE insert_allergen (IN code CHAR(30), IN val VARCHAR(250))
+CREATE PROCEDURE insert_allergen (IN code VARCHAR(41), IN val VARCHAR(1000))
 BEGIN
     DECLARE id_val INT;
     SELECT id

@@ -1,6 +1,6 @@
 DROP PROCEDURE IF EXISTS insert_brand;
 
-CREATE PROCEDURE insert_brand (IN code CHAR(30), IN val VARCHAR(250))
+CREATE PROCEDURE insert_brand (IN code VARCHAR(41), IN val VARCHAR(250))
 BEGIN
     DECLARE id_val INT;
     SELECT id
