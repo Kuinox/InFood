@@ -4,7 +4,10 @@ if(isset($_SESSION['user'])) { //TODO completer liens ?>
 <div id="profilButton" class="profilButton" onclick="profilBar(this)">
     IMAGE !
 
-    <span class="arrow"></span>
+
+    <div class="arrow arrow-up">
+        <svg xmlns="http://www.w3.org/2000/svg" style="padding-bottom:1000%;" version="1.1" x="0" y="0" viewBox="0 0 256 128" enable-background="new 0 0 256 128" xml:space="preserve"><polygon points="0 0 128 128 256 0 " style="fill:#4e5d66"/></svg>
+    </div>
 </div>
 <div id="profilContent" class="menuContent hidden">
     <ul>

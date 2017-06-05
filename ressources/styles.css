@@ -83,41 +83,22 @@ header{
  */
 
 .arrow {
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid #02a5c1;
+    height: 5%;
+    width: 5%;
+    margin-top: 5%;
 }
-/*
-.arrow-container {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    background-color: red;
-    margin-top: 50%;
-}
-.arrow {
-    width:70%;
-    min-height:70%;
-    transform:rotate(45deg);
-    background-color: blue;
-    position:absolute;
-    left:15%;
-    top:65%;
-} */
 .arrow-up{
-  transform: rotate(0deg);
-  transition: transform 0.2s linear;
+    transform:  translate(0, -300%) rotateX(0deg);
+    transition: transform 0.2s linear;
 }
 .arrow-down{
-  transform: rotate(180deg);
-  transition: transform 0.2s linear;
+    transform: translate(0, 400%) rotateX(180deg);
+    transition: transform 0.2s linear;
 }
 
 .menuContent {
     position: absolute;
-    background-color: inherit;
+    background-color: blue;
     width: 15%;
     float:right;
     top:100%;
