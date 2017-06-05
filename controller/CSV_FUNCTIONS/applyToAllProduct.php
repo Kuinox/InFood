@@ -11,7 +11,7 @@ function applyToAllProduct($ressource, PDO $bdd, $columns, $code) {// run a func
     $bdd->query("SET UNIQUE_CHECKS = 0;") or die ("Erreur BDD");
     flush();
     $id=0;
-    echo "0\n";
+    //echo "0\n";
     include("../SQL/FUNCTIONS/prep_inject.php");
     $bdd->beginTransaction();
     while($id<$nb_product) { //!feof($ressource)
@@ -19,7 +19,8 @@ function applyToAllProduct($ressource, PDO $bdd, $columns, $code) {// run a func
             $percentage = 100*(round(($id+1)/$nb_product, 3));
             $bdd->query("UPDATE bdd_status SET progress=$percentage");
             $bdd->commit();
-            echo $percentage."\n";
+            //echo $percentage."\n";
+            echo "*****$id*******";
             flush();
             $bdd->beginTransaction();
         }

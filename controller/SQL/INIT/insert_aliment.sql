@@ -1,8 +1,8 @@
 DROP PROCEDURE IF EXISTS insert_aliment;
 
-CREATE PROCEDURE insert_aliment (IN id CHAR(30), IN name VARCHAR(250),
+CREATE PROCEDURE insert_aliment (IN id VARCHAR(41), IN name VARCHAR(250),
     IN last_modification INT, IN ingredients VARCHAR(5000),
-    IN generic_name_char VARCHAR(250), IN grade_nutri CHAR(1), IN qty VARCHAR(30),
+    IN generic_name_char VARCHAR(250), IN grade_nutri CHAR(1), IN qty VARCHAR(150),
     IN serving VARCHAR(200))
 BEGIN
     DECLARE generic_name INT;

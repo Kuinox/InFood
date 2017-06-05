@@ -7,7 +7,7 @@ ob_start();
     <head>
         <meta charset="UTF-8">
         <title>InFood</title>
-        <link rel="stylesheet" href="../styles.css">
+        <link rel="stylesheet" href="../ressources/styles.css">
         <script src="../js/ajax.js"></script>
     </head>
     <body>

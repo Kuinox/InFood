@@ -7,13 +7,14 @@ ob_start();
     <head>
         <meta charset="UTF-8">
         <title>InFood</title>
-        <link rel="stylesheet" href="../styles.css">
+        <link rel="stylesheet" href="../ressources/styles.css">
         <script src="../js/ajax.js"></script>
     </head>
     <body>
         <?php
             include("../model/header.php");
-            if (!isset($_SESSION['user']) || $_SESSION['user']['name_grade'] != 'admin') {
+            include_once(__DIR__."/../controller/SQL/FUNCTIONS/connectNoUse.php");
+            if ((!isset($_SESSION['user']) || $_SESSION['user']['name_grade'] != 'admin') && $db_exist) {
                 header("HTTP/1.1 403 Forbidden");
                 echo "<h1>HTTP/1.1 403 Forbidden</h1>";
                 exit;

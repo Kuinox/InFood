@@ -1,6 +1,6 @@
 DROP PROCEDURE IF EXISTS insert_additive;
 
-CREATE PROCEDURE insert_additive (IN code CHAR(30), IN val VARCHAR(250))
+CREATE PROCEDURE insert_additive (IN code VARCHAR(41), IN val VARCHAR(250))
 BEGIN
     DECLARE id_val INT;
     SELECT id
