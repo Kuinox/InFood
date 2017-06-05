@@ -11,3 +11,4 @@ if(!$db_exist) {
     <?php
     include(__DIR__."/head.php"); ?>
     <body> <?php include(__DIR__."/header.php");?>
+        <div class="full_page_container">

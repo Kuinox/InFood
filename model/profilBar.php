@@ -1,9 +1,12 @@
 <?php
 if(isset($_SESSION['user'])) { //TODO completer liens ?>
-<div id="profilButton" class="menuButtonClosed" onclick="profilBar(this)">
-    IMAGE !<span class="arrow"></span>
+
+<div id="profilButton" class="profilButton" onclick="profilBar(this)">
+    IMAGE !
+
+    <span class="arrow"></span>
 </div>
-<div id="profilContent" class="menuContentClosed">
+<div id="profilContent" class="menuContent hidden">
     <ul>
         <li> <?php echo $_SESSION['user']['pseudo']; ?></li>
         <li> <a> lien vers le panier</a></li>

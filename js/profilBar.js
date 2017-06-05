@@ -3,24 +3,30 @@
 
 window.onclick = function (event) {
     var div = document.getElementById("profilButton");
-    if(event.target !== div ) {
-        closeBar(div);
+    if (div !== null) {
+        if(event.target !== div && event.target.parentNode !== div) {
+            closeBar(div);
+        }
     }
 };
 function closeBar(div) {
-    div.classList.add("menuButtonClosed");
-    div.classList.remove("menuButtonOpened");
-    div.classList.add("menuContentClosed");
-    div.classList.remove("menuContentOpened");
-
+    if (document.getElementById("profilButton") !== null) {
+        var arrow = div.querySelector(".arrow");
+        arrow.classList.remove("arrow-down");
+        arrow.classList.add("arrow-up");
+        document.getElementById("profilContent").classList.add("hidden");
+    }
 }
 function profilBar(div) {
-    if(div.classList.contains("menuButtonClosed")) {
-        div.classList.add("menuButtonOpened");
-        div.classList.remove("menuButtonClosed");
-        div.classList.add("menuContentOpened");
-        div.classList.remove("menuContentClosed");
-    } else {
-        closeBar(div);
+    if (document.getElementById("profilButton") !== null) {
+        var arrow = div.querySelector(".arrow");
+        if(arrow.classList.contains("arrow-up")) {
+            arrow.classList.remove("arrow-up");
+            arrow.classList.add("arrow-down");
+            document.getElementById("profilContent").classList.remove("hidden");
+        } else {
+            closeBar(div);
+        }
     }
+
 }
