@@ -70,6 +70,17 @@ header{
     height: 3vh;
 }
 
+.menuContent {
+    position: absolute;
+    background-color: inherit;
+    width: 15%;
+    float:right;
+    top:100%;
+    right:0;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
 .profilButton{
     display:flex;
     cursor: pointer;
@@ -95,20 +106,6 @@ header{
     transform: translate(0, 400%) rotateX(180deg);
     transition: transform 0.2s linear;
 }
-
-.menuContent {
-    position: absolute;
-    background-color: blue;
-    width: 15%;
-    float:right;
-    top:100%;
-    right:0;
-    border-bottom-right-radius: 25px;
-    border-bottom-left-radius: 25px;
-}
-
-
-
 
 /**
  * Page

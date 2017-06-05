@@ -2,7 +2,7 @@
         <header>
             <div class="top_header">
                 <div class="top_header_container">
-                    <form id="search" action="<?php echo $path; ?>resultat_de_recherche.php" method="GET">
+                    <form id="search" action="<?php echo $path; ?>resultat_de_recherche" method="GET">
                         <a href="<?php echo $path ?>">In'Food</a>
                         <select name = "type" id="type">
                             <option value="aliment" selected>Produits</option>
@@ -26,7 +26,7 @@
                     ?>
                 </div>
             </div>
-            <div class="bot_header">
-                
-            </div>
+            <!--<div class="bot_header">
+
+            </div>-->
         </header>
