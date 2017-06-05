@@ -9,11 +9,11 @@ function displayRecherche(array $output) {
         $type="aliment";
     }
 
-
+    $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/";
     foreach ($output as $key => $value) {
         $id = array_shift($value);
         $name = array_shift($value);
-        echo "<a href= $type.php?id=$id>$name</a><br>";
+        echo "<a href=$path$type.php?id=$id>$name</a><br>";
     }
 }
  ?>

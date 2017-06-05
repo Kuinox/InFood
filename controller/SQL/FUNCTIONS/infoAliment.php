@@ -8,7 +8,7 @@ function nutriments(PDO $bdd, $id_aliment)
 }
 function additives(PDO $bdd, $id_aliment)
 {
-  $query = "SELECT d.label FROM aliment a JOIN aliment_has_additive ad ON a.id_aliment = ad.aliment_id_aliment JOIN additive d ON d.id = ad.additive_id_additive WHERE a.id_aliment = ? ";
+  $query = "SELECT d.label, d.id FROM aliment a JOIN aliment_has_additive ad ON a.id_aliment = ad.aliment_id_aliment JOIN additive d ON d.id = ad.additive_id_additive WHERE a.id_aliment = ? ";
   $prep = $bdd->prepare($query);
   $prep->execute(array($id_aliment)) or die("Failure");
   return $prep->fetchAll(PDO::FETCH_ASSOC);

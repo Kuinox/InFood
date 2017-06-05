@@ -13,7 +13,6 @@ if(isset($_SESSION['user'])) { //TODO completer liens ?>
     <ul>
         <li> <a href="<?php echo "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/"."user/?".$_SESSION['user']['pseudo']; ?>"><?php echo $_SESSION['user']['pseudo']; ?> </a></li>
         <li> <a> lien vers le panier</a></li>
-        <li> <a> lien vers la page préferences produit/alergie</a></li>
         <li> <?php include("deconnexion.php"); ?> </li>
         <li> <a href="./recherche_magasin_proche.php" target="_blank"> Recherche Mg Proche </a></li>
         <li> <a href="./controller/supprimerMonCompte.php"> Supprimer Mon Compte</a></li>
