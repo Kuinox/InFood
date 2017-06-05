@@ -1,9 +1,9 @@
 <?PHP
-include("view/recherche_magasin_proche.html");
+include("view/recherche_magasin_proche.php");
 if(isset($_GET['recherche']))
 {
-	$q=$_GET['t'];
-	echo $q;	
+	$q=$_GET['recherche'];
+	echo $q;
 	header("Location: https://www.google.fr/maps/search/market+$q");
 }
 ?>
