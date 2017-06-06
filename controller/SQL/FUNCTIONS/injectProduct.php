@@ -62,18 +62,6 @@ function injectProduct(PDO $bdd, $product, $prep, $update=false) {//SELECT id IN
         }
         $num++;
     }
-
-    /*
-    foreach(explode(",", $product['states_tags']) as $key => $value) {//TODO: Load pic in database.
-        if ($value == 'en:photos-uploaded') {
-            $url = codeToURL($product['code'])."/front_fr.3.400.jpg"; // check all pic names
-            echo $url;
-            if (!Error404Checker($url)) {
-                echo "Found";
-            }
-            echo "</br>";
-        }
-    }*/
     return true;
 }
  ?>
