@@ -14,7 +14,7 @@ function closeBar(div) {
         var arrow = div.querySelector(".arrow");
         arrow.classList.remove("arrow-down");
         arrow.classList.add("arrow-up");
-        document.getElementById("profilContent").classList.add("hidden");
+        document.getElementById("profilContent").classList.remove("hidden");
     }
 }
 function profilBar(div) {
@@ -23,7 +23,7 @@ function profilBar(div) {
         if(arrow.classList.contains("arrow-up")) {
             arrow.classList.remove("arrow-up");
             arrow.classList.add("arrow-down");
-            document.getElementById("profilContent").classList.remove("hidden");
+            document.getElementById("profilContent").classList.add("hidden");
         } else {
             closeBar(div);
         }
