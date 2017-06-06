@@ -1,6 +1,7 @@
 <?php
-function displayComments($com, $displayContext=false)
-{
+
+function displayComments($com, $displayContext=false) {
+    $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/";
     echo "<br>Commentaire :";
     echo "<table>";
     foreach ($com as $key => $value) {
@@ -15,7 +16,7 @@ function displayComments($com, $displayContext=false)
       echo $value['text_comment'];
       echo '</td><td><form action = "" method="POST">
       <input type="hidden" name = "id_comment" value = "'.$value['id'].'">
-      <input type="image" src="ressources/poubelle.png" alt="Submit">
+      <input type="image" src="'.$path.'ressources/poubelle.png" alt="Submit">
       </form></td></tr>';
     }
         echo "</table>";

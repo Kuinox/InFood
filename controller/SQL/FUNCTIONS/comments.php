@@ -1,6 +1,11 @@
 <?php
 include("connect.php");
+include(__DIR__."/../../../controller/SQL/FUNCTIONS/supprComment.php");
 function getComments(PDO $bdd,$like){
+    include(__DIR__."/../../../controller/SQL/FUNCTIONS/connect.php");
+    if(isset($_POST['id_comment'])) {
+      deletComment($bdd, $_POST['id_comment']);
+    }
     $query = "SELECT c.*, u.pseudo, a.name_aliment, a.id_aliment FROM comments c JOIN user u ON c.user_id_user=u.id_user JOIN aliment a ON a.id_aliment=c.aliment_id_aliment WHERE c.aliment_id_aliment LIKE ?";
     $prep = $bdd->prepare($query);
     $prep->execute(array($like));

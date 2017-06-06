@@ -8,12 +8,8 @@ include("view/functions/displayTable.php");
 include("controller/SQL/FUNCTIONS/comments.php");
 include("controller/functions/commenterEtVoter.php");
 include("model/functions/OnlineProduct.php");
-include("controller/SQL/FUNCTIONS/supprComment.php");
 
 $result = select ($bdd, "aliment", "id_aliment",$_GET['id']);
-if(isset($_POST['id_comment'])) {
-  deletComment($bdd, $_POST['id_comment']);
-}
 if (empty($result)) {
     echo "Aliment introuvable !";
 } else {

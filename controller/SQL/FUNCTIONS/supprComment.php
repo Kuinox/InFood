@@ -1,5 +1,4 @@
 <?php
-include("connect.php");
 function deletComment(PDO $bdd,$id_comment)
 {
       $query = "DELETE FROM comments WHERE `id` LIKE ?";
