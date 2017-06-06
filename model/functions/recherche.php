@@ -11,7 +11,7 @@ function recherche(PDO $bdd, $input, $entry="") {
     }
     switch ($type) {
         case 'aliment':
-            $query = "SELECT id_aliment FROM aliment WHERE id_aliment = ?";
+            $query = "SELECT id_aliment FROM aliment WHERE id_aliment = ?" ;
             $barcode = $bdd->prepare($query);
             $barcode->execute(array($_GET['recherche']));
             if ($barcode->rowCount() == 1) {
@@ -22,7 +22,8 @@ function recherche(PDO $bdd, $input, $entry="") {
                       FROM aliment a
                       LEFT OUTER JOIN generic_name g
                       ON g.id = a.generic_name_id
-                      WHERE a.name_aliment LIKE '$input' OR g.label LIKE'$input';";
+                      WHERE a.name_aliment LIKE '$input' OR g.label LIKE'$input'
+                      ORDER BY a.name_aliment ASC;";
 
             break;
         case 'additive':
@@ -35,7 +36,8 @@ function recherche(PDO $bdd, $input, $entry="") {
         case 'generic_name':
             $query = "SELECT id, label
                       FROM $type
-                      WHERE label LIKE '$input'";
+                      WHERE label LIKE '$input'
+                      ORDER BY label ASC";
             break;
         case 'aliment_additive':
             $query ="   SELECT a.*
@@ -45,6 +47,7 @@ function recherche(PDO $bdd, $input, $entry="") {
                         JOIN additive ad
                         ON ad.id = aa.additive_id_additive
                         WHERE ad.id= '$input'
+                        ORDER BY ad.label ASC
             ";
             break;
         case 'aliment_ingredient':
@@ -55,6 +58,7 @@ function recherche(PDO $bdd, $input, $entry="") {
                         JOIN ingredient i
                         ON i.id = ai.ingredient_id_ingredient
                         WHERE i.id= '$input'
+                        ORDER BY i.label ASC
             ";
             break;
         case 'aliment_brand':
@@ -65,6 +69,7 @@ function recherche(PDO $bdd, $input, $entry="") {
                         JOIN brand b
                         ON b.id = ab.brand_id_brand
                         WHERE b.id= '$input'
+                        ORDER BY b.label ASC
             ";
             break;
         case 'aliment_manufacturing_place':
@@ -75,6 +80,7 @@ function recherche(PDO $bdd, $input, $entry="") {
                         JOIN manufacturing_place m
                         ON m.id = am.manufacturing_place_id_manufacturing_place
                         WHERE m.id= '$input'
+                        ORDER BY m.label ASC
             ";
             break;
         case 'aliment_allergen':
@@ -85,6 +91,7 @@ function recherche(PDO $bdd, $input, $entry="") {
                         JOIN allergen l
                         ON l.id = al.allergen_id_allergen
                         WHERE l.id= '$input'
+                        ORDER BY ad.label ASC
             ";
             break;
         case 'aliment_categorie':
@@ -95,6 +102,7 @@ function recherche(PDO $bdd, $input, $entry="") {
                         JOIN categorie c
                         ON c.id = ac.categorie_id_categorie
                         WHERE c.id= '$input'
+                        ORDER BY c.label ASC
             ";
         break;
         case 'aliment_packaging':
@@ -105,6 +113,7 @@ function recherche(PDO $bdd, $input, $entry="") {
                         JOIN packaging p
                         ON p.id = ap.packaging_id_packaging
                         WHERE p.id= '$input'
+                        ORDER BY p.label ASC
             ";
             break;
         case 'aliment_generic_name':
@@ -115,6 +124,7 @@ function recherche(PDO $bdd, $input, $entry="") {
                         JOIN generic_name g
                         ON g.id = ag.generic_name_id_generic_name
                         WHERE g.id= '$input'
+                        ORDER BY g.label ASC
             ";
             break;
     }

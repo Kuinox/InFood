@@ -40,8 +40,9 @@ function displayBrand($brand)
   if (empty($brand)) {
     echo "Champs non renseigné";
   }
+  $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/marque/?id=";
   foreach ($brand as $key => $value) {
-      echo $value['label']. " ";
+      echo "<a href='".$path.$value['id']."'>".$value['label']. "</a> ";
     }
   echo "</div>";
 }
@@ -52,8 +53,9 @@ function displayPackaging($packaging)
   if (empty($packaging)) {
     echo "Champs non renseigné";
   }
+  $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/packaging/?id=";
   foreach ($packaging as $key => $value) {
-      echo $value['label']. " ";
+      echo "<a href='".$path.$value['id']."'>".$value['label']. "</a> ";
     }
   echo "</div>";
 }
@@ -64,8 +66,9 @@ function displayPlace($place)
   if (empty($place)) {
     echo "Champs non renseigné";
   }
+  $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/lieudefabrication/?id=";
   foreach ($place as $key => $value) {
-      echo $value['label']. " ";
+      echo "<a href='".$path.$value['id']."'>".$value['label']. "</a> ";
     }
   echo "</div>";
 }
@@ -76,8 +79,9 @@ function displayAllergen($allergen)
   if (empty($allergen)) {
     echo "Champs non renseigné";
   }
+  $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/allergen/?id=";
   foreach ($allergen as $key => $value) {
-      echo $value['label']. " ";
+      echo "<a href='".$path.$value['id']."'>".$value['label']. "</a> ";
     }
   echo "</div>";
 }
