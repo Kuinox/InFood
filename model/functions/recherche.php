@@ -15,7 +15,7 @@ function recherche(PDO $bdd, $input, $entry="") {
             $barcode = $bdd->prepare($query);
             $barcode->execute(array($_GET['recherche']));
             if ($barcode->rowCount() == 1) {
-                header("Location: ./aliment.php?id=".$_GET['recherche']);
+                header("Location: ./aliment?id=".$_GET['recherche']);
                 exit;
             }
             $query = "SELECT a.id_aliment , a.name_aliment
@@ -91,7 +91,7 @@ function recherche(PDO $bdd, $input, $entry="") {
                         JOIN allergen l
                         ON l.id = al.allergen_id_allergen
                         WHERE l.id= '$input'
-                        ORDER BY ad.label ASC
+                        ORDER BY l.label ASC
             ";
             break;
         case 'aliment_categorie':
