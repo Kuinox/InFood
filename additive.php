@@ -6,7 +6,7 @@ include("model/functions/displayRecherche.php");
 include("model/functions/recherche.php");
 echo "<br>";
 $result = select ($bdd, 'additive', 'id', $_GET['id']);
-var_dump($result);
+echo "<h1>".$result[0]['label']."</h1>";
 $recherche = recherche($bdd, $_GET['id'], "aliment_additive");
 displayRecherche($recherche);
 include("model/bot.php");

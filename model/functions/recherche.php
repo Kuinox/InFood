@@ -15,7 +15,7 @@ function recherche(PDO $bdd, $input, $entry="") {
             $barcode = $bdd->prepare($query);
             $barcode->execute(array($_GET['recherche']));
             if ($barcode->rowCount() == 1) {
-                header("Location: ./aliment.php?id=".$_GET['recherche']);
+                header("Location: ./aliment?id=".$_GET['recherche']);
                 exit;
             }
             $query = "SELECT a.id_aliment , a.name_aliment
@@ -91,7 +91,7 @@ function recherche(PDO $bdd, $input, $entry="") {
                         JOIN allergen l
                         ON l.id = al.allergen_id_allergen
                         WHERE l.id= '$input'
-                        ORDER BY ad.label ASC
+                        ORDER BY l.label ASC
             ";
             break;
         case 'aliment_categorie':
@@ -117,15 +117,15 @@ function recherche(PDO $bdd, $input, $entry="") {
             ";
             break;
         case 'aliment_generic_name':
-            $query ="   SELECT a.*
-                        FROM aliment a
-                        JOIN aliment_has_generic_name ag
-                        ON a.id_aliment = ag.aliment_id_aliment
-                        JOIN generic_name g
-                        ON g.id = ag.generic_name_id_generic_name
-                        WHERE g.id= '$input'
-                        ORDER BY g.label ASC
+            $query ="   SELECT *
+                        FROM aliment
+                        WHERE generic_name_id = $input
+
             ";
+            //JOIN generic_name g
+            //ON a.generic_name_id = g.id
+            //WHERE g.id= $input
+            //ORDER BY g.label ASC
             break;
     }
     $result = $bdd->query($query) or die("erreur BDD");

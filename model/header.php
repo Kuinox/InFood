@@ -17,7 +17,7 @@
                         </select>
                         <input type="text" name="recherche" placeholder="Rechercher sur In'Food"/>
                         <input class="icon" type="image" src="<?php echo $path; ?>ressources/logo.svg"/>
-                        <a href="todo"><img src="TODO" /></a> <!--TODO: IMAGE-->
+                        <a href="todo"><img src="TODO"/></a> <!--TODO: IMAGE-->
                     </form>
                     <?php
                     include(__DIR__."/../controller/functions/deconnexion.php");
