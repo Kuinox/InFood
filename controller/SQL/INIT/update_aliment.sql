@@ -1,6 +1,6 @@
 DROP PROCEDURE IF EXISTS update_aliment;
 
-CREATE PROCEDURE update_aliment (IN id CHAR(30), IN name VARCHAR(250),
+CREATE PROCEDURE update_aliment (IN id VARCHAR(41), IN name VARCHAR(250),
     IN last_modification INT, IN ingredients VARCHAR(5000),
     IN generic_name INT, IN grade_nutri CHAR(1), IN qty VARCHAR(30),
     IN serving VARCHAR(200))

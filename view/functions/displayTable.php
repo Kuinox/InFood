@@ -11,7 +11,6 @@ function displayNutri($nutri)
 {
   echo '<div class="nutriment">';
   echo "<table>";
-  var_dump($nutri);
   if (empty($nutri)) {
     echo "Champs non renseigné";
   }
@@ -28,8 +27,9 @@ function displayAdditives($additives)
   if (empty($additives)) {
     echo "Champs non renseigné";
   }
+  $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/additive/?id=";
   foreach ($additives as $key => $value) {
-      echo $value['label']. " ";
+      echo "<a href='".$path.$value['id']."'>".$value['label']. "</a> ";
     }
   echo "</div>";
 }

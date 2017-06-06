@@ -1,6 +1,6 @@
 DROP PROCEDURE IF EXISTS insert_packaging;
 
-CREATE PROCEDURE insert_packaging (IN code CHAR(30), IN val VARCHAR(250))
+CREATE PROCEDURE insert_packaging (IN code VARCHAR(41), IN val VARCHAR(250))
 BEGIN
     DECLARE id_val INT;
     SELECT id
@@ -12,5 +12,6 @@ BEGIN
         VALUES(NULL, val);
         SELECT LAST_INSERT_ID() INTO id_val;
     END IF;
-    CALL insert_FK_aliment_has_packaging(code, id_val);
+    INSERT INTO aliment_has_packaging (id, aliment_id_aliment, packaging_id_packaging)
+    VALUES(NULL, code, id_val);
 END;

@@ -1,6 +1,6 @@
 DROP PROCEDURE IF EXISTS insert_manufacturing_place;
 
-CREATE PROCEDURE insert_manufacturing_place (IN code CHAR(30), IN val VARCHAR(250))
+CREATE PROCEDURE insert_manufacturing_place (IN code VARCHAR(41), IN val VARCHAR(500))
 BEGIN
     DECLARE id_val INT;
     SELECT id

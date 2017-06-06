@@ -11,7 +11,9 @@ function recherche(PDO $bdd, $input, $entry="") {
     }
     switch ($type) {
         case 'aliment':
-            $barcode = $bdd->query("SELECT id_aliment FROM aliment WHERE id_aliment = '".$_GET['recherche']."'");
+            $query = "SELECT id_aliment FROM aliment WHERE id_aliment = ?";
+            $barcode = $bdd->prepare($query);
+            $barcode->execute(array($_GET['recherche']));
             if ($barcode->rowCount() == 1) {
                 header("Location: ./aliment.php?id=".$_GET['recherche']);
                 exit;

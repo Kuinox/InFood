@@ -1,6 +1,6 @@
 DROP PROCEDURE IF EXISTS insert_categorie;
 
-CREATE PROCEDURE insert_categorie (IN code CHAR(30), IN val VARCHAR(250))
+CREATE PROCEDURE insert_categorie (IN code VARCHAR(41), IN val VARCHAR(250))
 BEGIN
     DECLARE id_val INT;
     SELECT id
