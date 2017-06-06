@@ -14,8 +14,6 @@ function injectProduct(PDO $bdd, $product, $prep, $update=false) {//SELECT id IN
     if (empty($product['generic_name'])) {
         $product['generic_name'] = 'NULL';
     }
-    //echo $product['quantity']."\n";
-    echo microtime(true).";";
     $prep[$type.'_aliment']->execute(array($product['code'],
                                             $product['product_name'],
                                             $product['last_modified_t'],

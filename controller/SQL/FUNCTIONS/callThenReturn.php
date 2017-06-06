@@ -3,7 +3,7 @@ function callThenReturn(PDO $bdd, $query) {
     if (empty($query)) {
         throw new Error('Query is empty in callThenReturn');
     }
-    $bdd->query($query) or die('Error in mysql procedure call '.$query.var_dump($bdd));
+    $bdd->query($query);
     $prep = $bdd->query('SELECT @output');
     $output = $prep->fetchAll();
     if (count($output) != 1) {
