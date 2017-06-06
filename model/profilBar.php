@@ -9,7 +9,7 @@ if(isset($_SESSION['user'])) { //TODO completer liens ?>
         <svg xmlns="http://www.w3.org/2000/svg" style="padding-bottom:1000%;" version="1.1" x="0" y="0" viewBox="0 0 256 128" enable-background="new 0 0 256 128" xml:space="preserve"><polygon points="0 0 128 128 256 0 " style="fill:#4e5d66"/></svg>
     </div>
 </div>
-<div id="profilContent" class="menuContent hidden">
+<div id="profilContent" class="menuContent">
     <ul>
         <li> <a href="<?php echo "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/"."user/?".$_SESSION['user']['pseudo']; ?>"><?php echo $_SESSION['user']['pseudo']; ?> </a></li>
         <li> <a> lien vers le panier</a></li>
