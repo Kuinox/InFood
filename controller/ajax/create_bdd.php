@@ -9,7 +9,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['name_grade'] != 'admin') {
 session_write_close();
 set_time_limit(0); //exec time can be long
 ob_end_flush();
-$dsn = "mysql:host=127.0.0.1; charset=utf8;";
+$dsn = "mysql:host=127.0.0.1; charset=utf8mb4;";
 $user = "root";
 $password = "";
 try {
@@ -67,7 +67,7 @@ if($result['updating']) {
     $nutriments = [];
     $product = getProduct($csv, $columns);
 
-    
+
     $sorted = sortNutriment($product);
     foreach ($sorted as $nutriment=>$useless) {
         $result = callThenReturn($bdd, "CALL insert_nutriment('$nutriment', @output)");

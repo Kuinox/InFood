@@ -2,7 +2,6 @@
 function sqlScriptInject(PDO $bdd, $script_path) {
     $script_file = fopen($script_path, 'r');
     $script = "";
-//var_dump(strstr($script_path, "insert_"));
     if(!(strstr($script_path, "insert_") || strstr($script_path, "update_"))) {
         while ($line = fgets($script_file)) {
             $script[] = $line;
@@ -17,7 +16,7 @@ function sqlScriptInject(PDO $bdd, $script_path) {
         foreach(explode(";", $lines) as $query) {
             $query = trim(preg_replace('/\s+/', ' ', $query));
             if (!empty($query) && is_bool(strpos($query, "SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0")) && is_bool(strpos($query, "SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS"))) {
-                $bdd->query($query) or die('Error injecting'.var_dump($bdd)."</br>".$script_path."</br>'".$query."'");
+                $bdd->query($query);
             }
         }
     } else {//procedure
@@ -35,7 +34,7 @@ function sqlScriptInject(PDO $bdd, $script_path) {
         }
         $liste[] = $precedent;
         foreach ($liste as $query) {
-            $bdd->query($query) or die('Error injecting'.var_dump($bdd)."</br>".$script_path."</br>'".$query."'");
+            $bdd->query($query);
         }
     }
 }
