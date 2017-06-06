@@ -13,7 +13,7 @@ function displayComments($com, $displayContext=false)
       echo "<a href='user/?id=".$value['pseudo']."'>".$value['pseudo']."</a>";
       echo "</td></tr><tr><td>";
       echo $value['text_comment'];
-      echo '</td><td><form action = "controller/functions/supptimerComment.php" method="POST">
+      echo '</td><td><form action = "" method="POST">
       <input type="hidden" name = "id_comment" value = "'.$value['id'].'">
       <input type="image" src="ressources/poubelle.png" alt="Submit">
       </form></td></tr>';
