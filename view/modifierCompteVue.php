@@ -1,3 +1,5 @@
+<?php //include("../model/top.php") ?>
+<?php //$path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/"; ?>
 <form action="modifierCompte.php" method="POST">
 	<table>
 		<tr>
@@ -40,3 +42,4 @@
 		</tr>
 	</table>
 </form>
+<?php //include("../model/bot.php") ?>
