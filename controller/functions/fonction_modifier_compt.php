@@ -1,42 +1,8 @@
 <?php
- function modifier_compte_pseudo($nom)
+ function updateUser(PDO $bdd)
 {
-	//connection au bdd
-	$bdd = new PDO('mysql:host=localhost;dbname=infood', 'root', ''); 
-	
-	//modifier les donners par nulle
-	$requete = $bdd->query("UPDATE user SET pseudo='$nom'");  
-}
-function modifier_compte_email($nom)
-{
-	//connection au bdd
-	$bdd = new PDO('mysql:host=localhost;dbname=infood', 'root', ''); 
-	
-	//modifier les donners par nulle
-	$requete = $bdd->query("UPDATE user SET email='$nom'");  
-}
-function modifier_compte_password($nom)
-{
-	//connection au bdd
-	$bdd = new PDO('mysql:host=localhost;dbname=infood', 'root', ''); 
-	
-	//modifier les donners par nulle
-	$requete = $bdd->query("UPDATE user SET password='$nom'");  
-}
-function modifier_compte_height($nom)
-{
-	//connection au bdd
-	$bdd = new PDO('mysql:host=localhost;dbname=infood', 'root', ''); 
-	
-	//modifier les donners par nulle
-	$requete = $bdd->query("UPDATE user SET height='$nom'");  
-}
-function modifier_compte_weight($nom)
-{
-	//connection au bdd
-	$bdd = new PDO('mysql:host=localhost;dbname=infood', 'root', ''); 
-	
-	//modifier les donners par nulle
-	$requete = $bdd->query("UPDATE user SET weight='$nom' WHERE ");  
+    //modifier les donners par nulle
+	$prep = $bdd->prepare("UPDATE user SET pseudo=? password=? email=? height=? weight=? WHERE id_user = ?");
+    $prep->execute(array($_SESSION['pseudo'], hash("sha256", $_SESSION['password']), $_SESSION['email'], $_SESSION['height'], $_SESSION['weight'], $_SESSION['id_user']));
 }
 ?>
