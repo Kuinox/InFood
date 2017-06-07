@@ -7,8 +7,8 @@ include("model/functions/recherche.php");
 include("model/jsons/json_parse.php");
 echo "<br>";
 $result = select ($bdd, 'additive', 'id', $_GET['id']);
-echo "<h1>".$data_additives[$result[0]['label']]['name']."</h1>";
-$recherche = recherche($bdd, $_GET['id'], "aliment_additive");
+echo "<h1>".dataAdditives()[$result[0]['label']]['name']."</h1>";
+$recherche = recherche($bdd,"aliment_additive");
 displayRecherche($recherche);
 include("model/bot.php");
 ?>

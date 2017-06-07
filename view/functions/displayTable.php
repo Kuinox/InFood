@@ -22,7 +22,7 @@ function displayNutri($nutri)
 }
 function displayAdditives($additives)
 {
-    include(__DIR__."/../../model/jsons/json_parse.php");
+    include_once(__DIR__."/../../model/jsons/json_parse.php");
     echo '<div class="additives">';
     echo "additif : ";
     if (empty($additives)) {
@@ -30,7 +30,7 @@ function displayAdditives($additives)
     }
     $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/additive/?id=";
     foreach ($additives as $key => $value) {
-        echo "<a href='".$path.$value['id']."'>".$data_additives[$value['label']]['name']. "</a> ";
+        echo "<a href='".$path.$value['id']."'>".dataAdditives()[$value['label']]['name']. "</a> ";
     }
     echo "</div>";
 }
@@ -91,6 +91,13 @@ function displayGrade($grade) {
     if ($grade !== null) {
         echo "<img src='https://static.openfoodfacts.org/images/misc/nutriscore-".strtolower($grade).".svg' />";
     }
+}
+
+function displayLabel($labels) {
+    echo '<div class="label">';
+    echo "Labels: ";
+    echo $labels;
+    echo "</div>";
 }
 
  ?>

@@ -1,10 +1,11 @@
 <?php
-
+include_once(__DIR__."/../jsons/json_parse.php");
 class OnlineProduct {
     private $_bdd;
     var $_barcode;
     var $_product;
     var $_images;
+    var $_label = [];
     function __construct($bdd, $barcode) {
         $this->_bdd = $bdd;
         $this->_barcode = $barcode;
@@ -14,9 +15,12 @@ class OnlineProduct {
         } else {
             $this->_images = false;
         }
-        echo "<pre>";
-        print_r($this->_product);
-        echo "</pre>";
+        $labels = dataLabels();
+        if (isset($labels["labels_tags"])) {
+            foreach($this->_product["labels_tags"] as $value) {
+                $this->_label[] = $labels[$value];
+            }
+        }
     }
     private function getProductObject($barcode) {
         $url  ="http://world.openfoodfacts.org/api/v0/product/$barcode.json";
@@ -37,10 +41,24 @@ class OnlineProduct {
         }
         return $data['product'];
     }
-
     function displayImage($image) {
         if(isset($this->_images[$image])) {
             echo "<img id='$image' src='".current($this->_images[$image]['display'])."'/>";
+        }
+    }
+    function getLabel() {
+        if (isset($this->_product['label'])) {
+            return $this->_product['label'];
+        } else {
+            return "Aucun";
+        }
+    }
+
+    function displayLabelImage() {
+        foreach($this->_label as $label) {
+            if(isset($label['image'])) {
+                echo "<img class='label' src='".$label['image']."' />";
+            }
         }
     }
 }
