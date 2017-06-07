@@ -11,7 +11,7 @@ if (!isset($_SESSION['user']) && !isset($_GET['id'])) {
     exit;
 }
 
-if (!isset($_GET['id'])) {
+if (!isset($_GET['id']) || empty($_GET['id'])) {
     $id = $_SESSION['user']['pseudo'];
     $proprio = true;
 } else {

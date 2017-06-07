@@ -35,12 +35,7 @@ if (empty($result)) {
     displayIngredients($ingredients);
     displayAdditives($additives);
     displayNutri($nutri);
-<<<<<<< HEAD
     displayGrade(grade($bdd, $id_aliment));
-=======
-
-
->>>>>>> feature/DUDE
     displayComments(getComments($bdd,$_GET['id']));
     include("view/afficherFormVoteComment.php");
 }
