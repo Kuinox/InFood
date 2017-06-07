@@ -20,6 +20,7 @@ class Preference {
                     WHERE id_user = ?";
         $prep = $this->_bdd->prepare($query);
         $prep->execute(array($_SESSION['user']['id_user']));
+        $prep->fetchAll(    );
     }
 
     function addPref() {
