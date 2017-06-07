@@ -27,6 +27,12 @@ function recherche(PDO $bdd, $entry="") {
                       ORDER BY a.name_aliment ASC;";
             break;
         case 'additive':
+            $query = "SELECT id, label
+                      FROM $type
+                      WHERE label LIKE '%".$_GET['recherche']."%'
+                      ORDER BY label ASC";
+
+            break;
         case 'ingredient':
         case 'brand':
         case 'manufacturing_place':
@@ -37,9 +43,9 @@ function recherche(PDO $bdd, $entry="") {
 
             $query = "SELECT id, label
                       FROM $type
-                      WHERE label LIKE ".rechercheToPattern("label")."
+                      WHERE ".rechercheToPattern("label")."
                       ORDER BY label ASC";
-                      break;
+            break;
         case 'aliment_additive':
             $query ="   SELECT a.*
                         FROM aliment a
@@ -47,7 +53,7 @@ function recherche(PDO $bdd, $entry="") {
                         ON a.id_aliment = aa.aliment_id_aliment
                         JOIN additive ad
                         ON ad.id = aa.additive_id_additive
-                        WHERE ad.id= '$input'
+                        WHERE ad.id= '".$_GET['id']."'
                         ORDER BY ad.label ASC
             ";
             break;
@@ -132,7 +138,10 @@ function recherche(PDO $bdd, $entry="") {
             $query = "SELECT pseudo
             FROM user
             WHERE pseudo LIKE '%$input%'";
-    }
+        break;
+        default:
+            throw new ErrorException("not rooted ".$type);
+        }
     $result = $bdd->query($query) or die("erreur BDD");
     $output = $result->fetchAll(PDO::FETCH_ASSOC);
     return $output;
