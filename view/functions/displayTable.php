@@ -9,10 +9,21 @@ function displayName($result)
 }
 function displayNutri($nutri)
 {
+<<<<<<< HEAD
     echo '<div class="nutriment">';
     echo "<table>";
     if (empty($nutri)) {
         echo "Champs non renseigné";
+=======
+  echo '<div class="nutriment">';
+  echo "<table>";
+  echo "nutriments : ";
+  if (empty($nutri)) {
+    echo "Champs non renseigné";
+  }
+  foreach ($nutri as $key => $value) {
+    echo "<td>".$value['label']."</td><td>".$value['nutriment_quantity']."</td><tr>";
+>>>>>>> feature/DUDE
     }
     foreach ($nutri as $key => $value) {
         echo "<td>".$value['label']."</td><td>".$value['nutriment_quantity']."</td><tr>";
@@ -86,11 +97,26 @@ function displayAllergen($allergen)
     }
     echo "</div>";
 }
+<<<<<<< HEAD
 
 function displayGrade($grade) {
     if ($grade !== null) {
         echo "<img src='https://static.openfoodfacts.org/images/misc/nutriscore-".strtolower($grade).".svg' />";
     }
+=======
+function displayIngredients($ingredients)
+{
+  echo '<div class="ingredients">';
+  echo "ingredients : ";
+  if (empty($ingredients)) {
+    echo "Champs non renseigné";
+  }
+  $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/allergen/?id=";
+  foreach ($ingredients as $key => $value) {
+      echo $value['ingredients_aliment'];
+    }
+  echo "</div>";
+>>>>>>> feature/DUDE
 }
 
  ?>

@@ -42,4 +42,11 @@ function grade(PDO $bdd, $id_aliment) {
     $prep->execute(array($id_aliment));
     return $prep->fetchAll(PDO::FETCH_ASSOC)[0]['grade_nutriment'];
 }
+function ingredients(PDO $bdd, $id_aliment)
+{
+  $query = "SELECT ingredients_aliment FROM aliment WHERE id_aliment = ? ";
+  $prep = $bdd->prepare($query);
+  $prep->execute(array($id_aliment)) or die("Failure");
+  return $prep->fetchAll(PDO::FETCH_ASSOC);
+}
  ?>

@@ -20,6 +20,7 @@ if (empty($result)) {
     $packaging = packaging($bdd,$id_aliment);
     $place = manufact_place($bdd,$id_aliment);
     $allergen = allergen($bdd,$id_aliment);
+    $ingredients = ingredients($bdd, $id_aliment);
     $product = new OnlineProduct($bdd, $_GET['id']);
     $product->displayImage("front");
     $product->displayImage("nutrition");
@@ -31,9 +32,15 @@ if (empty($result)) {
     displayPlace($place);
     displayPackaging($packaging);
     displayBrand($brand);
+    displayIngredients($ingredients);
     displayAdditives($additives);
     displayNutri($nutri);
+<<<<<<< HEAD
     displayGrade(grade($bdd, $id_aliment));
+=======
+
+
+>>>>>>> feature/DUDE
     displayComments(getComments($bdd,$_GET['id']));
     include("view/afficherFormVoteComment.php");
 }
