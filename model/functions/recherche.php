@@ -127,6 +127,10 @@ function recherche(PDO $bdd, $input, $entry="") {
             //WHERE g.id= $input
             //ORDER BY g.label ASC
             break;
+        case 'membres':
+            $query = "SELECT pseudo
+            FROM user
+            WHERE pseudo LIKE '%$input%'";
     }
     $result = $bdd->query($query) or die("erreur BDD");
     $output = $result->fetchAll(PDO::FETCH_ASSOC);

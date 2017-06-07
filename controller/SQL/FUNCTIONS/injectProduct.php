@@ -2,10 +2,6 @@
 include_once("../SQL/FUNCTIONS/callThenReturn.php");
 include_once("../CSV_FUNCTIONS/sortNutriment.php");
 function injectProduct(PDO $bdd, $product, $prep, $update=false) {//SELECT id INTO id_val FROM nutriment WHERE val = label;
-    foreach ($product as $key => $value) {
-        $product[$key] = addslashes($value);
-    }
-    //$indexes = [];
     $grade_id = $product['nutrition_grade_fr'];
     if (empty($grade_id)) {
         $grade_id = null;

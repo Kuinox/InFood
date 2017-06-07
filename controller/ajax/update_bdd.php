@@ -5,7 +5,9 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['name_grade'] != 'admin') {
     echo "<h1>HTTP/1.1 403 Forbidden</h1>";
     exit;
 }
+session_write_close();
 set_time_limit(0);//exec time can be long
+ob_end_flush();
 include_once("../SQL/FUNCTIONS/connect.php");
 $data = $bdd->query("SELECT * FROM bdd_status");
 $result = $data->fetchAll(PDO::FETCH_ASSOC)[0];
@@ -15,6 +17,7 @@ if($result['updating']) {
         $data = $bdd->query("SELECT * FROM bdd_status");
         $result = $data->fetchAll(PDO::FETCH_ASSOC)[0];
         echo $result['progress']."\n";
+        flush();
         sleep(1);
         //TODO
     }

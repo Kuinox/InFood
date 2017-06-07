@@ -20,45 +20,40 @@ if (!isset($_GET['id'])) {
 }
 if (isset($_GET['tab']) && $_GET['tab'] == "preference") {
     $tab = "preference";
-} else if (isset($_GET['tab']) && $_GET['tab'] == "settings"){
-    $tab = "settings";
+} else if (isset($_GET['tab']) && $_GET['tab'] == "parametre"){
+    $tab = "parametre";
 }
 else {
     $tab = "activite";
 }
 ?>
-<div class="nav">
+<div class="tab_container">
     <div class="tab_profil <?php if($tab === "activite") echo "active"; ?>">
-        <a href="?tab=activite">Activité</a>
+        <a href="?tab=activite&id=<?php echo $id; ?>">Activité</a>
     </div>
      <?php
     if ($proprio) {
         ?>
         <div class="tab_profil <?php if($tab === "preference") echo "active"; ?>">
-            <a href="?tab=preference">Préference alimentaire</a>
+            <a href="?tab=preference&id=<?php echo $id; ?>">Préference alimentaire</a>
         </div>
-        <div class="tab_profil <?php if($tab === "settings") echo "active"; ?>">
-            <a href="?tab=settings">Paramètres</a>
+        <div class="tab_profil <?php if($tab === "parametre") echo "active"; ?>">
+            <a href="?tab=parametre&id=<?php echo $id; ?>">Paramètres</a>
         </div>
         <?php
+
     }
      ?>
+     <div>
+        Rechercher un membre:
+        <form  action="recherche_membres" method="GET">
+            <input type="text" name="id" />
+            <input type="submit" value="Rechercher" />
+        </form>
+     </div>
 </div> <?php
 echo $id;
-switch($tab) {
-    case "activite":
-        displayComments(getUserComment($bdd, $id), true);
-        break;
-    case "preference":
-        include("TODO");
-        break;
-    case "settings":
-        include("TODO");
-        break;
-    default:
-        throw new ErrorException("Wrong tab");
-}
-
+include("$tab.php");
 include("../model/bot.php");
 ob_end_flush();
 ?>
