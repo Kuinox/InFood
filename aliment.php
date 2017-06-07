@@ -21,9 +21,9 @@ if (empty($result)) {
     $place = manufact_place($bdd,$id_aliment);
     $allergen = allergen($bdd,$id_aliment);
     $product = new OnlineProduct($bdd, $_GET['id']);
-    $product->display("front");
-    $product->display("nutrition");
-    $product->display("ingredients");
+    $product->displayImage("front");
+    $product->displayImage("nutrition");
+    $product->displayImage("ingredients");
 
     displayName($result);
     echo "Code Barre: ".$_GET['id'];
@@ -33,6 +33,7 @@ if (empty($result)) {
     displayBrand($brand);
     displayAdditives($additives);
     displayNutri($nutri);
+    displayGrade(grade($bdd, $id_aliment));
     displayComments(getComments($bdd,$_GET['id']));
     include("view/afficherFormVoteComment.php");
 }

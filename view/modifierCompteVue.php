@@ -31,7 +31,7 @@
 			<td><input type="text" name="height" placeholder="Nouveau height"/></td>
 			<td><input type="submit" name="Modifer" value="Modifer" /></td>
 	</table>
-	</tr>
+	</tr>	
 </form>
 
 <form action="modifierCompte.php" method="POST">

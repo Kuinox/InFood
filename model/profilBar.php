@@ -2,7 +2,7 @@
 if(isset($_SESSION['user'])) { //TODO completer liens ?>
 
 <div id="profilButton" class="profilButton" onclick="profilBar(this)">
-    IMAGE !
+    <img src="https://static.dealabs.com/images/all/no_image_profil.png" style="height:100%;"/>
 
 
     <div class="arrow arrow-up">
