@@ -14,7 +14,7 @@ function applyToAllProduct($ressource, PDO $bdd, $columns, $code) {// run a func
     //echo "0\n";
     include("../SQL/FUNCTIONS/prep_inject.php");
     $bdd->beginTransaction();
-    while($id<$nb_product) { //!feof($ressource)
+    while($id-1<$nb_product) { //!feof($ressource)
         if(($id+1)%$percent == 0) {
             $percentage = 100*(round(($id+1)/$nb_product, 3));
             $bdd->query("UPDATE bdd_status SET progress=$percentage");
@@ -24,7 +24,11 @@ function applyToAllProduct($ressource, PDO $bdd, $columns, $code) {// run a func
             $bdd->beginTransaction();
         }
         $id++;
-        $product = getProduct($ressource, $columns);
+        try {
+            $product = getProduct($ressource, $columns);
+        } catch (ErrorException $e) {
+            break;
+        }
         try {
             $code($bdd, $product, $prep);//injection magique
         } catch (PDOException $e) {

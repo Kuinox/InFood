@@ -1,5 +1,6 @@
 <?php
-function recherche(PDO $bdd, $input, $entry="") {
+include("rechercheToPattern.php");
+function recherche(PDO $bdd, $entry="") {
     if (empty($entry) && !isset($_GET['type'])) {
         throw new ErrorException("recherche called with no type");
     }
@@ -22,9 +23,8 @@ function recherche(PDO $bdd, $input, $entry="") {
                       FROM aliment a
                       LEFT OUTER JOIN generic_name g
                       ON g.id = a.generic_name_id
-                      WHERE a.name_aliment LIKE '$input' OR g.label LIKE'$input'
+                      WHERE ".rechercheToPattern("a.name_aliment")."  OR ".rechercheToPattern("g.label")."
                       ORDER BY a.name_aliment ASC;";
-
             break;
         case 'additive':
         case 'ingredient':
@@ -34,9 +34,10 @@ function recherche(PDO $bdd, $input, $entry="") {
         case 'categorie':
         case 'packaging':
         case 'generic_name':
+
             $query = "SELECT id, label
                       FROM $type
-                      WHERE label LIKE '$input'
+                      WHERE label LIKE ".rechercheToPattern("label")."
                       ORDER BY label ASC";
             break;
         case 'aliment_additive':

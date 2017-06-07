@@ -8,7 +8,9 @@ body{
     background-color: #4e5d66;
     color: white;
 }
-
+img {
+  align-self: baseline;
+}
 .dummy {
     padding-top: 100%;
 }

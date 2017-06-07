@@ -14,6 +14,9 @@ class OnlineProduct {
         } else {
             $this->_images = false;
         }
+        echo "<pre>";
+        print_r($this->_product);
+        echo "</pre>";
     }
     private function getProductObject($barcode) {
         $url  ="http://world.openfoodfacts.org/api/v0/product/$barcode.json";
@@ -35,7 +38,7 @@ class OnlineProduct {
         return $data['product'];
     }
 
-    function display($image) {
+    function displayImage($image) {
         if(isset($this->_images[$image])) {
             echo "<img id='$image' src='".current($this->_images[$image]['display'])."'/>";
         }
