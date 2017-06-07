@@ -1,6 +1,6 @@
 <?php
-include(__DIR__."/../controller/SQL/FUNCTIONS/connect.php");
 include(__DIR__."/../controller/functions/fonction_modifier_compt.php");
+include(__DIR__."/../controller/SQL/FUNCTIONS/connect.php");
 include(__DIR__."/modifierCompte.php");
 var_dump($_SESSION['user']);
 if(isset($_POST['action'])) {
@@ -10,13 +10,14 @@ if(isset($_POST['action'])) {
 	} else {
     $prep = $bdd->prepare ("SELECT id_user FROM user WHERE email=? OR pseudo = ?");
     $prep->execute (array($_SESSION['user']['email'], $_SESSION['user']['pseudo']));
-    if ($prep->rowCount()>1) {
+    if ($prep->rowCount()<2) {
 		$_SESSION['user'][$var] = $_POST[$var];
 		updateUser($bdd);
     }else{
     echo "pseudo ou email deja utiliser";
   }
   }
+  var_dump($_SESSION['user']);
 } else {
 
 }

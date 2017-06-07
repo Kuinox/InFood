@@ -2,7 +2,7 @@
 			$id = $_SESSION['user']['pseudo'];
 ?>
 
-<form action= "<?php echo $path ?>user\?tab=parametre&id=<?php echo $id ?>" method="POST">
+<form action= "<?php echo $path ?>user\?tab=parametre&id=" method="POST">
 	<table>
 		<tr>
 			<td><input type="text" name="pseudo" placeholder="Nouveau Pseudo"/></td>
@@ -12,7 +12,7 @@
 		</tr>
 	</table>
 </form>
-<form action= "<?php echo $path ?>user\?tab=parametre&id=<?php echo $id ?>" method="POST">
+<form action= "<?php echo $path ?>user\?tab=parametre&id=" method="POST">
 	<table>
 		<tr>
 			<td><input type="text" name="email" placeholder="Nouveau email"/></td>
@@ -22,7 +22,7 @@
 		</tr>
 	</table>
 </form>
-<form action= "<?php echo $path ?>user\?tab=parametre&id=<?php echo $id ?>" method="POST">
+<form action= "<?php echo $path ?>user\?tab=parametre&id=" method="POST">
 	<table>
 		<tr>
 			<td><input type="text" name="height" placeholder="Nouveau height"/></td>
@@ -32,7 +32,7 @@
 		</tr>
 	</table>
 </form>
-<form action="<?php echo $path ?>user\?tab=parametre&id=<?php echo $id ?>" method="POST">
+<form action="<?php echo $path ?>user\?tab=parametre&id=" method="POST">
 	<table>
 		<tr>
 			<td><input type="text" name="weight" placeholder="Nouveau weight"/></td>
@@ -42,7 +42,7 @@
 		</tr>
 	</table>
 </form>
-<form action="<?php echo $path ?>user\?tab=parametre&id=<?php echo $id ?>" method="POST">
+<form action="<?php echo $path ?>user\?tab=parametre&id=" method="POST">
 	<table>
 		<tr>
 			<td><input type="password" name="aPassword" placeholder="acien mot de passe"/></td>
