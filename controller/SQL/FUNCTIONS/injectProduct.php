@@ -2,10 +2,6 @@
 include_once("../SQL/FUNCTIONS/callThenReturn.php");
 include_once("../CSV_FUNCTIONS/sortNutriment.php");
 function injectProduct(PDO $bdd, $product, $prep, $update=false) {//SELECT id INTO id_val FROM nutriment WHERE val = label;
-    foreach ($product as $key => $value) {
-        $product[$key] = addslashes($value);
-    }
-    //$indexes = [];
     $grade_id = $product['nutrition_grade_fr'];
     if (empty($grade_id)) {
         $grade_id = null;
@@ -62,18 +58,6 @@ function injectProduct(PDO $bdd, $product, $prep, $update=false) {//SELECT id IN
         }
         $num++;
     }
-
-    /*
-    foreach(explode(",", $product['states_tags']) as $key => $value) {//TODO: Load pic in database.
-        if ($value == 'en:photos-uploaded') {
-            $url = codeToURL($product['code'])."/front_fr.3.400.jpg"; // check all pic names
-            echo $url;
-            if (!Error404Checker($url)) {
-                echo "Found";
-            }
-            echo "</br>";
-        }
-    }*/
     return true;
 }
  ?>

@@ -10,43 +10,50 @@ if (!isset($_SESSION['user']) && !isset($_GET['id'])) {
     header("Location: $path");
     exit;
 }
+
 if (!isset($_GET['id'])) {
-    $_GET['id'] = $_SESSION['user']['pseudo'];
+    $id = $_SESSION['user']['pseudo'];
+    $proprio = true;
+} else {
+    $id = $_GET['id'];
+    $proprio = $_GET['id'] == $_SESSION['user']['pseudo'];
 }
-echo $_GET['id'];
-displayComments(getUserComment($bdd, $_GET['id']), true);
-include("../model/bot.php");
-ob_end_flush();
+if (isset($_GET['tab']) && $_GET['tab'] == "preference") {
+    $tab = "preference";
+} else if (isset($_GET['tab']) && $_GET['tab'] == "parametre"){
+    $tab = "parametre";
+}
+else {
+    $tab = "activite";
+}
 ?>
-
-
-<?php /*
-
-if(!isset($_GET['id']) && isset($_SESSION['user'])) {
-    $_GET['id'] = $_SESSION['user']['pseudo'];
-} //TODO: gerer le cas où il y a accès a la page mais pas connectée
-$proprio = isset($_SESSION['user']) && $_SESSION['user']['pseudo'] == $_GET['id'];
-$query = "SELECT c.* FROM user u JOIN comments c ON u.id_user = c.user_id_user WHERE u.pseudo = ?";
-$prep = $bdd->prepare($query);
-$prep->execute(array($_GET['id'])) or die ("Erreur BDD");
-$result = $prep->fetchAll(PDO::FETCH_ASSOC);
-
-echo $_GET['id'];
-?>
-<div>
-    <a href="?tab=activite">Activité</a>
-    <?php
+<div class="tab_container">
+    <div class="tab_profil <?php if($tab === "activite") echo "active"; ?>">
+        <a href="?tab=activite&id=<?php echo $id; ?>">Activité</a>
+    </div>
+     <?php
     if ($proprio) {
         ?>
-        <a href="?tab=preference">Préference alimentaire</a>
-        <a href="?tab=settings">Paramètres</a>
+        <div class="tab_profil <?php if($tab === "preference") echo "active"; ?>">
+            <a href="?tab=preference&id=<?php echo $id; ?>">Préference alimentaire</a>
+        </div>
+        <div class="tab_profil <?php if($tab === "parametre") echo "active"; ?>">
+            <a href="?tab=parametre&id=<?php echo $id; ?>">Paramètres</a>
+        </div>
         <?php
+
     }
      ?>
-
-</div>
-
-
-<?php
-include("model/bot.php");*/
+     <div>
+        Rechercher un membre:
+        <form  action="recherche_membres" method="GET">
+            <input type="text" name="id" />
+            <input type="submit" value="Rechercher" />
+        </form>
+     </div>
+</div> <?php
+echo $id;
+include("$tab.php");
+include("../model/bot.php");
+ob_end_flush();
 ?>

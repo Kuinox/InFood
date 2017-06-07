@@ -1,7 +1,7 @@
 <?php
 $prep = [];
 $prep['insert_aliment'] = $bdd->prepare ("CALL insert_aliment(?,?,?,?,?,?,?,?)");
-$prep['update_aliment'] = $bdd->prepare ("CALL insert_aliment(?,?,?,?,?,?,?,?)");
+$prep['update_aliment'] = $bdd->prepare ("CALL update_aliment(?,?,?,?,?,?,?,?)");
 $prep['additive'] = $bdd->prepare("CALL insert_additive( ?, ?)");
 $prep['brands'] = $bdd->prepare("CALL insert_brand(?,?)");
 $prep['packaging'] = $bdd->prepare("CALL insert_packaging(?,?)");

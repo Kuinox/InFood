@@ -19,15 +19,19 @@ function applyToAllProduct($ressource, PDO $bdd, $columns, $code) {// run a func
             $percentage = 100*(round(($id+1)/$nb_product, 3));
             $bdd->query("UPDATE bdd_status SET progress=$percentage");
             $bdd->commit();
-            //echo $percentage."\n";
-            echo "*****$id*******";
+            echo $percentage."\n";
             flush();
             $bdd->beginTransaction();
         }
         $id++;
-
         $product = getProduct($ressource, $columns);
-        $code($bdd, $product, $prep);//injection magique
+        try {
+            $code($bdd, $product, $prep);//injection magique
+        } catch (PDOException $e) {
+            echo "<pre>";
+            print_r($product);
+            echo "</pre>";
+        }
     }
     $bdd->commit();
     $bdd->query("UPDATE bdd_status SET updating=false");
