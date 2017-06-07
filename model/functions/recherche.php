@@ -39,7 +39,7 @@ function recherche(PDO $bdd, $entry="") {
                       FROM $type
                       WHERE label LIKE ".rechercheToPattern("label")."
                       ORDER BY label ASC";
-            break;
+                      break;
         case 'aliment_additive':
             $query ="   SELECT a.*
                         FROM aliment a
