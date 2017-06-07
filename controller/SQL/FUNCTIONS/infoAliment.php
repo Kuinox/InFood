@@ -41,9 +41,9 @@ function allergen(PDO $bdd, $id_aliment)
   $prep->execute(array($id_aliment)) or die("Failure");
   return $prep->fetchAll(PDO::FETCH_ASSOC);
 }
-function allergen(PDO $bdd, $id_aliment)
+function ingredients(PDO $bdd, $id_aliment)
 {
-  $query = "SELECT m.label, m.id FROM aliment a JOIN aliment_has_allergen am ON a.id_aliment = am.aliment_id_aliment JOIN  allergen m ON m.id = am.allergen_id_allergen WHERE a.id_aliment = ? ";
+  $query = "SELECT ingredients_aliment FROM aliment WHERE id_aliment = ? ";
   $prep = $bdd->prepare($query);
   $prep->execute(array($id_aliment)) or die("Failure");
   return $prep->fetchAll(PDO::FETCH_ASSOC);

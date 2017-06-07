@@ -11,6 +11,7 @@ function displayNutri($nutri)
 {
   echo '<div class="nutriment">';
   echo "<table>";
+  echo "nutriments : ";
   if (empty($nutri)) {
     echo "Champs non renseigné";
   }
@@ -85,6 +86,18 @@ function displayAllergen($allergen)
     }
   echo "</div>";
 }
-
+function displayIngredients($ingredients)
+{
+  echo '<div class="ingredients">';
+  echo "ingredients : ";
+  if (empty($ingredients)) {
+    echo "Champs non renseigné";
+  }
+  $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/allergen/?id=";
+  foreach ($ingredients as $key => $value) {
+      echo $value['ingredients_aliment'];
+    }
+  echo "</div>";
+}
 
  ?>

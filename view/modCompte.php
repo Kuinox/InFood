@@ -1,6 +1,6 @@
 <?php
 include ("../model/top.php");
 include ("../modifier_compte/modifierCompte.html");
-//include ("../controller/functions/modifcompte.php");
+//include ("../user\parametre.php");
 var_dump($_SESSION['user']);
 ?>
