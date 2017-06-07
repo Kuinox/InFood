@@ -5,7 +5,7 @@ include("controller/SQL/FUNCTIONS/select.php");
 include("model/functions/displayRecherche.php");
 include("model/functions/recherche.php");
 
-echo "<pre>";
+
 $result = select ($bdd, "categorie", "id", $_GET['id']);
 if (empty($result)) {
     echo "Catégorie introuvable !";
