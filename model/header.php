@@ -6,12 +6,12 @@
                         <a href="<?php echo $path ?>">In'Food</a>
                         <select name = "type" id="type">
                             <option value="aliment" selected>Produits</option>
-                            <option value="additive">Additif</option>
-                            <option value="ingredient">Ingredient</option>
-                            <option value="categorie">Categorie</option>
-                            <option value="allergen">Allergène</option>
+                            <option value="additive">Additifs</option>
+                            <option value="ingredient">Ingredients</option>
+                            <option value="categorie">Categories</option>
+                            <option value="allergen">Allergènes</option>
                             <option value="manufacturing_place">Lieu de fabrication</option>
-                            <option value="brand">Marque</option>
+                            <option value="brand">Marques</option>
                             <option value="packaging">Packaging</option>
                             <option value="generic_name">Nom générique</option>
                         </select>

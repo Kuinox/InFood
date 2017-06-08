@@ -29,7 +29,7 @@ function displayAdditives($additives)
 {
     include_once(__DIR__."/../../model/jsons/json_parse.php");
     echo '<div class="additives">';
-    echo "additif : ";
+    echo "additifs : ";
     if (empty($additives)) {
         echo "Champs non renseigné";
     }
@@ -68,7 +68,7 @@ function displayPackaging($packaging)
 function displayPlace($place)
 {
     echo '<div class="place">';
-    echo "manufacturing_place : ";
+    echo "Lieu de fabrication : ";
     if (empty($place)) {
         echo "Champs non renseigné";
     }

@@ -36,7 +36,7 @@ else {
     if ($proprio) {
         ?>
         <div class="tab_profil <?php if($tab === "preference") echo "active"; ?>">
-            <a href="?tab=preference&id=<?php echo $id; ?>">Préference alimentaire</a>
+            <a href="?tab=preference&id=<?php echo $id; ?>">Préferences alimentaire</a>
         </div>
 <?php }
     if($proprio || (isset($_SESSION['user']) && isset($_SESSION['user']['grade']) && $_SESSION['user']['grade'] =="admin")) {
