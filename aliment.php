@@ -47,10 +47,10 @@ if (empty($result)) {
 
 
     echo "Code Barre: ".$_GET['id'];
-<<<<<<< HEAD
+
     diplaysNote($note);
-    diplaysNbNote($nbNote); 
-=======
+    diplaysNbNote($nbNote);
+
     $product->displayLabelImage();
 >>>>>>> fb0b4291b99c4c6e442c91737e8914e0a9203826
     displayAllergen($allergen);
