@@ -45,6 +45,7 @@ if (empty($result)) {
 
 
     echo "Code Barre: ".$_GET['id'];
+    $product->displayLabelImage();
     displayAllergen($allergen);
     displayPlace($place);
     displayPackaging($packaging);
@@ -54,8 +55,9 @@ if (empty($result)) {
     displayNutri($nutri);
     displayGrade(grade($bdd, $id_aliment));
     displayLabel($product->getLabel());
+
     displayComments(getComments($bdd,$_GET['id']));
-    $product->displayLabelImage();
+
     include("view/afficherFormVoteComment.php");
 }
 include("model/bot.php");
