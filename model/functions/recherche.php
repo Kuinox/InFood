@@ -126,9 +126,7 @@ function recherche(PDO $bdd, $entry="") {
         case 'aliment_generic_name':
             $query ="   SELECT *
                         FROM aliment
-                        WHERE generic_name_id = $input
-
-            ";
+                        WHERE generic_name_id = ".$_GET['id'];
             //JOIN generic_name g
             //ON a.generic_name_id = g.id
             //WHERE g.id= $input
