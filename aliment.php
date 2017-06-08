@@ -52,7 +52,7 @@ if (empty($result)) {
     diplaysNbNote($nbNote);
 
     $product->displayLabelImage();
->>>>>>> fb0b4291b99c4c6e442c91737e8914e0a9203826
+
     displayAllergen($allergen);
     displayPlace($place);
     displayPackaging($packaging);
