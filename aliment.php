@@ -47,8 +47,12 @@ if (empty($result)) {
 
 
     echo "Code Barre: ".$_GET['id'];
+<<<<<<< HEAD
     diplaysNote($note);
     diplaysNbNote($nbNote); 
+=======
+    $product->displayLabelImage();
+>>>>>>> fb0b4291b99c4c6e442c91737e8914e0a9203826
     displayAllergen($allergen);
     displayPlace($place);
     displayPackaging($packaging);
@@ -60,7 +64,7 @@ if (empty($result)) {
     displayLabel($product->getLabel());
 
     displayComments(getComments($bdd,$_GET['id']));
-    $product->displayLabelImage();
+
     include("view/afficherFormVoteComment.php");
 }
 include("model/bot.php");

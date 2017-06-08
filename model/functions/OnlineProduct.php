@@ -16,7 +16,7 @@ class OnlineProduct {
             $this->_images = false;
         }
         $labels = dataLabels();
-        if (isset($labels["labels_tags"])) {
+        if (isset($this->_product["labels_tags"])) {
             foreach($this->_product["labels_tags"] as $value) {
                 $this->_label[] = $labels[$value];
             }
@@ -55,7 +55,6 @@ class OnlineProduct {
     }
 
     function displayLabelImage() {
-        var_dump($this->_label);
         foreach($this->_label as $label) {
             if(isset($label['image'])) {
                 echo "<img class='label' src='".$label['image']."' />";

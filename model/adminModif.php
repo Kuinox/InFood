@@ -1,23 +1,13 @@
-<?php
-$dsn = "mysql:dbname=infood; host=127.0.0.1; charset=utf8mb4";
-$user = "root";
-$password = "";
-try {
-    $bdd = new PDO($dsn, $user, $password);
-} catch (PDOException $e) {
-    echo 'Connexion échouée : ' . $e->getMessage();
-}
-$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-?>
-<form action="adminModif.php" method="post">
-<input type="text" name="name" placeholder="nom du personne"/>
+<form action="adminModif" method="post">
+<input type="text" name="name" placeholder="nom du personne pour modifier"/>
 <input type="submit" name="cher" value="Changer"/>
 </form>
 <?php
 session_start();
-//include("../SQL/FUNCTIONS/connect.php");//connexion au bdd
-if(isset($_POST["cher"])){
-$login = $_POST['name'];//protège les chars pour l'utiliser  dans une requête SQL
+//include("..../SQL/FUNCTIONS/connect.php");//connexion au bdd
+if(isset($_POST["cher"]))
+{$login = $_POST['name'];//protège les chars pour l'utiliser  dans une requête SQL
+$bdd=mysqli_connect("localhost","root","","infood");
 $query = "    SELECT
             u.id_user,
             u.pseudo,
@@ -38,6 +28,7 @@ $query = "    SELECT
               gu.grade_id_grade = g.id_grade
               WHERE u.pseudo= ?)";
 $prep = $bdd->prepare($query);
+
 $prep->execute(array($login)) or die ("Erreur BDD");
 
 if($prep->rowCount()>0) {//s'i nom existe
@@ -48,5 +39,4 @@ if($prep->rowCount()>0) {//s'i nom existe
     echo "wrong"; //affiche alerte
 }
 var_dump($_SESSION['userAd']);
-}
-?>
+}?>
