@@ -26,6 +26,7 @@ if (isset($_GET['tab']) && $_GET['tab'] == "preference") {
 else {
     $tab = "activite";
 }
+
 ?>
 <div class="tab_container">
     <div class="tab_profil <?php if($tab === "activite") echo "active"; ?>">
@@ -52,7 +53,7 @@ else {
         </form>
      </div>
 </div> <?php
-echo $id;
+
 include("$tab.php");
 include("../model/bot.php");
 ob_end_flush();
