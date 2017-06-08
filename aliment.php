@@ -27,12 +27,31 @@ if (empty($result)) {
     $product->displayImage("ingredients");
 
     displayName($result);
+    if ($pref->getEnable()) {
+        if ($pref->isPrefAdded($_GET['id'])) {
+            echo "<form action='' method='POST'>
+                        <input type='hidden' name='action' value='delPref'/>
+                        <input type='hidden' name='id' value='".$_GET['id']."'/>
+                        <input type='submit' value=\"Supprimer de la l'iste des indésirables\" />
+                    </form>";
+        } else {
+            echo "<form action='' method='POST'>
+                        <input type='hidden' name='action' value='addPref'/>
+                        <input type='hidden' name='id' value='".$_GET['id']."'/>
+                        <input type='submit' value=\"ajouter en tant  qu'indésirable\" />
+                    </form>";
+        }
+    }
+
+
     echo "Code Barre: ".$_GET['id'];
     displayAllergen($allergen);
     displayPlace($place);
     displayPackaging($packaging);
     displayBrand($brand);
+    echo "test";
     displayIngredients($ingredients);
+    echo "test";
     displayAdditives($additives);
     displayNutri($nutri);
     displayGrade(grade($bdd, $id_aliment));

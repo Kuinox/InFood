@@ -14,7 +14,7 @@ if (empty($result)) {
     echo $result['0']['label']."<br>";
 }
 
-$recherche = recherche($bdd, $_GET['id'], "aliment_brand");
+$recherche = recherche($bdd, "aliment_brand");
 displayRecherche($recherche);
 include("model/bot.php");
 ?>

@@ -64,7 +64,7 @@ function recherche(PDO $bdd, $entry="") {
                         ON a.id_aliment = ai.aliment_id_aliment
                         JOIN ingredient i
                         ON i.id = ai.ingredient_id_ingredient
-                        WHERE i.id= '$input'
+                        WHERE i.id= '".$_GET['id']."'
                         ORDER BY i.label ASC
             ";
             break;
@@ -75,7 +75,7 @@ function recherche(PDO $bdd, $entry="") {
                         ON a.id_aliment = ab.aliment_id_aliment
                         JOIN brand b
                         ON b.id = ab.brand_id_brand
-                        WHERE b.id= '$input'
+                        WHERE b.id= '".$_GET['id']."'
                         ORDER BY b.label ASC
             ";
             break;
@@ -86,7 +86,7 @@ function recherche(PDO $bdd, $entry="") {
                         ON a.id_aliment = am.aliment_id_aliment
                         JOIN manufacturing_place m
                         ON m.id = am.manufacturing_place_id_manufacturing_place
-                        WHERE m.id= '$input'
+                        WHERE m.id= '".$_GET['id']."'
                         ORDER BY m.label ASC
             ";
             break;
@@ -97,7 +97,7 @@ function recherche(PDO $bdd, $entry="") {
                         ON a.id_aliment = al.aliment_id_aliment
                         JOIN allergen l
                         ON l.id = al.allergen_id_allergen
-                        WHERE l.id= '$input'
+                        WHERE l.id= '".$_GET['id']."'
                         ORDER BY l.label ASC
             ";
             break;
@@ -108,7 +108,7 @@ function recherche(PDO $bdd, $entry="") {
                         ON a.id_aliment = ac.aliment_id_aliment
                         JOIN categorie c
                         ON c.id = ac.categorie_id_categorie
-                        WHERE c.id= '$input'
+                        WHERE c.id= '".$_GET['id']."'
                         ORDER BY c.label ASC
             ";
         break;
@@ -119,7 +119,7 @@ function recherche(PDO $bdd, $entry="") {
                         ON a.id_aliment = ap.aliment_id_aliment
                         JOIN packaging p
                         ON p.id = ap.packaging_id_packaging
-                        WHERE p.id= '$input'
+                        WHERE p.id= '".$_GET['id']."'
                         ORDER BY p.label ASC
             ";
             break;

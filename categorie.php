@@ -13,7 +13,7 @@ if (empty($result)) {
     echo $result['0']['label']."<br>";
 }
 
-$recherche = recherche($bdd, $_GET['id'], "aliment_categorie");
+$recherche = recherche($bdd, "aliment_categorie");
 displayRecherche($recherche);
 include("model/bot.php");
 ?>
