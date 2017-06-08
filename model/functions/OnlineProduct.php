@@ -47,14 +47,15 @@ class OnlineProduct {
         }
     }
     function getLabel() {
-        if (isset($this->_product['label'])) {
-            return $this->_product['label'];
+        if (isset($this->_product['labels'])) {
+            return $this->_product['labels'];
         } else {
             return "Aucun";
         }
     }
 
     function displayLabelImage() {
+        var_dump($this->_label);
         foreach($this->_label as $label) {
             if(isset($label['image'])) {
                 echo "<img class='label' src='".$label['image']."' />";
