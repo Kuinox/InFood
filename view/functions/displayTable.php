@@ -107,7 +107,21 @@ function displayIngredients($ingredients) // pas censé marché
     echo "Champs non renseigné";
   }
   foreach ($ingredients as $key => $value) {
-      echo $value['ingredients_aliment'];
+      $formatted = "";
+      $first = true;
+      foreach (str_split($value['ingredients_aliment']) as $values) {
+          if($values==="_") {
+              if($first) {
+                  $first = false;
+                  $values = "<u>";
+              } else {
+                  $first = true;
+                  $values = "</u>";
+              }
+          }
+          $formatted .= $values;
+      }
+      echo $formatted;
     }
   echo "</div>";
 }

@@ -37,6 +37,9 @@ else {
         <div class="tab_profil <?php if($tab === "preference") echo "active"; ?>">
             <a href="?tab=preference&id=<?php echo $id; ?>">Préference alimentaire</a>
         </div>
+<?php }
+    if($proprio || (isset($_SESSION['user']) && isset($_SESSION['user']['grade']) && $_SESSION['user']['grade'] =="admin")) {
+        ?>
         <div class="tab_profil <?php if($tab === "parametre") echo "active"; ?>">
             <a href="?tab=parametre&id=<?php echo $id; ?>">Paramètres</a>
         </div>

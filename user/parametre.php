@@ -15,7 +15,7 @@ if(isset($_POST['action'])) {
         }else{
             $_SESSION['user'][$var] = $_POST[$var];
             updateUser($bdd);
-    }
+        }
     }
     var_dump($_SESSION['user']);
 } else {

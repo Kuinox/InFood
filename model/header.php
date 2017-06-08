@@ -20,9 +20,11 @@
                         <a href="todo"><img src="TODO"/></a> <!--TODO: IMAGE-->
                     </form>
                     <?php
+                    include(__DIR__."/../controller/SQL/functions/connect.php");
                     include(__DIR__."/../controller/functions/deconnexion.php");
                     include(__DIR__."/profilBar.php");
                     include(__DIR__."/connexionInscription.php");
+                    include(__DIR__."/../controller/functions/preference.php");
                     ?>
                 </div>
             </div>
