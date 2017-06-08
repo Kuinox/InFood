@@ -132,5 +132,22 @@ function displayLabel($labels) {
     echo $labels;
     echo "</div>";
 }
-
+function diplaysNote($note)
+{
+    echo '<div class="note">';
+    echo "note moyenne : ";
+    if(isset($note) ){
+        echo "Ce produit n'a pas encore de note";
+    }else{
+    echo $note['AVG (note)'];
+    }
+    echo "</div>";
+}
+function diplaysNbNote($nbNote)
+{
+    echo '<div class="nbNote">';
+    echo "nombre de notes : ";
+    echo $nbNote['count(note)'];
+    echo "</div>";
+}
  ?>

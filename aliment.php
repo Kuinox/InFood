@@ -21,6 +21,8 @@ if (empty($result)) {
     $place = manufact_place($bdd,$id_aliment);
     $allergen = allergen($bdd,$id_aliment);
     $ingredients = ingredients($bdd, $id_aliment);
+    $note = notes($bdd, $id_aliment);
+    $nbNote = nbNotes($bdd, $id_aliment);
     $product = new OnlineProduct($bdd, $_GET['id']);
     $product->displayImage("front");
     $product->displayImage("nutrition");
@@ -45,6 +47,8 @@ if (empty($result)) {
 
 
     echo "Code Barre: ".$_GET['id'];
+    diplaysNote($note);
+    diplaysNbNote($nbNote); 
     displayAllergen($allergen);
     displayPlace($place);
     displayPackaging($packaging);
@@ -54,6 +58,7 @@ if (empty($result)) {
     displayNutri($nutri);
     displayGrade(grade($bdd, $id_aliment));
     displayLabel($product->getLabel());
+
     displayComments(getComments($bdd,$_GET['id']));
     $product->displayLabelImage();
     include("view/afficherFormVoteComment.php");

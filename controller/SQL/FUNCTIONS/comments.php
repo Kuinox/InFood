@@ -22,15 +22,23 @@ function add_comments(PDO $bdd,$text,$id,$id_user){
 function add_note(PDO $bdd,$note,$id,$id_user){
     $query = "INSERT INTO notes (aliment_id_aliment,note,user_id_user)
         VALUES (?, ?, ?);";
-    $prep = $bdd->prep($query);
+    $prep = $bdd->prepare($query);
     $prep->execute(array($id, $note, $id_user)) or die("Erreur BDD");
 }
 
-function notes(PDO $bdd,$like){
-    $query = "SELECT AVG (note) FROM notes WHERE aliment_id_aliment LIKE ?";
-    $prep = $bdd->prep($query);
-    $prep->execute(array($like)) or die("Erreur BDD");
+function notes(PDO $bdd,$id_aliment){
+    $query = "SELECT AVG (note) FROM notes WHERE aliment_id_aliment = ?";
+    $prep = $bdd->prepare($query);
+    $prep->execute(array($id_aliment)) or die("Erreur BDD");
     $select = $prep->fetch(PDO::FETCH_ASSOC);
     return $select;
 }
+function nbNotes(PDO $bdd,$id_aliment){
+    $query = "SELECT count(note) FROM notes WHERE aliment_id_aliment = ?";
+    $prep = $bdd->prepare($query);
+    $prep->execute(array($id_aliment)) or die("Erreur BDD");
+    $select = $prep->fetch(PDO::FETCH_ASSOC);
+    return $select;
+}
+
 ?>
