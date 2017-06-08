@@ -9,14 +9,13 @@ function modifierCompte(PDO $bdd, $toto, $nouVal)
 	{
 	  $id = $_SESSION['user']['id_user'];
 		$_SESSION['user']["$toto"]=$nouVal;
-
+		var_dump($_SESSION['user']);
 	//  var_dump($id);
 		if ($toto == "password")
 		{
 			$nouVal=hash('sha256',$_POST["password"]);//hash mot de passe
 		}
 	  $requete = $bdd->query("UPDATE user SET $toto='$nouVal' WHERE id_user='$id'");
-	var_dump($_SESSION['user']);
 	}
 // verifier si le nom existe ou nom
 function verifierEtModifer(PDO $bdd, $toto, $nauveaunom)
@@ -28,7 +27,7 @@ function verifierEtModifer(PDO $bdd, $toto, $nauveaunom)
 	   /* Récupère le nombre de lignes qui correspond à la requête SELECT */
 	if ($res->fetchColumn() > 0) {
 			// le $nauveaunom existe
-			echo " le nom existe";
+			echo " le $pseumail existe";
 		  }
 
 	   /* Aucune ligne ne correspond -- faire quelque chose d'autre */
@@ -39,7 +38,7 @@ function verifierEtModifer(PDO $bdd, $toto, $nauveaunom)
 	 	  // foreach ($bdd->query($sql) as $row) {
 			// 	  print $row['pseudo'] . " est supprimer \n";
 			$_SESSION['user']["$pseumail"] = $nauveaunom;
-			
+			echo" le nouveau $pseumail est $nauveaunom";
 	var_dump($_SESSION['user']);
 		  // }
 	}
