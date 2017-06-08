@@ -11,7 +11,7 @@ $result = select ($bdd, "brand", "id", "$id");
 if (empty($result)) {
     echo "Marque introuvable !";
 } else {
-    echo $result['0']['label']."<br>";
+    echo "<h1>".$result['0']['label']."</h1><br>";
 }
 
 $recherche = recherche($bdd, "aliment_brand");

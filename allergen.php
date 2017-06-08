@@ -9,7 +9,7 @@ $result = select ($bdd, "allergen", "id", $_GET['id']);
 if (empty($result)) {
     echo "Allergène introuvable !";
 } else {
-    echo $result['0']['label']."<br>";
+    echo "<h1>".$result['0']['label']."</h1><br>";
 }
 $recherche = recherche($bdd, "aliment_allergen");
 displayRecherche($recherche);

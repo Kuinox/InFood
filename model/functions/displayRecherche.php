@@ -13,6 +13,9 @@ function displayRecherche(array $output) {
     foreach ($output as $key => $value) {
         $id = array_shift($value);
         $name = array_shift($value);
+        if ($type==="manufacturing_place") {
+            $type="lieudefabrication";
+        }
         echo "<a href=$path$type?id=$id>$name</a><br>";
     }
 }

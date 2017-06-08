@@ -11,7 +11,7 @@ $result = $prep->fetchAll(PDO::FETCH_ASSOC);
 if (empty($result)) {
     echo "Nom génerique introuvable !";
 } else {
-    echo $result['0']['label']."<br>";
+    echo "<h1>".$result['0']['label']."</h1><br>";
 }
 
 $recherche = recherche($bdd, $_GET['id'], "aliment_generic_name");

@@ -11,10 +11,10 @@ $result = select ($bdd, "packaging", "id", "$id");
 if (empty($result)) {
     echo "Packaging introuvable !";
 } else {
-  echo $result['0']['label']."<br>";
+  echo "<h1>".$result['0']['label']."</h1><br>";
 }
 
-$recherche = recherche($bdd, $_GET['id'], "aliment_packaging");
+$recherche = recherche($bdd, "aliment_packaging");
 displayRecherche($recherche);
 include("model/bot.php");
 ?>

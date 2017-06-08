@@ -12,10 +12,10 @@ $result = select ($bdd, "manufacturing_place", "id", "$id");
 if (empty($result)) {
     echo "Lieu de fabrication introuvable !";
 } else {
-    echo $result['0']['label']."<br>";
+    echo "<h1>".$result['0']['label']."</h1><br>";
 }
 
-$recherche = recherche($bdd, $_GET['id'], "aliment_manufacturing_place");
+$recherche = recherche($bdd, "aliment_manufacturing_place");
 displayRecherche($recherche);
 include("model/bot.php");
 ?>

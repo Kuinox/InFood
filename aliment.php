@@ -49,9 +49,7 @@ if (empty($result)) {
     displayPlace($place);
     displayPackaging($packaging);
     displayBrand($brand);
-    echo "test";
     displayIngredients($ingredients);
-    echo "test";
     displayAdditives($additives);
     displayNutri($nutri);
     displayGrade(grade($bdd, $id_aliment));

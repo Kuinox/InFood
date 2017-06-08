@@ -6,6 +6,7 @@ class Preference {
     function __construct(PDO $bdd) {
         if(!isset($_SESSION['user'])) {
             $this->_enable = false;
+            return;
         } else {
             $this->_enable = true;
         }
