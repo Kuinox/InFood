@@ -91,6 +91,4 @@ if(isset($_SESSION['user']))
 		echo "i am sorry";
 	}
 }
-/**************/
-
 	?>
