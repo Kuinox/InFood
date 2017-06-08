@@ -14,8 +14,7 @@ if(isset($_SESSION['user'])) { //TODO completer liens ?>
         <li> <a href="<?php echo "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/"."user" ?>"><?php echo $_SESSION['user']['pseudo']; ?> </a></li>
         <li> <a> lien vers le panier</a></li>
         <li> <?php include("deconnexion.php"); ?> </li>
-        <li> <a href="./recherche_magasin_proche.php" target="_blank"> Recherche Mg Proche </a></li>
-        <li> <a href="./controller/supprimerMonCompte.php"> Supprimer Mon Compte</a></li>
+        <li> <a href="./recherche_magasin_proche.php" target="_blank"> Recherche de magazin Proche </a></li>
 
 <?php   if ($_SESSION['user']['name_grade'] == 'admin') {
             $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/";?>

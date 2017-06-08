@@ -40,7 +40,7 @@ if(isset($_POST['action'])) {
         }else{
             $_SESSION['user'][$var] = $_POST[$var];
             updateUser($bdd);
-            echo "information changé";
+            echo "L'information à bien été changée";
     }
     }
 
