@@ -31,8 +31,12 @@ if($prep->rowCount()>0) {//s'il existe mot de passe et email -> connexion réuss
     $data = $prep->fetch(PDO::FETCH_ASSOC); //Récupère la ligne suivante d'un jeu de résultats PDO
     $_SESSION['user2']= $data;
     var_dump($_SESSION['user2']);
+<<<<<<< HEAD
     echo "le nom est existe!!";
     include("../view/adminModifvue2.php");
+=======
+    echo "sucess";
+>>>>>>> feature/sirina
 } else { //si le mot de passe et email n'existe pas -> connexion échoué
     echo "le nom n'existe pas"; //affiche alerte
 }
