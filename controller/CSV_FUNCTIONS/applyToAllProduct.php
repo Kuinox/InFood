@@ -15,6 +15,11 @@ function applyToAllProduct($ressource, PDO $bdd, $columns, $code) {// run a func
     //echo "0\n";
     include("../SQL/FUNCTIONS/prep_inject.php");
     foreach(dataLabels() as $value) {
+        if ($value['id'] === "ru:ещё-вкуснее") {
+            var_dump($value);
+        }
+    }
+    foreach(dataLabels() as $value) {
         $prep['init_label']->execute(array($value['name'], $value['url'], $value['id']));
     }
     $bdd->beginTransaction();
@@ -39,6 +44,8 @@ function applyToAllProduct($ressource, PDO $bdd, $columns, $code) {// run a func
             echo "<pre>";
             print_r($product);
             echo "</pre>";
+            var_dump($e);
+            flush();
         }
     }
     $bdd->commit();
