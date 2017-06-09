@@ -14,10 +14,13 @@ function displayComments($com, $displayContext=false) {
         }
       echo "</td></tr><tr><td>";
       echo $value['text_comment'];
-      echo '</td><td><form action = "" method="POST">
-      <input type="hidden" name = "id_comment" value = "'.$value['id'].'">
-      <input type="image" src="'.$path.'ressources/poubelle.png" alt="Submit">
-      </form></td></tr>';
+
+    if ($_SESSION['user']['id_user'] == $value['user_id_user']) {
+        echo '</td><td><form action = "" method="POST">
+        <input type="hidden" name = "id_comment" value = "'.$value['id'].'">
+        <input type="image" src="'.$path.'ressources/poubelle.png" alt="Submit">
+        </form></td></tr>';
+    }
     }
         echo "</table>";
 }
