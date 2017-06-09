@@ -15,10 +15,12 @@ if(isset($_POST['action'])) {
            if($password == $cpwd){
               $_SESSION['user']['password'] = hash("sha256",$password);
               updateUser($bdd);
-              echo "mot de passe changer";
+              echo "mot de passe changé";
           }else {
               echo "champs non valide";
           }
+        } else{
+           echo "acien mot de passe non valide";
         }
     } else {
         if($var == 'email'){
