@@ -28,5 +28,4 @@ function profilBar(div) {
             closeBar(div);
         }
     }
-
 }
