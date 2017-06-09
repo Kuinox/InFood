@@ -9,4 +9,6 @@ $prep['manufacturing_places'] = $bdd->prepare("CALL insert_manufacturing_place(?
 $prep['allergens'] = $bdd->prepare("CALL insert_allergen(?,?)");
 $prep['categories'] = $bdd->prepare("CALL insert_categorie(?,?)");
 $prep['FK_nutriment'] = $bdd->prepare( "CALL insert_FK_aliment_has_nutriment(?,?,?)");
+$prep['init_label'] = $bdd->prepare("INSERT INTO label (label, image_link, id_nom) VALUES (?,?,?)");
+$prep['label'] = $bdd->prepare("INSERT INTO aliment_has_label (aliment_id_aliment, label_id_nom) VALUES (?,?)");
 ?>

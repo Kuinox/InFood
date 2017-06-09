@@ -3,6 +3,7 @@ include_once("../SQL/FUNCTIONS/injectProduct.php");
 include_once("../SQL/FUNCTIONS/updateProduct.php");
 include_once("../CSV_FUNCTIONS/getProduct.php");
 include_once("../CSV_FUNCTIONS/countLine.php");
+include_once(__DIR__."/../../model/jsons/json_parse.php");
 function applyToAllProduct($ressource, PDO $bdd, $columns, $code) {// run a function "code" on all the product of the CSV.
     $nb_product = countLine();
     $percent = floor($nb_product/10000);
@@ -13,6 +14,14 @@ function applyToAllProduct($ressource, PDO $bdd, $columns, $code) {// run a func
     $id=0;
     //echo "0\n";
     include("../SQL/FUNCTIONS/prep_inject.php");
+    foreach(dataLabels() as $value) {
+        if ($value['id'] === "ru:ещё-вкуснее") {
+            var_dump($value);
+        }
+    }
+    foreach(dataLabels() as $value) {
+        $prep['init_label']->execute(array($value['name'], $value['url'], $value['id']));
+    }
     $bdd->beginTransaction();
     while($id-1<$nb_product) { //!feof($ressource)
         if(($id+1)%$percent == 0) {
@@ -35,6 +44,8 @@ function applyToAllProduct($ressource, PDO $bdd, $columns, $code) {// run a func
             echo "<pre>";
             print_r($product);
             echo "</pre>";
+            var_dump($e);
+            flush();
         }
     }
     $bdd->commit();
