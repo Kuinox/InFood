@@ -54,7 +54,7 @@ class OnlineProduct {
         }
     }
 
-    function displayLabelImage() {
+    function getLabelImage() {
         foreach($this->_label as $label) {
             if(isset($label['image'])) {
                 echo "<img class='label' src='".$label['image']."' />";
