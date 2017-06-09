@@ -23,6 +23,7 @@ if (empty($result)) {
     $ingredients = ingredients($bdd, $id_aliment);
     $note = notes($bdd, $id_aliment);
     $nbNote = nbNotes($bdd, $id_aliment);
+    $labels = label($bdd, $id_aliment);
     $product = new OnlineProduct($bdd, $_GET['id']);
     $product->displayImage("front");
     $product->displayImage("nutrition");
@@ -51,17 +52,17 @@ if (empty($result)) {
     diplaysNote($note);
     diplaysNbNote($nbNote);
 
-    $product->displayLabelImage();
-
+    displayLabelImage($labels);
     displayAllergen($allergen);
     displayPlace($place);
     displayPackaging($packaging);
     displayBrand($brand);
     displayIngredients($ingredients);
     displayAdditives($additives);
+    displayLabel($labels);
     displayNutri($nutri);
     displayGrade(grade($bdd, $id_aliment));
-    displayLabel($product->getLabel());
+
 
     displayComments(getComments($bdd,$_GET['id']));
 

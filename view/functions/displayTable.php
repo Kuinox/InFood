@@ -126,10 +126,23 @@ function displayIngredients($ingredients) // pas censé marché
   echo "</div>";
 }
 
+function displayLabelImage($labels) {
+    echo '<div class="labelImage">';
+    foreach($labels as $label) {
+        echo "<img src='".$label['image_link']."'/>";
+    }
+    echo "</div>";
+}
 function displayLabel($labels) {
     echo '<div class="label">';
     echo "Labels: ";
-    echo $labels;
+    if(empty($labels)) {
+        echo "Champ non renseigné";
+    }
+
+    foreach($labels as $label) {
+        echo $label['label'].", ";
+    }
     echo "</div>";
 }
 function diplaysNote($note)
