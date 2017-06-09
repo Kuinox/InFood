@@ -1,5 +1,5 @@
 <?php $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/";
-			$user = $_SESSION['user'];
+			$user = $_SESSION['user2'];
 ?>
 
 <form action= "<?php echo $path ?>user\?tab=parametre&id=" method="POST">
@@ -39,6 +39,16 @@
 			<td><input type="text" name="weight" placeholder="Nouveau weight"/></td>
 			<td><input type="submit" name="Modifer" value="Modifer" />
 					<input type="hidden" name="action" value="weight" />
+			</td>
+		</tr>
+	</table>
+</form>
+<form action="<?php echo $path ?>user\?tab=parametre&id=" method="POST">
+	<table>
+		<tr><?php echo $user['name_grade'] ?>
+			<td><input type="text" name="grade" placeholder="grade user"/></td>
+			<td><input type="submit" name="Modifer" value="grade" />
+					<input type="hidden" name="action" value="grade" />
 			</td>
 		</tr>
 	</table>
