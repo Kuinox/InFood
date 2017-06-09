@@ -20,7 +20,7 @@ function injectProduct(PDO $bdd, $product, $prep, $update=false) {//SELECT id IN
                                             $product['serving_size']
                                         ));
     $labels = explode(",", $product['labels_tags']);
-    if(!empty($labels)) {
+    if(!empty($product['labels_tags'])) {
         foreach($labels as $value) {
             $prep['label']->execute(array($product['code'], $value));
         }

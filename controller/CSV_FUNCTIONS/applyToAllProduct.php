@@ -14,13 +14,10 @@ function applyToAllProduct($ressource, PDO $bdd, $columns, $code) {// run a func
     $id=0;
     //echo "0\n";
     include("../SQL/FUNCTIONS/prep_inject.php");
+
     foreach(dataLabels() as $value) {
-        if ($value['id'] === "ru:ещё-вкуснее") {
-            var_dump($value);
-        }
-    }
-    foreach(dataLabels() as $value) {
-        $prep['init_label']->execute(array($value['name'], $value['url'], $value['id']));
+        $image = isset($value['image']) ? $value['image'] : NULL;
+        $prep['init_label']->execute(array($value['name'], $image , $value['id']));
     }
     $bdd->beginTransaction();
     while($id-1<$nb_product) { //!feof($ressource)

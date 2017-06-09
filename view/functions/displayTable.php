@@ -95,7 +95,7 @@ function displayAllergen($allergen)
 
 function displayGrade($grade) {
     if ($grade !== null) {
-        echo "<img src='https://static.openfoodfacts.org/images/misc/nutriscore-".strtolower($grade).".svg' />";
+        echo "<img alt='nutri_score: $grade' src='https://static.openfoodfacts.org/images/misc/nutriscore-".strtolower($grade).".svg' />";
     }
 }
 
@@ -139,10 +139,12 @@ function displayLabel($labels) {
     if(empty($labels)) {
         echo "Champ non renseigné";
     }
-
+    $output = [];
+    $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/label/?id=";
     foreach($labels as $label) {
-        echo $label['label'].", ";
+        $output[] = "<a href='".$path.$label['id_nom']."'>".$label['label']."</a>";
     }
+    echo implode(", ", $output);
     echo "</div>";
 }
 function diplaysNote($note)

@@ -14,6 +14,7 @@
                             <option value="brand">Marques</option>
                             <option value="packaging">Packaging</option>
                             <option value="generic_name">Nom générique</option>
+                            <option value="label">Labels</option>
                         </select>
                         <input type="text" name="recherche" placeholder="Rechercher sur In'Food"/>
                         <input class="icon" type="image" src="<?php echo $path; ?>ressources/logo.svg"/>

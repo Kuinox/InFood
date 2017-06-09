@@ -33,6 +33,12 @@ function recherche(PDO $bdd, $entry="") {
                       ORDER BY label ASC";
 
             break;
+        case 'label':
+            $query = "SELECT id_nom, label
+                      FROM $type
+                      WHERE ".rechercheToPattern("label")."
+                      ORDER BY label ASC";
+            break;
         case 'ingredient':
         case 'brand':
         case 'manufacturing_place':
@@ -40,6 +46,7 @@ function recherche(PDO $bdd, $entry="") {
         case 'categorie':
         case 'packaging':
         case 'generic_name':
+
 
             $query = "SELECT id, label
                       FROM $type
@@ -55,6 +62,17 @@ function recherche(PDO $bdd, $entry="") {
                         ON ad.id = aa.additive_id_additive
                         WHERE ad.id= '".$_GET['id']."'
                         ORDER BY ad.label ASC
+            ";
+            break;
+        case 'aliment_label':
+            $query ="   SELECT a.*
+                        FROM aliment a
+                        JOIN aliment_has_label al
+                        ON a.id_aliment = al.aliment_id_aliment
+                        JOIN label l
+                        ON l.id_nom = al.label_id_nom
+                        WHERE l.id_nom = '".$_GET['id']."'
+                        ORDER BY l.label ASC
             ";
             break;
         case 'aliment_ingredient':
