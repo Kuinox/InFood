@@ -33,7 +33,7 @@ if($prep->rowCount()>0) {//s'il existe mot de passe et email -> connexion réuss
     var_dump($_SESSION['user2']);
 
     echo "le nom est existe!!";
-    include("../view/adminModifvue2.php");
+    include(__DIR__."/../admin/admin_changer.php");
     echo "sucess";
 
 } else { //si le mot de passe et email n'existe pas -> connexion échoué
