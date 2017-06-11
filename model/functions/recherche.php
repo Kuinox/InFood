@@ -1,6 +1,7 @@
 <?php
 include("rechercheToPattern.php");
 function recherche(PDO $bdd, $entry="") {
+    $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/";
     if (empty($entry) && !isset($_GET['type'])) {
         throw new ErrorException("recherche called with no type");
     }
@@ -146,6 +147,11 @@ function recherche(PDO $bdd, $entry="") {
         }
     $result = $bdd->query($query) or die("erreur BDD");
     $output = $result->fetchAll(PDO::FETCH_ASSOC);
+    $nb_out = count($output);
+    if($nb_out == 0 ){
+        $debut = $_GET['debut'] - $nb_affichage_par_page;
+        header("Location: ".$path."/resultat_de_recherche?type=".$type."&recherche=".$_GET['recherche']."&debut=".$debut."");
+    }
     return $output;
 }
  ?>

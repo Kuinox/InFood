@@ -18,6 +18,7 @@ function displayRecherche(array $output) {
         }
         echo "<a href=$path$type?id=$id>$name</a><br>";
         }
+
     if ($_GET['debut'] == 0){
         $debut = $_GET['debut'] + $nb_result_p;
         echo "<a href=?type=".$type."&recherche=".$_GET['recherche']."&debut=".$debut.">Suivant</a>";
@@ -27,6 +28,7 @@ function displayRecherche(array $output) {
         $debut2 = $_GET['debut'] - $nb_result_p;
         echo "<a href=?type=".$type."&recherche=".$_GET['recherche']."&debut=".$debut2.">precedent</a>";
     }
+
 
 }
 
