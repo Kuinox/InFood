@@ -35,7 +35,7 @@ function displayAdditives($additives)
     }
     $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/additive/?id=";
     foreach ($additives as $key => $value) {
-        echo "<a href='".$path.$value['id']."'>".dataAdditives()[$value['label']]['name']. "</a> ";
+        echo "<a href='".$path.$value['id']."'>".$value['name']. "</a> ";
     }
     echo "</div>";
 }

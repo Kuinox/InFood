@@ -5,9 +5,15 @@ CREATE PROCEDURE insert_aliment (IN id VARCHAR(41), IN name VARCHAR(250),
     IN generic_name_char VARCHAR(500), IN grade_nutri CHAR(1), IN qty VARCHAR(1000),
     IN serving VARCHAR(1000))
 BEGIN
-    DECLARE generic_name INT;
-    IF generic_name_char IS NOT NULL THEN
-        CALL insert_generic_name(generic_name_char, generic_name);
+    DECLARE id_val INT;
+    SELECT id
+    INTO id_val
+    FROM generic_name
+    WHERE generic_name_char = label;
+    IF id_val IS NULL THEN
+        INSERT INTO generic_name (id, label)
+        VALUES(NULL, generic_name_char);
+        SELECT LAST_INSERT_ID() INTO id_val;
     END IF;
     INSERT INTO aliment (
             id_aliment,
@@ -23,7 +29,7 @@ BEGIN
             name,
             FROM_UNIXTIME(last_modification),
             ingredients,
-            generic_name,
+            id_val,
             grade_nutri,
             qty,
             serving);

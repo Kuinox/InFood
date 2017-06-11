@@ -26,8 +26,8 @@ function recherche(PDO $bdd, $entry="") {
                       WHERE ".rechercheToPattern("a.name_aliment")."  OR ".rechercheToPattern("g.label")."
                       ORDER BY a.name_aliment ASC;";
             break;
-        case 'additive':
-            $query = "SELECT id, label
+        case 'additives':
+            $query = "SELECT *
                       FROM $type
                       WHERE label LIKE '%".$_GET['recherche']."%'
                       ORDER BY label ASC";
@@ -53,15 +53,15 @@ function recherche(PDO $bdd, $entry="") {
                       WHERE ".rechercheToPattern("label")."
                       ORDER BY label ASC";
             break;
-        case 'aliment_additive':
+        case 'aliment_additives':
             $query ="   SELECT a.*
                         FROM aliment a
-                        JOIN aliment_has_additive aa
+                        JOIN aliment_has_additives aa
                         ON a.id_aliment = aa.aliment_id_aliment
-                        JOIN additive ad
-                        ON ad.id = aa.additive_id_additive
+                        JOIN additives ad
+                        ON ad.id = aa.additives_id
                         WHERE ad.id= '".$_GET['id']."'
-                        ORDER BY ad.label ASC
+                        ORDER BY a.name_aliment ASC
             ";
             break;
         case 'aliment_label':

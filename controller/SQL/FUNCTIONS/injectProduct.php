@@ -8,8 +8,9 @@ function injectProduct(PDO $bdd, $product, $prep, $update=false) {//SELECT id IN
     }
     $type = $update ? "update" : "insert";
     if (empty($product['generic_name'])) {
-        $product['generic_name'] = 'NULL';
+        $product['generic_name'] = null;
     }
+
     $prep[$type.'_aliment']->execute(array($product['code'],
                                             $product['product_name'],
                                             $product['last_modified_t'],
@@ -22,13 +23,13 @@ function injectProduct(PDO $bdd, $product, $prep, $update=false) {//SELECT id IN
     $labels = explode(",", $product['labels_tags']);
     if(!empty($product['labels_tags'])) {
         foreach($labels as $value) {
-            $prep['label']->execute(array($product['code'], $value));
+            $prep['labels']->execute(array($product['code'], $value));
         }
     }
 
     foreach (explode(',', $product['additives_tags']) as $key => $value) {
         if(!empty($value)) {
-            $prep['additive']->execute(array($product['code'], $value));
+            $prep['additives']->execute(array($product['code'], $value));
         }
     }
     if(!empty($product['brands'])) {

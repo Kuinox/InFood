@@ -6,14 +6,9 @@ function parser($data, $namefield) {
     }
     return $ouput;
 }
-function dataAdditives () {
-    $data = json_decode(file_get_contents(__DIR__."/additives.json"), true)['tags'];
+function dataJSON ($json_name) {
+    $data = json_decode(file_get_contents(__DIR__."/$json_name.json"), true)['tags'];
     return parser($data, 'id');
 }
-function dataLabels() {
-    $data = json_decode(file_get_contents(__DIR__."/../jsons/label.json"),true)['tags'];
-    return parser($data, 'id');
-}
-
 
 ?>

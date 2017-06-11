@@ -50,6 +50,7 @@ if($result['updating']) {
     /***********************************************
      *Drop then create the DB.                     *
      ***********************************************/
+
     include_once("../CSV_FUNCTIONS/applyToAllProduct.php");
     include_once("../SQL/FUNCTIONS/sqlScriptInject.php");
     include_once("../SQL/FUNCTIONS/callThenReturn.php");

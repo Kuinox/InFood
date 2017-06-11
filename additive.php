@@ -6,9 +6,10 @@ include("model/functions/displayRecherche.php");
 include("model/functions/recherche.php");
 include("model/jsons/json_parse.php");
 echo "<br>";
-$result = select ($bdd, 'additive', 'id', $_GET['id']);
-echo "<h1>".dataAdditives()[$result[0]['label']]['name']."</h1>";
-$recherche = recherche($bdd,"aliment_additive");
+$result = select ($bdd, 'additives', 'id', $_GET['id']);
+echo "<h1>".$result[0]['name']."</h1>";
+echo $result[0]['products']." aliments contiennent cet additif.";
+$recherche = recherche($bdd,"aliment_additives");
 displayRecherche($recherche);
 include("model/bot.php");
 ?>

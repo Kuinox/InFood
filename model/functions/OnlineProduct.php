@@ -1,5 +1,6 @@
 <?php
 include_once(__DIR__."/../jsons/json_parse.php");
+
 class OnlineProduct {
     private $_bdd;
     var $_barcode;
@@ -14,12 +15,6 @@ class OnlineProduct {
             $this->_images = $this->_product['selected_images'];
         } else {
             $this->_images = false;
-        }
-        $labels = dataLabels();
-        if (isset($this->_product["labels_tags"])) {
-            foreach($this->_product["labels_tags"] as $value) {
-                $this->_label[] = $labels[$value];
-            }
         }
     }
     private function getProductObject($barcode) {
@@ -41,24 +36,10 @@ class OnlineProduct {
         }
         return $data['product'];
     }
+
     function displayImage($image) {
         if(isset($this->_images[$image])) {
             echo "<img id='$image' src='".current($this->_images[$image]['display'])."'/>";
-        }
-    }
-    function getLabel() {
-        if (isset($this->_product['labels'])) {
-            return $this->_product['labels'];
-        } else {
-            return "Aucun";
-        }
-    }
-
-    function getLabelImage() {
-        foreach($this->_label as $label) {
-            if(isset($label['image'])) {
-                echo "<img alt='image d un label' class='label' src='".$label['image']."' />";
-            }
         }
     }
 }
