@@ -1,6 +1,7 @@
 <?php
 include("rechercheToPattern.php");
 function recherche(PDO $bdd, $entry="") {
+    $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/";
     if (empty($entry) && !isset($_GET['type'])) {
         throw new ErrorException("recherche called with no type");
     }
@@ -10,6 +11,10 @@ function recherche(PDO $bdd, $entry="") {
     if (!empty($entry)) {
         $type = $entry;
     }
+    if (!isset($_GET['debut'])) {
+    $_GET['debut'] = 0;
+    }
+    $nb_affichage_par_page = 10;
     switch ($type) {
         case 'aliment':
             $query = "SELECT id_aliment FROM aliment WHERE id_aliment = ?" ;
@@ -24,13 +29,13 @@ function recherche(PDO $bdd, $entry="") {
                       LEFT OUTER JOIN generic_name g
                       ON g.id = a.generic_name_id
                       WHERE ".rechercheToPattern("a.name_aliment")."  OR ".rechercheToPattern("g.label")."
-                      ORDER BY a.name_aliment ASC;";
+                      ORDER BY a.name_aliment ASC LIMIT ".$_GET['debut'].','.$nb_affichage_par_page;"";
             break;
         case 'additive':
             $query = "SELECT id, label
                       FROM $type
                       WHERE label LIKE '%".$_GET['recherche']."%'
-                      ORDER BY label ASC";
+                      ORDER BY label ASC LIMIT ".$_GET['debut'].','.$nb_affichage_par_page;"";
 
             break;
         case 'ingredient':
@@ -44,7 +49,7 @@ function recherche(PDO $bdd, $entry="") {
             $query = "SELECT id, label
                       FROM $type
                       WHERE ".rechercheToPattern("label")."
-                      ORDER BY label ASC";
+                      ORDER BY label ASC LIMIT ".$_GET['debut'].','.$nb_affichage_par_page;"";
             break;
         case 'aliment_additive':
             $query ="   SELECT a.*
@@ -54,7 +59,7 @@ function recherche(PDO $bdd, $entry="") {
                         JOIN additive ad
                         ON ad.id = aa.additive_id_additive
                         WHERE ad.id= '".$_GET['id']."'
-                        ORDER BY ad.label ASC
+                        ORDER BY ad.label ASC LIMIT ".$_GET['debut'].','.$nb_affichage_par_page;"
             ";
             break;
         case 'aliment_ingredient':
@@ -65,7 +70,7 @@ function recherche(PDO $bdd, $entry="") {
                         JOIN ingredient i
                         ON i.id = ai.ingredient_id_ingredient
                         WHERE i.id= '".$_GET['id']."'
-                        ORDER BY i.label ASC
+                        ORDER BY i.label ASC LIMIT ".$_GET['debut'].','.$nb_affichage_par_page;"
             ";
             break;
         case 'aliment_brand':
@@ -76,7 +81,7 @@ function recherche(PDO $bdd, $entry="") {
                         JOIN brand b
                         ON b.id = ab.brand_id_brand
                         WHERE b.id= '".$_GET['id']."'
-                        ORDER BY b.label ASC
+                        ORDER BY b.label ASC LIMIT ".$_GET['debut'].','.$nb_affichage_par_page;"
             ";
             break;
         case 'aliment_manufacturing_place':
@@ -87,7 +92,7 @@ function recherche(PDO $bdd, $entry="") {
                         JOIN manufacturing_place m
                         ON m.id = am.manufacturing_place_id_manufacturing_place
                         WHERE m.id= '".$_GET['id']."'
-                        ORDER BY m.label ASC
+                        ORDER BY m.label ASC LIMIT ".$_GET['debut'].','.$nb_affichage_par_page;"
             ";
             break;
         case 'aliment_allergen':
@@ -98,7 +103,7 @@ function recherche(PDO $bdd, $entry="") {
                         JOIN allergen l
                         ON l.id = al.allergen_id_allergen
                         WHERE l.id= '".$_GET['id']."'
-                        ORDER BY l.label ASC
+                        ORDER BY l.label ASC LIMIT ".$_GET['debut'].','.$nb_affichage_par_page;"
             ";
             break;
         case 'aliment_categorie':
@@ -109,7 +114,7 @@ function recherche(PDO $bdd, $entry="") {
                         JOIN categorie c
                         ON c.id = ac.categorie_id_categorie
                         WHERE c.id= '".$_GET['id']."'
-                        ORDER BY c.label ASC
+                        ORDER BY c.label ASC LIMIT ".$_GET['debut'].','.$nb_affichage_par_page;"
             ";
         break;
         case 'aliment_packaging':
@@ -120,7 +125,7 @@ function recherche(PDO $bdd, $entry="") {
                         JOIN packaging p
                         ON p.id = ap.packaging_id_packaging
                         WHERE p.id= '".$_GET['id']."'
-                        ORDER BY p.label ASC
+                        ORDER BY p.label ASC LIMIT ".$_GET['debut'].','.$nb_affichage_par_page;"
             ";
             break;
         case 'aliment_generic_name':
@@ -142,6 +147,11 @@ function recherche(PDO $bdd, $entry="") {
         }
     $result = $bdd->query($query) or die("erreur BDD");
     $output = $result->fetchAll(PDO::FETCH_ASSOC);
+    $nb_out = count($output);
+    if($nb_out == 0 ){
+        $debut = $_GET['debut'] - $nb_affichage_par_page;
+        header("Location: ".$path."/resultat_de_recherche?type=".$type."&recherche=".$_GET['recherche']."&debut=".$debut."");
+    }
     return $output;
 }
  ?>
