@@ -1,15 +1,13 @@
 <?php
-// verifier si le nom existe ou non
-session_start();
-// include("effacer.php");
-include("../controller/SQL/FUNCTIONS/connect.php");
-include('../view/modifierCompteVue.php');
 
+include("../controller/SQL/FUNCTIONS/connect.php");
+//include('../view/modifierCompteVue.ph
+//session_start();
 function modifierCompte(PDO $bdd, $toto, $nouVal)
 	{
 	  $id = $_SESSION['user2']['id_user'];
-		$_SESSION['user']["$toto"]=$nouVal;
-		var_dump($_SESSION['user']);
+		$_SESSION['user2']["$toto"]=$nouVal;
+		var_dump($_SESSION['user2']);
 	//  var_dump($id);
 		if ($toto == "password")
 		{
@@ -37,58 +35,10 @@ function verifierEtModifer(PDO $bdd, $toto, $nauveaunom)
 		$requete = $bdd->query("UPDATE user SET $pseumail ='$nauveaunom' WHERE id_user='$id'");
 	 	  // foreach ($bdd->query($sql) as $row) {
 			// 	  print $row['pseudo'] . " est supprimer \n";
-			$_SESSION['user']["$pseumail"] = $nauveaunom;
+			$_SESSION['user2']["$pseumail"] = $nauveaunom;
 			echo" le nouveau $pseumail est $nauveaunom";
-	var_dump($_SESSION['user']);
+	var_dump($_SESSION['user2']);
 		  // }
 	}
 	}
-
-
-if(isset($_SESSION['user']))
-{
-	if(isset($_POST['Modifer']))
-	{
-		if(isset($_POST['pseudo']))
-		{
-			$toto='pseudo';
-			$nom=$_POST['pseudo'];
-			$_SESSION['pseumail']="$toto";
-			verifierEtModifer($bdd, $toto, $nom);
-		}
-		if(isset($_POST['password']))
-		{
-			$toto='password';
-			$nom=$_POST['password'];
-			modifierCompte($bdd,$toto,$nom);
-			echo $nom." est le nouveau $toto ";
-		}
-		if(isset($_POST['email']))
-		{
-			$toto='email';
-			$nom=$_POST['email'];
-			$_SESSION['pseumail']="$toto";
-			verifierEtModifer($bdd, $toto, $nom);
-		}
-		if(isset($_POST['height']))
-		{
-			$toto='height';
-			$nom=$_POST['height'];
-			modifierCompte($bdd,$toto,$nom);
-			echo $nom." est le nouveau $toto ";
-		}
-		if(isset($_POST['weight']))
-		{
-			$toto='weight';
-			$nom=$_POST['weight'];
-			modifierCompte($bdd,$toto,$nom);
-			echo $nom." est le nouveau $toto ";
-		}
-
-	}
-	else
-	{
-		echo "i am sorry";
-	}
-}
 	?>
