@@ -25,6 +25,7 @@ ob_start();
             }
             ob_end_flush();
             ?>
+            <br><br><br><br><br><br><br><br>
             <p>
             Créer la base de donnée. Le site sera disponible immédiatement après l'initialisation.
             Re-créer la base entièrement prend environ 1 heures, mais les informations seront disponible au fur et a mesure.

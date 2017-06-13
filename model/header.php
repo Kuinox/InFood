@@ -3,7 +3,7 @@
             <div class="top_header">
                 <div class="top_header_container">
                     <form id="search" action="<?php echo $path; ?>resultat_de_recherche" method="GET">
-                        <a href="<?php echo $path ?>">In'Food</a>
+                        <a class="accueil" href="<?php echo $path ?>">In'Food</a>
                         <select name = "type" id="type">
                             <option value="aliment" selected>Produits</option>
                             <option value="additive">Additifs</option>
@@ -15,9 +15,9 @@
                             <option value="packaging">Packaging</option>
                             <option value="generic_name">Nom générique</option>
                         </select>
-                        <input type="text" name="recherche" placeholder="Rechercher sur In'Food"/>
+                        <input class="recherch" type="text" name="recherche" placeholder="Rechercher sur In'Food"/>
                         <input class="icon" type="image" src="<?php echo $path; ?>ressources/logo.svg"/>
-                        <a href="todo"><img src="TODO"/></a> <!--TODO: IMAGE-->
+                        <!--<a href="todo"><img src="TODO"/></a> <!--TODO: IMAGE-->
                     </form>
                     <?php
                     include(__DIR__."/../controller/SQL/functions/connect.php");

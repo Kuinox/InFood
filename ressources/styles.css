@@ -2,6 +2,43 @@
  * General styles
  *
  */
+inscription button {
+    padding:10% 10%;
+
+}
+.recherch {
+    background-color: #4e5d66 ;
+    border-color: #9ee04d ;
+    border: 1%;
+    border-style: solid ;
+}
+.accueil {
+    text-decoration: none;
+}
+.inscript {
+    margin-top: 0.5%;
+    font-size: 50%;
+    color :white;
+    text-align: center;
+    border-radius: 25px;
+    border: 1%;
+    border-style: solid;
+    border-color:#9ee04d;
+    background-color: inherit;
+ }
+.inscription {
+    margin-top: 0.5%;
+    font-size: 50%;
+    color :white;
+    text-align: center;
+    border-radius: 25px;
+    border: 3%;
+    border-color:#9ee04d;
+    background-color:#9ee04d;
+ }
+ a {
+     color: #9ee04d;
+ }
 body{
     margin:0;
     padding:0;
@@ -66,6 +103,9 @@ header{
 }
 
 .icon{
+    position: relative;
+    top: 25%;
+    left: 0.5%;
     height: 3vh;
 }
 
