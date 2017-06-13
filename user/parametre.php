@@ -45,7 +45,7 @@ if(isset($_POST['action'])) {
                 updateUser($bdd);
                 echo "L'information à bien été changée";
             }
-        } else if ($var == 'pseudo' || $var == '') {
+        } else if ($var == 'pseudo' || $var == 'email') {
                 $prep = $bdd->prepare ("SELECT id_user FROM user WHERE email=? OR pseudo = ?");
         $prep->execute (array($_SESSION['user']['email'], $_SESSION['user']['pseudo']));
         if ($prep->rowCount()>1) {
