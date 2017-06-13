@@ -7,11 +7,11 @@ include("model/functions/recherche.php");
 
 $id = $_GET['id'];
 
-$result = select ($bdd, "packaging", "id", "$id");
+$result = select ($bdd, "packaging", "num", "$id");
 if (empty($result)) {
     echo "Packaging introuvable !";
 } else {
-  echo "<h1>".$result['0']['label']."</h1><br>";
+  echo "<h1>".$result['0']['name']."</h1><br>";
 }
 
 $recherche = recherche($bdd, "aliment_packaging");
