@@ -11,6 +11,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['name_grade'] != 'admin') {
 <p><a href="BDDManager"> Gestion de la Base De Données. </a></p>
 <p><a href="supprimerUtilisateur"> Supprimer Compte. </a></p>
 <p><a> Gestion des comptes utilisateurs</a></p>
+<p><a href="../model/adminModif.php">Modifier utilisateur</a></p>
 
 <!--TODO-->
 <?php
