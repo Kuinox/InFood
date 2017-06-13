@@ -33,9 +33,9 @@ function displayAdditives($additives)
     if (empty($additives)) {
         echo "Champs non renseigné";
     }
-    $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/additive/?id=";
+    $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/additives/?id=";
     foreach ($additives as $key => $value) {
-        echo "<a href='".$path.$value['id']."'>".$value['name']. "</a> ";
+        echo "<a href='".$path.$value['num']."'>".$value['name']. "</a> ";
     }
     echo "</div>";
 }
@@ -46,9 +46,9 @@ function displayBrand($brand)
     if (empty($brand)) {
         echo "Champs non renseigné";
     }
-    $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/marque/?id=";
+    $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/brands/?id=";
     foreach ($brand as $key => $value) {
-            echo "<a href='".$path.$value['id']."'>".$value['label']. "</a> ";
+            echo "<a href='".$path.$value['num']."'>".$value['name']. "</a> ";
         }
     echo "</div>";
 }
@@ -61,7 +61,7 @@ function displayPackaging($packaging)
     }
     $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/packaging/?id=";
     foreach ($packaging as $key => $value) {
-            echo "<a href='".$path.$value['id']."'>".$value['label']. "</a> ";
+            echo "<a href='".$path.$value['num']."'>".$value['name']. "</a> ";
         }
     echo "</div>";
 }
@@ -87,7 +87,7 @@ function displayAllergen($allergen)
     }
     $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/allergen/?id=";
     foreach ($allergen as $key => $value) {
-        echo "<a href='".$path.$value['id']."'>".$value['label']. "</a> ";
+        echo "<a href='".$path.$value['num']."'>".$value['name']. "</a> ";
     }
     echo "</div>";
 }
@@ -129,7 +129,7 @@ function displayIngredients($ingredients) // pas censé marché
 function displayLabelImage($labels) {
     echo '<div class="labelImage">';
     foreach($labels as $label) {
-        echo "<img src='".$label['image_link']."'/>";
+        echo "<img src='".$label['image']."'/>";
     }
     echo "</div>";
 }
@@ -140,9 +140,9 @@ function displayLabel($labels) {
         echo "Champ non renseigné";
     }
     $output = [];
-    $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/label/?id=";
+    $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/labels/?id=";
     foreach($labels as $label) {
-        $output[] = "<a href='".$path.$label['id_nom']."'>".$label['label']."</a>";
+        $output[] = "<a href='".$path.$label['num']."'>".$label['name']."</a>";
     }
     echo implode(", ", $output);
     echo "</div>";

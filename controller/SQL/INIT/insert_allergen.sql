@@ -5,13 +5,13 @@ BEGIN
     DECLARE id_val INT;
     SELECT id
     INTO id_val
-    FROM allergen
+    FROM allergens
     WHERE val = label;
     IF id_val IS NULL THEN
-        INSERT INTO allergen (id, label)
+        INSERT INTO allergens (id, label)
         VALUES(NULL, val);
         SELECT LAST_INSERT_ID() INTO id_val;
     END IF;
-    INSERT INTO aliment_has_allergen (id, aliment_id_aliment, allergen_id_allergen)
+    INSERT INTO aliment_has_allergens (id, aliment_id_aliment, allergens_id)
     VALUES(NULL, code, id_val);
 END;

@@ -6,7 +6,7 @@ include("model/functions/displayRecherche.php");
 include("model/functions/recherche.php");
 
 
-$result = select ($bdd, "categorie", "id", $_GET['id']);
+$result = select ($bdd, "categorie", "num", $_GET['id']);
 if (empty($result)) {
     echo "Catégorie introuvable !";
 } else {

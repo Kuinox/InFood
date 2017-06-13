@@ -135,11 +135,12 @@ header{
 
  .full_page_container{
      width: 1240px;
-     margin-top: 5%;
+     margin-top: 12%;
      margin-right: auto;
      margin-left: auto;
      display: flex;
      flex-direction: column;
+     position: static;
  }
 
 .overlay {

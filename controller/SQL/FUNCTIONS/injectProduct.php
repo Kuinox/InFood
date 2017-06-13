@@ -2,6 +2,9 @@
 include_once("../SQL/FUNCTIONS/callThenReturn.php");
 include_once("../CSV_FUNCTIONS/sortNutriment.php");
 function injectProduct(PDO $bdd, $product, $prep, $update=false) {//SELECT id INTO id_val FROM nutriment WHERE val = label;
+    /*echo "<pre>";
+    print_r($product);
+    echo "</pre>";*/
     $grade_id = $product['nutrition_grade_fr'];
     if (empty($grade_id)) {
         $grade_id = null;
@@ -21,23 +24,37 @@ function injectProduct(PDO $bdd, $product, $prep, $update=false) {//SELECT id IN
                                             $product['serving_size']
                                         ));
     $labels = explode(",", $product['labels_tags']);
-    if(!empty($product['labels_tags'])) {
-        foreach($labels as $value) {
-            $prep['labels']->execute(array($product['code'], $value));
-        }
-    }
+    foreach (explode(" ",$product['additives']) as $text) {
+        if (!empty($text) && $text !== "[" && $text !== "]" && $text !== "->") {
+            $query_al = "SELECT num FROM allergens WHERE id='$text'";
+            $result_al = $bdd->query($query_al);
+            $query_in = "SELECT num FROM ingredients WHERE id='$text'";
+            $result_in = $bdd->query($query_in);
+            if($result_al->rowCount() === 1) {
+                $result = $result_al->fetchAll(PDO::FETCH_ASSOC);
+                if (isset($result[0])) {
+                    $prep['allergens']->execute(array($product['code'], $result[0]['num']));
+                }
 
-    foreach (explode(',', $product['additives_tags']) as $key => $value) {
-        if(!empty($value)) {
-            $prep['additives']->execute(array($product['code'], $value));
+            }
+            if($result_in->rowCount() === 1) {
+                $result = $result_in->fetchAll(PDO::FETCH_ASSOC);
+                if (isset($result[0])) {
+                    $prep['ingredients']->execute(array($product['code'], $result[0]['num']));
+                }
+            }
         }
     }
-    if(!empty($product['brands'])) {
-        $prep['brands']->execute(array($product['code'], $product['brands']));
-    }
-    foreach (explode(',', $product['packaging']) as $packaging) {
-        if(!empty($packaging)) {
-            $prep['packaging']->execute(array($product['code'], $packaging));
+    foreach(array("additives", "brands", "categories", "labels", "packaging", "traces") as $json_name) { //"ingredients",
+        foreach (explode(',', $product[$json_name."_tags"]) as $key => $value) {
+            if (!empty($value)) {
+                $query = "SELECT num FROM $json_name WHERE id='$value'";
+                $result = $bdd->query($query);
+                $num = $result->fetchAll(PDO::FETCH_ASSOC);
+                if (isset($num[0])) {
+                    $prep[$json_name]->execute(array($product['code'], $num[0]['num']));
+                }
+            }
         }
     }
 
@@ -47,17 +64,6 @@ function injectProduct(PDO $bdd, $product, $prep, $update=false) {//SELECT id IN
         }
     }
 
-    foreach (explode(', ', $product['allergens']) as $allergen) {
-        if(!empty($allergen)) {
-            $prep['allergens']->execute(array($product['code'], $allergen));
-        }
-    }
-
-    foreach(explode(",", $product['categories']) as $value) {
-        if (!empty($value)) {
-            $prep['categories']->execute(array($product['code'], $value));
-        }
-    }
     $num = 1;
     foreach(sortNutriment($product) as $key => $value) {
         if (!empty($value)) {

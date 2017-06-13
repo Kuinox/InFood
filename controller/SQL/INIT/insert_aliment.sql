@@ -10,10 +10,12 @@ BEGIN
     INTO id_val
     FROM generic_name
     WHERE generic_name_char = label;
-    IF id_val IS NULL THEN
-        INSERT INTO generic_name (id, label)
-        VALUES(NULL, generic_name_char);
-        SELECT LAST_INSERT_ID() INTO id_val;
+    IF generic_name_char IS NOT NULL THEN
+        IF id_val IS NULL THEN
+            INSERT INTO generic_name (id, label)
+            VALUES(NULL, generic_name_char);
+            SELECT LAST_INSERT_ID() INTO id_val;
+        END IF;
     END IF;
     INSERT INTO aliment (
             id_aliment,

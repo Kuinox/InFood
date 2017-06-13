@@ -29,29 +29,33 @@ function recherche(PDO $bdd, $entry="") {
         case 'additives':
             $query = "SELECT *
                       FROM $type
-                      WHERE label LIKE '%".$_GET['recherche']."%'
-                      ORDER BY label ASC";
+                      WHERE name LIKE '%".$_GET['recherche']."%'
+                      ORDER BY name ASC";
 
             break;
-        case 'label':
-            $query = "SELECT id_nom, label
+        case 'labels':
+            $query = "SELECT *
                       FROM $type
-                      WHERE ".rechercheToPattern("label")."
-                      ORDER BY label ASC";
+                      WHERE ".rechercheToPattern("name")."
+                      ORDER BY name ASC";
             break;
-        case 'ingredient':
-        case 'brand':
         case 'manufacturing_place':
-        case 'allergen':
-        case 'categorie':
-        case 'packaging':
         case 'generic_name':
-
-
             $query = "SELECT id, label
                       FROM $type
                       WHERE ".rechercheToPattern("label")."
                       ORDER BY label ASC";
+            break;
+
+        case 'ingredients':
+        case 'brands':
+        case 'allergens':
+        case 'categories':
+        case 'packaging':
+            $query = "SELECT *
+                      FROM $type
+                      WHERE ".rechercheToPattern("name")."
+                      ORDER BY name ASC";
             break;
         case 'aliment_additives':
             $query ="   SELECT a.*
@@ -59,42 +63,42 @@ function recherche(PDO $bdd, $entry="") {
                         JOIN aliment_has_additives aa
                         ON a.id_aliment = aa.aliment_id_aliment
                         JOIN additives ad
-                        ON ad.id = aa.additives_id
-                        WHERE ad.id= '".$_GET['id']."'
+                        ON ad.num = aa.additives_num
+                        WHERE ad.num = ".$_GET['id']."
                         ORDER BY a.name_aliment ASC
             ";
             break;
-        case 'aliment_label':
+        case 'aliment_labels':
             $query ="   SELECT a.*
                         FROM aliment a
-                        JOIN aliment_has_label al
+                        JOIN aliment_has_labels al
                         ON a.id_aliment = al.aliment_id_aliment
-                        JOIN label l
-                        ON l.id_nom = al.label_id_nom
-                        WHERE l.id_nom = '".$_GET['id']."'
-                        ORDER BY l.label ASC
+                        JOIN labels l
+                        ON l.num = al.labels_num
+                        WHERE l.num = ".$_GET['id']."
+                        ORDER BY l.name ASC
             ";
             break;
-        case 'aliment_ingredient':
+        case 'aliment_ingredients':
             $query ="   SELECT a.*
                         FROM aliment a
-                        JOIN aliment_has_ingredient ai
+                        JOIN aliment_has_ingredients ai
                         ON a.id_aliment = ai.aliment_id_aliment
                         JOIN ingredient i
-                        ON i.id = ai.ingredient_id_ingredient
-                        WHERE i.id= '".$_GET['id']."'
-                        ORDER BY i.label ASC
+                        ON i.num = ai.ingredient_id_ingredient
+                        WHERE i.id= ".$_GET['id']."
+                        ORDER BY i.name ASC
             ";
             break;
-        case 'aliment_brand':
+        case 'aliment_brands':
             $query ="   SELECT a.*
                         FROM aliment a
-                        JOIN aliment_has_brand ab
+                        JOIN aliment_has_brands ab
                         ON a.id_aliment = ab.aliment_id_aliment
-                        JOIN brand b
-                        ON b.id = ab.brand_id_brand
-                        WHERE b.id= '".$_GET['id']."'
-                        ORDER BY b.label ASC
+                        JOIN brands b
+                        ON b.num = ab.brands_num
+                        WHERE b.num = ".$_GET['id']."
+                        ORDER BY b.name ASC
             ";
             break;
         case 'aliment_manufacturing_place':
@@ -108,26 +112,26 @@ function recherche(PDO $bdd, $entry="") {
                         ORDER BY m.label ASC
             ";
             break;
-        case 'aliment_allergen':
+        case 'aliment_allergens':
             $query ="   SELECT a.*
                         FROM aliment a
-                        JOIN aliment_has_allergen al
+                        JOIN aliment_has_allergens al
                         ON a.id_aliment = al.aliment_id_aliment
-                        JOIN allergen l
-                        ON l.id = al.allergen_id_allergen
-                        WHERE l.id= '".$_GET['id']."'
-                        ORDER BY l.label ASC
+                        JOIN allergens l
+                        ON l.num = al.allergens_num
+                        WHERE l.num = ".$_GET['id']."
+                        ORDER BY l.name ASC
             ";
             break;
-        case 'aliment_categorie':
+        case 'aliment_categories':
             $query ="   SELECT a.*
                         FROM aliment a
-                        JOIN aliment_has_categorie ac
+                        JOIN aliment_has_categories ac
                         ON a.id_aliment = ac.aliment_id_aliment
-                        JOIN categorie c
-                        ON c.id = ac.categorie_id_categorie
-                        WHERE c.id= '".$_GET['id']."'
-                        ORDER BY c.label ASC
+                        JOIN categories c
+                        ON c.num = ac.categories_num
+                        WHERE c.num = ".$_GET['id']."
+                        ORDER BY c.name ASC
             ";
         break;
         case 'aliment_packaging':
@@ -136,9 +140,9 @@ function recherche(PDO $bdd, $entry="") {
                         JOIN aliment_has_packaging ap
                         ON a.id_aliment = ap.aliment_id_aliment
                         JOIN packaging p
-                        ON p.id = ap.packaging_id_packaging
-                        WHERE p.id= '".$_GET['id']."'
-                        ORDER BY p.label ASC
+                        ON p.num = ap.packaging_num
+                        WHERE p.num = ".$_GET['id']."
+                        ORDER BY p.name ASC
             ";
             break;
         case 'aliment_generic_name':

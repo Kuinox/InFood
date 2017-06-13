@@ -16,7 +16,12 @@ function sqlScriptInject(PDO $bdd, $script_path) {
         foreach(explode(";", $lines) as $query) {
             $query = trim(preg_replace('/\s+/', ' ', $query));
             if (!empty($query) && is_bool(strpos($query, "SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0")) && is_bool(strpos($query, "SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS"))) {
-                $bdd->query($query);
+                try {
+                    $bdd->query($query);
+                } catch (PDOException $e) {
+                    var_dump($e);
+                    echo $query;
+                }
             }
         }
     } else {//procedure
