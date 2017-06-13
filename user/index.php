@@ -51,7 +51,8 @@ else {
      <div>
         Rechercher un membre:
         <form  action="recherche_membres" method="GET">
-            <input type="text" name="id" />
+            <input type="text" name="recherche" />
+            <input type="hidden" name="type" value="membres" />
             <input type="submit" value="Rechercher" />
         </form>
      </div>

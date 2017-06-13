@@ -32,13 +32,15 @@ function recherche(PDO $bdd, $entry="") {
                       LEFT OUTER JOIN generic_name g
                       ON g.id = a.generic_name_id
                       WHERE ".rechercheToPattern("a.name_aliment")."  OR ".rechercheToPattern("g.label")."
-                      ORDER BY a.name_aliment ASC LIMIT ".$debut.','.$nb_affichage_par_page;"";
+                      ORDER BY a.name_aliment ASC LIMIT ".$debut.','.$nb_affichage_par_page;
+
+            echo $query;
             break;
         case 'additives':
             $query = "SELECT *
                       FROM $type
                       WHERE label LIKE '%".$_GET['recherche']."%'
-                      ORDER BY name ASC LIMIT ".$debut.','.$nb_affichage_par_page;"";
+                      ORDER BY name ASC LIMIT ".$debut.','.$nb_affichage_par_page;
 
             break;
         case 'labels':
@@ -52,7 +54,7 @@ function recherche(PDO $bdd, $entry="") {
             $query = "SELECT id, label
                       FROM $type
                       WHERE ".rechercheToPattern("label")."
-                      ORDER BY label ASC LIMIT ".$debut.','.$nb_affichage_par_page;"";
+                      ORDER BY label ASC LIMIT ".$debut.','.$nb_affichage_par_page;
             break;
 
         case 'ingredients':
@@ -103,7 +105,7 @@ function recherche(PDO $bdd, $entry="") {
                         JOIN brands b
                         ON b.num = ab.brands_num
                         WHERE b.num = ".$_GET['id']."
-                        ORDER BY b.name ASC ".$debut.','.$nb_affichage_par_page;
+                        ORDER BY b.name ASC LIMIT ".$debut.','.$nb_affichage_par_page;
             break;
         case 'aliment_manufacturing_place':
             $query ="   SELECT a.*
@@ -158,12 +160,12 @@ function recherche(PDO $bdd, $entry="") {
         case 'membres':
             $query = "SELECT pseudo
             FROM user
-            WHERE pseudo LIKE '%$input%'";
+            WHERE pseudo LIKE '%".$_GET['recherche']."%'";
         break;
         default:
             throw new ErrorException("not rooted ".$type);
         }
-    $result = $bdd->query($query) or die("erreur BDD");
+    $result = $bdd->query($query);
     $output = $result->fetchAll(PDO::FETCH_ASSOC);
     return $output;
 }

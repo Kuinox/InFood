@@ -5,7 +5,7 @@ include("../controller/SQL/FUNCTIONS/select.php");
 include("../model/functions/recherche.php");
 include("../model/functions/displayRecherche.php");
 //include ('sql_functions.php');
-$recherche = recherche($bdd, $_GET['id'], "membres");
+$recherche = recherche($bdd, $_GET['type'], "membres");
 $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/user?id=";
 foreach ($recherche as $value) {
     $pseudo = $value['pseudo'];
