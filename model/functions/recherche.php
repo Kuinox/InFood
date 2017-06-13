@@ -33,15 +33,12 @@ function recherche(PDO $bdd, $entry="") {
                       ON g.id = a.generic_name_id
                       WHERE ".rechercheToPattern("a.name_aliment")."  OR ".rechercheToPattern("g.label")."
                       ORDER BY a.name_aliment ASC LIMIT ".$debut.','.$nb_affichage_par_page;
-
-            echo $query;
             break;
         case 'additives':
             $query = "SELECT *
                       FROM $type
-                      WHERE label LIKE '%".$_GET['recherche']."%'
+                      WHERE id LIKE '%".$_GET['recherche']."%'
                       ORDER BY name ASC LIMIT ".$debut.','.$nb_affichage_par_page;
-
             break;
         case 'labels':
             $query = "SELECT *
@@ -146,7 +143,7 @@ function recherche(PDO $bdd, $entry="") {
                         JOIN packaging p
                         ON p.num = ap.packaging_num
                         WHERE p.num = ".$_GET['id']."
-                        ORDER BY p.name ASC LIMIT".$debut.','.$nb_affichage_par_page;
+                        ORDER BY p.name ASC LIMIT ".$debut.','.$nb_affichage_par_page;
             break;
         case 'aliment_generic_name':
             $query ="   SELECT *
@@ -166,6 +163,7 @@ function recherche(PDO $bdd, $entry="") {
             throw new ErrorException("not rooted ".$type);
         }
     $result = $bdd->query($query);
+
     $output = $result->fetchAll(PDO::FETCH_ASSOC);
     return $output;
 }

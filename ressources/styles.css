@@ -3,11 +3,12 @@
  *
  */
 
-.recherch {
+.recherche {
     background-color: #4e5d66 ;
     border-color: #9ee04d ;
     border-width: thin;
     border-style: solid ;
+    color: white;
 }
 .accueil {
     text-decoration: none;
