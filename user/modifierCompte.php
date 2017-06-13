@@ -16,7 +16,7 @@
 <form action= "<?php echo $path ?>user\?tab=parametre&id=" method="POST">
 	<table>
 		<tr><?php echo $user['email'] ?>
-			<td><input type="text" name="email" placeholder="Nouveau email"/></td>
+			<td><input type="email" name="email" placeholder="Nouveau email"/></td>
 			<td><input type="submit" name="Modifer" value="Modifer" />
 					<input type="hidden" name="action" value="email" />
 			</td>

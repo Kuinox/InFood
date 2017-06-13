@@ -29,8 +29,24 @@ if(isset($_POST['action'])) {
         } else if ($var == 'pseudo') {
             $pseudo = $_SESSION['user']['pseudo'];
             $_SESSION['user']['pseudo'] = $_POST['pseudo'];
-        }
-        $prep = $bdd->prepare ("SELECT id_user FROM user WHERE email=? OR pseudo = ?");
+        } else if ($var == 'height'){
+            if (intval($_POST['height']) == 0 ) {
+                echo "Veuillez entrer un numéro";
+            }else {
+                $_SESSION['user'][$var] = $_POST[$var];
+                updateUser($bdd);
+                echo "L'information à bien été changée";
+            }
+        } else if ($var == 'weight'){
+            if (intval($_POST['weight']) == 0 ) {
+                echo "Veuillez entrer un numéro";
+            }else {
+                $_SESSION['user'][$var] = $_POST[$var];
+                updateUser($bdd);
+                echo "L'information à bien été changée";
+            }
+        } else if ($var == 'pseudo' || $var == '') {
+                $prep = $bdd->prepare ("SELECT id_user FROM user WHERE email=? OR pseudo = ?");
         $prep->execute (array($_SESSION['user']['email'], $_SESSION['user']['pseudo']));
         if ($prep->rowCount()>1) {
             if($var == 'email'){
@@ -39,11 +55,12 @@ if(isset($_POST['action'])) {
             $_SESSION['user']['pseudo'] = $pseudo;
             }
             echo "pseudo ou email deja utiliser";
-        }else{
-            $_SESSION['user'][$var] = $_POST[$var];
-            updateUser($bdd);
-            echo "L'information à bien été changée";
-    }
+        }else {
+                $_SESSION['user'][$var] = $_POST[$var];
+                updateUser($bdd);
+                echo "L'information à bien été changée";
+        }
+        }
     }
 
 } else {
