@@ -1,34 +1,53 @@
 <?php
 
 include(__DIR__."../../view/adminModifvue2.php");
-//include(__DIR__."../../model/admin_modif2.php");
 include("../controller/SQL/FUNCTIONS/connect.php");
-//session_start();
+
 function modifierCompte(PDO $bdd, $toto, $nouVal)
 	{
 	  $id = $_SESSION['user2']['id_user'];
 		$_SESSION['user2']["$toto"]=$nouVal;
-		var_dump($_SESSION['user2']);
 
-	  $requete = $bdd->query("UPDATE user SET $toto='$nouVal' WHERE id_user='$id'");
+$res = $bdd->prepare("UPDATE user SET $toto=? WHERE id_user=? ");
+$res->execute(array($nouVal, $id));
+
 	}
-function modifierModPass($adminmdp, $password)
+function modifierModPass(PDO $bdd, $adminmdp, $password)
  {
    $admin=hash('sha256',$adminmdp);//hash mot de passe
    $namead=$_SESSION['user']['pseudo'];
    $id2=$_SESSION['user2']['id_user'];
-   $res = $bdd->prepare("SELECT * FROM user WHERE password = ? AND pseudo = $namead");
- 	$res->execute(array($admin));
+   $res = $bdd->prepare("SELECT * FROM user WHERE password = ? AND pseudo = ?");
+ 	$res->execute(array($admin, $namead));
   $nauveaumdp=hash('sha256',$_POST["password"]);//hash mot de passe
      if ($res->fetchColumn() > 0) {
-       //n5dm l5dma
-       $requete = $bdd->query("UPDATE user SET password ='$nauveaumdp' WHERE id_user='$id2'");
+			/**/
+			 $res = $bdd->prepare("UPDATE user SET password =? WHERE id_user=?");
+		 	$res->execute(array($nauveaumdp, $id2));
+       /***/
        $_SESSION['user2']['password'] = $nauveaumdp;
+       echo"mot de passe est changer";
+//			 var_dump($_SESSION['user2']);
    		  }
    	   elseif ($res->fetchColumn() == 0) {
-   			 echo"le mot de passe d\'admine pas bonne";
+   			 echo"le mot de passe d'admine pas bonne";
    	   	}
  }
+function modifierGrade(PDO $bdd,$grade){
+	$id2=$_SESSION['user2']['name_grade'];
+	if($grade=="utilisateur"){
+		$gradepar="1";
+	}
+	else {
+		{$gradepar="2";}
+	}
+	/**/$res = $bdd->prepare("UPDATE grade_user SET grade_id_grade =? WHERE user_id_user=?");
+	$res->execute(array($gradepar, $id2));/****/
+	//$requete = $bdd->query("UPDATE grade_user SET grade_id_grade ='$gradepar' WHERE user_id_user='$id2'");
+	$_SESSION['user2']['name_grade']=$grade;
+	echo"grade est changé avec succés";
+
+}
 
 function verifierEtModifer(PDO $bdd, $toto, $nauveaunom)
 {
@@ -44,14 +63,14 @@ function verifierEtModifer(PDO $bdd, $toto, $nauveaunom)
 		  }
 
 	   elseif ($res->fetchColumn() == 0) {
+			 $res = $bdd->prepare("UPDATE user SET $pseumail =? WHERE id_user=?");
+			 $res->execute(array($nauveaunom, $id));
 
-
-		$requete = $bdd->query("UPDATE user SET $pseumail ='$nauveaunom' WHERE id_user='$id'");
 
 
 			$_SESSION['user2']["$pseumail"] = $nauveaunom;
 			echo" le nouveau $pseumail est $nauveaunom";
-	var_dump($_SESSION['user2']);
+	//var_dump($_SESSION['user2']);
 
 	}
 	}
@@ -72,24 +91,46 @@ if (isset($_POST['Modifer']))
   }
   if(isset($_POST["height"])){
   $toto='height';
-  $nom=$_POST['height'];
-  modifierCompte($bdd,$toto,$nom);
-  echo $nom." est le nouveau $toto ";
+  $nom=intval($_POST['height']);
+	if($nom=="0")
+	{
+		echo "erreur!! veillez entrer un nombre ";
+	}
+	else{
+  	modifierCompte($bdd,$toto,$nom);
+  	echo $nom." est le nouveau $toto ";
+		}
   }
   if(isset($_POST["weight"])){
-    $toto='weight';
-    $nom=$_POST['weight'];
-    modifierCompte($bdd,$toto,$nom);
-    echo $nom." est le nouveau $toto ";
+		$nom=intval($_POST['weight']);
+		if($nom=="0")
+		{
+			echo "erreur!! veillez entrer un nombre ";
+		}
+		else
+		{
+    	$toto='weight';
+    	modifierCompte($bdd,$toto,$nom);
+    	echo $nom." est le nouveau $toto ";
+		}
   }
   if(isset($_POST["grade"])){
-
+		$grade=$_POST["grade"];
+		if($grade=="utilisateur" || $grade== "admin")
+		{
+			modifierGrade($bdd,$grade);
+		}
+		else
+		{
+			echo"utilisateur ou admin seulement";
+		}
   }
   if(isset($_POST["aPassword"])){
-
+		$admin=$_POST["aPassword"];
     if($_POST["password"]==$_POST["cPassword"])
     {
-      modifierModPass($_POST["aPassword"], $_POST["password"]);
+			$password=$_POST["password"];
+      modifierModPass($bdd, $admin, $password);
     }
     else
     {
@@ -98,6 +139,11 @@ if (isset($_POST['Modifer']))
   }
 
 }
-var_dump($_SESSION['user2']);
-
+//var_dump($_SESSION['user2']);
+$user2=$_SESSION['user2'];
+echo"<br> Le nom est ".$user2['pseudo']."<br>";
+echo" L'email est ".$user2['email']."<br>";
+echo" Le weight est ".$user2['weight']."<br>";
+echo" Le height est ".$user2['height']."<br>";
+echo" Le grade est ".$user2['name_grade']."<br>";
 ?>

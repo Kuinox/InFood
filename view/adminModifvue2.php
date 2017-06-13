@@ -1,14 +1,14 @@
 <?php
-//include (__DIR__."../model/top.php");
-
+include (__DIR__."./../model/top.php");
+			//session_start();
 			$path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/";
+			var_dump($_SESSION['user2']);
 			$user = $_SESSION['user2'];
 ?>
 
 <form action= "..\admin\admin_changer.php" method="POST">
 	<table>
 		<tr>
-			<?php echo $user['pseudo'] ?>
 			<td><input type="text" name="pseudo" placeholder="Nouveau Pseudo"/></td>
 			<td><input type="submit" name="Modifer" value="Modifer" />
 					<input type="hidden" name="action" value="pseudo" />
@@ -18,7 +18,6 @@
 </form>
 <form action= "..\admin\admin_changer.php" method="POST">
 	<table>
-		<tr><?php echo $user['email'] ?>
 			<td><input type="text" name="email" placeholder="Nouveau email"/></td>
 			<td><input type="submit" name="Modifer" value="Modifer" />
 					<input type="hidden" name="action" value="email" />
@@ -28,7 +27,6 @@
 </form>
 <form action= "..\admin\admin_changer.php" method="POST">
 	<table>
-		<tr><?php echo $user['height'] ?>
 			<td><input type="text" name="height" placeholder="Nouveau height"/></td>
 			<td><input type="submit" name="Modifer" value="Modifer" />
 					<input type="hidden" name="action" value="height" />
@@ -38,7 +36,6 @@
 </form>
 <form action="..\admin\admin_changer.php" method="POST">
 	<table>
-		<tr><?php echo $user['weight'] ?>
 			<td><input type="text" name="weight" placeholder="Nouveau weight"/></td>
 			<td><input type="submit" name="Modifer" value="Modifer" />
 					<input type="hidden" name="action" value="weight" />
@@ -48,7 +45,6 @@
 </form>
 <form action="..\admin\admin_changer.php" method="POST">
 	<table>
-		<tr><?php echo $user['name_grade'] ?>
 			<td><input type="text" name="grade" placeholder="grade user"/></td>
 			<td><input type="submit" name="Modifer" value="Modifer" />
 					<input type="hidden" name="action" value="Modifer" />
