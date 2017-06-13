@@ -33,6 +33,7 @@ inscription button {
     text-align: center;
     border-radius: 25px;
     border: 3%;
+    border-style: solid;
     border-color:#9ee04d;
     background-color:#9ee04d;
  }
