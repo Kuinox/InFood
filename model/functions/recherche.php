@@ -30,7 +30,7 @@ function recherche(PDO $bdd, $entry="") {
 
 
 
-            $query = "  SELECT a.id_aliment , a.name_aliment, g.label,
+            $query = "  SELECT a.id_aliment , a.name_aliment,
                         MATCH (g.label) AGAINST ('".$_GET['recherche']."' IN NATURAL LANGUAGE MODE) AS relevance,
                         MATCH (a.name_aliment) AGAINST ('".$_GET['recherche']."' IN NATURAL LANGUAGE MODE) AS title_relevance
                         FROM aliment a
@@ -41,16 +41,6 @@ function recherche(PDO $bdd, $entry="") {
                                 MATCH(g.label) AGAINST ('".$_GET['recherche']."' IN NATURAL LANGUAGE MODE)
                         ORDER BY title_relevance*2+relevance DESC, a.name_aliment ASC
                         LIMIT ".$debut.','.$nb_affichage_par_page;
-
-
-            /*$query = "  SELECT a.id_aliment , a.name_aliment,
-
-                        FROM aliment a
-                        LEFT OUTER JOIN generic_name g
-                        ON g.id = a.generic_name_id
-                        WHERE MATCH(a.name_aliment) AGAINST ('".$_GET['recherche']."')
-                        ORDER BY title_relevance + relevance DESC
-                        LIMIT ".$debut.','.$nb_affichage_par_page;*/
             break;
         case 'additives':
             $query = "SELECT *

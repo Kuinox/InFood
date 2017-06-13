@@ -1,8 +1,7 @@
         <?php
         $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/";
-
         if(isset($_GET['recherche'])) {
-            $recherche_input = $_GET['recherche'];
+            $recherche_input = ($_GET['recherche']);
         } else {
             $recherche_input = "";
         }
