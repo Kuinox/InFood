@@ -30,7 +30,7 @@ function displayAdditives($additives)
 {
     include_once(__DIR__."/../../model/jsons/json_parse.php");
     echo '<div class="additives">';
-    echo "additifs : ";
+    echo "Additifs : ";
     if (empty($additives)) {
         echo "Champs non renseigné";
     }
@@ -43,7 +43,7 @@ function displayAdditives($additives)
 function displayBrand($brand)
 {
     echo '<div class="brand">';
-    echo "marque : ";
+    echo "Marque : ";
     if (empty($brand)) {
         echo "Champs non renseigné";
     }
@@ -56,7 +56,7 @@ function displayBrand($brand)
 function displayPackaging($packaging)
 {
     echo '<div class="packaging">';
-    echo "packaging : ";
+    echo "Packaging : ";
     if (empty($packaging)) {
         echo "Champs non renseigné";
     }
@@ -82,7 +82,7 @@ function displayPlace($place)
 function displayAllergen($allergen)
 {
     echo '<div class="allergen">';
-    echo "allergene : ";
+    echo "Allergènes : ";
     if (empty($allergen)) {
         echo "Champs non renseigné";
     }
@@ -103,7 +103,7 @@ function displayGrade($grade) {
 function displayIngredients($ingredients) // pas censé marché
 {
   echo '<div class="ingredients">';
-  echo "ingredients : ";
+  echo "Ingrédients : ";
   if (empty($ingredients)) {
     echo "Champs non renseigné";
   }
@@ -151,7 +151,7 @@ function displayLabel($labels) {
 function diplaysNote($note)
 {
     echo '<div class="note">';
-    echo "note moyenne : ";
+    echo "Note moyenne : ";
     if(isset($note) ){
         echo "Ce produit n'a pas encore de note";
     }else{
@@ -162,7 +162,7 @@ function diplaysNote($note)
 function diplaysNbNote($nbNote)
 {
     echo '<div class="nbNote">';
-    echo "nombre de notes : ";
+    echo "Nombre de notes : ";
     echo $nbNote['count(note)'];
     echo "</div>";
 }
