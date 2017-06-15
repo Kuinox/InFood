@@ -62,12 +62,12 @@ if (empty($result)) {
     displayLabel($labels);
     displayNutri($nutri);
     displayGrade(grade($bdd, $id_aliment));
-    echo " <form action='controller/functions/compare.php' method='POST'>
+    /*echo " <form action='controller/functions/compare.php' method='POST'>
                 <input type='hidden' name='action' value='compare'/>
                 <input type='hidden' name='id' value='".$_GET['id']."'/>
                 <input type='submit' value=\"ajouter en comparaison\" />
             </form>";
-
+            */
     displayComments(getComments($bdd,$_GET['id']));
 
     include("view/afficherFormVoteComment.php");

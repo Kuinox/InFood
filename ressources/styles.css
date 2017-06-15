@@ -2,7 +2,18 @@
  * General styles
  *
  */
-
+.nutriment table {
+    border-collapse: collapse;
+    margin-bottom: 1%;
+    width: 25%;
+}
+.nutriment td , th {
+    padding-left: 1%;
+    padding-top: 2%;
+    border-width: 1.5px;
+    border-style: solid;
+    border-color : #9ee04d;
+}
 .recherche {
     background-color: #4e5d66 ;
     border-color: #9ee04d ;

@@ -11,16 +11,17 @@ function displayNutri($nutri)
 {
 
   echo '<div class="nutriment">';
-  echo "<table>";
-  echo "nutriments : ";
+  echo "<table class = 'nutri'>";
+  echo "<th>Nutriments</th>
+        <th>Quantité</th>";
   if (empty($nutri)) {
     echo "Champs non renseigné";
   }
   foreach ($nutri as $key => $value) {
-    echo "<td>".$value['label']."</td><td>".$value['nutriment_quantity']."</td><tr>";
+    echo "<tr><td>".$value['label']."</td><td>".$value['nutriment_quantity']."</td></tr>";
     }
     foreach ($nutri as $key => $value) {
-        echo "<td>".$value['label']."</td><td>".$value['nutriment_quantity']."</td><tr>";
+        echo "<tr><td>".$value['label']."</td><td>".$value['nutriment_quantity']."</td></tr>";
     }
     echo "</table>";
     echo "</div>";
@@ -85,7 +86,7 @@ function displayAllergen($allergen)
     if (empty($allergen)) {
         echo "Champs non renseigné";
     }
-    $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/allergens/?id=";
+    $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/allergen/?id=";
     foreach ($allergen as $key => $value) {
         echo "<a href='".$path.$value['num']."'>".$value['name']. "</a> ";
     }
