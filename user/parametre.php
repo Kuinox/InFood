@@ -68,3 +68,4 @@ if(isset($_POST['action'])) {
 }
 include(__DIR__."/modifierCompte.php");
 ?>
+<a href="../view/confirmerSuppressionCompte.php">Supprimer Mon Compte</a>

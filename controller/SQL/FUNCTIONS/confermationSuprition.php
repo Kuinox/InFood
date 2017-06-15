@@ -8,7 +8,7 @@ function verifiermdp(PDO $bdd, $mdp)
 	$res->execute(array($id, $mdp2));
 
 	if ($res->fetchColumn() > 0) {
-		include("../../supprimerMonCompte.php");
+		include(__DIR__."/../../supprimerMonCompte.php");
 		echo"votre compte a été supprimer";
   }
 
