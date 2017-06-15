@@ -11,7 +11,7 @@ function displayNutri($nutri)
 {
 
   echo '<div class="nutriment">';
-  echo "<table>";
+  echo "<table class = ''>";
   echo "nutriments : ";
   if (empty($nutri)) {
     echo "Champs non renseigné";

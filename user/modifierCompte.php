@@ -25,7 +25,7 @@
 </form>
 <form action= "<?php echo $path ?>user\?tab=parametre&id=" method="POST">
 	<table>
-		<tr><?php echo $user['height'] ?>
+		<tr><?php echo $user['height'] ?> 
 			<td><input type="text" name="height" placeholder="Nouveau height"/></td>
 			<td><input type="submit" name="Modifer" value="Modifer" />
 					<input type="hidden" name="action" value="height" />
