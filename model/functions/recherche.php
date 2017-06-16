@@ -1,4 +1,4 @@
-d<?php
+<?php
 function recherche(PDO $bdd, $entry="") {
     $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/";
     if (empty($entry) && !isset($_GET['type'])) {
