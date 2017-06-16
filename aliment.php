@@ -51,7 +51,6 @@ if (empty($result)) {
 
     diplaysNote($note);
     diplaysNbNote($nbNote);
-
     displayLabelImage($labels);
     displayAllergen($allergen);
     displayPlace($place);

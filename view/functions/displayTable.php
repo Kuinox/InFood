@@ -86,7 +86,7 @@ function displayAllergen($allergen)
     if (empty($allergen)) {
         echo "Champs non renseigné";
     }
-    $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/allergen/?id=";
+    $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/allergens/?id=";
     foreach ($allergen as $key => $value) {
         echo "<a href='".$path.$value['num']."'>".$value['name']. "</a> ";
     }
