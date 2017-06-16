@@ -152,7 +152,7 @@ function diplaysNote($note)
 {
     echo '<div class="note">';
     echo "Note moyenne : ";
-    if(isset($note) ){
+    if($note['AVG (note)'] === null){
         echo "Ce produit n'a pas encore de note";
     }else{
     echo $note['AVG (note)'];
