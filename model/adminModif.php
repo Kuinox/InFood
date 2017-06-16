@@ -43,4 +43,4 @@ if(isset($_POST['cher'])){
 }
 }
 ?>
-<a href="./../">Avant</a>
+<a href="./../">Accueil</a>
