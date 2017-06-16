@@ -14,3 +14,4 @@ include("../controller/SQL/FUNCTIONS/chercherSupprimerCompte.php");
 include("../model/bot.php");
 ob_end_flush();
 ?>
+<a href="./../">Avant</a>

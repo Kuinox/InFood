@@ -2,7 +2,7 @@
 include (__DIR__."./../model/top.php");
 			//session_start();
 			$path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/";
-			var_dump($_SESSION['user2']);
+			//var_dump($_SESSION['user2']);
 			$user = $_SESSION['user2'];
 ?>
 
