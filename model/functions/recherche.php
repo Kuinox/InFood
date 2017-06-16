@@ -46,36 +46,40 @@ function recherche(PDO $bdd, $entry="") {
         case 'additives':
             $bdd->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $query = "  SELECT num, id, name, products, url,
-                            MATCH(`id`) AGAINST (:recherche IN NATURAL LANGUAGE MODE) AS title_relevance,
-                            MATCH(`name`) AGAINST (:recherche IN NATURAL LANGUAGE MODE) AS relevance
+                            MATCH(`id`) AGAINST (? IN NATURAL LANGUAGE MODE) AS title_relevance,
+                            MATCH(`name`) AGAINST (? IN NATURAL LANGUAGE MODE) AS relevance
                         FROM $type
-                        WHERE   MATCH(`id`) AGAINST (:recherche IN NATURAL LANGUAGE MODE)
+                        WHERE   MATCH(`id`) AGAINST (? IN NATURAL LANGUAGE MODE)
                                 OR
-                                MATCH(`name`) AGAINST (:recherche IN NATURAL LANGUAGE MODE)
+                                MATCH(`name`) AGAINST (? IN NATURAL LANGUAGE MODE)
                         ORDER BY title_relevance*2+relevance DESC, name ASC
                         LIMIT $debut , $nb_affichage_par_page";
             $result = $bdd->prepare($query);
-            $result->bindParam(':recherche', $_GET['recherche'], PDO::PARAM_STR, 12);
-            $result->execute();
+            $result->execute(array($_GET['recherche'],$_GET['recherche'],$_GET['recherche'],$_GET['recherche']));
             break;
         case 'labels':
-            $query = "SELECT *
-                      FROM $type
-                      WHERE :recherche
-                      ORDER BY name ASC
-                      LIMIT $debut , $nb_affichage_par_page";
+            $query = "  SELECT *,
+                            MATCH(`id`) AGAINST (? IN NATURAL LANGUAGE MODE) AS title_relevance,
+                            MATCH(`name`) AGAINST (? IN NATURAL LANGUAGE MODE) AS relevance
+                        FROM $type
+                        WHERE   MATCH(`id`) AGAINST (? IN NATURAL LANGUAGE MODE)
+                                OR
+                                MATCH(`name`) AGAINST (? IN NATURAL LANGUAGE MODE)
+                        ORDER BY title_relevance*2+relevance DESC, name ASC
+                        LIMIT $debut , $nb_affichage_par_page";
             $result = $bdd->prepare($query);
-            $result->execute(array(':recherche' => rechercheToPattern("name")));
+            $result->execute(array($_GET['recherche'],$_GET['recherche'],$_GET['recherche'],$_GET['recherche']));
             break;
         case 'manufacturing_place':
         case 'generic_name':
-            $query = "SELECT id, label
+            $query = "  SELECT id, label,
+                            MATCH(`label`) AGAINST (? IN NATURAL LANGUAGE MODE) AS relevance
                       FROM $type
-                      WHERE :recherche
-                      ORDER BY label ASC
+                      WHERE MATCH(`label`) AGAINST (? IN NATURAL LANGUAGE MODE)
+                      ORDER BY relevance DESC
                       LIMIT $debut , $nb_affichage_par_page";
             $result = $bdd->prepare($query);
-            $result->execute(array(':recherche' => rechercheToPattern("label")));
+            $result->execute(array($_GET['recherche'], $_GET['recherche']));
             break;
 
         case 'ingredients':
@@ -83,13 +87,17 @@ function recherche(PDO $bdd, $entry="") {
         case 'allergens':
         case 'categories':
         case 'packaging':
-            $query = "SELECT *
-                      FROM $type
-                      WHERE :recherche
-                      ORDER BY name ASC
-                      LIMIT $debut , $nb_affichage_par_page";
+            $query = "  SELECT *,
+                            MATCH(`id`) AGAINST (? IN NATURAL LANGUAGE MODE) AS title_relevance,
+                            MATCH(`name`) AGAINST (? IN NATURAL LANGUAGE MODE) AS relevance
+                        FROM $type
+                        WHERE   MATCH(`id`) AGAINST (? IN NATURAL LANGUAGE MODE)
+                                OR
+                                MATCH(`name`) AGAINST (? IN NATURAL LANGUAGE MODE)
+                        ORDER BY title_relevance*2+relevance DESC, name ASC
+                        LIMIT $debut , $nb_affichage_par_page";
             $result = $bdd->prepare($query);
-            $result->execute(array(':recherche' => $_GET['recherche']));
+            $result->execute(array($_GET['recherche'],$_GET['recherche'],$_GET['recherche'],$_GET['recherche']));
             break;
         case 'aliment_additives':
             $query ="   SELECT a.*
@@ -122,9 +130,9 @@ function recherche(PDO $bdd, $entry="") {
                         FROM aliment a
                         JOIN aliment_has_ingredients ai
                         ON a.id_aliment = ai.aliment_id_aliment
-                        JOIN ingredient i
-                        ON i.num = ai.ingredient_id_ingredient
-                        WHERE i.id= :id
+                        JOIN ingredients i
+                        ON i.num = ai.ingredients_num
+                        WHERE i.num= :id
                         ORDER BY i.name ASC
                         LIMIT $debut , $nb_affichage_par_page";
             $result = $bdd->prepare($query);

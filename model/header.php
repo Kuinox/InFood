@@ -7,7 +7,7 @@
         }
         $array_select = [];
         if(isset($_GET['type'])) {
-            foreach(array("aliment", "additives", "ingredients", "categories", "ingredients", "categories", "allergens", "manufacturing_place", "brands", "packaging", "generic_name", "labels")
+            foreach(array("aliment", "additives", /*"ingredients", "categories",*/ "allergens", "manufacturing_place", "brands", "packaging", /*"generic_name", "labels"*/)
             as $option) {
                 if($_GET['type'] === $option) {
                     $array_select[$option] = "selected";
@@ -16,7 +16,7 @@
                 }
             }
         } else {
-            foreach(array("aliment", "additives", "ingredients", "categories", "ingredients", "categories", "allergens", "manufacturing_place", "brands", "packaging", "generic_name", "labels")
+            foreach(array("aliment", "additives", "ingredients", "categories","allergens", "manufacturing_place", "brands", "packaging", /*"generic_name", "labels"*/)
                     as $option) {
                 $array_select[$option] = "";
             }
@@ -29,10 +29,10 @@
                     <form id="search" action="<?php echo $path; ?>resultat_de_recherche" method="GET">
                         <a class="accueil" href="<?php echo $path ?>">In'Food</a>
                         <select name = "type" id="type">
-                            <option value="aliment"             <?php echo array_shift($array_select); ?>>Produits</option>
+                            <option value="aliment"             <?php echo array_shift($array_select); ?>>Aliments</option>
                             <option value="additives"           <?php echo array_shift($array_select); ?>>Additifs</option>
-                            <option value="ingredients"         <?php echo array_shift($array_select); ?>>Ingrédients</option>
-                            <option value="categories"          <?php echo array_shift($array_select); ?>>Catégories</option>
+                            <option value="ingredients"         <?php echo array_shift($array_select); ?>>Ingrédients</option>-->
+                            <option value="categories"          <?php echo array_shift($array_select); ?>>Catégories</option>-->
                             <option value="allergens"           <?php echo array_shift($array_select); ?>>Allergènes</option>
                             <option value="manufacturing_place" <?php echo array_shift($array_select); ?>>Lieu de fabrication</option>
                             <option value="brands"              <?php echo array_shift($array_select); ?>>Marques</option>
