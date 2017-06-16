@@ -16,7 +16,7 @@
 <form action= "<?php echo $path ?>user\?tab=parametre&id=" method="POST">
 	<table>
 		<tr><?php echo $user['email'] ?>
-			<td><input type="email" name="email" placeholder="Nouveau email"/></td>
+			<td><input type="email" name="email" placeholder="Nouveau e-mail"/></td>
 			<td><input type="submit" name="Modifer" value="Modifer" />
 					<input type="hidden" name="action" value="email" />
 			</td>
@@ -26,7 +26,7 @@
 <form action= "<?php echo $path ?>user\?tab=parametre&id=" method="POST">
 	<table>
 		<tr><?php echo $user['height'] ?>
-			<td><input type="text" name="height" placeholder="Nouveau height"/></td>
+			<td><input type="text" name="height" placeholder="Nouvel taille"/></td>
 			<td><input type="submit" name="Modifer" value="Modifer" />
 					<input type="hidden" name="action" value="height" />
 			</td>
@@ -36,7 +36,7 @@
 <form action="<?php echo $path ?>user\?tab=parametre&id=" method="POST">
 	<table>
 		<tr><?php echo $user['weight'] ?>
-			<td><input type="text" name="weight" placeholder="Nouveau weight"/></td>
+			<td><input type="text" name="weight" placeholder="Nouveau Poids"/></td>
 			<td><input type="submit" name="Modifer" value="Modifer" />
 					<input type="hidden" name="action" value="weight" />
 			</td>
@@ -46,9 +46,9 @@
 <form action="<?php echo $path ?>user\?tab=parametre&id=" method="POST">
 	<table>
 		<tr>
-			<td><input type="password" name="aPassword" placeholder="acien mot de passe"/></td>
+			<td><input type="password" name="aPassword" placeholder="Ancien mot de passe"/></td>
 			<td><input type="password" name="password" placeholder="Nouveau mot de passe"/></td>
-			<td><input type="password" name="cPassword" placeholder="confirmer mot de passe"/></td>
+			<td><input type="password" name="cPassword" placeholder="Confirmer mot de passe"/></td>
 			<td><input type="submit" name="Modifer" value="Modifer" />
 					<input type="hidden" name="action" value="password" />
 			</td>
