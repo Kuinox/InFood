@@ -95,7 +95,7 @@ function label(PDO $bdd, $id_aliment) {
                 JOIN aliment_has_labels am
                 ON a.id_aliment = am.aliment_id_aliment
                 JOIN labels m
-                ON m.id = am.labels_num
+                ON m.num = am.labels_num
                 WHERE a.id_aliment = ? ";
     $prep = $bdd->prepare($query);
     $prep->execute(array($id_aliment));
