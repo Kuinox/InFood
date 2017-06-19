@@ -27,7 +27,6 @@ function displayRecherche(array $output) {
             $id = $value['num'];
             $name = $value['name'];
         }
-
         echo "<a href=$path$type?id=$id>$name</a><br>";
     }
     $nb_out = count($output);
