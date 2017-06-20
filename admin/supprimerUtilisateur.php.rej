@@ -1,0 +1,9 @@
+diff a/admin/supprimerUtilisateur.php b/admin/supprimerUtilisateur.php	(rejected hunks)
+@@ -14,4 +14,4 @@
+ include("../model/bot.php");
+ ob_end_flush();
+ ?>
+-<a href="./../">Avant</a>
+\ No newline at end of file
++<a href="./../">Accueil</a>
+\ No newline at end of file
