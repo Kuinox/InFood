@@ -27,7 +27,7 @@ function recherche(PDO $bdd, $entry="") {
                 header("Location: ./aliment?id=".$_GET['recherche']);
                 exit;
             }
-            $result = rechercheAliment($bdd, $_GET['recherche'], $debut , $nb_affichage_par_page);
+            $result = rechercheAliment($bdd, $_GET['recherche'], $debut , $nb_affichage_par_page, $type);
             break;
 
         case 'manufacturing_place':
