@@ -1,8 +1,5 @@
 <?php
-
-
-
-function rechercheAliment($recherche, $debut , $nb_affichage_par_page) {
+function rechercheAliment($bdd, $recherche, $debut , $nb_affichage_par_page, $type) {
     $query = "  SELECT a.id_aliment , a.name_aliment,
                 MATCH (g.label) AGAINST (:recherche IN NATURAL LANGUAGE MODE) AS relevance,
                 MATCH (a.name_aliment) AGAINST (:recherche IN NATURAL LANGUAGE MODE) AS title_relevance
@@ -20,7 +17,7 @@ function rechercheAliment($recherche, $debut , $nb_affichage_par_page) {
 }
 
 
-function rechercheClassic($recherche, $debut , $nb_affichage_par_page, $type) {
+function rechercheClassic($bdd, $recherche, $debut , $nb_affichage_par_page, $type) {
     $query = "  SELECT num, id, name, products, url,
                     MATCH(`id`) AGAINST (? IN NATURAL LANGUAGE MODE) AS title_relevance,
                     MATCH(`name`) AGAINST (? IN NATURAL LANGUAGE MODE) AS relevance
@@ -35,7 +32,7 @@ function rechercheClassic($recherche, $debut , $nb_affichage_par_page, $type) {
     return $result;
 }
 
-function rechercheAlternate($recherche, $debut , $nb_affichage_par_page, $type) {
+function rechercheAlternate($bdd, $recherche, $debut , $nb_affichage_par_page, $type) {
     $query = "  SELECT id, label,
                     MATCH(`label`) AGAINST (? IN NATURAL LANGUAGE MODE) AS relevance
               FROM $type
@@ -43,7 +40,7 @@ function rechercheAlternate($recherche, $debut , $nb_affichage_par_page, $type) 
               ORDER BY relevance DESC
               LIMIT $debut , $nb_affichage_par_page";
     $result = $bdd->prepare($query);
-    $result->execute(array($_GET['recherche'], $_GET['recherche']));
+    $result->execute(array($recherche, $recherche));
     return $result;
 }
 
