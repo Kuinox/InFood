@@ -1,4 +1,5 @@
 <?php
+include(__DIR__."/functionsRecherche.php");
 function recherche(PDO $bdd, $entry="") {
     $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/";
     if (empty($entry) && !isset($_GET['type'])) {
@@ -26,12 +27,12 @@ function recherche(PDO $bdd, $entry="") {
                 header("Location: ./aliment?id=".$_GET['recherche']);
                 exit;
             }
-            $result = rechercheAliment($_GET['recherche'], $debut , $nb_affichage_par_page);
+            $result = rechercheAliment($bdd, $_GET['recherche'], $debut , $nb_affichage_par_page);
             break;
 
         case 'manufacturing_place':
         case 'generic_name':
-            $result = rechercheGenericName($_GET['recherche'], $debut , $nb_affichage_par_page, $type);
+            $result = rechercheAlternate($bdd, $_GET['recherche'], $debut , $nb_affichage_par_page, $type);
             break;
         case 'additives':
         case 'labels':
@@ -40,17 +41,7 @@ function recherche(PDO $bdd, $entry="") {
         case 'allergens':
         case 'categories':
         case 'packaging':
-            $query = "  SELECT *,
-                            MATCH(`id`) AGAINST (? IN NATURAL LANGUAGE MODE) AS title_relevance,
-                            MATCH(`name`) AGAINST (? IN NATURAL LANGUAGE MODE) AS relevance
-                        FROM $type
-                        WHERE   MATCH(`id`) AGAINST (? IN NATURAL LANGUAGE MODE)
-                                OR
-                                MATCH(`name`) AGAINST (? IN NATURAL LANGUAGE MODE)
-                        ORDER BY title_relevance*2+relevance DESC, name ASC
-                        LIMIT $debut , $nb_affichage_par_page";
-            $result = $bdd->prepare($query);
-            $result->execute(array($_GET['recherche'],$_GET['recherche'],$_GET['recherche'],$_GET['recherche']));
+            $result = rechercheClassic($bdd, $_GET['recherche'], $debut , $nb_affichage_par_page, $type);
             break;
         case 'aliment_additives':
             $query ="   SELECT a.*
@@ -177,6 +168,7 @@ function recherche(PDO $bdd, $entry="") {
         }
     $output = $result->fetchAll(PDO::FETCH_ASSOC);
     //var_dump($output); TODO: Meilleur recherche
+    var_dump($output);
     return $output;
 }
  ?>
