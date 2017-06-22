@@ -64,7 +64,6 @@ function applyToAllProduct($ressource, PDO $bdd, $columns, $code) {// run a func
         $query1 = "CREATE INDEX `idx_".$json_name."_name`  ON `infood`.`$json_name` (name(100)) COMMENT '' ALGORITHM DEFAULT LOCK DEFAULT";
         $query2 = "CREATE INDEX `idx_".$json_name."_id`  ON `infood`.`$json_name` (id(100)) COMMENT '' ALGORITHM DEFAULT LOCK DEFAULT";
         $query3 = "alter table $json_name add FULLTEXT (`id`)";
-
         $query4 = "alter table $json_name add FULLTEXT (`name`)";
         $bdd->query($query1);
         $bdd->query($query2);
