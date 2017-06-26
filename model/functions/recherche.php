@@ -168,7 +168,6 @@ function recherche(PDO $bdd, $entry="") {
         }
     $output = $result->fetchAll(PDO::FETCH_ASSOC);
     //var_dump($output); TODO: Meilleur recherche
-    var_dump($output);
     return $output;
 }
  ?>
