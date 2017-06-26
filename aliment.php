@@ -26,8 +26,8 @@ if (empty($result)) {
     $labels = label($bdd, $id_aliment);
     $product = new OnlineProduct($bdd, $_GET['id']);
     $product->displayImage("front");
-    $product->displayImage("nutrition");
-    $product->displayImage("ingredients");
+
+
 
     displayName($result);
     if ($pref->getEnable()) {
@@ -46,20 +46,26 @@ if (empty($result)) {
         }
     }
 
-
+    echo"<br><br>";
     echo "Code Barre: ".$_GET['id'];
-
+    echo"<br><br>";
     diplaysNote($note);
+    echo"<br>";
     diplaysNbNote($nbNote);
     displayLabelImage($labels);
     displayAllergen($allergen);
     displayPlace($place);
     displayPackaging($packaging);
     displayBrand($brand);
+    echo"<br><br><br><br><br><br>";
     displayIngredients($ingredients);
+    $product->displayImage("ingredients");
     displayAdditives($additives);
     displayLabel($labels);
+    echo"<br><br><br><br><br><br>";
+    $product->displayImage("nutrition");
     displayNutri($nutri);
+
     displayGrade(grade($bdd, $id_aliment));
     /*echo " <form action='controller/functions/compare.php' method='POST'>
                 <input type='hidden' name='action' value='compare'/>

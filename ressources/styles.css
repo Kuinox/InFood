@@ -58,6 +58,14 @@ body{
 img {
   align-self: baseline;
 }
+#front.full_page_container img {
+  width:1%;
+}
+.full_page_container img {
+  width:20%;
+  float:right;
+
+}
 .dummy {
     padding-top: 100%;
 }
@@ -189,7 +197,7 @@ header{
      margin-top: 5%;
      margin-right: auto;
      margin-left: auto;
-     display: flex;
+
      flex-direction: column;
  }
 
