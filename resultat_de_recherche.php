@@ -8,7 +8,6 @@ if(empty($recherche)) {
 }
 include("model/top.php");
 include("model/functions/displayRecherche.php");
-//var_dump($recherche);
 displayRecherche($recherche);
 include("model/bot.php");
 ?>
