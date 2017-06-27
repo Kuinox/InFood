@@ -24,6 +24,7 @@
 .accueil {
     text-decoration: none;
 }
+
 .inscript {
     margin-top: 0.5%;
     font-size: 50%;
@@ -140,6 +141,9 @@ header{
     visibility: visible;
 }
 
+.normalHidden {
+    display: none;
+}
 
 .profilButton{
     display:flex;
@@ -184,15 +188,21 @@ header{
  *
  */
 
- .full_page_container{
-     width: 1240px;
-     margin-top: 5%;
-     margin-right: auto;
-     margin-left: auto;
-     display: flex;
-     flex-direction: column;
+.full_page_container {
+    width: 1240px;
+    margin-top: 5%;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
  }
-
+.filter_container {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 .overlay {
     height: 100%;
     width: 100%;

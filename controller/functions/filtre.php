@@ -9,7 +9,13 @@ function getUserFilters(PDO $bdd, $user_id) {
     $prep->execute(array($user_id));
     return $prep->fetchAll(PDO::FETCH_ASSOC);
 }
-
+function getFilterById(PDO $bdd, $filter_id) {
+    $query = "  SELECT * FROM `filter` WHERE id = ?";
+    $prep = $bdd->prepare($query);
+    $prep->execute(array($filter_id));
+    $result = $prep->fetchAll(PDO::FETCH_ASSOC);
+    return $result[0];
+}
 function getUserSearchFilter(PDO $bdd, $user_id) {
         $query = "  SELECT filter FROM `user` WHERE user_id = ?";
         $prep = $bdd->prepare($query);
