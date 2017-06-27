@@ -30,25 +30,27 @@ else {
 ?>
 <div class="tab_container">
     <div class="tab_profil <?php if($tab === "activite") echo "active"; ?>">
-        <a href="?tab=activite&id=<?php echo $id; ?>">Activité</a>
+        <a href="?tab=activite&id=<?php echo $id; ?>"style="padding-left: 2em; text-decoration:none;  ">Activité</a>
     </div>
      <?php
     if ($proprio) {
         ?>
         <div class="tab_profil <?php if($tab === "preference") echo "active"; ?>">
-            <a href="?tab=preference&id=<?php echo $id; ?>">Préférences alimentaires</a>
+            <a href="?tab=preference&id=<?php echo $id; ?>"style="padding-left: 2em;  text-decoration:none;  ">Préférences alimentaires</a>
         </div>
 <?php }
     if($proprio || (isset($_SESSION['user']) && isset($_SESSION['user']['grade']) && $_SESSION['user']['grade'] =="admin")) {
         ?>
         <div class="tab_profil <?php if($tab === "parametre") echo "active"; ?>">
-            <a href="?tab=parametre&id=<?php echo $id; ?>">Paramètres</a>
+            <a href="?tab=parametre&id=<?php echo $id; ?>" style="padding-left: 2em; text-decoration:none;  ">Paramètres</a>
         </div>
         <?php
 
     }
      ?>
+     </div>
      <div>
+       <br><br>
         Rechercher un membre:
         <form  action="recherche_membres" method="GET">
             <input type="text" name="recherche" />
@@ -56,7 +58,7 @@ else {
             <input type="submit" value="Rechercher" />
         </form>
      </div>
-</div> <?php
+ <?php
 
 include("$tab.php");
 include("../model/bot.php");
