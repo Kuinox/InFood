@@ -182,11 +182,14 @@ header{
 
 .tab_container {
     display: flex;
-}
-.tab_profil {
-     background-color: #2b3b47;
-}
 
+  }
+  .tab_container a {
+    color :white;
+  }
+.tab_profil {
+       background-color: #2b3b47;
+}
 /**
  * Page
  *
