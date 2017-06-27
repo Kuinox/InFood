@@ -7,21 +7,27 @@ function displayName($result)
         }
     echo "</h1>";
 }
-function displayNutri($nutri)
+function displayNutri($nutri,$key)
 {
-
-  echo '<div class="nutriment">';
-  echo "<table class = 'nutri'>";
-  echo "<th>Nutriments</th>
-        <th>Quantité</th>";
-  if (empty($nutri)) {
-    echo "Champs non renseigné";
-  }
-  foreach ($nutri as $key => $value) {
-    echo "<tr><td>".$value['label']."</td><td>".$value['nutriment_quantity']."</td></tr>";
+    echo '<div class="nutriment">';
+    echo "<table class = 'nutri2'>";
+    if (empty($nutri)) {
+        echo "Champs non renseigné";
     }
-    echo "</table>";
-    echo "</div>";
+    if($key >= 1 ){
+        foreach ($nutri as $key => $value) {
+          echo "<tr><td>".$value['nutriment_quantity']."</td></tr>";
+          }
+          echo "</table>";
+      } else {
+        echo "<th>Nutriments</th>
+              <th>Quantité</th>";
+        foreach ($nutri as $key => $value) {
+          echo "<tr><td>".$value['label']."</td><td>".$value['nutriment_quantity']."</td></tr>";
+          }
+          echo "</table>";
+      }
+      echo "</div>";
 }
 function displayAdditives($additives)
 {

@@ -6,7 +6,7 @@ BEGIN
   SELECT note
   INTO id_note
   FROM notes
-  WHERE user_id_user = id_user;
+  WHERE user_id_user = id_user AND aliment_id_aliment LIKE id_aliment;
 IF id_note IS NULL
 THEN
     INSERT INTO notes (aliment_id_aliment,note,user_id_user)
