@@ -1,6 +1,9 @@
 <?php
 include(__DIR__."/functionsRecherche.php");
-function recherche(PDO $bdd, $entry="") {
+function recherche(PDO $bdd, $entry = "", $recherche = "") {
+    if (empty($recherche)) {
+        $recherche = $_GET['recherche'];
+    }
     $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/";
     if (empty($entry) && !isset($_GET['type'])) {
         throw new ErrorException("recherche called with no type");
@@ -22,17 +25,17 @@ function recherche(PDO $bdd, $entry="") {
         case 'aliment':
             $query = "SELECT id_aliment FROM aliment WHERE id_aliment = ?" ;
             $barcode = $bdd->prepare($query);
-            $barcode->execute(array($_GET['recherche']));
+            $barcode->execute(array($recherche));
             if ($barcode->rowCount() == 1) {
-                header("Location: ./aliment?id=".$_GET['recherche']);
+                header("Location: ./aliment?id=".$recherche);
                 exit;
             }
-            $result = rechercheAliment($bdd, $_GET['recherche'], $debut , $nb_affichage_par_page, $type);
+            $result = rechercheAliment($bdd, $recherche, $debut , $nb_affichage_par_page, $type);
             break;
 
         case 'manufacturing_place':
         case 'generic_name':
-            $result = rechercheAlternate($bdd, $_GET['recherche'], $debut , $nb_affichage_par_page, $type);
+            $result = rechercheAlternate($bdd, $recherche, $debut , $nb_affichage_par_page, $type);
             break;
         case 'additives':
         case 'labels':
@@ -41,7 +44,7 @@ function recherche(PDO $bdd, $entry="") {
         case 'allergens':
         case 'categories':
         case 'packaging':
-            $result = rechercheClassic($bdd, $_GET['recherche'], $debut , $nb_affichage_par_page, $type);
+            $result = rechercheClassic($bdd, $recherche, $debut , $nb_affichage_par_page, $type);
             break;
         case 'aliment_additives':
             $query ="   SELECT a.*
@@ -161,7 +164,7 @@ function recherche(PDO $bdd, $entry="") {
                         WHERE pseudo
                         LIKE :recherche";
             $result = $bdd->prepare($query);
-            $result->execute(array(':recherche' => "%".$_GET['recherche']."%"));
+            $result->execute(array(':recherche' => "%".$recherche."%"));
         break;
         default:
             throw new ErrorException("not rooted ".$type);

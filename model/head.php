@@ -7,4 +7,5 @@
     <script src="<?php echo $path ?>js/formsDisplay.js"></script>
     <script src="<?php echo $path ?>js/formSender.js"></script>
     <script src="<?php echo $path ?>js/profilBar.js"></script>
+    <script src="<?php echo $path ?>js/filter.js"></script>
 </head>
