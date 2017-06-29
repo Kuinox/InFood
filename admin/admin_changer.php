@@ -77,16 +77,24 @@ function verifierEtModifer(PDO $bdd, $toto, $nauveaunom)
 if (isset($_POST['Modifer']))
 {
   if(isset($_POST["pseudo"])){
+		if(!empty($_POST["pseudo"])){
     $toto='pseudo';
     $nom=$_POST['pseudo'];
     $_SESSION['pseumail']="$toto";
     verifierEtModifer($bdd, $toto, $nom);
+	}else {
+		echo"<p style='color:#9ee04d;'>Vous devez entrer un valeur</p>";
+	}
   }
   if(isset($_POST["email"])){
+		if(!empty($_POST["email"])){
     $toto='email';
     $nom=$_POST['email'];
     $_SESSION['pseumail']="$toto";
     verifierEtModifer($bdd, $toto, $nom);
+	}else {
+		echo"<p style='color:#9ee04d;'>Vous devez entrer un valeur</p>";
+	}
   }
   if(isset($_POST["height"])){
   $toto='height';
