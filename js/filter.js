@@ -2,7 +2,44 @@
 "use strict";
 window.filter = {};
 
+function filterClicked(div) {
+    getFilterById(div.id);
+}
 
+function numMaxProperties(data) {
+    var max = 0;
+    data = data.data;
+    for (var i=0; i<data.length; i++) {
+        var length = data[i].length;
+        if (length > max) {
+            max = length;
+        }
+    }
+    return max;
+}
+
+function displaySimpleContent(data, filter) {
+    document.getElementsByClassName("filter-title")[0].innerHTML = data.name;
+    document.getElementsByClassName("color-picker")[0].innerHTML = filter.color;
+}
+
+function unHide() {
+    var hiddenList = document.getElementsByClassName("normalHidden");
+    var z;
+    for (var x=0; x<4; x++) {
+        for (z=0; z<hiddenList.length; z++) {
+            hiddenList[z].classList.remove("normalHidden");
+        }
+    }
+}
+
+function displayFilter(json) {
+    var filter = JSON.parse(json);
+    var data = JSON.parse(filter.json);
+    displayFilterData(data);
+    displaySimpleContent(data, filter);
+    unHide();
+}
 
 function search(search, type) {
     var xhr = new XMLHttpRequest(); //instancie l'objet xhr
@@ -34,6 +71,29 @@ function search(search, type) {
 
 }
 
+function displayFilterData(data) {
+    //var properties = ["name_aliment", "generic_name", "allergens", "brands", "additives", "categories", "ingredients", "label", "packaging", "traces", "grade_nutriment", "nutriment", "manufacturing_place"];
+    //name of the class
+    var table = document.getElementById("table-filter");
+    for (var t=0; t<table.childNodes.length; t++) {
+        if(t>1) {
+            table.removeChild(table.childNodes[t]);
+        }
+    }
+    var max = numMaxProperties(data);
+    var td;
+    var tr;
+    for (var y=0; y<max; y++) {
+        tr = document.createElement("tr");
+        for (var x=0; x<data.data.length; x++) {
+            td = document.createElement("td");
+            td.innerHTML = data.data[y][x][0];
+            tr.appendChild(td);
+        }
+        table.appendChild(tr);
+    }
+}
+
 function getFilterById(id) {
     var xhr = new XMLHttpRequest(); //instancie l'objet xhr
     var url = window.location.href;
@@ -50,55 +110,4 @@ function getFilterById(id) {
             displayFilter(xhr.response);
          }
      }, 10, 10);
-}
-function displayFilter(json) {
-    var filter = JSON.parse(json);
-    var data = JSON.parse(filter.json);
-    document.getElementsByClassName("filter-title")[0].innerHTML = data.name;
-    document.getElementsByClassName("color-picker")[0].innerHTML = filter.color;
-    document.getElementsByClassName("save")[0].classList.remove("normalHidden");
-    document.getElementsByClassName("color-picker")[0].classList.remove("normalHidden");
-}
-function filterClicked(div) {
-    getFilterById(div.id);
-}
-
-function displayMenuContent() {
-
-}
-function displayInterface(data) {
-    var propertiesName = ["Nom", "Nom génerique", "Allergène", "Marque", "Additif", "Catégorie", "Ingrédients", "Labels", "Packaging", "Traces", "Grade Nutritionnel", "Nutriment", "Lieu de fabrication"];
-    var properties = ["name_aliment", "generic_name", "allergens", "brands", "additives", "categories", "ingredients", "label", "packaging", "traces", "grade_nutriment", "nutriment", "manufacturing_place"];
-    var div;
-    var tableArray = [];
-    for (var i=0; i<propertiesName.length; i++) {
-        div = document.createElement("div");
-        div.innerHTML = propertiesName[i];
-        div.id = properties[i];
-        div.onclick = displayMenu(properties[i]);
-        tableArray.append(div);
-    }
-    var max = 0;
-    for (var i=0; i<data.length; i++) {
-        var length = data[i].length;
-        if (length > max) {
-            max = length;
-        }
-    }
-    var map = [];
-    map.append(tableArray);
-    var tempList;
-    for (var y=0; y<max; y++) {
-        tempList = [];
-        for (var x=0; x<data.length; x++) {
-            tempList.append(data[x][y]);
-        }
-        map.append(tempList);
-    }
-
-    for (x = 0; x<map.length; x++) {
-        for(y = 0; y<map[x].length; y++) {
-            console.log(map[x][y]);
-        }
-    }
 }
