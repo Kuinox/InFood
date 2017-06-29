@@ -38,14 +38,14 @@ function modifierGrade(PDO $bdd,$grade){
 	if($grade=="utilisateur"){
 		$gradepar="1";
 	}
-	else {
-		{$gradepar="2";}
+	else if ($grade=="admin"){
+		$gradepar="2";
 	}
-	/**/$res = $bdd->prepare("UPDATE grade_user SET grade_id_grade =? WHERE user_id_user=?");
-	$res->execute(array($gradepar, $id2));/****/
-	//$requete = $bdd->query("UPDATE grade_user SET grade_id_grade ='$gradepar' WHERE user_id_user='$id2'");
+	var_dump($id2);
+	$res = $bdd->prepare("UPDATE grade_user SET id =? WHERE user_id_user=?");
+	$res->execute(array($gradepar, $id2));
 	$_SESSION['user2']['name_grade']=$grade;
-	echo"grade est changé avec succés";
+	echo "grade est changé avec succés";
 
 }
 
@@ -141,6 +141,7 @@ if (isset($_POST['Modifer']))
 }
 //var_dump($_SESSION['user2']);
 $user2=$_SESSION['user2'];
+var_dump($user2);
 echo"<br> Le nom est ".$user2['pseudo']."<br>";
 echo" L'email est ".$user2['email']."<br>";
 echo" Le weight est ".$user2['weight']."<br>";
