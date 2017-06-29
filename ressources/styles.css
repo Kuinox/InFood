@@ -98,7 +98,7 @@ img {
  *
  */
 
-header{
+header {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     display: flex;
     flex-direction: column;
@@ -109,19 +109,19 @@ header{
     height:10%;
 }
 
-.top_header{
+.top_header {
     background-color: #2b3b47;
     height:50%;
 }
 
-.bot_header{
+.bot_header {
     height: 50%;
     background-color: #9ee04d;
     font-size: 14px;
     color: #FFFFFF;
 
 }
-.top_header_container{
+.top_header_container {
     height: 50%;
     max-width:1240px;
     position: relative;
@@ -222,7 +222,9 @@ header{
  *
  */
 
-
+.active {
+    color:#9ee04d;
+}
 .full_page_container {
     width: 1240px;
     margin-top: 5%;

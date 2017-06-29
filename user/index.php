@@ -30,19 +30,19 @@ else {
 ?>
 <div class="tab_container">
     <div class="tab_profil <?php if($tab === "activite") echo "active"; ?>">
-      <a href="?tab=activite&id=<?php echo $id; ?>"<?php if($tab === "activite"){echo"style='padding-left: 1em;color:#9ee04d'";}?>style="padding-left: 1em; text-decoration:none;">Activité</a>
+      <a href="?tab=activite&id=<?php echo $id; ?>"<?php if($tab === "activite"){echo"style='padding-left: 1em;'";}?>style="padding-left: 1em; text-decoration:none;color:#9ee04d;">Activité</a>
     </div>
      <?php
     if ($proprio) {
         ?>
         <div class="tab_profil <?php if($tab === "preference") echo "active"; ?>">
-            <a href="?tab=preference&id=<?php echo $id; ?>"<?php if($tab === "preference"){echo"style='padding-left: 1em;color:#9ee04d'";}?>style="padding-left: 1em; text-decoration:none;  ">Préférences alimentaires</a>
+            <a href="?tab=preference&id=<?php echo $id; ?>"<?php if($tab === "preference"){echo"style='padding-left: 1em;'";}?>style="padding-left: 1em; text-decoration:none;color:#9ee04d;  ">Préférences alimentaires</a>
         </div>
 <?php }
     if($proprio || (isset($_SESSION['user']) && isset($_SESSION['user']['grade']) && $_SESSION['user']['grade'] =="admin")) {
         ?>
         <div class="tab_profil <?php if($tab === "parametre") echo "active"; ?>">
-            <a href="?tab=parametre&id=<?php echo $id; ?>"<?php if($tab === "parametre"){echo"style='padding-left: 1em;color:#9ee04d'";}?> style="padding-left: 1em;padding-right: 2em; text-decoration:none;  ">Paramètres</a>
+            <a href="?tab=parametre&id=<?php echo $id; ?>"<?php if($tab === "parametre"){echo"style='padding-left: 1em;'";}?> style="padding-left: 1em;padding-right: 2em; text-decoration:none;color:#9ee04d;  ">Paramètres</a>
         </div>
         <?php
 

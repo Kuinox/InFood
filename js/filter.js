@@ -1,9 +1,32 @@
-/*exported filterClicked*/
+/*exported filterClicked, tabClick, searchOnFly*/
 "use strict";
 window.filter = {};
 
 function filterClicked(div) {
     getFilterById(div.id);
+}
+
+
+function searchOnFly(input) {
+    var search = input.childNodes[1].value;
+    var type = document.getElementsByClassName("active")[0].id;
+    querySearch(search, type);
+}
+
+function tabClick(element) {
+    //TODO special case (grade nutri)
+    tabHighLight(element);
+}
+
+function tabHighLight(element) {
+    var tabs = element.parentNode.childNodes;
+    for (var i = 0; i<tabs.length; i++) {
+        if(tabs[i] === element) {
+            element.classList.add("active");
+        } else {
+            tabs[i].classList.remove("active");
+        }
+    }
 }
 
 function numMaxProperties(data) {
@@ -41,7 +64,18 @@ function displayFilter(json) {
     unHide();
 }
 
-function search(search, type) {
+function displaySearch(search) {
+    var div = document.getElementsByClassName("searh-results")[0];
+    var searchHtml = "";
+    for (var i = 0; i<search.length; i++) {
+        searchHtml += search[i].name_aliment+"</br>";
+    }
+    console.log(searchHtml);
+    div.innerHTML = searchHtml;
+    console.log(div);
+}
+
+function querySearch(search, type) {
     var xhr = new XMLHttpRequest(); //instancie l'objet xhr
     var url = window.location.href;
     var send = "recherche="+search+"&type="+type+"&debut=";
@@ -53,9 +87,11 @@ function search(search, type) {
         if(xhr.readyState === XMLHttpRequest.DONE) {
             clearInterval(window.filter.timer);
             window.filter.timer = null;
-            console.log(xhr.response);
+            displaySearch(JSON.parse(xhr.response));
          }
      }, 10, 10);
+
+    /*
     var name;
     switch(type) {
         case "aliment":
@@ -67,15 +103,17 @@ function search(search, type) {
             break;
         default:
             name = "name";
-    }
+    }*/
 
 }
 
 function displayFilterData(data) {
-    //var properties = ["name_aliment", "generic_name", "allergens", "brands", "additives", "categories", "ingredients", "label", "packaging", "traces", "grade_nutriment", "nutriment", "manufacturing_place"];
-    //name of the class
     var table = document.getElementById("table-filter");
+    document.getElementsByClassName("table-title")[0].childNodes[0].classList.add("active");
     for (var t=0; t<table.childNodes.length; t++) {
+
+
+
         if(t>1) {
             table.removeChild(table.childNodes[t]);
         }

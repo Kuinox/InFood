@@ -13,17 +13,27 @@ displayAllFilters($bdd);
 </div>
 <div class='menu normalHidden'>
     <?php
-    $propertiesName = ["Nom", "Nom génerique", "Allergène", "Marque", "Additif", "Catégorie", "Ingrédients", "Labels", "Packaging", "Traces", "Grade Nutritionnel", "Nutriment", "Lieu de fabrication"];
-    $properties = ["name_aliment", "generic_name", "allergens", "brands", "additives", "categories", "ingredients", "label", "packaging", "traces", "grade_nutriment", "nutriment", "manufacturing_place"];
+    $propertiesName = ["Nom", "Nom génerique", "Allergène", "Marque", "Additif", "Catégorie", "Ingrédients", "Labels", "Packaging", "Traces", "Nutriment", "Lieu de fabrication"];
+    $properties = ["aliment", "generic_name", "allergens", "brands", "additives", "categories", "ingredients", "label", "packaging", "traces", "nutriment", "manufacturing_place"];
     echo "<table id='table-filter' class='table-menu'>
     <tr class='table-title'>";
     foreach($propertiesName as $key => $value) {
-        echo "<td>
+        echo "<td id ='".$properties[$key]."' onclick='tabClick(this);'>
         $value
         </td>";
     }
     echo "</tr></table>"
     ?>
+</div>
+
+<div class = 'search normalHidden'>
+    <form onsubmit="searchOnFly(this); return false;">
+        <input type='text' name = 'search' placeholder="Rechercher sur InFood" />
+        <input type='submit' value='Go' />
+    </form>
+</div>
+<div class ='searh-results normalHidden'>
+
 </div>
 <div class = 'color-picker normalHidden'>
     colorpicker
