@@ -8,6 +8,7 @@ echo "<table class = 'nutri1'>";
 echo "<th>Nutriments</th>";
 $nutri = [];
 $additives = [];
+$grade = [];
 $nb = count($_SESSION['compare']);
 for ($i = 0 ;$i < $nb; $i++) {
     $result = select ($bdd, "aliment", "id_aliment",$_SESSION['compare'][$i]);
@@ -15,6 +16,8 @@ for ($i = 0 ;$i < $nb; $i++) {
 }
 foreach ($_SESSION['compare'] as $key => $value) {
         $nutri[] = nutriments($bdd, $value);
+        $additives[] = additives($bdd, $value);
+        $grade[] = grade($bdd, $value);
 }
 foreach ($nutri[0] as $key => $val) {
      echo "<tr><td>".$val['label']."</td>";
@@ -27,9 +30,6 @@ foreach ($nutri[0] as $key => $val) {
     echo "</tr>";
 }
 echo "</table>";
-foreach ($_SESSION['compare'] as $key => $value) {
-    $additives[] = additives($bdd, $value);
-}
 echo "<table class= 'nutri3'>";
 for ($i = 0 ;$i < $nb; $i++) {
     $result = select ($bdd, "aliment", "id_aliment",$_SESSION['compare'][$i]);
@@ -53,9 +53,16 @@ $nbmax = 0;
             }
 
         }
-    }
         echo "</tr>";
-
+    }echo "</table>";
+    echo "<table>";
+    foreach ($grade as $key => $value) {
+        echo "<tr>";
+        if ($grade[$key] !== null) {
+            echo "<img alt='nutri_score: ".$grade[$key]."' src='https://static.openfoodfacts.org/images/misc/nutriscore-".strtolower($grade[$key]).".svg' />";
+        }
+        echo "</tr>";
+    }
 // $brand = brand($bdd,$value);
 // $packaging = packaging($bdd,$value);
 // $place = manufact_place($bdd,$value);

@@ -27,8 +27,10 @@ if(!$db_exist) {
                         echo "<br>".$valu;
                     }
                 }
+                $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/";
                 ?>
                 <br>
-                <a href="compare.php" ><button>comparer</button></a>
+
+                <a href= '<?php echo $path; ?>compare.php' ><button>comparer</button></a>
                 <?php } ?>
             </div>
