@@ -24,6 +24,7 @@
 .accueil {
     text-decoration: none;
 }
+
 .inscript {
     margin-top: 0.5%;
     font-size: 50%;
@@ -46,9 +47,9 @@
     border-color:#9ee04d;
     background-color:#9ee04d;
  }
- a {
-     color: #9ee04d;
- }
+a {
+    color: #9ee04d;
+}
 body{
     margin:0;
     padding:0;
@@ -148,6 +149,9 @@ header{
     visibility: visible;
 }
 
+.normalHidden {
+    display: none;
+}
 
 .profilButton{
     display:flex;
@@ -195,14 +199,41 @@ header{
  *
  */
 
- .full_page_container{
-     width: 1240px;
-     margin-top: 5%;
-     margin-right: auto;
-     margin-left: auto;
 
-     flex-direction: column;
+.full_page_container {
+    width: 1240px;
+    margin-top: 5%;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
  }
+.filter_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.menu table {
+    display: flex;
+    flex-direction: column;
+}
+.table-title {
+    cursor: pointer;
+}
+
+.menu td {
+    width: 2%;
+}
+
+.filter-title {
+    display: flex;
+    cursor: pointer;
+}
+
+.filter-title div {
+    padding: 0.5%;
+}
 
 .overlay {
     height: 100%;
