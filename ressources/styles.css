@@ -2,8 +2,18 @@
  * General styles
  *
  */
-.nutri1{
-    display: flex;
+.comparaison table {
+    border-collapse: collapse;
+    border-width: 2px;
+    border-style: solid;
+    border-color : #9ee04d;
+    text-align: center;
+}
+.nutri1 {
+    margin-bottom: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-color : #9ee04d;
 }
 .noter{
       display: flex;
@@ -14,6 +24,7 @@
     width: 25%;
 }
 .nutriment td , th {
+
     padding-left: 1%;
     padding-top: 2%;
     border-width: 1.5px;
