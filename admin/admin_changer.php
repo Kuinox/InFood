@@ -26,27 +26,25 @@ function modifierModPass(PDO $bdd, $adminmdp, $password)
 		 	$res->execute(array($nauveaumdp, $id2));
        /***/
        $_SESSION['user2']['password'] = $nauveaumdp;
-       echo"mot de passe est changer";
+       echo"<p style='color:#9ee04d;'>mot de passe est changer</p>";
 //			 var_dump($_SESSION['user2']);
    		  }
    	   elseif ($res->fetchColumn() == 0) {
-   			 echo"le mot de passe d'admine pas bonne";
+   			 echo"<p style='color:#9ee04d;'>le mot de passe d'admine pas bonne</p>";
    	   	}
  }
 function modifierGrade(PDO $bdd,$grade){
 	$id2=$_SESSION['user2']['id_user'];
-	
 	if($grade=="utilisateur"){
 		$gradepar="1";
 	}
 	else if ($grade=="admin"){
 		$gradepar="2";
 	}
-	var_dump($id2);
 	$res = $bdd->prepare("UPDATE grade_user SET grade_id_grade =? WHERE id=?");
 	$res->execute(array($gradepar, $id2));
 	$_SESSION['user2']['name_grade']=$grade;
-	echo "grade est changé avec succés";
+	echo "<p style='color:#9ee04d;'>grade est changé avec succés</p>";
 
 }
 
@@ -60,7 +58,7 @@ function verifierEtModifer(PDO $bdd, $toto, $nauveaunom)
 
 	if ($res->fetchColumn() > 0) {
 
-			echo " le $pseumail existe";
+			echo " <p style='color:#9ee04d;'> le $pseumail existe </p>";
 		  }
 
 	   elseif ($res->fetchColumn() == 0) {
@@ -70,7 +68,7 @@ function verifierEtModifer(PDO $bdd, $toto, $nauveaunom)
 
 
 			$_SESSION['user2']["$pseumail"] = $nauveaunom;
-			echo" le nouveau $pseumail est $nauveaunom";
+			echo"<p style='color:#9ee04d;'> le nouveau $pseumail est $nauveaunom</p>";
 	//var_dump($_SESSION['user2']);
 
 	}
@@ -95,24 +93,24 @@ if (isset($_POST['Modifer']))
   $nom=intval($_POST['height']);
 	if($nom=="0")
 	{
-		echo "erreur!! veillez entrer un nombre ";
+		echo "<p style='color:#9ee04d;'>erreur!! veillez entrer un nombre </p>";
 	}
 	else{
   	modifierCompte($bdd,$toto,$nom);
-  	echo $nom." est le nouveau $toto ";
+  	echo"<p style='color:#9ee04d;'> $nom est le nouveau $toto</p> ";
 		}
   }
   if(isset($_POST["weight"])){
 		$nom=intval($_POST['weight']);
 		if($nom=="0")
 		{
-			echo "erreur!! veillez entrer un nombre ";
+			echo "<p style='color:#9ee04d;'>erreur!! veillez entrer un nombre </p>";
 		}
 		else
 		{
     	$toto='weight';
     	modifierCompte($bdd,$toto,$nom);
-    	echo $nom." est le nouveau $toto ";
+    	echo "<p style='color:#9ee04d;'>$nom est le nouveau $toto </p>";
 		}
   }
   if(isset($_POST["grade"])){
@@ -123,7 +121,7 @@ if (isset($_POST['Modifer']))
 		}
 		else
 		{
-			echo"utilisateur ou admin seulement";
+			echo"<p style='color:#9ee04d;'>utilisateur ou admin seulement</p>";
 		}
   }
   if(isset($_POST["aPassword"])){
@@ -135,14 +133,13 @@ if (isset($_POST['Modifer']))
     }
     else
     {
-      echo"Le Mot De Passe pas même dans les deux champs!!!  ";
+      echo"<p style='color:#9ee04d;'>Le Mot De Passe pas même dans les deux champs!!!</p>";
     }
   }
 
 }
 //var_dump($_SESSION['user2']);
 $user2=$_SESSION['user2'];
-var_dump($user2);
 echo"<br> Le nom est ".$user2['pseudo']."<br>";
 echo" L'email est ".$user2['email']."<br>";
 echo" Le weight est ".$user2['weight']."<br>";
