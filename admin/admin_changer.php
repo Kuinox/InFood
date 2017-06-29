@@ -34,7 +34,8 @@ function modifierModPass(PDO $bdd, $adminmdp, $password)
    	   	}
  }
 function modifierGrade(PDO $bdd,$grade){
-	$id2=$_SESSION['user2']['name_grade'];
+	$id2=$_SESSION['user2']['id_user'];
+	
 	if($grade=="utilisateur"){
 		$gradepar="1";
 	}
@@ -42,7 +43,7 @@ function modifierGrade(PDO $bdd,$grade){
 		$gradepar="2";
 	}
 	var_dump($id2);
-	$res = $bdd->prepare("UPDATE grade_user SET id =? WHERE user_id_user=?");
+	$res = $bdd->prepare("UPDATE grade_user SET grade_id_grade =? WHERE id=?");
 	$res->execute(array($gradepar, $id2));
 	$_SESSION['user2']['name_grade']=$grade;
 	echo "grade est changé avec succés";
