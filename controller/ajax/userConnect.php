@@ -29,6 +29,7 @@ $prep->execute(array($password, $login, $login)) or die ("Erreur BDD");
 if($prep->rowCount()>0) {//s'il existe mot de passe et email -> connexion réussi
     $data = $prep->fetch(PDO::FETCH_ASSOC); //Récupère la ligne suivante d'un jeu de résultats PDO
     $_SESSION['user']= $data;
+    $_SESSION['compare'] = [];
     echo "sucess";
 } else { //si le mot de passe et email n'existe pas -> connexion échoué
     echo "wrong"; //affiche alerte

@@ -20,9 +20,6 @@ function displayNutri($nutri)
   foreach ($nutri as $key => $value) {
     echo "<tr><td>".$value['label']."</td><td>".$value['nutriment_quantity']."</td></tr>";
     }
-    foreach ($nutri as $key => $value) {
-        echo "<tr><td>".$value['label']."</td><td>".$value['nutriment_quantity']."</td></tr>";
-    }
     echo "</table>";
     echo "</div>";
 }
