@@ -9,6 +9,7 @@ echo "<th>Nutriments</th>";
 $nutri = [];
 $additives = [];
 $grade = [];
+$brand = [];
 $nb = count($_SESSION['compare']);
 for ($i = 0 ;$i < $nb; $i++) {
     $result = select ($bdd, "aliment", "id_aliment",$_SESSION['compare'][$i]);
@@ -18,6 +19,7 @@ foreach ($_SESSION['compare'] as $key => $value) {
         $nutri[] = nutriments($bdd, $value);
         $additives[] = additives($bdd, $value);
         $grade[] = grade($bdd, $value);
+        $brand[] = brand($bdd,$value);
 }
 foreach ($nutri[0] as $key => $val) {
      echo "<tr><td>".$val['label']."</td>";
@@ -35,7 +37,6 @@ for ($i = 0 ;$i < $nb; $i++) {
     $result = select ($bdd, "aliment", "id_aliment",$_SESSION['compare'][$i]);
     echo "<th>".$result[0]['name_aliment']."</th>";
 }
-
 $nbmax = 0;
     foreach ($additives as $key => $value) {
         $nbmax2 = count($additives[$key]);
@@ -47,15 +48,34 @@ $nbmax = 0;
          echo "<tr>";
         foreach ($additives as $clee => $val) {
             if (!isset($val[$i])) {
-                echo "<td> //      </td>";
+                echo "<td> // </td>";
             }else {
                 echo "<td>".$val[$i]['name']."</td>";
             }
-
         }
         echo "</tr>";
-    }echo "</table>";
+    }
+    foreach ($brand as $key => $value) {
+        foreach ($value as $ky => $val) {
+            echo "<td>".$val['name']."</td>";
+        }
+    }
+
+    echo "</table>";
     echo "<table>";
+    for ($i = 0 ;$i < $nb; $i++) {
+        $result = select ($bdd, "aliment", "id_aliment",$_SESSION['compare'][$i]);
+        echo "<th>".$result[0]['name_aliment']."</th>";
+    }
+    echo "<tr>";
+    foreach ($brand as $key => $value) {
+
+        foreach ($value as $ky => $val) {
+            echo "<td>".$val['name']."</td>";
+        }
+    }
+    echo "</table>";
+    echo "<table class = 'cgrade'>";
     foreach ($grade as $key => $value) {
         echo "<tr>";
         if ($grade[$key] !== null) {
@@ -63,7 +83,7 @@ $nbmax = 0;
         }
         echo "</tr>";
     }
-// $brand = brand($bdd,$value);
+    echo "</table>";
 // $packaging = packaging($bdd,$value);
 // $place = manufact_place($bdd,$value);
 // $allergen = allergen($bdd,$value);
