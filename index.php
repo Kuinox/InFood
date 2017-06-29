@@ -25,6 +25,7 @@ displayAllFilters($bdd);
     echo "</tr></table>"
     ?>
 </div>
+
 <div class = 'search normalHidden'>
     <form onsubmit="searchOnFly(this); return false;">
         <input type='text' name = 'search' placeholder="Rechercher sur InFood" />
