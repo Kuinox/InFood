@@ -1,4 +1,4 @@
-/*exported filterClicked, search*/
+/*exported filterClicked*/
 "use strict";
 window.filter = {};
 
@@ -31,7 +31,7 @@ function search(search, type) {
         default:
             name = "name";
     }
-    
+
 }
 
 function getFilterById(id) {
@@ -61,4 +61,44 @@ function displayFilter(json) {
 }
 function filterClicked(div) {
     getFilterById(div.id);
+}
+
+function displayMenuContent() {
+
+}
+function displayInterface(data) {
+    var propertiesName = ["Nom", "Nom génerique", "Allergène", "Marque", "Additif", "Catégorie", "Ingrédients", "Labels", "Packaging", "Traces", "Grade Nutritionnel", "Nutriment", "Lieu de fabrication"];
+    var properties = ["name_aliment", "generic_name", "allergens", "brands", "additives", "categories", "ingredients", "label", "packaging", "traces", "grade_nutriment", "nutriment", "manufacturing_place"];
+    var div;
+    var tableArray = [];
+    for (var i=0; i<propertiesName.length; i++) {
+        div = document.createElement("div");
+        div.innerHTML = propertiesName[i];
+        div.id = properties[i];
+        div.onclick = displayMenu(properties[i]);
+        tableArray.append(div);
+    }
+    var max = 0;
+    for (var i=0; i<data.length; i++) {
+        var length = data[i].length;
+        if (length > max) {
+            max = length;
+        }
+    }
+    var map = [];
+    map.append(tableArray);
+    var tempList;
+    for (var y=0; y<max; y++) {
+        tempList = [];
+        for (var x=0; x<data.length; x++) {
+            tempList.append(data[x][y]);
+        }
+        map.append(tempList);
+    }
+
+    for (x = 0; x<map.length; x++) {
+        for(y = 0; y<map[x].length; y++) {
+            console.log(map[x][y]);
+        }
+    }
 }

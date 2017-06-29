@@ -20,7 +20,7 @@ function displayAllFilters($bdd) {
                             margin-right: 1%;
                             margin-top:0.5%;
                             cursor: pointer;
-                            min-width: 2%'
+                            min-width: 3%'
                         id = '$id'>
                     $name
                 </div>";

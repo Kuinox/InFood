@@ -47,9 +47,9 @@
     border-color:#9ee04d;
     background-color:#9ee04d;
  }
- a {
-     color: #9ee04d;
- }
+a {
+    color: #9ee04d;
+}
 body{
     margin:0;
     padding:0;
@@ -203,6 +203,15 @@ header{
     flex-direction: row;
     flex-wrap: wrap;
 }
+.filter-title {
+    display: flex;
+    cursor: pointer;
+}
+
+.filter-title div {
+    padding: 0.5%;
+}
+
 .overlay {
     height: 100%;
     width: 100%;
