@@ -7,6 +7,7 @@
     margin-right:50%;
     align-items:center;
 }
+
 .button_compare {
     margin-top: 0.5%;
     font-size: 17px;
@@ -113,9 +114,9 @@ img {
 #front.full_page_container img {
   width:1%;
 }
-.full_page_container img {
-  width:20%;
-  float:right;
+.full_page_container table img {
+  width: 250px;
+  float:center;
 
 }
 .dummy {
