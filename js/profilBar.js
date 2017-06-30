@@ -10,11 +10,13 @@ window.onclick = function (event) {
     }
 };
 function closeBar(div) {
+
     if (document.getElementById("profilButton") !== null) {
         var arrow = div.querySelector(".arrow");
         arrow.classList.remove("arrow-down");
         arrow.classList.add("arrow-up");
         document.getElementById("profilContent").classList.remove("hidden");
+        document.getElementsByClassName("compare")[0].style["z-index"] = 1;
     }
 }
 function profilBar(div) {
@@ -24,6 +26,7 @@ function profilBar(div) {
             arrow.classList.remove("arrow-up");
             arrow.classList.add("arrow-down");
             document.getElementById("profilContent").classList.add("hidden");
+            document.getElementsByClassName("compare")[0].style["z-index"] = -1;
         } else {
             closeBar(div);
         }

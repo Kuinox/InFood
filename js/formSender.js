@@ -14,7 +14,7 @@ function sendFormConnexion() {
             switch (xhr.responseText) {
                 case "sucess":
                     console.log("Inscription réussie");
-                    location.reload();
+                    windows.location.replace("localhost/InFood/");
                     break;
                 case "wrong":
                     span_error.innerHTML = "Le pseudo/e-mail ne correspond pas au mot de passe";
