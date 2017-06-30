@@ -12,7 +12,8 @@ if(!$db_exist) {
     include(__DIR__."/head.php"); ?>
     <body> <?php include(__DIR__."/header.php");?>
         <div class="full_page_container">
-            <?php if (explode("/", $_SERVER['REQUEST_URI'])[2] != "compare.php") { ?>
+            <?php
+            if (explode("/", $_SERVER['REQUEST_URI'])[2] != "compare.php" && isset($_POST['compare'])) { ?>
             <div class="compare">
                 <?php
                 if (empty($_SESSION['compare'])) {
