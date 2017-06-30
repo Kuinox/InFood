@@ -76,13 +76,13 @@ $nbmax = 0;
     }
     echo "</table>";
     echo "<table class = 'cgrade'>";
+    echo "<tr>";
     foreach ($grade as $key => $value) {
-        echo "<tr>";
         if ($grade[$key] !== null) {
-            echo "<img alt='nutri_score: ".$grade[$key]."' src='https://static.openfoodfacts.org/images/misc/nutriscore-".strtolower($grade[$key]).".svg' />";
+            echo "<td><img alt='nutri_score: ".$grade[$key]."' src='https://static.openfoodfacts.org/images/misc/nutriscore-".strtolower($grade[$key]).".svg' /></td>";
         }
-        echo "</tr>";
     }
+    echo "</tr>";
     echo "</table>";
 // $packaging = packaging($bdd,$value);
 // $place = manufact_place($bdd,$value);
