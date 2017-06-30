@@ -1,5 +1,5 @@
 <?php
-function displayRecherche(array $output) {
+function displayRecherche(array $output, $nb_result) {
     if(empty($output)) {
         echo "Aucun résultat trouvé";
     }
@@ -52,8 +52,6 @@ function displayRecherche(array $output) {
         $debut2 = $debut2 - $nb_result_p;
         echo "<a href=?type=".$type.$recherche."&debut=".$debut2.$id.">precedent</a>";
     }
-
-
 }
 
  ?>
