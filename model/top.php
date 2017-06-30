@@ -12,6 +12,7 @@ if(!$db_exist) {
     include(__DIR__."/head.php"); ?>
     <body> <?php include(__DIR__."/header.php");?>
         <div class="full_page_container">
+            <?php if (explode("/", $_SERVER['REQUEST_URI'])[2] != "compare.php") { ?>
             <div class="compare">
                 <?php
                 if (empty($_SESSION['compare'])) {
@@ -24,7 +25,7 @@ if(!$db_exist) {
                     $result = $prep->fetchAll(PDO::FETCH_ASSOC);
                     foreach ($result as $key => $value) {
                         $valu = implode($value);
-                        echo "<br>".$valu;
+                        echo "<div>".$valu."</div>";
                     }
                 }
                 $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/";
@@ -34,3 +35,4 @@ if(!$db_exist) {
                 <a href= '<?php echo $path; ?>compare.php' ><button>comparer</button></a>
                 <?php } ?>
             </div>
+            <?php } ?>

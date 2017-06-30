@@ -2,6 +2,23 @@
  * General styles
  *
  */
+
+.compare {
+    display: flex;
+    flex-direction: column;
+    border-color: #2b3b47;
+    border-width: 4px;
+    border-style: solid;
+    background-color: #4e5d66;
+    border-radius: 15px;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 3%;
+    padding-right: 3%;
+    width: 30%;
+    position: fixed;
+    right: 1%;
+}
 .comparaison table {
     width:100%;
     border-collapse: collapse;
