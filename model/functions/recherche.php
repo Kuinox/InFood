@@ -1,7 +1,7 @@
 <?php
 include(__DIR__."/functionsRecherche.php");
 function recherche(PDO $bdd, $entry = "", $recherche = "") {
-    if (empty($recherche)) {
+    if (empty($recherche) && isset($_GET['recherche'] )) {
         $recherche = $_GET['recherche'];
     }
     $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/";

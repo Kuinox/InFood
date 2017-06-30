@@ -110,6 +110,7 @@ function sendFormInscription() {
             console.log("Communication Error"+xhr.status);
         }
     };
+    var span_error;
     var pseudo      = encodeURIComponent(document.getElementById("pseudo"               ).value);
     var password    = encodeURIComponent(document.getElementById("password_inscription" ).value);
     var email       = encodeURIComponent(document.getElementById("email"                ).value);
@@ -119,5 +120,12 @@ function sendFormInscription() {
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     var post = "pseudo="+pseudo+"&password="+password+"&email="+email;
     console.log(post);
-    xhr.send(post);//envoie
+    if (email.indexOf("%40") >-1) {
+        xhr.send(post);//envoie
+    } else {
+            span_error = document.getElementById("erreur_message");
+            span_error.innerHTML = "Email incorrect";
+            console.log("Email incorrect");
+    }
+
 }
