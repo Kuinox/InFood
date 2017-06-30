@@ -44,6 +44,7 @@ function recherche(PDO $bdd, $entry = "", $recherche = "") {
         case 'allergens':
         case 'categories':
         case 'packaging':
+        case 'traces':
             $result = rechercheClassic($bdd, $recherche, $debut , $nb_affichage_par_page, $type);
             break;
         case 'aliment_additives':
