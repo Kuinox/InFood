@@ -13,6 +13,10 @@ $result = select ($bdd, "aliment", "id_aliment",$_GET['id']);
 if (empty($result)) {
     echo "Aliment introuvable !";
 } else {
+include("view/tweet.html");
+echo "<br>";
+include("view/win.html");
+
     $id_aliment = $result[0]['id_aliment'];
     $nutri = nutriments($bdd, $id_aliment);
     $additives = additives($bdd, $id_aliment);
@@ -57,12 +61,13 @@ if (empty($result)) {
     displayPlace($place);
     displayPackaging($packaging);
     displayBrand($brand);
-    echo"<br><br><br><br><br><br>";
+    echo"<br><br>";
     displayIngredients($ingredients);
     $product->displayImage("ingredients");
+    echo"<br><br>";
     displayAdditives($additives);
     displayLabel($labels);
-    echo"<br><br><br><br><br><br>";
+    echo"<br><br>";
     $product->displayImage("nutrition");
     displayNutri($nutri);
 
