@@ -33,7 +33,7 @@ if(!$db_exist) {
                 ?>
                 <br>
 
-                <a href= '<?php echo $path; ?>compare.php' ><button>comparer</button></a>
+                <a href= '<?php echo $path; ?>compare.php' ><button class='button_compare'>comparer</button></a>
                 <?php } ?>
             </div>
             <?php } ?>
