@@ -62,20 +62,11 @@ $nbmax = 0;
     }
 
     echo "</table>";
-    echo "<table>";
+    echo "<table class = 'cgrade'>";
     for ($i = 0 ;$i < $nb; $i++) {
         $result = select ($bdd, "aliment", "id_aliment",$_SESSION['compare'][$i]);
         echo "<th>".$result[0]['name_aliment']."</th>";
     }
-    echo "<tr>";
-    foreach ($brand as $key => $value) {
-
-        foreach ($value as $ky => $val) {
-            echo "<td>".$val['name']."</td>";
-        }
-    }
-    echo "</table>";
-    echo "<table class = 'cgrade'>";
     echo "<tr>";
     foreach ($grade as $key => $value) {
         if ($grade[$key] !== null) {
