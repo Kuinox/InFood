@@ -38,7 +38,7 @@ class OnlineProduct {
     }
 
     function displayImage($image) {
-        if(isset($this->_images[$image]) || !empty(current($this->_images[$image]['display']))) {
+        if(isset($this->_images[$image]) && current($this->_images[$image]['display']) !== null) {
             echo "<img id='$image' src='".current($this->_images[$image]['display'])."'/>";
         }
     }
