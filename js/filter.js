@@ -9,7 +9,7 @@ function filterClicked(div) {
 
 function searchOnFly(input) {
     var search = input.childNodes[1].value;
-    var type = document.getElementsByClassName("active")[0].id;
+    var type = getType();
     querySearch(search, type);
 }
 
@@ -63,10 +63,17 @@ function displayFilter(json) {
     displaySimpleContent(data, filter);
     unHide();
 }
+function getType() {
+    return document.getElementsByClassName("active")[0].id;
+}
 
+function getTypeSearchName() {
+    
+}
 function displaySearch(search) {
-    var div = document.getElementsByClassName("searh-results")[0];
+    var div = document.getElementsByClassName("search-results")[0];
     var searchHtml = "";
+    type = getType();
     for (var i = 0; i<search.length; i++) {
         searchHtml += search[i].name_aliment+"</br>";
     }
