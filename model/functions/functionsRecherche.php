@@ -1,6 +1,6 @@
 <?php
 function rechercheAliment($bdd, $recherche, $debut , $nb_affichage_par_page, $type) {
-    $query = " SELECT a.id_aliment , a.name_aliment,
+    $query = " SELECT SQL_CALC_FOUND_ROWS a.id_aliment , a.name_aliment,
                 MATCH (g.label) AGAINST (:recherche IN NATURAL LANGUAGE MODE) AS relevance,
                 MATCH (a.name_aliment) AGAINST (:recherche IN NATURAL LANGUAGE MODE) AS title_relevance
                 FROM aliment a
