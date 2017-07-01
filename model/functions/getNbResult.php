@@ -1,6 +1,9 @@
 <?php
 function getNbResult($bdd) {
     $query = "SELECT FOUND_ROWS();";
-    return $bdd->query($query)->fetch(PDO::FETCH_COLUMN);
+    $prep = $bdd->query($query);
+    $result = $prep->fetch(PDO::FETCH_COLUMN);
+    var_dump($result);
+    return $result;
 }
 ?>

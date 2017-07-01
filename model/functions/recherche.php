@@ -19,8 +19,11 @@ function recherche(PDO $bdd, $entry = "", $recherche = "") {
     }else {
         $debut = intval($_GET['debut']);
     }
-
-    $nb_affichage_par_page = 10;
+    if(!isset($_GET['result_per_page'])) {
+        $nb_affichage_par_page = 10;
+    } else {
+        $nb_affichage_par_page = $_GET['result_per_page'];
+    }
     switch ($type) {
         case 'aliment':
             $query = "SELECT id_aliment FROM aliment WHERE id_aliment = ?" ;
@@ -184,7 +187,7 @@ function recherche(PDO $bdd, $entry = "", $recherche = "") {
             throw new ErrorException("not rooted ".$type);
         }
     $output = $result->fetchAll(PDO::FETCH_ASSOC);
-    //var_dump($output); TODO: Meilleur recherche
+    var_dump($output);
     return $output;
 }
  ?>

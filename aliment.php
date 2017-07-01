@@ -28,9 +28,6 @@ include("view/win.html");
     $nbNote = nbNotes($bdd, $id_aliment);
     $labels = label($bdd, $id_aliment);
     displayLoadingImage("front");
-
-
-
     displayName($result);
     if ($pref->getEnable()) {
         if ($pref->isPrefAdded($_GET['id'])) {
@@ -47,7 +44,6 @@ include("view/win.html");
                     </form>";
         }
     }
-
     echo"<br><br>";
     echo "Code Barre: ".$_GET['id'];
     echo"<br><br>";
@@ -68,7 +64,6 @@ include("view/win.html");
     echo"<br><br>";
     displayLoadingImage("nutrition");
     displayNutri($nutri);
-
     displayGrade(grade($bdd, $id_aliment));
     echo " <form action='controller/functions/compare.php' method='POST'>
                 <input type='hidden' name='action' value='compare'/>

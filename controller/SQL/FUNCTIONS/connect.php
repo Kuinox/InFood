@@ -8,4 +8,5 @@ try {
     echo 'Connexion échouée : ' . $e->getMessage();
 }
 $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$bdd->setAttribute(PDO::MYSQL_ATTR_FOUND_ROWS, true);
 ?>
