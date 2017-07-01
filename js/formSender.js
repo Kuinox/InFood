@@ -1,10 +1,6 @@
 /*exported sendFormConnexion, sendFormInscription */
 "use strict";
 window.formSender = {};
-console.log(window.location.href);
-
-
-
 function sendFormConnexion() {
     if(checkConnectEntry()) {
         return;
