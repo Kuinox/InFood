@@ -187,7 +187,6 @@ function recherche(PDO $bdd, $entry = "", $recherche = "") {
             throw new ErrorException("not rooted ".$type);
         }
     $output = $result->fetchAll(PDO::FETCH_ASSOC);
-    var_dump($output);
     return $output;
 }
  ?>

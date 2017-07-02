@@ -13,7 +13,6 @@ function rechercheAliment($bdd, $recherche, $debut , $nb_affichage_par_page, $ty
                 LIMIT $debut , $nb_affichage_par_page";
     $result = $bdd->prepare($query);
     $result->execute(array(':recherche' => $recherche));
-    $output = $result->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
 

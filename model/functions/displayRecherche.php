@@ -1,5 +1,6 @@
 <?php
-function displayRecherche(array $output) {
+include("model/functions/pageDisplay.php");
+function displayRecherche(array $output, $bdd) {
     if(empty($output)) {
         echo "Aucun résultat trouvé";
     }
@@ -22,7 +23,7 @@ function displayRecherche(array $output) {
         }
         echo "<a href=$path$type?id=$id>$name</a><br>";
     }
-    
+
     if (isset($_GET['recherche'])) {
         $recherche = "&recherche=".$_GET['recherche'];
     } else {
@@ -33,6 +34,7 @@ function displayRecherche(array $output) {
     } else {
         $id = "";
     }
+    pageDisplay($bdd);
 }
 
  ?>
