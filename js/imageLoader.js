@@ -8,10 +8,13 @@ function getProductId() {
     get.shift();
     get.shift();
     get.shift();
-    get = get[0].split("#")[0].split("?")[1].split("&");
-    for (var i = 0; i<get.length; i++) {
-        if (get[i].indexOf("id") > -1) {
-            return get[i].split("=")[1];
+    get = get[0].split("#")[0].split("?");
+    if (get.length > 1) {
+        get = get[1].split("&");
+        for (var i = 0; i<get.length; i++) {
+            if (get[i].indexOf("id") > -1) {
+                return get[i].split("=")[1];
+            }
         }
     }
     return false;

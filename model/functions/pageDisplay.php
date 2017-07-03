@@ -37,7 +37,7 @@ function pageDisplay($bdd) {
         echo "<option value='".($nb_per_page*$i)."' $actual>$i</option>";
         $actual = "";
     }
-    echo "  <input type='submit' value='Go' /></select>
+    echo "  <input type='submit' value='Go' />x</select>
             </form>";
     if($suiv) {
         echo "<a href='".$href."&debut=".($debut+$nb_per_page)."'>Suivant</a>";
