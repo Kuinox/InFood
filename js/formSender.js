@@ -2,7 +2,7 @@
 "use strict";
 window.formSender = {};
 function sendFormConnexion() {
-    if(checkConnectEntry()) {
+    if(!checkConnectEntry()) {
         return;
     }
     var xhr = new XMLHttpRequest(); //instancie l'objet xhr
