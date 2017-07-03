@@ -7,7 +7,7 @@
         }
         $array_select = [];
         if(isset($_GET['type'])) {
-            foreach(array("aliment", "additives", /*"ingredients", "categories",*/ "allergens", "manufacturing_place", "brands", "packaging", /*"generic_name", "labels"*/)
+            foreach(array("aliment", "additives", "ingredients", "categories","allergens", "manufacturing_place", "brands", "packaging", "generic_name", "labels", "traces")
             as $option) {
                 if($_GET['type'] === $option) {
                     $array_select[$option] = "selected";
@@ -16,7 +16,7 @@
                 }
             }
         } else {
-            foreach(array("aliment", "additives", "ingredients", "categories","allergens", "manufacturing_place", "brands", "packaging", /*"generic_name", "labels"*/)
+            foreach(array("aliment", "additives", "ingredients", "categories","allergens", "manufacturing_place", "brands", "packaging", "generic_name", "labels", "traces")
                     as $option) {
                 $array_select[$option] = "";
             }
