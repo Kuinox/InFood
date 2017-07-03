@@ -16,16 +16,31 @@ function displayRecherche(array $output, $bdd) {
     if ($type==="manufacturing_place") {
         $type="lieudefabrication";
     }
+    echo "<div class='result'>";
     foreach ($output as $key => $value) {
-        if ($type=== "aliment" || $type == "generic_name" || $type == "lieudefabrication") {
+        if ($type === "aliment" || $type == "generic_name" || $type == "lieudefabrication") {
             $id = array_shift($value);
             $name = array_shift($value);
         } else {
             $id = $value['num'];
             $name = $value['name'];
         }
-        echo "<a href=$path$type?id=$id>$name</a><br>";
+        if($type === "aliment") {
+            $size = " - ".$value['quantity'];
+            $brands =  " - ".$value['name'];
+            $img = "<img id='$id' class='front_image' src='ressources/default.svg'/>";
+        } else {
+            $size = "";
+            $brands = "";
+            $img = "";
+        }
+        if (empty($name)) {
+            $name = $value['label'];
+        }
+
+        echo "<a href=$path$type?id=$id><div class='result_div'><div class='product_image'>$img</div><span>".$name.$size.$brands."</span></div></a>";
     }
+    echo "</div>";
 
     if (isset($_GET['recherche'])) {
         $recherche = "&recherche=".$_GET['recherche'];

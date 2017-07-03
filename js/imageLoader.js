@@ -27,9 +27,18 @@ function displayImage(json) {
         for (var image in images) {
             var divs = document.getElementsByClassName(image+"_image");
             for (var i=0; i<divs.length; i++) {
-                var image_lang = images[image].display;
-                for(var lang in image_lang) {
-                    divs[i].src = image_lang[lang];
+                var display_type = "";
+                if (divs[i].id === "" ) {
+                    display_type = "display";
+                }
+                if (divs[i].id == product.id) { // jshint ignore:line
+                    display_type = "small";
+                }
+                var to_display = images[image][display_type];
+                for(var lang in to_display) {
+                    if(display_type !== "") {
+                        divs[i].src = to_display[lang];
+                    }
                 }
             }
         }
@@ -38,7 +47,7 @@ function displayImage(json) {
         var to_remove = [];
         for (var y=0; y<imgs.length; y++) {
             elem = imgs[y];
-            if(elem.src.indexOf("default.svg") >-1) {
+            if(elem.src.indexOf("default.svg") >-1 && elem.id === product.id) {
                 to_remove.push(elem);
             }
         }
@@ -56,7 +65,7 @@ function loadJSONData(url) {
     xhr.onreadystatechange = function() {//Call a function when the state changes.
         if(xhr.readyState === 4 && xhr.status === 200) {
             displayImage(xhr.responseText);
-        } else if (xhr.status !== 200){
+        } else if (xhr.status !== 200 && xhr.status !== 0){
             console.log("Communication Error"+xhr.status);
         }
     };
@@ -73,6 +82,7 @@ function init() {
             elem = imgs[y];
             if(elem.src.indexOf("default.svg") >-1) {
                 api = "http://world.openfoodfacts.org/api/v0/product/"+elem.id+".json";
+                loadJSONData(api);
             }
         }
     } else {

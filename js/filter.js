@@ -64,7 +64,12 @@ function displayFilter(json) {
     unHide();
 }
 function getType() {
-    return document.getElementsByClassName("active")[0].id;
+    var type = document.getElementsByClassName("active");
+    for (var i=0; i<type.length; i++) {
+        if (type[i].tagName === "TD") {
+            return type[i].id;
+        }
+    }
 }
 
 function getTypeSearchName() {
@@ -95,6 +100,7 @@ function querySearch(search, type) {
     var url = window.location.href;
     var send = "recherche="+search+"&type="+type+"&debut=";
     var dir_name =  url.split("/")[0]+"//"+url.split("/")[2]+"/"+url.split("/")[3];
+    console.log(send);
     xhr.open("GET", dir_name+"/controller/ajax/search.php?"+send); //ouvre la connexion
     //xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send();//envoie
