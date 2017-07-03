@@ -64,6 +64,20 @@ function loadJSONData(url) {
     xhr.send(); //envoie
 }
 function init() {
-    var api = "http://world.openfoodfacts.org/api/v0/product/"+getProductId()+".json";
-    loadJSONData(api);
+    var api;
+    var product_id = getProductId();
+    if (product_id === false) {
+        var imgs = document.getElementsByTagName("img");
+        var elem;
+        for (var y=0; y<imgs.length; y++) {
+            elem = imgs[y];
+            if(elem.src.indexOf("default.svg") >-1) {
+                api = "http://world.openfoodfacts.org/api/v0/product/"+elem.id+".json";
+            }
+        }
+    } else {
+        api = "http://world.openfoodfacts.org/api/v0/product/"+product_id+".json";
+        loadJSONData(api);
+    }
+
 }

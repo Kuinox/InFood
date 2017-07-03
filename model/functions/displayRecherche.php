@@ -1,8 +1,11 @@
 <?php
 include("model/functions/pageDisplay.php");
 function displayRecherche(array $output, $bdd) {
+    $nb_result = getNbResult($bdd);
     if(empty($output)) {
-        echo "Aucun résultat trouvé";
+        echo "Aucun résultats trouvé";
+    } else {
+        echo "$nb_result résultats trouvé";
     }
     if(isset($_GET['type'])) {
         $type = addslashes($_GET['type']);
@@ -34,7 +37,7 @@ function displayRecherche(array $output, $bdd) {
     } else {
         $id = "";
     }
-    pageDisplay($bdd);
+    pageDisplay($bdd, $nb_result);
 }
 
  ?>
