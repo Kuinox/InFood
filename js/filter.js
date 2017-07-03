@@ -9,7 +9,7 @@ function filterClicked(div) {
 
 function searchOnFly(input) {
     var search = input.childNodes[1].value;
-    var type = document.getElementsByClassName("active")[0].id;
+    var type = getType();
     querySearch(search, type);
 }
 
@@ -63,12 +63,27 @@ function displayFilter(json) {
     displaySimpleContent(data, filter);
     unHide();
 }
+function getType() {
+    return document.getElementsByClassName("active")[0].id;
+}
 
+function getTypeSearchName() {
+    var type = getType();
+    switch(type) {
+        case "aliment":
+            return "name_aliment";
+        case "generic_name":
+        case "manufacturing_place":
+            return "label";
+        default:
+            return "name";
+    }
+}
 function displaySearch(search) {
-    var div = document.getElementsByClassName("searh-results")[0];
+    var div = document.getElementsByClassName("search-results")[0];
     var searchHtml = "";
     for (var i = 0; i<search.length; i++) {
-        searchHtml += search[i].name_aliment+"</br>";
+        searchHtml += search[i][getTypeSearchName()]+"</br>";
     }
     console.log(searchHtml);
     div.innerHTML = searchHtml;
@@ -87,23 +102,11 @@ function querySearch(search, type) {
         if(xhr.readyState === XMLHttpRequest.DONE) {
             clearInterval(window.filter.timer);
             window.filter.timer = null;
-            displaySearch(JSON.parse(xhr.response));
+            var response = xhr.response;
+            console.log(response);
+            displaySearch(JSON.parse(response));
          }
      }, 10, 10);
-
-    /*
-    var name;
-    switch(type) {
-        case "aliment":
-            name = "name_aliment";
-            break;
-        case "generic_name":
-        case "manufacturing_place":
-            name = "label";
-            break;
-        default:
-            name = "name";
-    }*/
 
 }
 

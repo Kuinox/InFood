@@ -1,11 +1,10 @@
 /*exported sendFormConnexion, sendFormInscription */
 "use strict";
 window.formSender = {};
-console.log(window.location.href);
-
-
-
 function sendFormConnexion() {
+    if(!checkConnectEntry()) {
+        return;
+    }
     var xhr = new XMLHttpRequest(); //instancie l'objet xhr
     xhr.onreadystatechange = function() {//Call a function when the state changes.
         var span_error = document.getElementById("erreur_message");
@@ -14,7 +13,7 @@ function sendFormConnexion() {
             switch (xhr.responseText) {
                 case "sucess":
                     console.log("Inscription réussie");
-                    windows.location.replace("localhost/InFood/");
+                    window.location.reload();
                     break;
                 case "wrong":
                     span_error.innerHTML = "Le pseudo/e-mail ne correspond pas au mot de passe";
@@ -60,16 +59,33 @@ function checkPassword() {
     }
     return true;
 }
-function checkEntry() {
-    var a = encodeURIComponent(document.getElementById("password_inscription").value) !== "";
-    var b = encodeURIComponent(document.getElementById("password_confirm").value) !== "";
-    var c = encodeURIComponent(document.getElementById("email").value) !== "";
-    var d = encodeURIComponent(document.getElementById("pseudo").value) !== "";
-    if (a&&b&&c&&d) {
-
+function checkConnectEntry() {
+    var c = encodeURIComponent(document.getElementById("login").value) !== "";
+    var d = encodeURIComponent(document.getElementById("password").value) !== "";
+    if (c&&d) {
         return true;
     }
     var span_error = document.getElementById("erreur_message_inscription");
+    span_error.innerHTML = "Veuillez remplir tous les champs.";
+    return false;
+}
+
+function checkEntry() {
+    var a = encodeURIComponent(document.getElementById("password_inscription").value) !== "";
+    var b = encodeURIComponent(document.getElementById("password_confirm").value) !== "";
+    var email = encodeURIComponent(document.getElementById("email").value);
+    var c = email !== "";
+    var d = encodeURIComponent(document.getElementById("pseudo").value) !== "";
+    var span_error = document.getElementById("erreur_message_inscription");
+    if (email.indexOf("%40") === -1) {
+        span_error.innerHTML = "Veuillez entrer un email correct.";
+        return false;
+    }
+    if (a&&b&&c&&d) {
+        return true;
+    }
+
+
     span_error.innerHTML = "Veuillez remplir tous les champs.";
     return false;
 }
@@ -110,6 +126,7 @@ function sendFormInscription() {
             console.log("Communication Error"+xhr.status);
         }
     };
+    var span_error;
     var pseudo      = encodeURIComponent(document.getElementById("pseudo"               ).value);
     var password    = encodeURIComponent(document.getElementById("password_inscription" ).value);
     var email       = encodeURIComponent(document.getElementById("email"                ).value);
@@ -120,4 +137,5 @@ function sendFormInscription() {
     var post = "pseudo="+pseudo+"&password="+password+"&email="+email;
     console.log(post);
     xhr.send(post);//envoie
+
 }

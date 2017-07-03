@@ -7,6 +7,12 @@ function displayName($result)
         }
     echo "</h1>";
 }
+
+function displayLoadingImage($type) { //Product image are loaded client side
+    $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/ressources/default.svg";
+    echo "<img class='".$type."_image' src='$path'/>";
+}
+
 function displayNutri($nutri)
 {
 

@@ -15,7 +15,7 @@ function displayComments($com, $displayContext=false) {
       echo "</td></tr><tr><td>";
       echo $value['text_comment'];
 
-    if ($_SESSION['user']['id_user'] == $value['user_id_user']) {
+    if (isset($_SESSION['user']) && $_SESSION['user']['id_user'] == $value['user_id_user']) {
         echo '</td><td><form action = "" method="POST">
         <input type="hidden" name = "id_comment" value = "'.$value['id'].'">
         <input type="image" src="'.$path.'ressources/poubelle.png" alt="Submit">

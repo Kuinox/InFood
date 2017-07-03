@@ -1,4 +1,4 @@
-normalHidden<?php
+<?php
 include("model/top.php");
 ?>
 <div class="index">

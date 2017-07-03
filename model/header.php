@@ -37,8 +37,9 @@
                             <option value="manufacturing_place" <?php echo array_shift($array_select); ?>>Lieu de fabrication</option>
                             <option value="brands"              <?php echo array_shift($array_select); ?>>Marques</option>
                             <option value="packaging"           <?php echo array_shift($array_select); ?>>Packaging</option>
-                            <option value="generic_name">Nom générique</option>
-                            <option value="labels">Labels</option>
+                            <option value="generic_name"        <?php echo array_shift($array_select); ?>>Nom générique</option>
+                            <option value="labels"              <?php echo array_shift($array_select); ?>>Labels</option>
+                            <option value="traces"              <?php echo array_shift($array_select); ?>>Traces</option>
                         </select>
                         <input class="recherche" type="text" name="recherche" value="<?php echo $recherche_input; ?>" placeholder="Rechercher sur In'Food"/>
                         <input class="icon" type="image" src="<?php echo $path; ?>ressources/logo.svg"/>

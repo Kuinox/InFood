@@ -1,7 +1,7 @@
 <?php
 include(__DIR__."/functionsRecherche.php");
 function recherche(PDO $bdd, $entry = "", $recherche = "") {
-    if (empty($recherche)) {
+    if (empty($recherche) && isset($_GET['recherche'] )) {
         $recherche = $_GET['recherche'];
     }
     $path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/";
@@ -19,8 +19,11 @@ function recherche(PDO $bdd, $entry = "", $recherche = "") {
     }else {
         $debut = intval($_GET['debut']);
     }
-
-    $nb_affichage_par_page = 10;
+    if(!isset($_GET['result_per_page'])) {
+        $nb_affichage_par_page = 10;
+    } else {
+        $nb_affichage_par_page = $_GET['result_per_page'];
+    }
     switch ($type) {
         case 'aliment':
             $query = "SELECT id_aliment FROM aliment WHERE id_aliment = ?" ;
@@ -44,6 +47,7 @@ function recherche(PDO $bdd, $entry = "", $recherche = "") {
         case 'allergens':
         case 'categories':
         case 'packaging':
+        case 'traces':
             $result = rechercheClassic($bdd, $recherche, $debut , $nb_affichage_par_page, $type);
             break;
         case 'aliment_additives':
@@ -151,6 +155,19 @@ function recherche(PDO $bdd, $entry = "", $recherche = "") {
             $result = $bdd->prepare($query);
             $result->execute(array(':id' => $_GET['id']));
             break;
+        case 'aliment_traces':
+            $query ="   SELECT a.*
+                        FROM aliment a
+                        JOIN aliment_has_traces at
+                        ON a.id_aliment = at.aliment_id_aliment
+                        JOIN traces t
+                        ON t.num = at.traces_num
+                        WHERE t.num = :id
+                        ORDER BY t.name ASC
+                        LIMIT $debut , $nb_affichage_par_page";
+            $result = $bdd->prepare($query);
+            $result->execute(array(':id' => $_GET['id']));
+            break;
         case 'aliment_generic_name':
             $query ="   SELECT *
                         FROM aliment
@@ -170,7 +187,6 @@ function recherche(PDO $bdd, $entry = "", $recherche = "") {
             throw new ErrorException("not rooted ".$type);
         }
     $output = $result->fetchAll(PDO::FETCH_ASSOC);
-    //var_dump($output); TODO: Meilleur recherche
     return $output;
 }
  ?>

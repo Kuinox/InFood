@@ -1,6 +1,6 @@
 <?php
 function rechercheAliment($bdd, $recherche, $debut , $nb_affichage_par_page, $type) {
-    $query = "  SELECT a.id_aliment , a.name_aliment,
+    $query = " SELECT SQL_CALC_FOUND_ROWS a.id_aliment , a.name_aliment,
                 MATCH (g.label) AGAINST (:recherche IN NATURAL LANGUAGE MODE) AS relevance,
                 MATCH (a.name_aliment) AGAINST (:recherche IN NATURAL LANGUAGE MODE) AS title_relevance
                 FROM aliment a
@@ -18,7 +18,7 @@ function rechercheAliment($bdd, $recherche, $debut , $nb_affichage_par_page, $ty
 
 
 function rechercheClassic($bdd, $recherche, $debut , $nb_affichage_par_page, $type) {
-    $query = "  SELECT num, id, name, products, url,
+    $query = "  SELECT SQL_CALC_FOUND_ROWS num, id, name, products, url,
                     MATCH(`id`) AGAINST (? IN NATURAL LANGUAGE MODE) AS title_relevance,
                     MATCH(`name`) AGAINST (? IN NATURAL LANGUAGE MODE) AS relevance
                 FROM $type
@@ -33,7 +33,7 @@ function rechercheClassic($bdd, $recherche, $debut , $nb_affichage_par_page, $ty
 }
 
 function rechercheAlternate($bdd, $recherche, $debut , $nb_affichage_par_page, $type) {
-    $query = "  SELECT id, label,
+    $query = "  SELECT SQL_CALC_FOUND_ROWS id, label,
                     MATCH(`label`) AGAINST (? IN NATURAL LANGUAGE MODE) AS relevance
               FROM $type
               WHERE MATCH(`label`) AGAINST (? IN NATURAL LANGUAGE MODE)

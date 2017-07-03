@@ -16,7 +16,12 @@ function closeBar(div) {
         arrow.classList.remove("arrow-down");
         arrow.classList.add("arrow-up");
         document.getElementById("profilContent").classList.remove("hidden");
-        document.getElementsByClassName("compare")[0].style["z-index"] = 1;
+        try {
+            document.getElementsByClassName("compare")[0].style["z-index"] = 1;
+        } catch (e) {
+
+        }
+
     }
 }
 function profilBar(div) {
@@ -26,7 +31,12 @@ function profilBar(div) {
             arrow.classList.remove("arrow-up");
             arrow.classList.add("arrow-down");
             document.getElementById("profilContent").classList.add("hidden");
-            document.getElementsByClassName("compare")[0].style["z-index"] = -1;
+            try {
+                document.getElementsByClassName("compare")[0].style["z-index"] = -1;
+            } catch (e) {
+                
+            }
+
         } else {
             closeBar(div);
         }

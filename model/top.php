@@ -10,7 +10,7 @@ if(!$db_exist) {
 
     <?php
     include(__DIR__."/head.php"); ?>
-    <body> <?php include(__DIR__."/header.php");?>
+    <body onload='init();'> <?php include(__DIR__."/header.php");?>
         <div class="full_page_container">
             <?php
             if (explode("/", $_SERVER['REQUEST_URI'])[2] != "compare.php" && isset($_SESSION['compare']) && !empty($_SESSION['compare'])) { ?>

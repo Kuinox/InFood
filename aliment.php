@@ -7,7 +7,6 @@ include("controller/SQL/FUNCTIONS/infoAliment.php");
 include("view/functions/displayTable.php");
 include("controller/SQL/FUNCTIONS/comments.php");
 include("controller/functions/commenterEtVoter.php");
-include("model/functions/OnlineProduct.php");
 
 $result = select ($bdd, "aliment", "id_aliment",$_GET['id']);
 if (empty($result)) {
@@ -28,11 +27,7 @@ include("view/win.html");
     $note = notes($bdd, $id_aliment);
     $nbNote = nbNotes($bdd, $id_aliment);
     $labels = label($bdd, $id_aliment);
-    $product = new OnlineProduct($bdd, $_GET['id']);
-    $product->displayImage("front");
-
-
-
+    displayLoadingImage("front");
     displayName($result);
     if ($pref->getEnable()) {
         if ($pref->isPrefAdded($_GET['id'])) {
@@ -49,7 +44,6 @@ include("view/win.html");
                     </form>";
         }
     }
-
     echo"<br><br>";
     echo "Code Barre: ".$_GET['id'];
     echo"<br><br>";
@@ -63,14 +57,13 @@ include("view/win.html");
     displayBrand($brand);
     echo"<br><br>";
     displayIngredients($ingredients);
-    $product->displayImage("ingredients");
+    displayLoadingImage("ingredients");
     echo"<br><br>";
     displayAdditives($additives);
     displayLabel($labels);
     echo"<br><br>";
-    $product->displayImage("nutrition");
+    displayLoadingImage("nutrition");
     displayNutri($nutri);
-
     displayGrade(grade($bdd, $id_aliment));
     echo " <form action='controller/functions/compare.php' method='POST'>
                 <input type='hidden' name='action' value='compare'/>
