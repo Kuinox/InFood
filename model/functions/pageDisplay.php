@@ -32,7 +32,7 @@ function pageDisplay($bdd, $nb_result) {
                 <input type='hidden' name='recherche' value='".$_GET['recherche']."' />
                 <select name='debut' onchange='this.form.submit()'>";
         $actual = "";
-        for($i=0; $i<ceil($nb_per_page/$nb_result);$i++) {
+        for($i=0; $i<ceil($nb_result/$nb_per_page);$i++) {
 
             if ($nb_per_page*$i == $debut) {
                 $actual = "selected";
