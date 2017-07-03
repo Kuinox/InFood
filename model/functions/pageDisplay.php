@@ -24,6 +24,8 @@ function pageDisplay($bdd) {
     echo "<div class='result_navigation'>";
     if($prec) {
         echo "<a href='".$href."&debut=".($debut-$nb_per_page)."'>Précédent</a>";
+    } else {
+        echo "<a></a>";
     }
     echo "<form action='' method='GET'>
             <input type='hidden' name='type' value='".$_GET['type']."' />
@@ -41,6 +43,8 @@ function pageDisplay($bdd) {
             </form>";
     if($suiv) {
         echo "<a href='".$href."&debut=".($debut+$nb_per_page)."'>Suivant</a>";
+    } else {
+        echo "<a></a>";
     }
     echo "</div>";
 }

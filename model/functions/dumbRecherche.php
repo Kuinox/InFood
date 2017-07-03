@@ -27,7 +27,7 @@ function dumbRecherche(PDO $bdd, $entry="") {
                 header("Location: ./aliment?id=".$_GET['recherche']);
                 exit;
             }
-            $query = "  SELECT a.id_aliment , a.name_aliment
+            $query = "  SELECT SQL_CALC_FOUND_ROWS a.id_aliment , a.name_aliment
                         FROM aliment a
                         LEFT OUTER JOIN generic_name g
                         ON g.id = a.generic_name_id
@@ -35,20 +35,20 @@ function dumbRecherche(PDO $bdd, $entry="") {
                         ORDER BY a.name_aliment ASC LIMIT ".$debut.','.$nb_affichage_par_page;
             break;
         case 'additives':
-            $query = "SELECT *
+            $query = "SELECT SQL_CALC_FOUND_ROWS *
                       FROM $type
                       WHERE id LIKE '%".$_GET['recherche']."%'
                       ORDER BY name ASC LIMIT ".$debut.','.$nb_affichage_par_page;
             break;
         case 'labels':
-            $query = "SELECT *
+            $query = "SELECT SQL_CALC_FOUND_ROWS *
                       FROM $type
                       WHERE ".rechercheToPattern("name")."
-                      ORDER BY name ASC";
+                      ORDER BY name ASC LIMIT ".$debut.','.$nb_affichage_par_page;
             break;
         case 'manufacturing_place':
         case 'generic_name':
-            $query = "SELECT id, label
+            $query = "SELECT SQL_CALC_FOUND_ROWS id, label
                       FROM $type
                       WHERE ".rechercheToPattern("label")."
                       ORDER BY label ASC LIMIT ".$debut.','.$nb_affichage_par_page;
@@ -60,7 +60,7 @@ function dumbRecherche(PDO $bdd, $entry="") {
         case 'categories':
         case 'packaging':
         case 'traces':
-            $query = "SELECT *
+            $query = "SELECT SQL_CALC_FOUND_ROWS *
                       FROM $type
                       WHERE ".rechercheToPattern("name")."
                       ORDER BY name ASC";
