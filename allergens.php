@@ -12,6 +12,6 @@ if (empty($result)) {
     echo "<h1>".$result['0']['name']."</h1><br>";
 }
 $recherche = recherche($bdd, "aliment_allergens");
-displayRecherche($recherche);
+displayRecherche($recherche, $bdd);
 include("model/bot.php");
 ?>

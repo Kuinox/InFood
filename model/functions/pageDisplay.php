@@ -11,7 +11,28 @@ function pageDisplay($bdd, $nb_result) {
     } else {
         $debut = $_GET['debut'];
     }
-    $href = "?type=".$_GET['type']."&recherche=".$_GET['recherche'];
+    if(isset($_GET['type'])) {
+        $type = "?type=".$_GET['type'];
+        $type_input = "<input type='hidden' name='type' value='".$_GET['type']."' />";
+    } else {
+        $type = "";
+        $type_input = "";
+    }
+    if(isset($_GET['id'])) {
+        $id = "&id=".$_GET['id'];
+        $id_input = "<input type='hidden' name='id' value='".$_GET['id']."' />";
+    } else {
+        $id = "";
+        $id_input = "";
+    }
+    if(isset($_GET['recherche'])) {
+        $recherche = "&recherche=".$_GET['recherche'];
+        $recherche_input = "<input type='hidden' name='recherche' value='".$_GET['recherche']."' />";
+    } else {
+        $recherche = "";
+        $recherche_input = "";
+    }
+    $href = $type.$id.$recherche;
     $prec = false;
     $suiv = false;
     if ($debut>0) {
@@ -27,9 +48,11 @@ function pageDisplay($bdd, $nb_result) {
         } else {
             echo "<a></a>";
         }
+
         echo "<form action='' method='GET'>
-                <input type='hidden' name='type' value='".$_GET['type']."' />
-                <input type='hidden' name='recherche' value='".$_GET['recherche']."' />
+                $recherche_input
+                $id_input
+                $type_input
                 <select name='debut' onchange='this.form.submit()'>";
         $actual = "";
         for($i=0; $i<ceil($nb_result/$nb_per_page);$i++) {

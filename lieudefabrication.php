@@ -16,6 +16,6 @@ if (empty($result)) {
 }
 
 $recherche = recherche($bdd, "aliment_manufacturing_place");
-displayRecherche($recherche);
+displayRecherche($recherche, $bdd);
 include("model/bot.php");
 ?>

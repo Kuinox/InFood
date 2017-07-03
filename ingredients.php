@@ -10,6 +10,6 @@ $result = select ($bdd, 'ingredients', 'num', $_GET['id']);
 echo "<h1>".$result[0]['name']."</h1>";
 echo $result[0]['products']." aliments contiennent cet ingrédient.";
 $recherche = recherche($bdd,"aliment_ingredients");
-displayRecherche($recherche);
+displayRecherche($recherche, $bdd);
 include("model/bot.php");
 ?>

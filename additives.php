@@ -11,6 +11,6 @@ echo "<h1>".$result[0]['name']."</h1>";
 echo $result[0]['products']." aliments contiennent cet additif.";
 $recherche = recherche($bdd,"aliment_additives");
 
-displayRecherche($recherche);
+displayRecherche($recherche, $bdd);
 include("model/bot.php");
 ?>

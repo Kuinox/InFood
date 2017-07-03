@@ -16,8 +16,11 @@ function dumbRecherche(PDO $bdd, $entry="") {
     }else {
         $debut = intval($_GET['debut']);
     }
-
-    $nb_affichage_par_page = 10;
+    if(!isset($_GET['result_per_page'])) {
+        $nb_affichage_par_page = 10;
+    } else {
+        $nb_affichage_par_page = $_GET['result_per_page'];
+    }
     switch ($type) {
         case 'aliment':
             $query = "SELECT id_aliment FROM aliment WHERE id_aliment = ?" ;
@@ -63,7 +66,8 @@ function dumbRecherche(PDO $bdd, $entry="") {
             $query = "SELECT SQL_CALC_FOUND_ROWS *
                       FROM $type
                       WHERE ".rechercheToPattern("name")."
-                      ORDER BY name ASC";
+                      ORDER BY name ASC
+                      LIMIT $debut , $nb_affichage_par_page";
             break;
         case 'membres':
             $query = "SELECT pseudo
@@ -74,9 +78,7 @@ function dumbRecherche(PDO $bdd, $entry="") {
             throw new ErrorException("not rooted ".$type);
         }
     $result = $bdd->query($query);
-
     $output = $result->fetchAll(PDO::FETCH_ASSOC);
-    //var_dump($output); TODO: Meilleur recherche
     return $output;
 }
  ?>

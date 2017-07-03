@@ -15,6 +15,6 @@ if (empty($result)) {
 }
 
 $recherche = recherche($bdd, "aliment_generic_name");
-displayRecherche($recherche);
+displayRecherche($recherche, $bdd);
 include("model/bot.php");
 ?>

@@ -26,7 +26,7 @@ function recherche(PDO $bdd, $entry = "", $recherche = "") {
     }
     switch ($type) {
         case 'aliment':
-            $query = "SELECT id_aliment FROM aliment WHERE id_aliment = ?" ;
+            $query = "SELECT SQL_CALC_FOUND_ROWS id_aliment FROM aliment WHERE id_aliment = ?" ;
             $barcode = $bdd->prepare($query);
             $barcode->execute(array($recherche));
             if ($barcode->rowCount() == 1) {
@@ -51,7 +51,7 @@ function recherche(PDO $bdd, $entry = "", $recherche = "") {
             $result = rechercheClassic($bdd, $recherche, $debut , $nb_affichage_par_page, $type);
             break;
         case 'aliment_additives':
-            $query ="   SELECT a.*
+            $query ="   SELECT SQL_CALC_FOUND_ROWS a.*
                         FROM aliment a
                         JOIN aliment_has_additives aa
                         ON a.id_aliment = aa.aliment_id_aliment
@@ -64,7 +64,7 @@ function recherche(PDO $bdd, $entry = "", $recherche = "") {
             $result->execute(array(':id' => $_GET['id']));
             break;
         case 'aliment_labels':
-            $query ="   SELECT a.*
+            $query ="   SELECT SQL_CALC_FOUND_ROWS a.*
                         FROM aliment a
                         JOIN aliment_has_labels al
                         ON a.id_aliment = al.aliment_id_aliment
@@ -77,7 +77,7 @@ function recherche(PDO $bdd, $entry = "", $recherche = "") {
             $result->execute(array(':id' => $_GET['id']));
             break;
         case 'aliment_ingredients':
-            $query ="   SELECT a.*
+            $query ="   SELECT SQL_CALC_FOUND_ROWS a.*
                         FROM aliment a
                         JOIN aliment_has_ingredients ai
                         ON a.id_aliment = ai.aliment_id_aliment
@@ -90,7 +90,7 @@ function recherche(PDO $bdd, $entry = "", $recherche = "") {
             $result->execute(array(':id' => $_GET['id']));
             break;
         case 'aliment_brands':
-            $query ="   SELECT a.*
+            $query ="   SELECT SQL_CALC_FOUND_ROWS a.*
                         FROM aliment a
                         JOIN aliment_has_brands ab
                         ON a.id_aliment = ab.aliment_id_aliment
@@ -103,7 +103,7 @@ function recherche(PDO $bdd, $entry = "", $recherche = "") {
             $result->execute(array(':id' => $_GET['id']));
             break;
         case 'aliment_manufacturing_place':
-            $query ="   SELECT a.*
+            $query ="   SELECT SQL_CALC_FOUND_ROWS a.*
                         FROM aliment a
                         JOIN aliment_has_manufacturing_place am
                         ON a.id_aliment = am.aliment_id_aliment
@@ -117,7 +117,7 @@ function recherche(PDO $bdd, $entry = "", $recherche = "") {
             $result->execute(array(':id' => $_GET['id']));
             break;
         case 'aliment_allergens':
-            $query ="   SELECT a.*
+            $query ="   SELECT SQL_CALC_FOUND_ROWS a.*
                         FROM aliment a
                         JOIN aliment_has_allergens al
                         ON a.id_aliment = al.aliment_id_aliment
@@ -130,7 +130,7 @@ function recherche(PDO $bdd, $entry = "", $recherche = "") {
             $result->execute(array(':id' => $_GET['id']));
             break;
         case 'aliment_categories':
-            $query ="   SELECT a.*
+            $query ="   SELECT SQL_CALC_FOUND_ROWS a.*
                         FROM aliment a
                         JOIN aliment_has_categories ac
                         ON a.id_aliment = ac.aliment_id_aliment
@@ -143,7 +143,7 @@ function recherche(PDO $bdd, $entry = "", $recherche = "") {
             $result->execute(array(':id' => $_GET['id']));
             break;
         case 'aliment_packaging':
-            $query ="   SELECT a.*
+            $query ="   SELECT SQL_CALC_FOUND_ROWS a.*
                         FROM aliment a
                         JOIN aliment_has_packaging ap
                         ON a.id_aliment = ap.aliment_id_aliment
@@ -156,7 +156,7 @@ function recherche(PDO $bdd, $entry = "", $recherche = "") {
             $result->execute(array(':id' => $_GET['id']));
             break;
         case 'aliment_traces':
-            $query ="   SELECT a.*
+            $query ="   SELECT SQL_CALC_FOUND_ROWS a.*
                         FROM aliment a
                         JOIN aliment_has_traces at
                         ON a.id_aliment = at.aliment_id_aliment
@@ -169,7 +169,7 @@ function recherche(PDO $bdd, $entry = "", $recherche = "") {
             $result->execute(array(':id' => $_GET['id']));
             break;
         case 'aliment_generic_name':
-            $query ="   SELECT *
+            $query ="   SELECT SQL_CALC_FOUND_ROWS *
                         FROM aliment
                         WHERE generic_name_id = :id";
             $result = $bdd->prepare($query);
