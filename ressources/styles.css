@@ -2,6 +2,12 @@
  * General styles
  *
  */
+.index{
+    border-style: solid;
+    border-color: inherit;
+    text-align: center;
+    color:#9ee04d;
+}
 .cgrade td {
     margin-left: 50%;
     margin-right:50%;
