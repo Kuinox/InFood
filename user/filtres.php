@@ -1,7 +1,7 @@
 <?php
 include("../model/top.php");
-include("model/functions/filtres.php");
-include("controller/SQL/functions/connect.php");
+include("../model/functions/filtres.php");
+include("../controller/SQL/functions/connect.php");
 addFilter($bdd, $_SESSION['user']['id_user'], "{\"data\": [[[\"data\",\"+\", \"id\"]]],\"name\": \"test\"}", "SELECT * FROM `user`", "nope", "#555555");
 displayAllFilters($bdd);
 ?>
@@ -32,7 +32,7 @@ displayAllFilters($bdd);
         <input type='submit' value='Go' />
     </form>
 </div>
-<div class ='searh-results normalHidden'>
+<div class ='search-results normalHidden'>
 
 </div>
 <div class = 'color-picker normalHidden'>
@@ -42,5 +42,5 @@ displayAllFilters($bdd);
     Sauvegarder
 </div>
 <?php
-include("bot.php");
+include("../model/bot.php");
 ?>

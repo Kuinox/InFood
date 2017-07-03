@@ -44,6 +44,7 @@ function recherche(PDO $bdd, $entry = "", $recherche = "") {
         case 'allergens':
         case 'categories':
         case 'packaging':
+        case 'traces':
             $result = rechercheClassic($bdd, $recherche, $debut , $nb_affichage_par_page, $type);
             break;
         case 'aliment_additives':
@@ -147,6 +148,19 @@ function recherche(PDO $bdd, $entry = "", $recherche = "") {
                         ON p.num = ap.packaging_num
                         WHERE p.num = :id
                         ORDER BY p.name ASC
+                        LIMIT $debut , $nb_affichage_par_page";
+            $result = $bdd->prepare($query);
+            $result->execute(array(':id' => $_GET['id']));
+            break;
+        case 'aliment_traces':
+            $query ="   SELECT a.*
+                        FROM aliment a
+                        JOIN aliment_has_traces at
+                        ON a.id_aliment = at.aliment_id_aliment
+                        JOIN traces t
+                        ON t.num = at.traces_num
+                        WHERE t.num = :id
+                        ORDER BY t.name ASC
                         LIMIT $debut , $nb_affichage_par_page";
             $result = $bdd->prepare($query);
             $result->execute(array(':id' => $_GET['id']));

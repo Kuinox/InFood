@@ -59,6 +59,7 @@ function dumbRecherche(PDO $bdd, $entry="") {
         case 'allergens':
         case 'categories':
         case 'packaging':
+        case 'traces':
             $query = "SELECT *
                       FROM $type
                       WHERE ".rechercheToPattern("name")."
