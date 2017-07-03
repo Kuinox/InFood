@@ -184,7 +184,7 @@ header {
 .result_navigation {
     display: flex;
     justify-content: space-between;
-    width: 20%;
+    width: 30%;
 }
 
 .icon{
