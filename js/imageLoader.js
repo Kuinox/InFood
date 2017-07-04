@@ -48,7 +48,7 @@ function displayImage(json) {
         var to_remove = [];
         for (var y=0; y<imgs.length; y++) {
             elem = imgs[y];
-            if(elem.src.indexOf("default.svg") >-1 && elem.id === product.id) {
+            if(elem.src.indexOf("default.svg") >-1 && (elem.id === product.code || elem.id === "")) {
                 to_remove.push(elem);
             }
         }
