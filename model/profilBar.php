@@ -1,9 +1,22 @@
 <?php
+include(__DIR__."/../controller/SQL/FUNCTIONS/connect.php");//connexion au bdd
+if (isset($_SESSION['user'])) {
+$id=$_SESSION['user']['id_user'];
+if(isset($id) AND $id > 0) {
+   $getid = intval($id);
+   $requser = $bdd->prepare('SELECT * FROM user WHERE id_user = ?');
+   $requser->execute(array($getid));
+   $userinfo = $requser->fetch();
+}
+}
+?><?php
+$path = "/".explode("/", $_SERVER['REQUEST_URI'])[1]."/";
+
 if(isset($_SESSION['user'])) { //TODO completer liens ?>
 
 <div id="profilButton" class="profilButton" onclick="profilBar(this)">
-    <img src="https://static.dealabs.com/images/all/no_image_profil.png" style="height:100%;"/>
 
+    <img src="<?php echo $path;?>avatar/<?php echo $userinfo['avatar'];?>" style="height:200%; weight:300%;"/>
 
     <div class="arrow arrow-up">
         <svg xmlns="http://www.w3.org/2000/svg" style="padding-bottom:1000%;" version="1.1" x="0" y="0" viewBox="0 0 256 128" enable-background="new 0 0 256 128" xml:space="preserve"><polygon points="0 0 128 128 256 0 " style="fill:#4e5d66"/></svg>
