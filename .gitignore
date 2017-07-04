@@ -1,1 +1,6 @@
 t.php
+# exclude everything
+avatar/*
+
+# exception to the rule
+!avatar/.gitkeep
