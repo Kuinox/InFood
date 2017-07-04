@@ -31,8 +31,9 @@ function displayImage(json) {
                 if (divs[i].id === "" ) {
                     display_type = "display";
                 }
-                if (divs[i].id == product.id) { // jshint ignore:line
+                if (divs[i].id == product.code) { // jshint ignore:line
                     display_type = "small";
+                    console.log("detected ");
                 }
                 var to_display = images[image][display_type];
                 for(var lang in to_display) {
