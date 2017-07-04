@@ -9,7 +9,7 @@ include("../controller/SQL/FUNCTIONS/connect.php");
 
 //session_start();
 if(isset($_SESSION['user'])){
-  if($_SESSION['user']['name_grade'] == 'utilisateur' || $_SESSION['user']['name_grade'] == 'admin') {
+  if(isset($_SESSION['user'])) {
     //include("functions/supprimerCompte.php");
     $nom=$_SESSION['user']['pseudo'];
     supprimerCompte($bdd, $nom);
