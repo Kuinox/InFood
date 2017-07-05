@@ -344,7 +344,9 @@ header {
     text-align: center;
     flex-grow: 1;
     height: 1px;
+
 }
+
 .filter-button {
     border-radius: 25px;
     border-style: solid;

@@ -12,7 +12,7 @@ function displayAllFilters($bdd) {
         if (empty($name)) {
             $name = "  ";
         }
-        echo "  <div onclick='filterClicked(this)' class='filter-button'  style='border-color: $color;'
+        echo "  <div onclick='filterClicked(this)'  style='border-color: $color;'
                         id = '$id'>
                     $name
                 </div>";

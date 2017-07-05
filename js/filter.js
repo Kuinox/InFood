@@ -42,7 +42,7 @@ function numMaxProperties(data) {
 }
 
 function displaySimpleContent(data, filter) {
-    document.getElementsByClassName("filter-title")[0].innerHTML = data.name;
+    document.getElementsByClassName("filter-title")[0].innerHTML = "<div onclick='modifyTitle()' class='filter-button' style='border-color:filter.color'>"+data.name+"</div>";
     document.getElementsByClassName("color-picker")[0].innerHTML = filter.color;
 }
 
