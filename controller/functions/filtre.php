@@ -38,6 +38,7 @@ function addFilter(PDO $bdd, $user_id, $filter_json, $filter_SQL, $new_general_S
     $prep->execute(array($user_id, $filter_SQL, $filter_json, $color));
     return $bdd->lastInsertId();
 }
+
 function modifyFilter(PDO $bdd, $user_id, $filter_json, $filter_SQL, $new_general_SQL, $color, $filter_id) {
     $query = "  UPDATE `filter` SET user_id_user = ?, filtre = ?, json = ?, color = ?
                 WHERE id = ?";

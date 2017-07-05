@@ -5,12 +5,19 @@ include("../model/functions/filtres.php");
 include("../controller/SQL/functions/connect.php");
 
 if(isset($_POST["action"]) && $_POST["action"] == "addFilter") {
-    addFilter($bdd, $_SESSION['user']['id_user'], "{\"name\": \"\"}", "", "", "#9ee04d");
+    addFilter($bdd, $_SESSION['user']['id_user'], "{\"name\": \"\", \"data\": []}", "", "", "#9ee04d");
+}
+
+if(isset($_POST["action"]) && $_POST["action"] == "renameFilter") {
+    addFilter($bdd, $_SESSION['user']['id_user'], "{\"name\": \"\", \"data\": []}", "", "", "#9ee04d");
 }
 displayAllFilters($bdd);
 ?>
 <div class='filter-title normalHidden'>
-
+    <form action="" method='POST'>
+        <input onchange='this.form.submit()' type='text' name='name' value=''/>
+        <input type='hidden' name='action' value='renameFilter' />
+    </form>
 </div>
 <div class='dropdown normalHidden'>
 

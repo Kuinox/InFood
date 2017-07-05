@@ -31,8 +31,9 @@ function displayImage(json) {
                 if (divs[i].id === "" ) {
                     display_type = "display";
                 }
-                if (divs[i].id == product.id) { // jshint ignore:line
+                if (divs[i].id == product.code) { // jshint ignore:line
                     display_type = "small";
+                    console.log("detected ");
                 }
                 var to_display = images[image][display_type];
                 for(var lang in to_display) {
@@ -47,7 +48,7 @@ function displayImage(json) {
         var to_remove = [];
         for (var y=0; y<imgs.length; y++) {
             elem = imgs[y];
-            if(elem.src.indexOf("default.svg") >-1 && elem.id === product.id) {
+            if(elem.src.indexOf("default.svg") >-1 && (elem.id === product.code || elem.id === "")) {
                 to_remove.push(elem);
             }
         }
