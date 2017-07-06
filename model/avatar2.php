@@ -15,5 +15,9 @@ if (!empty($userinfo['avatar']))
   ?>
   <br><img src="../avatar/<?php echo $userinfo['avatar'];?>" width="150"/><br>
   <?php
+}else{
+  ?>
+    <br><img src="../i.png" width="150"/><br>
+    <?php
 }
  ?>
