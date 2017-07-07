@@ -67,7 +67,7 @@ function pageDisplay($bdd, $nb_result) {
             $actual = "";
         }
         echo "  </select>
-                <input type='number' min='0' max='500' value='$nb_per_page' name='result_per_page' onchange='this.form.submit()'> résultats par page.
+                <input type='number' min='0' max='500' value='$nb_per_page' name='result_per_page' onchange='this.form.submit()'> résultats par page. 
                 </form>";
         if($suiv) {
             echo "<a href='".$href."&debut=".($debut+$nb_per_page)."'>Suivant</a>";

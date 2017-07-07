@@ -109,6 +109,7 @@ a {
 body{
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     display: flex;
+    flex-direction: column;
     margin:0;
     padding:0;
     background-color: #4e5d66;
@@ -189,9 +190,11 @@ header {
 
 .result_navigation {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     width: 30%;
+    bottom: 0;
+    margin-bottom: 5%;
 }
 
 .icon{

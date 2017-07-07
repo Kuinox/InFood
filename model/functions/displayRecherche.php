@@ -5,7 +5,7 @@ function displayRecherche(array $output, $bdd) {
     if(empty($output)) {
         echo "Aucun résultats trouvé";
     } else {
-        echo "$nb_result résultats trouvé";
+        echo "$nb_result résultats trouvés";
     }
     if(isset($_GET['type'])) {
         $type = addslashes($_GET['type']);
