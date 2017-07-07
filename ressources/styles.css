@@ -345,10 +345,12 @@ header {
     flex-wrap: wrap;
     width: 100%;
     height: 100%;
+    flex-wrap: wrap;
 }
 .result a {
     display: flex;
     margin: 20px;
+    flex-wrap: wrap;
 }
 .result_div {
     height: 100%;
@@ -356,17 +358,18 @@ header {
     margin: auto;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
 }
 .result_div img {
     margin: auto;
     max-height: 100%;
 }
-.result_div span {
+.divinside {
     margin: auto auto 0 auto;
     text-align: center;
     flex-grow: 1;
-    height: 1px;
     text-decoration: none;
+    flex-wrap: wrap;
 }
 
 .filter-button {
