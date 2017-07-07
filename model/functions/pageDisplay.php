@@ -12,27 +12,30 @@ function pageDisplay($bdd, $nb_result) {
         $debut = $_GET['debut'];
     }
     if(isset($_GET['type'])) {
-        $type = "?type=".$_GET['type'];
+        $type = "type=".$_GET['type'];
         $type_input = "<input type='hidden' name='type' value='".$_GET['type']."' />";
     } else {
         $type = "";
         $type_input = "";
     }
     if(isset($_GET['id'])) {
-        $id = "&id=".$_GET['id'];
+        $id = "id=".$_GET['id'];
         $id_input = "<input type='hidden' name='id' value='".$_GET['id']."' />";
     } else {
         $id = "";
         $id_input = "";
     }
     if(isset($_GET['recherche'])) {
-        $recherche = "&recherche=".$_GET['recherche'];
+        $recherche = "recherche=".$_GET['recherche'];
         $recherche_input = "<input type='hidden' name='recherche' value='".$_GET['recherche']."' />";
     } else {
         $recherche = "";
         $recherche_input = "";
     }
-    $href = $type.$id.$recherche;
+    $path = explode("?", $_SERVER['REQUEST_URI'])[0]."/";
+    $path = substr($path, 0, -1);
+    $href = $path."?".implode("&",array($type,$id,$recherche));
+
     $prec = false;
     $suiv = false;
     if ($debut>0) {
