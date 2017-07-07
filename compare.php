@@ -9,7 +9,6 @@ echo "<th>Nutriments</th>";
 $nutri = [];
 $additives = [];
 $grade = [];
-$brand = [];
 $nb = count($_SESSION['compare']);
 for ($i = 0 ;$i < $nb; $i++) {
     $result = select ($bdd, "aliment", "id_aliment",$_SESSION['compare'][$i]);
@@ -19,7 +18,6 @@ foreach ($_SESSION['compare'] as $key => $value) {
         $nutri[] = nutriments($bdd, $value);
         $additives[] = additives($bdd, $value);
         $grade[] = grade($bdd, $value);
-        $brand[] = brand($bdd,$value);
 }
 foreach ($nutri[0] as $key => $val) {
      echo "<tr><td>".$val['label']."</td>";
@@ -55,11 +53,6 @@ $nbmax = 0;
         }
         echo "</tr>";
     }
-    foreach ($brand as $key => $value) {
-        foreach ($value as $ky => $val) {
-            echo "<td>".$val['name']."</td>";
-        }
-    }
 
     echo "</table>";
     echo "<table class = 'cgrade'>";
@@ -69,9 +62,11 @@ $nbmax = 0;
     }
     echo "<tr>";
     foreach ($grade as $key => $value) {
+        echo "<td>";
         if ($grade[$key] !== null) {
-            echo "<td><img alt='nutri_score: ".$grade[$key]."' src='https://static.openfoodfacts.org/images/misc/nutriscore-".strtolower($grade[$key]).".svg' /></td>";
+            echo "<img alt='nutri_score: ".$grade[$key]."' src='https://static.openfoodfacts.org/images/misc/nutriscore-".strtolower($grade[$key]).".svg' />";
         }
+        echo "</td>";
     }
     echo "</tr>";
     echo "</table>";
@@ -83,7 +78,6 @@ $nbmax = 0;
 // displayAllergen($allergen);
 // displayPlace($place);
 // displayPackaging($packaging);
-// displayBrand($brand);
 // displayAdditives($additives);
 // displayLabel($labels);
 // displayNutri($nutri);

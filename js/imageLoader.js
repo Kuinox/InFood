@@ -74,6 +74,7 @@ function loadJSONData(url) {
     xhr.send(); //envoie
 }
 function init() {
+    checkCookie(); // jshint ignore:line
     var api;
     var product_id = getProductId();
     if (product_id === false) {

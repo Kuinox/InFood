@@ -36,9 +36,9 @@ if(isset($_POST['cher'])){
 
       //echo "le nom est existe!!";
       //include(__DIR__."/../admin/admin_changer.php");
-      header("Location: ../admin/admin_changer.php");  
+      header("Location: ../admin/admin_changer.php");
   }else { //si le mot de passe et email n'existe pas -> connexion échoué
-      echo "le nom n'existe pas"; //affiche alerte
+      echo "Ce nom d'utilisateur n'existe pas"; //affiche alerte
   }
 }
 }

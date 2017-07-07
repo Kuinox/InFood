@@ -8,6 +8,7 @@
     text-align: center;
     color:#9ee04d;
 }
+
 .cgrade td {
     margin-left: 50%;
     margin-right:50%;
@@ -34,7 +35,6 @@
     background-color: #4e5d66;
     border-radius: 15px;
     padding: 2% 3% 2% 3%;
-
     width: 30%;
     position: absolute;
     right: 1%;
@@ -81,7 +81,7 @@
     text-decoration: none;
 }
 
-.inscript {
+.connexion {
     margin-top: 0.5%;
     font-size: 50%;
     color :white;
@@ -95,7 +95,7 @@
 .inscription {
     margin-top: 0.5%;
     font-size: 50%;
-    color :white;
+    color : #4e5d66;
     text-align: center;
     border-radius: 25px;
     border-width: thin;
@@ -107,6 +107,8 @@ a {
     color: #9ee04d;
 }
 body{
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    display: flex;
     margin:0;
     padding:0;
     background-color: #4e5d66;
@@ -146,9 +148,13 @@ header {
 .top_header {
     background-color: #2b3b47;
     height:100%;
-    display: flex;
-    flex-direction: row;
+    width: 100%;
     z-index: 1;
+    display: block;
+}
+#type {
+    margin-right: 0;
+
 }
 
 .bot_header {
@@ -183,6 +189,7 @@ header {
 
 .result_navigation {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     width: 30%;
 }
@@ -217,6 +224,21 @@ header {
 }
 
 .normalHidden {
+    display: none;
+}
+
+
+.cookies {
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    bottom: 0;
+    width: 100%;
+    background-color: #2b3b47;
+    left: 0;
+}
+
+.cookieHidden {
     display: none;
 }
 
@@ -344,7 +366,7 @@ header {
     text-align: center;
     flex-grow: 1;
     height: 1px;
-
+    text-decoration: none;
 }
 
 .filter-button {

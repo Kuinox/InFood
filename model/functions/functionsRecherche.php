@@ -15,6 +15,7 @@ function rechercheAliment($bdd, $recherche, $debut , $nb_affichage_par_page, $ty
                      MATCH(g.label) AGAINST ('blé' IN NATURAL LANGUAGE MODE)
              GROUP BY a.id_aliment, ab.aliment_id_aliment
              HAVING  ab.aliment_id_aliment = MIN(ab.aliment_id_aliment)
+             ORDER BY title_relevance*2+relevance DESC, name ASC
              LIMIT $debut , $nb_affichage_par_page";
 
 

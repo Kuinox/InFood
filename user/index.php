@@ -37,13 +37,13 @@ else {
     </div>
      <?php
     if ($proprio) {
-        ?>
-        <div class="tab_profil <?php if($tab === "preference") echo "active"; ?>">
-            <a href="?tab=preference&id=<?php echo $id; ?>"
-              <?php if($tab === "preference"){
-                echo"style='padding-left: 1em;'";}?>
+        ?> <!--
+        <div class="tab_profil  if($tab === "preference") echo "active"; ">
+            <a href="?tab=preference&id= echo $id; "
+               if($tab === "preference"){
+                echo"style='padding-left: 1em;'";}
                 style="padding-left: 1em; text-decoration:none;color:#9ee04d;  ">Préférences alimentaires</a>
-        </div>
+        </div> -->
 <?php }
     if($proprio || (isset($_SESSION['user']) && isset($_SESSION['user']['grade']) && $_SESSION['user']['grade'] =="admin")) {
         ?>

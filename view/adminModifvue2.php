@@ -55,9 +55,9 @@ include (__DIR__."./../model/top.php");
 <form action="..\admin\admin_changer.php" method="POST">
 	<table>
 		<tr>
-			<td><input type="password" name="aPassword" placeholder="Admin Mot De Passe"/></td>
-			<td><input type="password" name="password" placeholder="Mot De Passe User"/></td>
-			<td><input type="password" name="cPassword" placeholder="Confirmer Mot De Passe"/></td>
+			<td><input type="password" name="aPassword" placeholder="Mot De Passe Administrateur "/></td>
+			<td><input type="password" name="password" placeholder="Mot De Passe Utilisateur"/></td>
+			<td><input type="password" name="cPassword" placeholder="Confirmer le Mot De Passe"/></td>
 			<td><input type="submit" name="Modifer" value="Modifer" />
 					<input type="hidden" name="action" value="password" />
 			</td>

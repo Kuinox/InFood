@@ -26,8 +26,8 @@
         <header>
             <div class="top_header">
                 <div class="top_header_container">
+                    <a class="accueil" href="<?php echo $path ?>">In'Food</a>
                     <form id="search" action="<?php echo $path; ?>resultat_de_recherche" method="GET">
-                        <a class="accueil" href="<?php echo $path ?>">In'Food</a>
                         <select name = "type" id="type">
                             <option value="aliment"             <?php echo array_shift($array_select); ?>>Aliments</option>
                             <option value="additives"           <?php echo array_shift($array_select); ?>>Additifs</option>

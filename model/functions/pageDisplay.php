@@ -48,7 +48,7 @@ function pageDisplay($bdd, $nb_result) {
         } else {
             echo "<a></a>";
         }
-
+        echo "</br>";
         echo "<form action='' method='GET'>
                 $recherche_input
                 $id_input
