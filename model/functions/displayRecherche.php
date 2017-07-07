@@ -38,7 +38,7 @@ function displayRecherche(array $output, $bdd) {
             $name = $value['label'];
         }
 
-        echo "<a href=$path$type?id=$id><div class='result_div'><div class='product_image'>$img</div><span>".$name.$size.$brands."</span></div></a>";
+        echo "<a href=$path$type?id=$id><div class='result_div'><div class='product_image'>$img</div><div class='divinside'>".$name.$size.$brands."</div></div></a>";
     }
     echo "</div>";
 

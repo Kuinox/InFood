@@ -73,4 +73,3 @@ include("$tab.php");
 include("../model/bot.php");
 ob_end_flush();
 ?>
-<a href="../model/avatar.php">Changer Avatar</a>
