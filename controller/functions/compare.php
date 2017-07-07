@@ -8,7 +8,6 @@ foreach ($_SESSION['compare'] as $key => $value) {
 }
 if ($double === false) {
     $_SESSION['compare'][] = $_POST['id'];
-    var_dump($_SESSION['compare']);
 
 }else {
     echo "string";
