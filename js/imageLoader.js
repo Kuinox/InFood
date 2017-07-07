@@ -9,6 +9,9 @@ function getProductId() {
     get.shift();
     get.shift();
     get = get[0].split("#")[0].split("?");
+    if(get[0] !== "aliment") {
+        return false;
+    }
     if (get.length > 1) {
         get = get[1].split("&");
         for (var i = 0; i<get.length; i++) {
@@ -21,7 +24,9 @@ function getProductId() {
 }
 
 function displayImage(json) {
+    console.log(product);
     var product = JSON.parse(json).product;
+
     try {
         var images = product.selected_images;
         for (var image in images) {
@@ -65,6 +70,7 @@ function loadJSONData(url) {
     var xhr = new XMLHttpRequest(); //instancie l'objet xhr
     xhr.onreadystatechange = function() {//Call a function when the state changes.
         if(xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.responseText);
             displayImage(xhr.responseText);
         } else if (xhr.status !== 200 && xhr.status !== 0){
             console.log("Communication Error"+xhr.status);
@@ -84,6 +90,7 @@ function init() {
             elem = imgs[y];
             if(elem.src.indexOf("default.svg") >-1) {
                 api = "http://world.openfoodfacts.org/api/v0/product/"+elem.id+".json";
+                console.log(api);
                 loadJSONData(api);
             }
         }
